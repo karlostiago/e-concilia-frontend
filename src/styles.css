@@ -1,0 +1,121 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+
+body, table {
+    font-family: 'Ubuntu', sans-serif !important;
+    background-color: #f1f4f6;
+}
+
+label,
+input {
+    color: rgba(0, 0, 0, 0.54) !important;
+}
+
+.bg-dark.wine {
+    background-color: #701717 !important;
+}
+
+.color-wine {
+    color: #701717;
+}
+
+.main {
+    min-height: 100vh;
+    padding-bottom: 20px;
+}
+
+.w-10 {
+    width: 10%!important;
+}
+
+.w-15 {
+    width: 15%!important;
+}
+
+.w-50 {
+    width: 50%!important;
+}
+
+/**
+ * CARD
+ */
+.card,
+.card-header {
+    border-radius: 0 !important;
+}
+
+.card-header {
+    background-color: #fff !important;
+    border-bottom: 1px solid rgba(26, 54, 126, 0.125);
+}
+
+.card-footer{
+    background-color: #fff !important;
+    border-top: 1px solid rgba(26, 54, 126, 0.125);
+}
+
+.card {
+    border-bottom-left-radius: 5px !important;
+    border-bottom-right-radius: 5px !important;
+    border: 1px solid rgba(26, 54, 126, 0.125) !important;
+
+    box-shadow: 0 5px 10px #787676;
+}
+
+.card-action button ~ button {
+    margin-left: 10px;
+}
+
+/**
+ * CUSTOM PRIMENG
+ */
+.p-button-label {
+    font-weight: normal !important;
+}
+
+.p-button.p-button-sm {
+    padding: 0.3232rem 0.9898rem!important;
+}
+
+.p-button-danger {
+    background-color: #701717!important;
+    border: 1px solid #701717 !important;
+}
+
+.p-button-danger:hover {
+    background-color: #873535!important;
+    border: 1px solid #873535 !important;
+}
+
+.p-button-danger.p-button-outlined {
+    background-color: transparent!important;
+    color: #701717!important;
+    border: 1px solid!important;
+}
+
+.p-button-danger.p-button-outlined:hover {
+    background: rgba(239, 68, 68, 0.04)!important;
+}
+
+.p-dropdown .p-dropdown-trigger {
+    background: #701717!important;
+    color: #fff!important;
+}
+
+.p-datatable .p-datatable-tbody > tr > td,
+.p-datatable .p-datatable-thead > tr > th {
+    padding: 10px !important;
+}
+
+.p-datatable .p-datatable-thead > tr > th {
+    background-color: #701717!important;
+    color:#fff !important;
+    font-weight: normal!important;
+}
+
+.p-inputswitch.p-inputswitch-checked .p-inputswitch-slider {
+    background: #701717!important;
+}

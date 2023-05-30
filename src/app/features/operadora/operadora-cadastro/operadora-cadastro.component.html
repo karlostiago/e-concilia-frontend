@@ -1,0 +1,75 @@
+<form autocomplete="off">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="color-wine"> Cadastro de operadoras </h3>
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="form-label">Nome operadora:</label>
+                    <input pInputText class="form-control" name="nomeOperadora" id="nomeOperadora" autofocus />
+                </div>
+            </div>
+
+            <div class="row">
+                <label class="form-label">Ativo:</label>
+                <p-inputSwitch></p-inputSwitch>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <div class="card-action">
+                <button type="button" pButton class="p-button-danger p-button-sm" icon="pi pi-save" label="Nova taxa"></button>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="card">
+        <div class="card-header">
+            <h3 class="color-wine"> Listagem de taxas </h3>
+        </div>
+
+        <div class="card-body">
+            <p-table [value]="taxas" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="10" styleClass="p-datatable-striped p-datatable p-datatable-gridlines">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th class="w-50">Descrição</th>
+                        <th class="text-center w-15">Valor da taxa</th>
+                        <th class="text-center w-10">Ativo</th>
+                        <th class="text-center w-15">Ações</th>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-taxa>
+                    <tr>
+                        <td> {{ taxa["descricao"] }} </td>
+                        <td class="text-end"> {{ taxa["valor"] }} </td>
+                        <td class="text-center">
+                            <span class=" {{ taxa['ativo'] == true ? 'badge text-bg-success' : 'badge text-bg-danger' }} ">
+                                {{ taxa["ativo"] === true ? 'Sim' : 'Não' }}
+                            </span>
+                        </td>
+                        <td class="w-10 text-center">
+                            <div class="card-action">
+                                <button pButton icon="pi pi-trash" class="p-button-danger p-button-sm"></button>
+                                <button pButton icon="pi pi-pencil" class="p-button-danger p-button-sm"></button>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+
+        <div class="card-footer">
+            <div class="card-action">
+                <button pButton class="p-button-danger p-button-sm" icon="pi pi-save" label="Salvar"></button>
+                <button pButton class="p-button-danger p-button-sm p-button-outlined" icon="pi pi-replay" label="Voltar"></button>
+
+                <button pButton class="p-button-danger p-button-sm float-end" icon="pi pi-eraser" label="Limpar"></button>
+            </div>
+        </div>
+    </div>
+</form>

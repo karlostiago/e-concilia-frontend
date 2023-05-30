@@ -1,0 +1,39 @@
+<nav class="navbar navbar-dark bg-dark wine fixed-top {{ exibirMenuLateral ? 'navbar-translateX' : '' }} ">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button" (click)="exibirMenuLateral = !exibirMenuLateral">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <span class="navbar-title">E-Concilia | Concliador de Operações</span>
+        <div class="navbar-menu {{ exibirMenuLateral ? 'block' : 'hidden' }} ">
+            <div class="navbar-menu-title">
+                <span>E-CONCILIA</span>
+            </div>
+            <div class="navbar-divisor"></div>
+
+            <ul class="navbar-menu-item">
+                <li>
+                    <a href="#" (click)="atualizarTitulo('', $event)"> <i class="pi pi-home"></i> Inicial </a>
+                </li>
+                <li>
+                    <a routerLink="/empresas/novo" (click)="atualizarTitulo('Cadastro Empresas', $event)"> <i class="pi pi-building"></i> Empresas </a>
+                </li>
+                <li>
+                    <a routerLink="/contratos/novo" (click)="atualizarTitulo('Cadastro Contratos', $event)"> <i class="pi pi-book"></i> Contratos </a>
+                </li>
+                <li>
+                    <a routerLink="/operadoras/novo" (click)="atualizarTitulo('Cadastro Operadoras', $event)"> <i class="pi pi-credit-card"></i> Operadoras </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<br />
+<br />
+
+<div class="navbar-navegator {{ exibirMenuLateral ? 'navbar-translateX' : '' }}">
+    <span class="color-wine">
+        {{ titulo }}
+    </span>
+</div>
+

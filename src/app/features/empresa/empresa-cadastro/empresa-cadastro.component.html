@@ -1,0 +1,94 @@
+<form autocomplete="off">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="color-wine"> Cadastro de empresas </h3>
+        </div>
+
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="form-label">Razão Social:</label>
+                    <input pInputText class="form-control" name="razaoSocial" id="razaoSocial" autofocus />
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Nome Fantasia:</label>
+                    <input pInputText class="form-control" name="nomeFantasia" id="nomeFantasia" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <label class="form-label">CNPJ:</label>
+                    <p-inputMask mask="99.999.999/9999-99" name="cnpj" id="cnpj" styleClass="form-control" ></p-inputMask>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Endereço:</label>
+                    <input pInputText class="form-control" name="endereco" id="endereco" />
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label">Número:</label>
+                    <input pInputText class="form-control" name="numero" id="numero" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8">
+                    <label class="form-label">Complemento:</label>
+                    <input pInputText class="form-control" name="complemento" id="complemento" />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Bairro:</label>
+                    <input pInputText class="form-control" name="bairro" id="bairro" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <label class="form-label">Cidade:</label>
+                    <input pInputText class="form-control" name="cidade" id="cidade" />
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">UF:</label>
+                    <p-dropdown styleClass="w-100" name="uf" id="uf" [options]="estados" placeholder="Selecione UF"></p-dropdown>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Cep:</label>
+                    <p-inputMask mask="99999-999" name="cep" id="cep" styleClass="form-control" ></p-inputMask>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="form-label">E-mail:</label>
+                    <input pInputText class="form-control" name="email" id="email" />
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label">Telefone Fixo:</label>
+                    <p-inputMask mask="(99) 9999-9999" name="telefoneFixo" id="telefoneFixo" styleClass="form-control" ></p-inputMask>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label">Telefone Celular:</label>
+                    <p-inputMask mask="(99) 99999-9999" name="telefoneCelular" id="telefoneCelular" styleClass="form-control" ></p-inputMask>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <div class="card-action">
+                <button pButton class="p-button-danger p-button-sm" icon="pi pi-save" label="Salvar"></button>
+                <button pButton class="p-button-danger p-button-sm p-button-outlined" icon="pi pi-replay" label="Voltar"></button>
+
+                <button pButton class="p-button-danger p-button-sm float-end" icon="pi pi-eraser" label="Limpar"></button>
+            </div>
+        </div>
+    </div>
+</form>
