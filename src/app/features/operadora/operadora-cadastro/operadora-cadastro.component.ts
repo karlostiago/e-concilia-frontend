@@ -10,6 +10,8 @@ export class OperadoraCadastroComponent implements OnInit {
 
     taxas: any;
 
+    visivel: boolean;
+
     constructor() {
         // environment.apiUrl
     }
@@ -21,5 +23,9 @@ export class OperadoraCadastroComponent implements OnInit {
             { descricao: "Taxa de maquineta pela operadora", valor: 'R$ 2,80', ativo: true },
             { descricao: "Taxa de maquineta pela loja", valor: 'R$ 1,75', ativo: true }
         ]
+    }
+
+    abrirCadastroNovaTaxa () {
+        this.visivel = true;
     }
 }

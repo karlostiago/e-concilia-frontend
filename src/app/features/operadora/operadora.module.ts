@@ -5,6 +5,7 @@ import {InputTextModule} from "primeng/inputtext";
 import {InputSwitchModule} from "primeng/inputswitch";
 import {ButtonModule} from "primeng/button";
 import {TableModule} from "primeng/table";
+import {DialogModule} from "primeng/dialog";
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {TableModule} from "primeng/table";
         InputTextModule,
         InputSwitchModule,
         ButtonModule,
-        TableModule
+        TableModule,
+        DialogModule
     ]
 })
 export class OperadoraModule { }

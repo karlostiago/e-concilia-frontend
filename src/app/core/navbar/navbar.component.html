@@ -3,7 +3,9 @@
         <button class="navbar-toggler" type="button" (click)="exibirMenuLateral = !exibirMenuLateral">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <span class="navbar-title">E-Concilia | Concliador de Operações</span>
+
+        <span class="navbar-title text-overflow">E-Concilia | Concliador de Operações</span>
+
         <div class="navbar-menu {{ exibirMenuLateral ? 'block' : 'hidden' }} ">
             <div class="navbar-menu-title">
                 <span>E-CONCILIA</span>
@@ -32,7 +34,7 @@
 <br />
 
 <div class="navbar-navegator {{ exibirMenuLateral ? 'navbar-translateX' : '' }}">
-    <span class="color-wine">
+    <span class="color-wine text-overflow">
         {{ titulo }}
     </span>
 </div>
