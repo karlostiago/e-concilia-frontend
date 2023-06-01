@@ -34,7 +34,6 @@ export class EmpresaCadastroComponent implements OnInit {
     }
 
     salvar (form: NgForm) {
-        console.log(this.empresa);
         form.resetForm();
     }
 }

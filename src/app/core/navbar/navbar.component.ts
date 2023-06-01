@@ -1,4 +1,5 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {PaginaNavbar} from "../enums/PaginaNavbar";
 
 @Component({
   selector: 'app-navbar',
@@ -7,30 +8,25 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
+    protected readonly PaginaNavbar = PaginaNavbar;
+
     exibirMenuLateral = false;
 
     titulo = "";
 
     ngOnInit(): void {
-        this.titulo = "/Tela Inicial";
+        this.titulo = "/" + PaginaNavbar.INICIAL;
     }
 
-    atualizarTitulo (tituloNovo: string, e: Event) {
+    atualizarTitulo (pagina: PaginaNavbar, e: Event) {
         e.defaultPrevented;
-        this.titulo = "/Tela Inicial"
+        this.titulo = "/" + PaginaNavbar.INICIAL;
 
-        if (tituloNovo.length !== 0) {
-            this.titulo = `/Tela de ${this.retornaPrimeiraLetraMaiusculo(tituloNovo).concat(this.retornaPalavraSemPrimeiraLetra(tituloNovo))}`;
+        if (pagina !== PaginaNavbar.INICIAL) {
+            this.titulo = `/Tela de ${pagina}`
         }
 
         this.exibirMenuLateral = false;
     }
 
-    private retornaPrimeiraLetraMaiusculo(str: string) {
-        return str.charAt(0).toUpperCase();
-    }
-
-    private retornaPalavraSemPrimeiraLetra(str: string) {
-        return str.substring(1, str.length);
-    }
 }
