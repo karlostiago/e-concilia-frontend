@@ -4,7 +4,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <span class="navbar-title text-overflow">E-Concilia | Concliador de Operações</span>
+        <span class="navbar-title text-overflow">E-Concilia | Conciliador de Operações</span>
 
         <div class="navbar-menu {{ exibirMenuLateral ? 'block' : 'hidden' }} ">
             <div class="navbar-menu-title">
@@ -14,16 +14,16 @@
 
             <ul class="navbar-menu-item">
                 <li>
-                    <a href="#" (click)="atualizarTitulo('', $event)"> <i class="pi pi-home"></i> Inicial </a>
+                    <a href="#" (click)="atualizarTitulo(PaginaNavbar.INICIAL, $event)"> <i class="pi pi-home"></i> Inicial </a>
                 </li>
                 <li>
-                    <a routerLink="/empresas/novo" (click)="atualizarTitulo('Cadastro Empresas', $event)"> <i class="pi pi-building"></i> Empresas </a>
+                    <a routerLink="/empresas/novo" (click)="atualizarTitulo(PaginaNavbar.CADASTRO_EMPRESAS, $event)"> <i class="pi pi-building"></i> Empresas </a>
                 </li>
                 <li>
-                    <a routerLink="/contratos/novo" (click)="atualizarTitulo('Cadastro Contratos', $event)"> <i class="pi pi-book"></i> Contratos </a>
+                    <a routerLink="/contratos/novo" (click)="atualizarTitulo(PaginaNavbar.CADASTRO_CONTRATOS, $event)"> <i class="pi pi-book"></i> Contratos </a>
                 </li>
                 <li>
-                    <a routerLink="/operadoras/novo" (click)="atualizarTitulo('Cadastro Operadoras', $event)"> <i class="pi pi-credit-card"></i> Operadoras </a>
+                    <a routerLink="/operadoras/novo" (click)="atualizarTitulo(PaginaNavbar.CADASTRO_OPERADORAS, $event)"> <i class="pi pi-credit-card"></i> Operadoras </a>
                 </li>
             </ul>
         </div>
