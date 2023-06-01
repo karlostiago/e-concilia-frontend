@@ -25,7 +25,7 @@ export class OperadoraCadastroComponent implements OnInit {
         ]
     }
 
-    abrirCadastroNovaTaxa () {
+    abrirModalCadastroNovaTaxa () {
         this.visivel = true;
     }
 }

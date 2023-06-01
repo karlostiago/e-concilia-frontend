@@ -20,7 +20,7 @@
 
         <div class="card-footer">
             <div class="card-action">
-                <button type="button" pButton class="p-button-danger p-button-sm" icon="pi pi-save" (click)="abrirCadastroNovaTaxa()" label="Nova taxa"></button>
+                <button type="button" pButton class="p-button-danger p-button-sm" icon="pi pi-save" (click)="abrirModalCadastroNovaTaxa()" label="Nova taxa"></button>
             </div>
         </div>
     </div>
@@ -87,7 +87,7 @@
 
         <div class="col-md-4">
             <label class="form-label">Valor:</label>
-            <input pInputText class="form-control" name="valor" id="valor" />
+            <p-inputNumber mode="decimal" inputId="locale-brazil" currency="BRL" localeMatcher="lookup" [minFractionDigits]="2" [allowEmpty]="true" locale="pt-BR" currencyDisplay="code"></p-inputNumber>
         </div>
     </div>
 
