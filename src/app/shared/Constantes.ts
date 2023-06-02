@@ -1,4 +1,4 @@
-import {Estado} from "../../model/Estado";
+import {Estado} from "../model/Estado";
 
 export class Constantes {
 

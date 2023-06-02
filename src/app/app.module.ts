@@ -13,17 +13,21 @@ import {EmpresaCadastroComponent} from "./features/empresa/empresa-cadastro/empr
 import {ContratoCadastroComponent} from "./features/contrato/contrato-cadastro/contrato-cadastro.component";
 import {OperadoraCadastroComponent} from "./features/operadora/operadora-cadastro/operadora-cadastro.component";
 import {OperadoraModule} from "./features/operadora/operadora.module";
+import {SharedModule} from "./shared/shared.module";
+import {EmpresaConsultaComponent} from "./features/empresa/empresa-consulta/empresa-consulta.component";
 
 const rotas: Routes = [
+    { path: 'empresas', component: EmpresaConsultaComponent },
     { path: 'empresas/novo', component: EmpresaCadastroComponent },
+
     { path: 'contratos/novo', component: ContratoCadastroComponent },
     { path: 'operadoras/novo', component: OperadoraCadastroComponent }
 ]
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+    declarations: [
+        AppComponent
+    ],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
@@ -33,9 +37,11 @@ const rotas: Routes = [
         ContratoModule,
         OperadoraModule,
         CoreModule,
+        SharedModule,
         RouterModule.forRoot(rotas)
     ],
-  providers: [],
-  bootstrap: [AppComponent]
+    providers: [],
+    bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

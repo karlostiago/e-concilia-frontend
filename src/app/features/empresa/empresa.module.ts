@@ -6,14 +6,17 @@ import {ButtonModule} from "primeng/button";
 import {DropdownModule} from "primeng/dropdown";
 import {FormsModule} from "@angular/forms";
 import {InputMaskModule} from "primeng/inputmask";
+import {EmpresaConsultaComponent} from "./empresa-consulta/empresa-consulta.component";
 
 
 @NgModule({
     declarations: [
-        EmpresaCadastroComponent
+        EmpresaCadastroComponent,
+        EmpresaConsultaComponent
     ],
     exports: [
-        EmpresaCadastroComponent
+        EmpresaCadastroComponent,
+        EmpresaConsultaComponent
     ],
     imports: [
         CommonModule,

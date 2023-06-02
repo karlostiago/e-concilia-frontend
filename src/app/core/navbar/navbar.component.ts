@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {PaginaNavbar} from "../enums/PaginaNavbar";
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {PaginaNavbar} from "../../shared/enums/PaginaNavbar";
 
 @Component({
   selector: 'app-navbar',
@@ -28,5 +28,4 @@ export class NavbarComponent implements OnInit {
 
         this.exibirMenuLateral = false;
     }
-
 }
