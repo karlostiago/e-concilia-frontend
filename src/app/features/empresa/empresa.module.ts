@@ -7,6 +7,8 @@ import {DropdownModule} from "primeng/dropdown";
 import {FormsModule} from "@angular/forms";
 import {InputMaskModule} from "primeng/inputmask";
 import {EmpresaConsultaComponent} from "./empresa-consulta/empresa-consulta.component";
+import {DividerModule} from "primeng/divider";
+import {TableModule} from "primeng/table";
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import {EmpresaConsultaComponent} from "./empresa-consulta/empresa-consulta.comp
         ButtonModule,
         DropdownModule,
         FormsModule,
-        InputMaskModule
+        InputMaskModule,
+        DividerModule,
+        TableModule
     ]
 })
 export class EmpresaModule { }

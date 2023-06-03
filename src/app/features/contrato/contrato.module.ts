@@ -6,10 +6,13 @@ import {DropdownModule} from "primeng/dropdown";
 import {ButtonModule} from "primeng/button";
 import {InputSwitchModule} from "primeng/inputswitch";
 import {TableModule} from "primeng/table";
+import { ConsultaContratoComponent } from './consulta-contrato/consulta-contrato.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
     declarations: [
-        ContratoCadastroComponent
+        ContratoCadastroComponent,
+        ConsultaContratoComponent
     ],
     exports: [
         ContratoCadastroComponent
@@ -20,7 +23,9 @@ import {TableModule} from "primeng/table";
         DropdownModule,
         ButtonModule,
         InputSwitchModule,
-        TableModule
+        TableModule,
+        FormsModule,
+        ReactiveFormsModule
     ]
 })
 export class ContratoModule { }

@@ -4,6 +4,7 @@ import {Empresa} from "../../../model/Empresa";
 import {NotificacaoService} from "../../../shared/notificacao/notificacao.service";
 import {Estado} from "../../../model/Estado";
 import {Router} from "@angular/router";
+import {ErroHandlerService} from "../../../core/ErroHandlerService";
 
 @Component({
   selector: 'app-empresa-cadastro',
@@ -19,7 +20,8 @@ export class EmpresaCadastroComponent implements OnInit {
     constructor(
         private empresaService: EmpresaService,
         private notificacao: NotificacaoService,
-        private router: Router
+        private router: Router,
+        private erro: ErroHandlerService
     ) { }
 
     ngOnInit(): void {
@@ -39,11 +41,11 @@ export class EmpresaCadastroComponent implements OnInit {
                 this.empresa = new Empresa();
             })
             .catch(error => {
-                this.notificacao.error(error);
+                this.erro.capturar(error);
             });
     }
 
-    voltar (e: Event) {
-
+    voltar () {
+        return this.router.navigate(["/consulta/empresas"])
     }
 }

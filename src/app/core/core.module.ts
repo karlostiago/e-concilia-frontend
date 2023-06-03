@@ -4,6 +4,7 @@ import {NavbarComponent} from "./navbar/navbar.component";
 import {RouterLink} from "@angular/router";
 import {FooterComponent} from "./footer/footer.component";
 import {BreadcrumbComponent} from "./breadcrumb/breadcrumb.component";
+import {TagModule} from "primeng/tag";
 
 @NgModule({
     declarations: [
@@ -18,7 +19,8 @@ import {BreadcrumbComponent} from "./breadcrumb/breadcrumb.component";
     ],
     imports: [
         CommonModule,
-        RouterLink
+        RouterLink,
+        TagModule
     ]
 })
 export class CoreModule { }

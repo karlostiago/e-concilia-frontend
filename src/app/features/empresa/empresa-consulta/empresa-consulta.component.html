@@ -1,1 +1,69 @@
-<p>empresa-consulta works!</p>
+<form autocomplete="off" class="fade-in">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="color-wine"> Consulta de empresas </h4>
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="form-label">Razão Social:</label>
+                    <input type="text" pInputText class="form-control" name="razaoSocial" id="razaoSocial" />
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Cpnj:</label>
+                    <input type="text" pInputText class="form-control" name="cnpj" id="cpnj" />
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <div class="card-action">
+                <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-search" label="Pesquisar"></button>
+                <button pButton class="p-button-danger p-button-sm float-end" icon="pi pi-plus-circle" (click)="novaEmpresa()" label="Cadastrar nova empresa"></button>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="card">
+        <div class="card-header">
+            <h4 class="color-wine"> Listagem de empresas </h4>
+        </div>
+
+        <div class="card-body">
+            <p-table [value]="empresas" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="10" styleClass="p-datatable-striped p-datatable p-datatable-gridlines">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="min-width: 180px;">Cnpj</th>
+                        <th class="text-center" style="min-width: 320px">Razão Social</th>
+                        <th class="text-center" style="min-width: 320px">Nome Fantasia</th>
+                        <th class="text-center" style="min-width: 120px;">Ativo</th>
+                        <th class="text-center" style="min-width: 150px;">Ações</th>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-empresa>
+                    <tr>
+                        <td> {{ empresa["cnpj"] }} </td>
+                        <td class="text-center"> {{ empresa["razao social"] }}</td>
+                        <td class="text-center"> {{ empresa["nome fantasia"] }}</td>
+                        <td class="text-center">
+                            <span class=" {{ empresa['ativo'] == true ? 'badge text-bg-success' : 'badge text-bg-danger' }} ">
+                                {{ empresa["ativo"] === true ? 'Sim' : 'Não' }}
+                            </span>
+                        </td>
+                        <td class="text-center">
+                            <div class="action">
+                                <button pButton icon="pi pi-trash" class="p-button-danger p-button-sm"></button>
+                                <button pButton icon="pi pi-pencil" class="p-button-danger p-button-sm"></button>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</form>

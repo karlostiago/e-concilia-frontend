@@ -8,11 +8,13 @@ import {TableModule} from "primeng/table";
 import {DialogModule} from "primeng/dialog";
 import {InputMaskModule} from "primeng/inputmask";
 import {InputNumberModule} from "primeng/inputnumber";
+import { ConsultaOperadoraComponent } from './consulta-operadora/consulta-operadora.component';
 
 
 @NgModule({
     declarations: [
-        OperadoraCadastroComponent
+        OperadoraCadastroComponent,
+        ConsultaOperadoraComponent
     ],
     exports: [
         OperadoraCadastroComponent
