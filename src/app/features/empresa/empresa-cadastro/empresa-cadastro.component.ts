@@ -1,7 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {EmpresaService} from "../empresa.service";
-import {NgForm} from "@angular/forms";
 import {Empresa} from "../../../model/Empresa";
+import {NotificacaoService} from "../../../shared/notificacao/notificacao.service";
+import {Estado} from "../../../model/Estado";
+import {Router} from "@angular/router";
+import {ErroHandlerService} from "../../../core/ErroHandlerService";
 
 @Component({
   selector: 'app-empresa-cadastro',
@@ -10,13 +13,16 @@ import {Empresa} from "../../../model/Empresa";
 })
 export class EmpresaCadastroComponent implements OnInit {
 
-    estados: { label: string; value: number }[];
+    estados: Estado[];
 
     empresa = new Empresa();
 
-    constructor(private empresaService: EmpresaService) {
-
-    }
+    constructor(
+        private empresaService: EmpresaService,
+        private notificacao: NotificacaoService,
+        private router: Router,
+        private erro: ErroHandlerService
+    ) { }
 
     ngOnInit(): void {
         this.carregarEstados();
@@ -24,16 +30,22 @@ export class EmpresaCadastroComponent implements OnInit {
 
     carregarEstados () {
         this.empresaService.todosEstados().then(response => {
-            this.estados = response.map((estado: { uf: string, codigo: number }) => {
-                return {
-                    label: estado.uf,
-                    value: estado.codigo
-                }
-            });
+            this.estados = response;
         });
     }
 
-    salvar (form: NgForm) {
-        form.resetForm();
+    async salvar () {
+        this.empresaService.salvar(this.empresa)
+            .then(resposta => {
+                this.notificacao.sucesso("Empresa cadastrada com sucesso.");
+                this.empresa = new Empresa();
+            })
+            .catch(error => {
+                this.erro.capturar(error);
+            });
+    }
+
+    voltar () {
+        return this.router.navigate(["/consulta/empresas"])
     }
 }

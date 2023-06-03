@@ -1,7 +1,7 @@
-<form autocomplete="off" class="fade-in" #f="ngForm" (ngSubmit)="salvar(f)">
+<form autocomplete="off" class="fade-in" (ngSubmit)="salvar()">
     <div class="card">
         <div class="card-header">
-            <h3 class="color-wine"> Cadastro de empresas </h3>
+            <h4 class="color-wine"> Cadastro de empresas </h4>
         </div>
 
         <div class="card-body">
@@ -25,68 +25,68 @@
 
                 <div class="col-md-6">
                     <label class="form-label">Endereço:</label>
-                    <input pInputText class="form-control" name="endereco" id="endereco" />
+                    <input pInputText class="form-control" name="endereco" id="endereco" [(ngModel)]="empresa.endereco.logradouro" />
                 </div>
 
                 <div class="col-md-3">
                     <label class="form-label">Número:</label>
-                    <input pInputText class="form-control" name="numero" id="numero" />
+                    <input pInputText class="form-control" name="numero" id="numero" [(ngModel)]="empresa.endereco.numero" />
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-8">
                     <label class="form-label">Complemento:</label>
-                    <input pInputText class="form-control" name="complemento" id="complemento" />
+                    <input pInputText class="form-control" name="complemento" id="complemento" [(ngModel)]="empresa.endereco.complemento" />
                 </div>
 
                 <div class="col-md-4">
                     <label class="form-label">Bairro:</label>
-                    <input pInputText class="form-control" name="bairro" id="bairro" />
+                    <input pInputText class="form-control" name="bairro" id="bairro" [(ngModel)]="empresa.endereco.bairro" />
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-4">
                     <label class="form-label">Cidade:</label>
-                    <input pInputText class="form-control" name="cidade" id="cidade" />
+                    <input pInputText class="form-control" name="cidade" id="cidade" [(ngModel)]="empresa.endereco.cidade" />
                 </div>
 
                 <div class="col-md-4">
                     <label class="form-label">UF:</label>
-                    <p-dropdown styleClass="w-100" name="uf" id="uf" [options]="estados" placeholder="Selecione UF"></p-dropdown>
+                    <p-dropdown optionLabel="uf" optionValue="codigo" styleClass="w-100" name="uf" id="uf" [options]="estados" placeholder="Selecione UF" [(ngModel)]="empresa.endereco.estado.codigo"></p-dropdown>
                 </div>
 
                 <div class="col-md-4">
                     <label class="form-label">Cep:</label>
-                    <p-inputMask mask="99999-999" name="cep" id="cep" styleClass="form-control" ></p-inputMask>
+                    <p-inputMask mask="99999-999" name="cep" id="cep" styleClass="form-control" [(ngModel)]="empresa.endereco.cep" ></p-inputMask>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-6">
                     <label class="form-label">E-mail:</label>
-                    <input pInputText class="form-control" name="email" id="email" />
+                    <input pInputText class="form-control" name="email" id="email" [(ngModel)]="empresa.contato.email" />
                 </div>
 
                 <div class="col-md-3">
                     <label class="form-label">Telefone Fixo:</label>
-                    <p-inputMask mask="(99) 9999-9999" name="telefoneFixo" id="telefoneFixo" styleClass="form-control" ></p-inputMask>
+                    <p-inputMask mask="(99) 9999-9999" name="telefoneFixo" id="telefoneFixo" styleClass="form-control" [(ngModel)]="empresa.contato.telefoneFixo" ></p-inputMask>
                 </div>
 
                 <div class="col-md-3">
                     <label class="form-label">Telefone Celular:</label>
-                    <p-inputMask mask="(99) 99999-9999" name="telefoneCelular" id="telefoneCelular" styleClass="form-control" ></p-inputMask>
+                    <p-inputMask mask="(99) 99999-9999" name="telefoneCelular" id="telefoneCelular" styleClass="form-control" [(ngModel)]="empresa.contato.telefoneCeluar" ></p-inputMask>
                 </div>
             </div>
         </div>
 
         <div class="card-footer">
             <div class="card-action">
-                <button pButton class="p-button-danger p-button-sm" icon="pi pi-save" label="Salvar"></button>
-                <button pButton class="p-button-danger p-button-sm p-button-outlined" icon="pi pi-replay" label="Voltar"></button>
+                <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-save" label="Salvar"></button>
+                <button pButton type="button" class="p-button-danger p-button-sm p-button-outlined" icon="pi pi-replay" label="Voltar" (click)="voltar()"></button>
 
-                <button pButton class="p-button-danger p-button-sm float-end" icon="pi pi-eraser" label="Limpar"></button>
+                <button pButton type="reset" class="p-button-danger p-button-sm float-end" icon="pi pi-eraser" label="Limpar"></button>
             </div>
         </div>
     </div>

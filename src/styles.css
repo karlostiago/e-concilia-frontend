@@ -13,7 +13,9 @@ body, table {
     background-color: #f1f4f6;
 }
 
+td,
 label,
+small,
 input {
     color: rgba(0, 0, 0, 0.54) !important;
 }
@@ -128,7 +130,8 @@ input {
     box-shadow: 0 5px 10px #787676;
 }
 
-.card-action button ~ button {
+.card-action button ~ button,
+.action button ~ button {
     margin-left: 10px;
 }
 

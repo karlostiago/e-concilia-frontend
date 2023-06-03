@@ -7,7 +7,4 @@ export class Endereco {
     cidade: string;
     estado = new Estado();
     cep: number;
-    email: string;
-    telefoneFixo: number;
-    telefoneCeluar: number;
 }

@@ -13,18 +13,25 @@ import {EmpresaCadastroComponent} from "./features/empresa/empresa-cadastro/empr
 import {ContratoCadastroComponent} from "./features/contrato/contrato-cadastro/contrato-cadastro.component";
 import {OperadoraCadastroComponent} from "./features/operadora/operadora-cadastro/operadora-cadastro.component";
 import {OperadoraModule} from "./features/operadora/operadora.module";
+import {SharedModule} from "./shared/shared.module";
+import {EmpresaConsultaComponent} from "./features/empresa/empresa-consulta/empresa-consulta.component";
+import {LoaderModule} from "./features/loader/loader.module";
+import {HttpClientModule} from "@angular/common/http";
 
 const rotas: Routes = [
-    { path: 'empresas/novo', component: EmpresaCadastroComponent },
-    { path: 'contratos/novo', component: ContratoCadastroComponent },
-    { path: 'operadoras/novo', component: OperadoraCadastroComponent }
+    { path: 'consulta/empresas', component: EmpresaConsultaComponent },
+    { path: 'cadastro/empresas/novo', component: EmpresaCadastroComponent },
+
+    { path: 'cadastro/contratos/novo', component: ContratoCadastroComponent },
+    { path: 'cadastro/operadoras/novo', component: OperadoraCadastroComponent }
 ]
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+    declarations: [
+        AppComponent,
+    ],
     imports: [
+        HttpClientModule,
         BrowserModule,
         BrowserAnimationsModule,
         InputTextModule,
@@ -33,9 +40,12 @@ const rotas: Routes = [
         ContratoModule,
         OperadoraModule,
         CoreModule,
+        SharedModule,
+        LoaderModule,
         RouterModule.forRoot(rotas)
     ],
-  providers: [],
-  bootstrap: [AppComponent]
+    providers: [],
+    bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
