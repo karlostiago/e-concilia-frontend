@@ -10,7 +10,7 @@ import {ngxLoadingAnimationTypes} from "ngx-loading";
 })
 export class LoaderComponent {
 
-    loading: Subject<boolean> = this.loaderService.isLoading;
+    public loading: Subject<boolean> = this.loaderService.isLoading;
 
     constructor(private loaderService: LoaderService) { }
 
