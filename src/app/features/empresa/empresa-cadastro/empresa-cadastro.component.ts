@@ -32,7 +32,7 @@ export class EmpresaCadastroComponent implements OnInit {
         });
     }
 
-    salvar () {
+    async salvar () {
         this.empresaService.salvar(this.empresa)
             .then(resposta => {
                 this.notificacao.sucesso("Empresa cadastrada com sucesso.");
@@ -43,7 +43,7 @@ export class EmpresaCadastroComponent implements OnInit {
             });
     }
 
-    voltar () {
-        this.router.navigate(["/empresas"]);
+    voltar (e: Event) {
+
     }
 }

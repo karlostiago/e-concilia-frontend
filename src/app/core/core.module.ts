@@ -3,15 +3,18 @@ import { CommonModule } from '@angular/common';
 import {NavbarComponent} from "./navbar/navbar.component";
 import {RouterLink} from "@angular/router";
 import {FooterComponent} from "./footer/footer.component";
+import {BreadcrumbComponent} from "./breadcrumb/breadcrumb.component";
 
 @NgModule({
     declarations: [
         NavbarComponent,
-        FooterComponent
+        FooterComponent,
+        BreadcrumbComponent
     ],
     exports: [
         NavbarComponent,
-        FooterComponent
+        FooterComponent,
+        BreadcrumbComponent
     ],
     imports: [
         CommonModule,

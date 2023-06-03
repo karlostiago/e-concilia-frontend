@@ -1,5 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {PaginaNavbar} from "../../shared/enums/PaginaNavbar";
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -8,24 +7,13 @@ import {PaginaNavbar} from "../../shared/enums/PaginaNavbar";
 })
 export class NavbarComponent implements OnInit {
 
-    protected readonly PaginaNavbar = PaginaNavbar;
-
-    exibirMenuLateral = false;
-
-    titulo = "";
+    exibirMenu = false;
 
     ngOnInit(): void {
-        this.titulo = "/" + PaginaNavbar.INICIAL;
+
     }
 
-    atualizarTitulo (pagina: PaginaNavbar, e: Event) {
-        e.defaultPrevented;
-        this.titulo = "/" + PaginaNavbar.INICIAL;
-
-        if (pagina !== PaginaNavbar.INICIAL) {
-            this.titulo = `/Tela de ${pagina}`
-        }
-
-        this.exibirMenuLateral = false;
+    fecharMenu () {
+        this.exibirMenu = false;
     }
 }

@@ -1,12 +1,12 @@
-<nav class="navbar navbar-dark bg-dark wine fixed-top {{ exibirMenuLateral ? 'navbar-translateX' : '' }} ">
+<nav class="navbar navbar-dark bg-dark wine fixed-top {{ exibirMenu ? 'navbar-translateX' : '' }} ">
     <div class="container-fluid">
-        <button class="navbar-toggler" type="button" (click)="exibirMenuLateral = !exibirMenuLateral">
+        <button class="navbar-toggler" type="button" (click)="exibirMenu = !exibirMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <span class="navbar-title text-overflow">E-Concilia | Conciliador de Operações</span>
 
-        <div class="navbar-menu {{ exibirMenuLateral ? 'block' : 'hidden' }} ">
+        <div class="navbar-menu {{ exibirMenu ? 'block' : 'hidden' }} ">
             <div class="navbar-menu-title">
                 <span>E-CONCILIA</span>
             </div>
@@ -14,16 +14,16 @@
 
             <ul class="navbar-menu-item">
                 <li>
-                    <a href="#" (click)="atualizarTitulo(PaginaNavbar.INICIAL, $event)"> <i class="pi pi-home"></i> Inicial </a>
+                    <a href="#" (click)="fecharMenu()"> <i class="pi pi-home"></i> Inicial </a>
                 </li>
                 <li>
-                    <a routerLink="/empresas/novo" (click)="atualizarTitulo(PaginaNavbar.CADASTRO_EMPRESAS, $event)"> <i class="pi pi-building"></i> Empresas </a>
+                    <a routerLink="/cadastro/empresas/novo" (click)="fecharMenu()"> <i class="pi pi-building"></i> Empresas </a>
                 </li>
                 <li>
-                    <a routerLink="/contratos/novo" (click)="atualizarTitulo(PaginaNavbar.CADASTRO_CONTRATOS, $event)"> <i class="pi pi-book"></i> Contratos </a>
+                    <a routerLink="/cadastro/contratos/novo" (click)="fecharMenu()"> <i class="pi pi-book"></i> Contratos </a>
                 </li>
                 <li>
-                    <a routerLink="/operadoras/novo" (click)="atualizarTitulo(PaginaNavbar.CADASTRO_OPERADORAS, $event)"> <i class="pi pi-credit-card"></i> Operadoras </a>
+                    <a routerLink="/cadastro/operadoras/novo" (click)="fecharMenu()"> <i class="pi pi-credit-card"></i> Operadoras </a>
                 </li>
             </ul>
         </div>
@@ -33,9 +33,7 @@
 <br />
 <br />
 
-<div class="navbar-navegator {{ exibirMenuLateral ? 'navbar-translateX' : '' }}">
-    <span class="color-wine text-overflow">
-        {{ titulo }}
-    </span>
+<div class="navbar-navegator {{ exibirMenu ? 'navbar-translateX' : '' }}">
+    <app-breadcrumb></app-breadcrumb>
 </div>
 
