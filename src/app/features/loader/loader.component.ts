@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {Subject} from "rxjs";
 import {LoaderService} from "./loader.service";
+import {ngxLoadingAnimationTypes} from "ngx-loading";
 
 @Component({
   selector: 'app-loader',
@@ -12,4 +13,6 @@ export class LoaderComponent {
     loading: Subject<boolean> = this.loaderService.isLoading;
 
     constructor(private loaderService: LoaderService) { }
+
+    protected readonly ngxLoadingAnimationTypes = ngxLoadingAnimationTypes;
 }
