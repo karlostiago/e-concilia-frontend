@@ -6,29 +6,29 @@
 
         <div class="card-body">
             <div class="row">
-                <div class="col-md-6">
-                    <label class="form-label">Razão Social:</label>
-                    <input pInputText class="form-control" name="razaoSocial" id="razaoSocial" autofocus [(ngModel)]="empresa.razaoSocial" />
+                <div class="col-md-3">
+                    <label class="form-label">CNPJ:</label>
+                    <p-inputMask mask="99.999.999/9999-99" name="cnpj" id="cnpj" styleClass="form-control" [(ngModel)]="empresa.cnpj" (keyup)="buscarDadosCnpj(empresa.cnpj)" ></p-inputMask>
                 </div>
 
-                <div class="col-md-6">
-                    <label class="form-label">Nome Fantasia:</label>
-                    <input pInputText class="form-control" name="nomeFantasia" id="nomeFantasia" [(ngModel)]="empresa.nomeFantasia" />
+                <div class="col-md-9">
+                    <label class="form-label">Razão Social:</label>
+                    <input pInputText class="form-control" name="razaoSocial" id="razaoSocial" autofocus [(ngModel)]="empresa.razaoSocial" />
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-md-3">
-                    <label class="form-label">CNPJ:</label>
-                    <p-inputMask mask="99.999.999/9999-99" name="cnpj" id="cnpj" styleClass="form-control" [(ngModel)]="empresa.cnpj" ></p-inputMask>
+                <div class="col-md-6">
+                    <label class="form-label">Nome Fantasia:</label>
+                    <input pInputText class="form-control" name="nomeFantasia" id="nomeFantasia" [(ngModel)]="empresa.nomeFantasia" />
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <label class="form-label">Endereço:</label>
                     <input pInputText class="form-control" name="endereco" id="endereco" [(ngModel)]="empresa.endereco.logradouro" />
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <label class="form-label">Número:</label>
                     <input pInputText class="form-control" name="numero" id="numero" [(ngModel)]="empresa.endereco.numero" />
                 </div>
@@ -54,7 +54,7 @@
 
                 <div class="col-md-4">
                     <label class="form-label">UF:</label>
-                    <p-dropdown optionLabel="uf" optionValue="codigo" styleClass="w-100" name="uf" id="uf" [options]="estados" placeholder="Selecione UF" [(ngModel)]="empresa.endereco.estado.codigo"></p-dropdown>
+                    <p-dropdown optionLabel="uf" optionValue="uf" styleClass="w-100" name="uf" id="uf" [options]="estados" placeholder="Selecione UF" [(ngModel)]="empresa.endereco.estado.uf"></p-dropdown>
                 </div>
 
                 <div class="col-md-4">
@@ -71,12 +71,12 @@
 
                 <div class="col-md-3">
                     <label class="form-label">Telefone Fixo:</label>
-                    <p-inputMask mask="(99) 9999-9999" name="telefoneFixo" id="telefoneFixo" styleClass="form-control" [(ngModel)]="empresa.contato.telefoneFixo" ></p-inputMask>
+                    <p-inputMask mask="(99) 9999-9999" name="telefoneFixo" id="telefoneFixo" styleClass="form-control" [(ngModel)]="empresa.contato.telefone" ></p-inputMask>
                 </div>
 
                 <div class="col-md-3">
                     <label class="form-label">Telefone Celular:</label>
-                    <p-inputMask mask="(99) 99999-9999" name="telefoneCelular" id="telefoneCelular" styleClass="form-control" [(ngModel)]="empresa.contato.telefoneCeluar" ></p-inputMask>
+                    <p-inputMask mask="(99) 99999-9999" name="telefoneCelular" id="telefoneCelular" styleClass="form-control" [(ngModel)]="empresa.contato.celular" ></p-inputMask>
                 </div>
             </div>
         </div>
