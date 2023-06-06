@@ -11,7 +11,6 @@ import {environment} from "../../../environments/environment";
 export class EmpresaService {
 
     baseURL = environment.apiUrl;
-
     constructor(private httpClient: HttpClient) { }
 
     async todosEstados () {
