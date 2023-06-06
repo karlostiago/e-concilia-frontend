@@ -45,6 +45,25 @@ export class EmpresaCadastroComponent implements OnInit {
             });
     }
 
+<<<<<<< HEAD
+    async buscarDadosCnpj (cnpj: string) {
+        if (cnpj) {
+            const cnpjSemFormatacao = cnpj.replace(/[^0-9]/g, "");
+
+            if (cnpjSemFormatacao.length === 14) {
+                this.empresaService.buscarDadosCnpj(cnpjSemFormatacao)
+                    .then(response => {
+                        this.empresa = response;
+                    })
+                    .catch(error => {
+                        this.erro.capturar(error);
+                    })
+            }
+        }
+    }
+
+=======
+>>>>>>> edb696aecfe83406df634a5a440139a9665addf7
     voltar () {
         return this.router.navigate(["/consulta/empresas"])
     }
