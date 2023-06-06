@@ -45,7 +45,6 @@ export class EmpresaCadastroComponent implements OnInit {
             });
     }
 
-<<<<<<< HEAD
     async buscarDadosCnpj (cnpj: string) {
         if (cnpj) {
             const cnpjSemFormatacao = cnpj.replace(/[^0-9]/g, "");
@@ -62,8 +61,6 @@ export class EmpresaCadastroComponent implements OnInit {
         }
     }
 
-=======
->>>>>>> edb696aecfe83406df634a5a440139a9665addf7
     voltar () {
         return this.router.navigate(["/consulta/empresas"])
     }
