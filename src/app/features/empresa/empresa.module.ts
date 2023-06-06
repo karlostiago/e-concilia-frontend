@@ -28,11 +28,7 @@ import {TableModule} from "primeng/table";
         FormsModule,
         InputMaskModule,
         DividerModule,
-<<<<<<< HEAD
         TableModule,
-=======
-        TableModule
->>>>>>> edb696aecfe83406df634a5a440139a9665addf7
     ]
 })
 export class EmpresaModule { }
