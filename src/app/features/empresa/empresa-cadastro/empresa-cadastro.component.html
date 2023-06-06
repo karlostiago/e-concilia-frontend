@@ -8,12 +8,12 @@
             <div class="row">
                 <div class="col-md-3">
                     <label class="form-label">CNPJ:</label>
-                    <p-inputMask mask="99.999.999/9999-99" name="cnpj" id="cnpj" styleClass="form-control" [(ngModel)]="empresa.cnpj" (keyup)="buscarDadosCnpj(empresa.cnpj)" ></p-inputMask>
+                    <p-inputMask mask="99.999.999/9999-99" [autoFocus]="true" name="cnpj" id="cnpj" styleClass="form-control" autofocus [(ngModel)]="empresa.cnpj" (keyup)="buscarDadosCnpj(empresa.cnpj)" ></p-inputMask>
                 </div>
 
                 <div class="col-md-9">
                     <label class="form-label">Razão Social:</label>
-                    <input pInputText class="form-control" name="razaoSocial" id="razaoSocial" autofocus [(ngModel)]="empresa.razaoSocial" />
+                    <input pInputText class="form-control" name="razaoSocial" id="razaoSocial" [(ngModel)]="empresa.razaoSocial" />
                 </div>
             </div>
 

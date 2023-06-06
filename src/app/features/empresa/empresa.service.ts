@@ -31,7 +31,7 @@ export class EmpresaService {
         let headers = new HttpHeaders();
         headers = headers.append("Content-Type", "application/json");
 
-        const request = this.httpClient.post(`${this.baseURL}/empresas`, {}, { headers });
+        const request = this.httpClient.post(`${this.baseURL}/empresas`, JSON.stringify(empresa), { headers });
 
         return firstValueFrom(request).then();
     }
