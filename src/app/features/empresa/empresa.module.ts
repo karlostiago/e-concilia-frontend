@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import { EmpresaCadastroComponent } from './empresa-cadastro/empresa-cadastro.component';
+import {EmpresaCadastroComponent} from './empresa-cadastro/empresa-cadastro.component';
 import {InputTextModule} from "primeng/inputtext";
 import {ButtonModule} from "primeng/button";
 import {DropdownModule} from "primeng/dropdown";
@@ -28,7 +28,7 @@ import {TableModule} from "primeng/table";
         FormsModule,
         InputMaskModule,
         DividerModule,
-        TableModule
+        TableModule,
     ]
 })
 export class EmpresaModule { }

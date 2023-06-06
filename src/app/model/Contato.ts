@@ -1,5 +1,5 @@
 export class Contato {
     email: string;
-    telefoneFixo: number;
-    telefoneCeluar: number;
+    telefone: number;
+    celular: number;
 }
