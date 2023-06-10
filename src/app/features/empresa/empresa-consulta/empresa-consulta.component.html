@@ -6,22 +6,22 @@
 
         <div class="card-body">
             <div class="row">
-                <div class="col-md-6">
-                    <label class="form-label">Razão Social:</label>
-                    <input type="text" pInputText class="form-control" name="razaoSocial" id="razaoSocial" />
+                <div class="col-md-4">
+                    <label class="form-label">Cpnj:</label>
+                    <p-inputMask mask="99.999.999/9999-99" [autoFocus]="true" name="cnpj" id="cnpj" styleClass="form-control" autofocus [(ngModel)]="filtroEmpresa.cnpj"></p-inputMask>
                 </div>
 
-                <div class="col-md-6">
-                    <label class="form-label">Cpnj:</label>
-                    <input type="text" pInputText class="form-control" name="cnpj" id="cpnj" />
+                <div class="col-md-8">
+                    <label class="form-label">Razão Social:</label>
+                    <input type="text" pInputText class="form-control" name="razaoSocial" id="razaoSocial" [(ngModel)]="filtroEmpresa.razaoSocial" />
                 </div>
             </div>
         </div>
 
         <div class="card-footer">
             <div class="card-action">
-                <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-search" label="Pesquisar"></button>
-                <button pButton class="p-button-danger p-button-sm float-end" icon="pi pi-plus-circle" (click)="novaEmpresa()" label="Cadastrar nova empresa"></button>
+                <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-search" label="Pesquisar" (click)="pesquisar()"></button>
+                <button pButton class="p-button-danger p-button-sm float-end" icon="pi pi-plus-circle" (click)="novaEmpresa()" label="Nova empresa"></button>
             </div>
         </div>
     </div>
@@ -47,9 +47,9 @@
 
                 <ng-template pTemplate="body" let-empresa>
                     <tr>
-                        <td> {{ empresa["cnpj"] }} </td>
-                        <td class="text-center"> {{ empresa["razao social"] }}</td>
-                        <td class="text-center"> {{ empresa["nome fantasia"] }}</td>
+                        <td> {{ empresa["cnpj"] | cnpj }} </td>
+                        <td class="text-center"> {{ empresa["razaoSocial"] }}</td>
+                        <td class="text-center"> {{ empresa["nomeFantasia"] }}</td>
                         <td class="text-center">
                             <span class=" {{ empresa['ativo'] == true ? 'badge text-bg-success' : 'badge text-bg-danger' }} ">
                                 {{ empresa["ativo"] === true ? 'Sim' : 'Não' }}

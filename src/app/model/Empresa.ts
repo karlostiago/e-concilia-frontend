@@ -6,4 +6,5 @@ export class Empresa {
     cnpj: string;
     endereco =  new Endereco();
     contato = new Contato();
+    ativo: boolean;
 }

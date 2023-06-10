@@ -4,6 +4,7 @@ import {Empresa} from "../../model/Empresa";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {firstValueFrom} from "rxjs";
 import {environment} from "../../../environments/environment";
+import {FiltroEmpresa} from "../../model/FiltroEmpresa";
 
 @Injectable({
     providedIn: 'root'
@@ -32,6 +33,15 @@ export class EmpresaService {
         headers = headers.append("Content-Type", "application/json");
 
         const request = this.httpClient.post(`${this.baseURL}/empresas`, JSON.stringify(empresa), { headers });
+
+        return firstValueFrom(request).then();
+    }
+
+    async pesquisar(filtroEmpresa: FiltroEmpresa): Promise<Empresa[]> {
+        let headers = new HttpHeaders();
+        headers = headers.append("Content-Type", "application/json");
+
+        const request = this.httpClient.get(`${this.baseURL}/empresas?cnpj=${filtroEmpresa.cnpj}&razaoSocial=${filtroEmpresa.razaoSocial}`, { headers });
 
         return firstValueFrom(request).then();
     }

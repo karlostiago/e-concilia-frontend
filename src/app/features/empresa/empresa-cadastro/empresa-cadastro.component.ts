@@ -5,6 +5,7 @@ import {NotificacaoService} from "../../../shared/notificacao/notificacao.servic
 import {Estado} from "../../../model/Estado";
 import {Router} from "@angular/router";
 import {ErroHandlerService} from "../../../core/ErroHandlerService";
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-empresa-cadastro',
@@ -21,7 +22,7 @@ export class EmpresaCadastroComponent implements OnInit {
         private empresaService: EmpresaService,
         private notificacao: NotificacaoService,
         private router: Router,
-        private erro: ErroHandlerService
+        private error: ErroHandlerService
     ) { }
 
     ngOnInit(): void {
@@ -34,14 +35,15 @@ export class EmpresaCadastroComponent implements OnInit {
         });
     }
 
-    async salvar () {
+    async salvar (form: NgForm) {
         this.empresaService.salvar(this.empresa)
             .then(resposta => {
                 this.notificacao.sucesso("Empresa cadastrada com sucesso.");
                 this.empresa = new Empresa();
+                form.resetForm();
             })
             .catch(error => {
-                this.erro.capturar(error);
+                this.error.capturar(error);
             });
     }
 
@@ -55,7 +57,7 @@ export class EmpresaCadastroComponent implements OnInit {
                         this.empresa = response;
                     })
                     .catch(error => {
-                        this.erro.capturar(error);
+                        this.error.capturar(error);
                     })
             }
         }

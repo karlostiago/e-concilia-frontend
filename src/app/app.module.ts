@@ -28,7 +28,7 @@ const rotas: Routes = [
 
 @NgModule({
     declarations: [
-        AppComponent,
+        AppComponent
     ],
     imports: [
         HttpClientModule,

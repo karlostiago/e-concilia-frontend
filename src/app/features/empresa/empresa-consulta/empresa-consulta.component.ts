@@ -1,5 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
+import {Empresa} from "../../../model/Empresa";
+import {EmpresaService} from "../empresa.service";
+import {NotificacaoService} from "../../../shared/notificacao/notificacao.service";
+import {ErroHandlerService} from "../../../core/ErroHandlerService";
+import {FiltroEmpresa} from "../../../model/FiltroEmpresa";
 
 @Component({
   selector: 'app-empresa-consulta',
@@ -8,15 +13,31 @@ import {Router} from "@angular/router";
 })
 export class EmpresaConsultaComponent implements OnInit {
 
-    empresas = [
-        { id: 1, "razao social": "Cometa Supermercados", "nome fantasia": "Cometa Supermercados Ltda", "cnpj": "57.115.221/0001-22", ativo: true },
-        { id: 2, "razao social": "Mirelly Supermercados", "nome fantasia": "Mirelly Supermercados Ltda", "cnpj": "35.121.444/0001-60", ativo: true },
-        { id: 3, "razao social": "Baratão Supermercados", "nome fantasia": "Baratão Supermercados Ltda", "cnpj": "50.493.967/0001-20", ativo: false },
-    ]
+    empresas: Empresa[];
 
-    constructor(private router: Router) { }
+    filtroEmpresa = new FiltroEmpresa();
+
+    constructor(
+        private router: Router,
+        private empresaService: EmpresaService,
+        private notificacao: NotificacaoService,
+        private error: ErroHandlerService) { }
 
     ngOnInit(): void {
+        this.empresaService.pesquisar(this.filtroEmpresa).then(empresas => {
+            this.empresas = empresas;
+        });
+    }
+
+    async pesquisar () {
+        this.empresaService.pesquisar(this.filtroEmpresa).then(empresas => {
+            this.notificacao.sucesso("Consulta concluída com sucesso.");
+            this.empresas = empresas;
+        })
+        .catch(error => {
+            this.notificacao.atencao("A consulta não retornou nenhum resultado.")
+            this.empresas = [];
+        })
     }
 
     novaEmpresa() {

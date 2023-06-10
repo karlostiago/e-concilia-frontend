@@ -1,4 +1,4 @@
-<form autocomplete="off" class="fade-in" (ngSubmit)="salvar()">
+<form autocomplete="off" class="fade-in" #formulario="ngForm" (ngSubmit)="salvar(formulario)">
     <div class="card">
         <div class="card-header">
             <h4 class="color-wine"> Cadastro de empresas </h4>
@@ -6,31 +6,38 @@
 
         <div class="card-body">
             <div class="row">
+                <div class="col-md-12 mb-10">
+                    <small class="float-end color-wine">Campos com ( * ) são obrigatórios.</small>
+                </div>
+            </div>
+
+            <div class="row">
                 <div class="col-md-3">
-                    <label class="form-label">CNPJ:</label>
-                    <p-inputMask mask="99.999.999/9999-99" [autoFocus]="true" name="cnpj" id="cnpj" styleClass="form-control" autofocus [(ngModel)]="empresa.cnpj" (keyup)="buscarDadosCnpj(empresa.cnpj)" ></p-inputMask>
+                    <label class="form-label">CNPJ *:</label>
+                    <p-inputMask mask="99.999.999/9999-99" [autoFocus]="true" name="cnpj" id="cnpj" styleClass="form-control" autofocus [(ngModel)]="empresa.cnpj" [required]="true"
+                                 (keyup)="buscarDadosCnpj(empresa.cnpj)" ></p-inputMask>
                 </div>
 
                 <div class="col-md-9">
-                    <label class="form-label">Razão Social:</label>
-                    <input pInputText class="form-control" name="razaoSocial" id="razaoSocial" [(ngModel)]="empresa.razaoSocial" />
+                    <label class="form-label">Razão Social *:</label>
+                    <input pInputText class="form-control" name="razaoSocial" id="razaoSocial" [(ngModel)]="empresa.razaoSocial" [required]="true" />
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-6">
-                    <label class="form-label">Nome Fantasia:</label>
-                    <input pInputText class="form-control" name="nomeFantasia" id="nomeFantasia" [(ngModel)]="empresa.nomeFantasia" />
+                    <label class="form-label">Nome Fantasia *:</label>
+                    <input pInputText class="form-control" name="nomeFantasia" id="nomeFantasia" [(ngModel)]="empresa.nomeFantasia" [required]="true" />
                 </div>
 
                 <div class="col-md-4">
-                    <label class="form-label">Endereço:</label>
-                    <input pInputText class="form-control" name="endereco" id="endereco" [(ngModel)]="empresa.endereco.logradouro" />
+                    <label class="form-label">Endereço *:</label>
+                    <input pInputText class="form-control" name="endereco" id="endereco" [(ngModel)]="empresa.endereco.logradouro" [required]="true" />
                 </div>
 
                 <div class="col-md-2">
-                    <label class="form-label">Número:</label>
-                    <input pInputText class="form-control" name="numero" id="numero" [(ngModel)]="empresa.endereco.numero" />
+                    <label class="form-label">Número *:</label>
+                    <input pInputText class="form-control" name="numero" id="numero" [(ngModel)]="empresa.endereco.numero" [required]="true" />
                 </div>
             </div>
 
@@ -53,20 +60,20 @@
                 </div>
 
                 <div class="col-md-4">
-                    <label class="form-label">UF:</label>
-                    <p-dropdown optionLabel="uf" optionValue="uf" styleClass="w-100" name="uf" id="uf" [options]="estados" placeholder="Selecione UF" [(ngModel)]="empresa.endereco.estado.uf"></p-dropdown>
+                    <label class="form-label">UF *:</label>
+                    <p-dropdown optionLabel="uf" optionValue="uf" styleClass="w-100" name="uf" id="uf" [options]="estados" placeholder="Selecione UF" [(ngModel)]="empresa.endereco.estado.uf" [required]="true"></p-dropdown>
                 </div>
 
                 <div class="col-md-4">
-                    <label class="form-label">Cep:</label>
-                    <p-inputMask mask="99999-999" name="cep" id="cep" styleClass="form-control" [(ngModel)]="empresa.endereco.cep" ></p-inputMask>
+                    <label class="form-label">Cep *:</label>
+                    <p-inputMask mask="99999-999" name="cep" id="cep" styleClass="form-control" [(ngModel)]="empresa.endereco.cep" [required]="true"></p-inputMask>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-6">
-                    <label class="form-label">E-mail:</label>
-                    <input pInputText class="form-control" name="email" id="email" [(ngModel)]="empresa.contato.email" />
+                    <label class="form-label">E-mail *:</label>
+                    <input pInputText class="form-control" name="email" id="email" [(ngModel)]="empresa.contato.email" [required]="true"/>
                 </div>
 
                 <div class="col-md-3">
@@ -75,15 +82,20 @@
                 </div>
 
                 <div class="col-md-3">
-                    <label class="form-label">Telefone Celular:</label>
-                    <p-inputMask mask="(99) 99999-9999" name="telefoneCelular" id="telefoneCelular" styleClass="form-control" [(ngModel)]="empresa.contato.celular" ></p-inputMask>
+                    <label class="form-label">Telefone Celular *:</label>
+                    <p-inputMask mask="(99) 99999-9999" name="telefoneCelular" id="telefoneCelular" styleClass="form-control" [(ngModel)]="empresa.contato.celular" [required]="true"></p-inputMask>
                 </div>
+            </div>
+
+            <div class="row">
+                <label class="form-label">Ativo:</label>
+                <p-inputSwitch id="ativo" name="ativo" [(ngModel)]="empresa.ativo"></p-inputSwitch>
             </div>
         </div>
 
         <div class="card-footer">
             <div class="card-action">
-                <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-save" label="Salvar"></button>
+                <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-save" label="Salvar" [disabled]="!formulario.valid"></button>
                 <button pButton type="button" class="p-button-danger p-button-sm p-button-outlined" icon="pi pi-replay" label="Voltar" (click)="voltar()"></button>
 
                 <button pButton type="reset" class="p-button-danger p-button-sm float-end" icon="pi pi-eraser" label="Limpar"></button>
