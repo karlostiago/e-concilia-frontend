@@ -1,10 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from "@angular/router";
 import {Empresa} from "../../../model/Empresa";
 import {EmpresaService} from "../empresa.service";
 import {NotificacaoService} from "../../../shared/notificacao/notificacao.service";
 import {ErroHandlerService} from "../../../core/ErroHandlerService";
 import {FiltroEmpresa} from "../../../model/FiltroEmpresa";
+import {ConfirmationService} from "primeng/api";
 
 @Component({
   selector: 'app-empresa-consulta',
@@ -17,16 +18,17 @@ export class EmpresaConsultaComponent implements OnInit {
 
     filtroEmpresa = new FiltroEmpresa();
 
+    @ViewChild('tabela') tabela: any;
+
     constructor(
         private router: Router,
         private empresaService: EmpresaService,
         private notificacao: NotificacaoService,
-        private error: ErroHandlerService) { }
+        private error: ErroHandlerService,
+        private confirmationService: ConfirmationService) { }
 
     ngOnInit(): void {
-        this.empresaService.pesquisar(this.filtroEmpresa).then(empresas => {
-            this.empresas = empresas;
-        });
+        this.carregarEmpresa();
     }
 
     async pesquisar () {
@@ -40,7 +42,32 @@ export class EmpresaConsultaComponent implements OnInit {
         })
     }
 
-    novaEmpresa() {
+    novaEmpresa () {
         return this.router.navigate(["/cadastro/empresas/novo"]);
+    }
+
+    confirmarExclusao (empresa: Empresa) {
+        this.confirmationService.confirm({
+            message: `Tem certeza que deseja excluir a empresa '${ empresa.razaoSocial }' ?`,
+            accept: () => {
+                this.excluir(empresa.id);
+            }
+        })
+    }
+
+    excluir (id: number) {
+        this.empresaService.excluir(id).then(() => {
+            this.carregarEmpresa();
+            this.notificacao.sucesso("Empresa excluída com sucesso.");
+        })
+        .catch(error => {
+            this.error.capturar(error);
+        })
+    }
+
+    private carregarEmpresa () {
+        this.empresaService.pesquisar(this.filtroEmpresa).then(empresas => {
+            this.empresas = empresas;
+        });
     }
 }

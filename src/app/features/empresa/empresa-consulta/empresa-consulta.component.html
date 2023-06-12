@@ -34,7 +34,7 @@
         </div>
 
         <div class="card-body">
-            <p-table [value]="empresas" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="10" styleClass="p-datatable-striped p-datatable p-datatable-gridlines">
+            <p-table [value]="empresas" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="10" styleClass="p-datatable-striped p-datatable p-datatable-gridlines" #tabela>
                 <ng-template pTemplate="header">
                     <tr>
                         <th style="min-width: 180px;">Cnpj</th>
@@ -57,7 +57,7 @@
                         </td>
                         <td class="text-center">
                             <div class="action">
-                                <button pButton icon="pi pi-trash" class="p-button-danger p-button-sm"></button>
+                                <button type="button" pButton icon="pi pi-trash" class="p-button-danger p-button-sm" (click)="confirmarExclusao(empresa)"></button>
                                 <button pButton icon="pi pi-pencil" class="p-button-danger p-button-sm"></button>
                             </div>
                         </td>

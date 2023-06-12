@@ -1,6 +1,7 @@
 import {Endereco} from "./Endereco";
 import {Contato} from "./Contato";
 export class Empresa {
+    id: number;
     razaoSocial: string;
     nomeFantasia: string;
     cnpj: string;

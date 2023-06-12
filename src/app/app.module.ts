@@ -42,7 +42,7 @@ const rotas: Routes = [
         CoreModule,
         SharedModule,
         LoaderModule,
-        RouterModule.forRoot(rotas)
+        RouterModule.forRoot(rotas),
     ],
     providers: [],
     bootstrap: [AppComponent]

@@ -28,7 +28,7 @@ export class EmpresaService {
         return firstValueFrom(request).then();
     }
 
-    async salvar(empresa: Empresa): Promise<Empresa> {
+    async salvar (empresa: Empresa): Promise<Empresa> {
         let headers = new HttpHeaders();
         headers = headers.append("Content-Type", "application/json");
 
@@ -37,11 +37,20 @@ export class EmpresaService {
         return firstValueFrom(request).then();
     }
 
-    async pesquisar(filtroEmpresa: FiltroEmpresa): Promise<Empresa[]> {
+    async pesquisar (filtroEmpresa: FiltroEmpresa): Promise<Empresa[]> {
         let headers = new HttpHeaders();
         headers = headers.append("Content-Type", "application/json");
 
         const request = this.httpClient.get(`${this.baseURL}/empresas?cnpj=${filtroEmpresa.cnpj}&razaoSocial=${filtroEmpresa.razaoSocial}`, { headers });
+
+        return firstValueFrom(request).then();
+    }
+
+    async excluir (id: number) {
+        let headers = new HttpHeaders();
+        headers = headers.append("Content-Type", "application/json");
+
+        const request = this.httpClient.delete(`${this.baseURL}/empresas/${id}`, { headers });
 
         return firstValueFrom(request).then();
     }
