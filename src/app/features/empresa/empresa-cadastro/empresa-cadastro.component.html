@@ -1,7 +1,7 @@
-<form autocomplete="off" class="fade-in" #formulario="ngForm" (ngSubmit)="salvar(formulario)">
+<form autocomplete="off" class="fade-in" #formulario="ngForm" (ngSubmit)="salvarOuEditar(formulario)">
     <div class="card">
         <div class="card-header">
-            <h4 class="color-wine"> Cadastro de empresas </h4>
+            <h4 class="color-wine"> {{ empresa.id ? 'Atualização' : 'Cadastro' }} de empresas </h4>
         </div>
 
         <div class="card-body">
@@ -98,7 +98,7 @@
                 <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-save" label="Salvar" [disabled]="!formulario.valid"></button>
                 <button pButton type="button" class="p-button-danger p-button-sm p-button-outlined" icon="pi pi-replay" label="Voltar" (click)="voltar()"></button>
 
-                <button pButton type="reset" class="p-button-danger p-button-sm float-end" icon="pi pi-eraser" label="Limpar"></button>
+                <button pButton type="reset" class="p-button-danger p-button-sm float-end" icon="pi pi-eraser" *ngIf="!empresa.id" label="Limpar"></button>
             </div>
         </div>
     </div>

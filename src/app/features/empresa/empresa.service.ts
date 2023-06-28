@@ -37,6 +37,15 @@ export class EmpresaService {
         return firstValueFrom(request).then();
     }
 
+    async editar (empresa: Empresa): Promise<Empresa> {
+        let headers = new HttpHeaders();
+        headers = headers.append("Content-Type", "application/json");
+
+        const request = this.httpClient.put(`${this.baseURL}/empresas/${empresa.id}`, JSON.stringify(empresa), { headers });
+
+        return firstValueFrom(request).then();
+    }
+
     async pesquisar (filtroEmpresa: FiltroEmpresa): Promise<Empresa[]> {
         let headers = new HttpHeaders();
         headers = headers.append("Content-Type", "application/json");
@@ -51,6 +60,15 @@ export class EmpresaService {
         headers = headers.append("Content-Type", "application/json");
 
         const request = this.httpClient.delete(`${this.baseURL}/empresas/${id}`, { headers });
+
+        return firstValueFrom(request).then();
+    }
+
+    async pesquisarPorId (id: number): Promise<Empresa> {
+        let headers = new HttpHeaders();
+        headers = headers.append("Content-Type", "application/json");
+
+        const request =this.httpClient.get(`${this.baseURL}/empresas/${id}`, { headers });
 
         return firstValueFrom(request).then();
     }
