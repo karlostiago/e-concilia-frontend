@@ -3,8 +3,9 @@ import {EmpresaService} from "../empresa.service";
 import {Empresa} from "../../../model/Empresa";
 import {NotificacaoService} from "../../../shared/notificacao/notificacao.service";
 import {Estado} from "../../../model/Estado";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {ErroHandlerService} from "../../../core/ErroHandlerService";
+import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-empresa-cadastro',
@@ -21,11 +22,27 @@ export class EmpresaCadastroComponent implements OnInit {
         private empresaService: EmpresaService,
         private notificacao: NotificacaoService,
         private router: Router,
-        private erro: ErroHandlerService
+        private activatedRoute: ActivatedRoute,
+        private error: ErroHandlerService
     ) { }
 
     ngOnInit(): void {
         this.carregarEstados();
+
+        const empresaId = this.activatedRoute.snapshot.params['id'];
+
+        if (empresaId) {
+            this.pesquisarPorId(empresaId);
+        }
+    }
+
+    pesquisarPorId (id: number) {
+        this.empresaService.pesquisarPorId(id).then(response => {
+            this.empresa = response;
+        })
+        .catch(error => {
+            this.error.capturar(error);
+        });
     }
 
     carregarEstados () {
@@ -34,14 +51,33 @@ export class EmpresaCadastroComponent implements OnInit {
         });
     }
 
-    async salvar () {
+    async salvarOuEditar (form: NgForm) {
+        if (this.empresa.id) {
+            await this.editar(form);
+        } else {
+            await this.salvar(form);
+        }
+    }
+
+    async salvar (form: NgForm) {
         this.empresaService.salvar(this.empresa)
             .then(resposta => {
                 this.notificacao.sucesso("Empresa cadastrada com sucesso.");
                 this.empresa = new Empresa();
+                form.resetForm();
             })
             .catch(error => {
-                this.erro.capturar(error);
+                this.error.capturar(error);
+            });
+    }
+
+    async editar (form: NgForm) {
+        this.empresaService.editar(this.empresa)
+            .then(resposta => {
+                this.notificacao.sucesso("Empresa atualizada com sucesso.");
+            })
+            .catch(error => {
+                this.error.capturar(error);
             });
     }
 
@@ -55,7 +91,7 @@ export class EmpresaCadastroComponent implements OnInit {
                         this.empresa = response;
                     })
                     .catch(error => {
-                        this.erro.capturar(error);
+                        this.error.capturar(error);
                     })
             }
         }

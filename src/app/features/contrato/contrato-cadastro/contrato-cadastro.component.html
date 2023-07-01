@@ -6,13 +6,31 @@
 
         <div class="card-body">
             <div class="row">
+                <div class="col-md-12 mb-10">
+                    <small class="float-end color-wine">Campos com ( * ) são obrigatórios.</small>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <label class="form-label">Client-Id*:</label>
+                    <input pInputText class="form-control" name="clientid" id="clientid" [required]="true" />
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label">Client-Secret*:</label>
+                    <input pInputText class="form-control" name="clientsecret" id="clientsecret" [required]="true" />
+                </div>
+            </div>
+
+            <div class="row">
                 <div class="col-md-6">
-                    <label class="form-label">Empresa:</label>
+                    <label class="form-label">Empresa*:</label>
                     <p-dropdown styleClass="w-100" name="empresa" id="empresa" [options]="empresas" placeholder="Selecione uma empresa"></p-dropdown>
                 </div>
 
                 <div class="col-md-6">
-                    <label class="form-label">Operadora:</label>
+                    <label class="form-label">Operadora*:</label>
                     <p-dropdown styleClass="w-100" name="operadora" id="operadora" [options]="operadoras" placeholder="Selecione uma operadora"></p-dropdown>
                 </div>
             </div>
@@ -28,7 +46,7 @@
 
     <div class="card">
         <div class="card-header">
-            <h3 class="color-wine"> Listagem de taxas </h3>
+            <h3 class="color-wine"> Listagem de taxas por operadora </h3>
         </div>
 
         <div class="card-body">

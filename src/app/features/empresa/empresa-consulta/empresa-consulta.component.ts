@@ -1,5 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router} from "@angular/router";
+import {Empresa} from "../../../model/Empresa";
+import {EmpresaService} from "../empresa.service";
+import {NotificacaoService} from "../../../shared/notificacao/notificacao.service";
+import {ErroHandlerService} from "../../../core/ErroHandlerService";
+import {FiltroEmpresa} from "../../../model/FiltroEmpresa";
+import {ConfirmationService} from "primeng/api";
 
 @Component({
   selector: 'app-empresa-consulta',
@@ -8,18 +14,88 @@ import {Router} from "@angular/router";
 })
 export class EmpresaConsultaComponent implements OnInit {
 
-    empresas = [
-        { id: 1, "razao social": "Cometa Supermercados", "nome fantasia": "Cometa Supermercados Ltda", "cnpj": "57.115.221/0001-22", ativo: true },
-        { id: 2, "razao social": "Mirelly Supermercados", "nome fantasia": "Mirelly Supermercados Ltda", "cnpj": "35.121.444/0001-60", ativo: true },
-        { id: 3, "razao social": "Baratão Supermercados", "nome fantasia": "Baratão Supermercados Ltda", "cnpj": "50.493.967/0001-20", ativo: false },
-    ]
+    empresas: Empresa[];
 
-    constructor(private router: Router) { }
+    filtroEmpresa = new FiltroEmpresa();
+
+    @ViewChild('tabela') tabela: any;
+
+    constructor(
+        private router: Router,
+        private empresaService: EmpresaService,
+        private notificacao: NotificacaoService,
+        private error: ErroHandlerService,
+        private confirmationService: ConfirmationService) { }
 
     ngOnInit(): void {
+        this.carregarEmpresa();
     }
 
-    novaEmpresa() {
+    pesquisar () {
+        this.empresaService.pesquisar(this.filtroEmpresa).then(empresas => {
+            this.notificacao.sucesso("Consulta concluída com sucesso.");
+            this.empresas = empresas;
+        })
+        .catch(error => {
+            this.notificacao.atencao("A consulta não retornou nenhum resultado.")
+            this.empresas = [];
+        })
+    }
+
+    novaEmpresa () {
         return this.router.navigate(["/cadastro/empresas/novo"]);
+    }
+
+    confirmarExclusao (empresa: Empresa) {
+        this.confirmationService.confirm({
+            message: `Tem certeza que deseja excluir a empresa '${ empresa.razaoSocial }' ?`,
+            accept: () => {
+                this.excluir(empresa.id);
+            }
+        })
+    }
+
+    excluir (id: number) {
+        this.empresaService.excluir(id).then(() => {
+            this.carregarEmpresa();
+            this.notificacao.sucesso("Empresa excluída com sucesso.");
+        })
+        .catch(error => {
+            this.error.capturar(error);
+        })
+    }
+
+    ativarOuDesativar (empresa: Empresa) {
+        if (empresa.ativo) {
+            this.desativar(empresa);
+        } else {
+            this.ativar(empresa);
+        }
+    }
+
+    private ativar (empresa: Empresa) {
+        this.empresaService.ativar(empresa.id).then(() => {
+            this.notificacao.sucesso("Empresa ativada com sucesso.");
+            empresa.ativo = true;
+        })
+        .catch(error => {
+            this.error.capturar(error);
+        })
+    }
+
+    private desativar (empresa: Empresa) {
+        this.empresaService.desativar(empresa.id).then(() => {
+            this.notificacao.sucesso("Empresa desativada com sucesso.");
+            empresa.ativo = false;
+        })
+        .catch(error => {
+            this.error.capturar(error);
+        })
+    }
+
+    private carregarEmpresa () {
+        this.empresaService.pesquisar(this.filtroEmpresa).then(empresas => {
+            this.empresas = empresas;
+        });
     }
 }
