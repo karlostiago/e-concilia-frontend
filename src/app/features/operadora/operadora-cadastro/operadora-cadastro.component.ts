@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {environment} from "../../../../environments/environment";
+import {Taxa} from "../../../model/Taxa";
+import {Operadora} from "../../../model/Operadora";
 
 @Component({
   selector: 'app-operadora-cadastro',
@@ -8,8 +9,8 @@ import {environment} from "../../../../environments/environment";
 })
 export class OperadoraCadastroComponent implements OnInit {
 
-    taxas: any;
-
+    operadora = new Operadora();
+    taxa = new Taxa();
     visivel: boolean;
 
     constructor() {
@@ -17,15 +18,16 @@ export class OperadoraCadastroComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.taxas = [
-            { descricao: "Taxa de entrega pela operadora", valor: 'R$ 1,50', ativo: true },
-            { descricao: "Taxa de entrega pela loja", valor: 'R$ 2,50', ativo: true },
-            { descricao: "Taxa de maquineta pela operadora", valor: 'R$ 2,80', ativo: true },
-            { descricao: "Taxa de maquineta pela loja", valor: 'R$ 1,75', ativo: true }
-        ]
-    }
 
+    }
     abrirModalCadastroNovaTaxa () {
         this.visivel = true;
+    }
+    salvarTaxa (taxa: Taxa) {
+        taxa.ativo = this.operadora.ativo;
+        taxa.expiraEm = -1;
+        this.operadora.taxas.push(taxa);
+        this.taxa = new Taxa();
+        this.visivel = false;
     }
 }
