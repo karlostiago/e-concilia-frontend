@@ -9,18 +9,22 @@ export class NotificacaoService {
     constructor( private messageService: MessageService ) { }
 
     sucesso (mensagem: string) {
-        this.messageService.add({
-            severity: 'success',
-            summary: 'Successo',
-            detail: mensagem,
-        })
+        this.gerarMensagem(mensagem, 'success', 'Sucesso');
     }
 
     error (mensagem: string) {
+        this.gerarMensagem(mensagem, 'error', 'Error');
+    }
+
+    atencao (mensagem: string) {
+        this.gerarMensagem(mensagem, 'warn', 'Atenção');
+    }
+
+    private gerarMensagem (mensagem: string, severidade: string, sumario: string) {
         this.messageService.add({
-            severity: 'error',
-            summary: 'Error',
+            severity: severidade,
+            summary: sumario,
             detail: mensagem
-        })
+        });
     }
 }

@@ -5,6 +5,8 @@ import {RouterLink} from "@angular/router";
 import {FooterComponent} from "./footer/footer.component";
 import {BreadcrumbComponent} from "./breadcrumb/breadcrumb.component";
 import {TagModule} from "primeng/tag";
+import {ConfirmDialogModule} from "primeng/confirmdialog";
+import {ConfirmationService} from "primeng/api";
 
 @NgModule({
     declarations: [
@@ -15,12 +17,17 @@ import {TagModule} from "primeng/tag";
     exports: [
         NavbarComponent,
         FooterComponent,
-        BreadcrumbComponent
+        BreadcrumbComponent,
+        ConfirmDialogModule
     ],
     imports: [
         CommonModule,
         RouterLink,
-        TagModule
+        TagModule,
+        ConfirmDialogModule
+    ],
+    providers: [
+        ConfirmationService
     ]
 })
 export class CoreModule { }

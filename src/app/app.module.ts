@@ -21,6 +21,7 @@ import {HttpClientModule} from "@angular/common/http";
 const rotas: Routes = [
     { path: 'consulta/empresas', component: EmpresaConsultaComponent },
     { path: 'cadastro/empresas/novo', component: EmpresaCadastroComponent },
+    { path: 'editar/empresas/:id', component: EmpresaCadastroComponent },
 
     { path: 'cadastro/contratos/novo', component: ContratoCadastroComponent },
     { path: 'cadastro/operadoras/novo', component: OperadoraCadastroComponent }
@@ -28,7 +29,7 @@ const rotas: Routes = [
 
 @NgModule({
     declarations: [
-        AppComponent,
+        AppComponent
     ],
     imports: [
         HttpClientModule,
@@ -42,7 +43,7 @@ const rotas: Routes = [
         CoreModule,
         SharedModule,
         LoaderModule,
-        RouterModule.forRoot(rotas)
+        RouterModule.forRoot(rotas),
     ],
     providers: [],
     bootstrap: [AppComponent]
