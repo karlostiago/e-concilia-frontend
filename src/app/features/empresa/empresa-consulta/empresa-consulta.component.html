@@ -51,9 +51,11 @@
                         <td class="text-center"> {{ empresa["razaoSocial"] }}</td>
                         <td class="text-center"> {{ empresa["nomeFantasia"] }}</td>
                         <td class="text-center">
-                            <span class=" {{ empresa['ativo'] == true ? 'badge text-bg-success' : 'badge text-bg-danger' }} ">
-                                {{ empresa["ativo"] === true ? 'Sim' : 'Não' }}
-                            </span>
+                            <a (click)="ativarOuDesativar(empresa)">
+                                <span class=" {{ empresa['ativo'] == true ? 'badge text-bg-success' : 'badge text-bg-danger' }} ">
+                                    {{ empresa["ativo"] === true ? 'Sim' : 'Não' }}
+                                </span>
+                            </a>
                         </td>
                         <td class="text-center">
                             <div class="action">

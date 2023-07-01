@@ -72,4 +72,22 @@ export class EmpresaService {
 
         return firstValueFrom(request).then();
     }
+
+    async ativar (id: number): Promise<Empresa> {
+        let headers = new HttpHeaders();
+        headers = headers.append("Content-Type", "application/json");
+
+        const request =this.httpClient.patch(`${this.baseURL}/empresas/${id}/ativar`, { headers });
+
+        return firstValueFrom(request).then();
+    }
+
+    async desativar (id: number): Promise<Empresa> {
+        let headers = new HttpHeaders();
+        headers = headers.append("Content-Type", "application/json");
+
+        const request =this.httpClient.patch(`${this.baseURL}/empresas/${id}/desativar`, { headers });
+
+        return firstValueFrom(request).then();
+    }
 }
