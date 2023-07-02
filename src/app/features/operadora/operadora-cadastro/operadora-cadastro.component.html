@@ -1,4 +1,4 @@
-<form autocomplete="off" class="fade-in">
+<form autocomplete="off" #formulario="ngForm" class="fade-in">
     <div class="card">
         <div class="card-header">
             <h4 class="color-wine"> Cadastro de operadoras </h4>
@@ -6,21 +6,27 @@
 
         <div class="card-body">
             <div class="row">
+                <div class="col-md-12 mb-10">
+                    <small class="float-end color-wine">Campos com ( * ) são obrigatórios.</small>
+                </div>
+            </div>
+
+            <div class="row">
                 <div class="col-md-12">
-                    <label class="form-label">Nome operadora:</label>
-                    <input pInputText class="form-control" name="nomeOperadora" id="nomeOperadora" autofocus />
+                    <label class="form-label">Nome operadora*:</label>
+                    <input pInputText class="form-control" name="nomeOperadora" id="nomeOperadora" autofocus [(ngModel)]="operadora.descricao" [required]="true" />
                 </div>
             </div>
 
             <div class="row">
                 <label class="form-label">Ativo:</label>
-                <p-inputSwitch></p-inputSwitch>
+                <p-inputSwitch id="ativo" name="ativo" [(ngModel)]="operadora.ativo"></p-inputSwitch>
             </div>
         </div>
 
         <div class="card-footer">
             <div class="card-action">
-                <button type="button" pButton class="p-button-danger p-button-sm" icon="pi pi-save" (click)="abrirModalCadastroNovaTaxa()" label="Nova taxa"></button>
+                <button type="button" pButton class="p-button-danger p-button-sm" icon="pi pi-save" (click)="abrirModalCadastroNovaTaxa()" label="Nova taxa" [disabled]="!formulario.valid"></button>
             </div>
         </div>
     </div>
@@ -49,10 +55,10 @@
                 <ng-template pTemplate="body" let-taxa>
                     <tr>
                         <td> {{ taxa["descricao"] }} </td>
-                        <td class="text-end"> {{ taxa["valor"] }} </td>
+                        <td class="text-end"> {{ formatarMoeda(taxa["valor"]) }} </td>
                         <td class="text-center"> {{ taxa["entraEmVigor"] | date:'dd/MM/yyyy' }} </td>
                         <td class="text-center"> {{ taxa["validoAte"] | date:'dd/MM/yyyy' }} </td>
-                        <td class="text-center"> {{ taxa["expiraEm"] === -1 ? 'A calcular' : taxa["expiraEm"] }} </td>
+                        <td class="text-center"> {{ taxa["expiraEm"] }} - dias </td>
                         <td class="text-center">
                             <span class=" {{ taxa['ativo'] == true ? 'badge text-bg-success' : 'badge text-bg-danger' }} ">
                                 {{ taxa["ativo"] === true ? 'Sim' : 'Não' }}
@@ -61,7 +67,6 @@
                         <td class="w-10 text-center">
                             <div class="card-action">
                                 <button pButton icon="pi pi-trash" class="p-button-danger p-button-sm"></button>
-                                <button pButton icon="pi pi-pencil" class="p-button-danger p-button-sm"></button>
                             </div>
                         </td>
                     </tr>
@@ -88,7 +93,7 @@
     <div class="row">
         <div class="col-md-12">
             <label class="form-label">Descrição:</label>
-            <input pInputText class="form-control" name="descricao" id="descricao" [(ngModel)]="taxa.descricao" autocomplete="off"/>
+            <input pInputText class="form-control" name="descricao" id="descricao" [(ngModel)]="taxa.descricao" />
         </div>
     </div>
 
@@ -107,7 +112,7 @@
     <div class="row">
         <div class="col-md-4">
             <label class="form-label">Valor:</label>
-            <input pInputText [(ngModel)]="taxa.valor" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" />
+            <input pInputText [(ngModel)]="taxa.valor" class="form-control" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" />
         </div>
     </div>
 

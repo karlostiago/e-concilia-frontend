@@ -1,6 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Taxa} from "../../../model/Taxa";
 import {Operadora} from "../../../model/Operadora";
+import {NotificacaoService} from "../../../shared/notificacao/notificacao.service";
+import {OperadoraService} from "../operadora.service";
+import {ErroHandlerService} from "../../../core/ErroHandlerService";
+import {FormatacaoMoedaPtBR} from "../../../../helpers/FormatacaoMoedaPtBR";
 
 @Component({
   selector: 'app-operadora-cadastro',
@@ -13,9 +17,10 @@ export class OperadoraCadastroComponent implements OnInit {
     taxa = new Taxa();
     visivel: boolean;
 
-    constructor() {
-        // environment.apiUrl
-    }
+    constructor(
+        private notificacao: NotificacaoService,
+        private operadoraService: OperadoraService,
+        private error: ErroHandlerService) {}
 
     ngOnInit(): void {
 
@@ -24,10 +29,19 @@ export class OperadoraCadastroComponent implements OnInit {
         this.visivel = true;
     }
     salvarTaxa (taxa: Taxa) {
-        taxa.ativo = this.operadora.ativo;
-        taxa.expiraEm = -1;
-        this.operadora.taxas.push(taxa);
-        this.taxa = new Taxa();
-        this.visivel = false;
+        this.operadoraService.validarTaxa(taxa).then(response => {
+            taxa.expiraEm = response.expiraEm;
+            taxa.ativo = taxa.expiraEm > 0;
+            this.operadora.taxas.push(taxa);
+            this.taxa = new Taxa();
+            this.visivel = false;
+        })
+        .catch(error => {
+            this.error.capturar(error);
+        })
+    }
+
+    formatarMoeda(valor: number) {
+        return FormatacaoMoedaPtBR.formatar(valor);
     }
 }
