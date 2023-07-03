@@ -1,4 +1,4 @@
-<form autocomplete="off" class="fade-in">
+<form autocomplete="off" class="fade-in" #formulario="ngForm" (ngSubmit)="salvar(formulario)">
     <div class="card">
         <div class="card-header">
             <h4 class="color-wine"> Cadastro de contratos </h4>
@@ -12,32 +12,22 @@
             </div>
 
             <div class="row">
-                <div class="col-md-3">
-                    <label class="form-label">Client-Id*:</label>
-                    <input pInputText class="form-control" name="clientid" id="clientid" [required]="true" />
-                </div>
-
-                <div class="col-md-3">
-                    <label class="form-label">Client-Secret*:</label>
-                    <input pInputText class="form-control" name="clientsecret" id="clientsecret" [required]="true" />
-                </div>
-            </div>
-
-            <div class="row">
                 <div class="col-md-6">
                     <label class="form-label">Empresa*:</label>
-                    <p-dropdown styleClass="w-100" name="empresa" id="empresa" [options]="empresas" placeholder="Selecione uma empresa"></p-dropdown>
+                    <p-dropdown styleClass="w-100" name="empresa" id="empresa" optionLabel="razaoSocial" optionValue="id" [options]="empresas" placeholder="Selecione uma empresa"
+                        [(ngModel)]="empresaId"></p-dropdown>
                 </div>
 
                 <div class="col-md-6">
                     <label class="form-label">Operadora*:</label>
-                    <p-dropdown styleClass="w-100" name="operadora" id="operadora" [options]="operadoras" placeholder="Selecione uma operadora"></p-dropdown>
+                    <p-dropdown styleClass="w-100" name="operadora" id="operadora" optionLabel="descricao" optionValue="id" [options]="operadoras" (onChange)="buscarTaxas($event)" placeholder="Selecione uma operadora"
+                        [(ngModel)]="operadoraId"></p-dropdown>
                 </div>
             </div>
 
             <div class="row">
                 <label class="form-label">Ativo:</label>
-                <p-inputSwitch></p-inputSwitch>
+                <p-inputSwitch id="ativo" name="ativo" [(ngModel)]="contrato.ativo"></p-inputSwitch>
             </div>
         </div>
     </div>
@@ -62,7 +52,7 @@
                 <ng-template pTemplate="body" let-taxa>
                     <tr>
                         <td> {{ taxa["descricao"] }} </td>
-                        <td class="text-end"> {{ taxa["valor"] }} </td>
+                        <td class="text-end"> {{ formatarMoeda(taxa["valor"]) }} </td>
                         <td class="text-center">
                             <span class=" {{ taxa['ativo'] == true ? 'badge text-bg-success' : 'badge text-bg-danger' }} ">
                                 {{ taxa["ativo"] === true ? 'Sim' : 'Não' }}

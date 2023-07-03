@@ -3,7 +3,7 @@ import {Operadora} from "../../../model/Operadora";
 import {Taxa} from "../../../model/Taxa";
 import {FormatacaoMoedaPtBR} from "../../../../helpers/FormatacaoMoedaPtBR";
 import {OperadoraService} from "../../operadora/operadora.service";
-import {FiltroOperadora} from "../../../model/FiltroOperadora";
+import {FiltroOperadora} from "../../../filter/FiltroOperadora";
 import {ErroHandlerService} from "../../../core/ErroHandlerService";
 
 @Component({
@@ -15,13 +15,12 @@ export class TaxaConsultaComponent implements  OnInit {
 
     operadoras = new Array<Operadora>();
     taxas = new Array<Taxa>();
-    filtroOperadora = new FiltroOperadora();
 
     constructor(private operadoraService: OperadoraService,
                 private error: ErroHandlerService) { }
 
     ngOnInit(): void {
-        this.operadoraService.pesquisar(this.filtroOperadora).then(operadoras => {
+        this.operadoraService.pesquisar(new FiltroOperadora()).then(operadoras => {
            this.operadoras = operadoras;
         })
         .catch(error => {

@@ -4,7 +4,7 @@ import {Empresa} from "../../../model/Empresa";
 import {EmpresaService} from "../empresa.service";
 import {NotificacaoService} from "../../../shared/notificacao/notificacao.service";
 import {ErroHandlerService} from "../../../core/ErroHandlerService";
-import {FiltroEmpresa} from "../../../model/FiltroEmpresa";
+import {FiltroEmpresa} from "../../../filter/FiltroEmpresa";
 import {ConfirmationService} from "primeng/api";
 
 @Component({

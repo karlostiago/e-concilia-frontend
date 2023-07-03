@@ -5,8 +5,8 @@ import {Taxa} from "../../model/Taxa";
 import {firstValueFrom} from "rxjs";
 import {Operadora} from "../../model/Operadora";
 import {Empresa} from "../../model/Empresa";
-import {FiltroEmpresa} from "../../model/FiltroEmpresa";
-import {FiltroOperadora} from "../../model/FiltroOperadora";
+import {FiltroEmpresa} from "../../filter/FiltroEmpresa";
+import {FiltroOperadora} from "../../filter/FiltroOperadora";
 
 @Injectable({
     providedIn: 'root'

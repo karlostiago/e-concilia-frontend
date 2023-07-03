@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Operadora} from "../../../model/Operadora";
 import {OperadoraService} from "../operadora.service";
-import {FiltroOperadora} from "../../../model/FiltroOperadora";
+import {FiltroOperadora} from "../../../filter/FiltroOperadora";
 import {NotificacaoService} from "../../../shared/notificacao/notificacao.service";
 import {Empresa} from "../../../model/Empresa";
 import {ConfirmationService} from "primeng/api";
