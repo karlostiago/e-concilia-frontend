@@ -1,4 +1,4 @@
-<form autocomplete="off" #formulario="ngForm" class="fade-in">
+<form autocomplete="off" #formulario="ngForm" class="fade-in" (ngSubmit)="salvar(formulario)">
     <div class="card">
         <div class="card-header">
             <h4 class="color-wine"> Cadastro de operadoras </h4>
@@ -66,7 +66,7 @@
                         </td>
                         <td class="w-10 text-center">
                             <div class="card-action">
-                                <button pButton icon="pi pi-trash" class="p-button-danger p-button-sm"></button>
+                                <button type="button" pButton icon="pi pi-trash" class="p-button-danger p-button-sm" (click)="excluirTaxa(taxa)"></button>
                             </div>
                         </td>
                     </tr>
@@ -76,10 +76,10 @@
 
         <div class="card-footer">
             <div class="card-action">
-                <button pButton class="p-button-danger p-button-sm" icon="pi pi-save" label="Salvar"></button>
-                <button pButton class="p-button-danger p-button-sm p-button-outlined" icon="pi pi-replay" label="Voltar"></button>
+                <button type="submit" pButton class="p-button-danger p-button-sm" icon="pi pi-save" label="Salvar" [disabled]="!formulario.valid"></button>
+                <button type="button" pButton class="p-button-danger p-button-sm p-button-outlined" icon="pi pi-replay" (click)="voltar()" label="Voltar"></button>
 
-                <button pButton class="p-button-danger p-button-sm float-end" icon="pi pi-eraser" label="Limpar"></button>
+                <button type="reset" pButton class="p-button-danger p-button-sm float-end" icon="pi pi-eraser" label="Limpar"></button>
             </div>
         </div>
     </div>
