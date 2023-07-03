@@ -9,10 +9,10 @@ import {ErroHandlerService} from "../../../core/ErroHandlerService";
 
 @Component({
   selector: 'app-operadora-consulta',
-  templateUrl: './consulta-operadora.component.html',
-  styleUrls: ['./consulta-operadora.component.css']
+  templateUrl: './operadora-consulta.component.html',
+  styleUrls: ['./operadora-consulta.component.css']
 })
-export class ConsultaOperadoraComponent implements OnInit {
+export class OperadoraConsultaComponent implements OnInit {
 
     operadoras: Operadora[];
     filtroOperadora = new FiltroOperadora();
