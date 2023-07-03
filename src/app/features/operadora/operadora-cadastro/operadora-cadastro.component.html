@@ -1,4 +1,4 @@
-<form autocomplete="off" #formulario="ngForm" class="fade-in" (ngSubmit)="salvar(formulario)">
+<form autocomplete="off" #formulario="ngForm" class="fade-in" (ngSubmit)="salvarOuEditar(formulario)">
     <div class="card">
         <div class="card-header">
             <h4 class="color-wine"> Cadastro de operadoras </h4>
@@ -79,7 +79,7 @@
                 <button type="submit" pButton class="p-button-danger p-button-sm" icon="pi pi-save" label="Salvar" [disabled]="!formulario.valid"></button>
                 <button type="button" pButton class="p-button-danger p-button-sm p-button-outlined" icon="pi pi-replay" (click)="voltar()" label="Voltar"></button>
 
-                <button type="reset" pButton class="p-button-danger p-button-sm float-end" icon="pi pi-eraser" label="Limpar"></button>
+                <button type="reset" pButton class="p-button-danger p-button-sm float-end" icon="pi pi-eraser" *ngIf="!operadora.id" label="Limpar"></button>
             </div>
         </div>
     </div>

@@ -28,12 +28,11 @@ export class EmpresaConsultaComponent implements OnInit {
         private confirmationService: ConfirmationService) { }
 
     ngOnInit(): void {
-        this.carregarEmpresa();
+        this.carregarEmpresas();
     }
 
     pesquisar () {
         this.empresaService.pesquisar(this.filtroEmpresa).then(empresas => {
-            this.notificacao.sucesso("Consulta concluída com sucesso.");
             this.empresas = empresas;
         })
         .catch(error => {
@@ -57,7 +56,7 @@ export class EmpresaConsultaComponent implements OnInit {
 
     excluir (id: number) {
         this.empresaService.excluir(id).then(() => {
-            this.carregarEmpresa();
+            this.carregarEmpresas();
             this.notificacao.sucesso("Empresa excluída com sucesso.");
         })
         .catch(error => {
@@ -93,7 +92,7 @@ export class EmpresaConsultaComponent implements OnInit {
         })
     }
 
-    private carregarEmpresa () {
+    private carregarEmpresas () {
         this.empresaService.pesquisar(this.filtroEmpresa).then(empresas => {
             this.empresas = empresas;
         });

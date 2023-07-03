@@ -17,7 +17,7 @@ import {SharedModule} from "./shared/shared.module";
 import {EmpresaConsultaComponent} from "./features/empresa/empresa-consulta/empresa-consulta.component";
 import {LoaderModule} from "./features/loader/loader.module";
 import {HttpClientModule} from "@angular/common/http";
-import {ConsultaOperadoraComponent} from "./features/operadora/consulta-operadora/consulta-operadora.component";
+import {ConsultaOperadoraComponent} from "./features/operadora/operadora-consulta/consulta-operadora.component";
 
 const rotas: Routes = [
     { path: 'consulta/empresas', component: EmpresaConsultaComponent },
@@ -27,6 +27,7 @@ const rotas: Routes = [
     { path: 'cadastro/contratos/novo', component: ContratoCadastroComponent },
 
     { path: 'cadastro/operadoras/novo', component: OperadoraCadastroComponent },
+    { path: 'editar/operadoras/:id', component: OperadoraCadastroComponent },
     { path: 'consulta/operadoras', component: ConsultaOperadoraComponent }
 ]
 

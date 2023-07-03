@@ -53,7 +53,7 @@ export class EmpresaCadastroComponent implements OnInit {
 
     async salvarOuEditar (form: NgForm) {
         if (this.empresa.id) {
-            await this.editar(form);
+            await this.editar();
         } else {
             await this.salvar(form);
         }
@@ -71,7 +71,7 @@ export class EmpresaCadastroComponent implements OnInit {
             });
     }
 
-    async editar (form: NgForm) {
+    async editar () {
         this.empresaService.editar(this.empresa)
             .then(resposta => {
                 this.notificacao.sucesso("Empresa atualizada com sucesso.");

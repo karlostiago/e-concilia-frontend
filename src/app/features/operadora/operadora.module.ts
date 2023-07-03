@@ -8,10 +8,11 @@ import {TableModule} from "primeng/table";
 import {DialogModule} from "primeng/dialog";
 import {InputMaskModule} from "primeng/inputmask";
 import {InputNumberModule} from "primeng/inputnumber";
-import { ConsultaOperadoraComponent } from './consulta-operadora/consulta-operadora.component';
+import { ConsultaOperadoraComponent } from './operadora-consulta/consulta-operadora.component';
 import {FormsModule} from "@angular/forms";
 import {CalendarModule} from "primeng/calendar";
 import {CurrencyMaskModule} from "ng2-currency-mask";
+import {RouterLink} from "@angular/router";
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import {CurrencyMaskModule} from "ng2-currency-mask";
         InputNumberModule,
         FormsModule,
         CalendarModule,
-        CurrencyMaskModule
+        CurrencyMaskModule,
+        RouterLink
     ]
 })
 export class OperadoraModule { }
