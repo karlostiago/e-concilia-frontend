@@ -4,7 +4,7 @@ import {Empresa} from "../../model/Empresa";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {firstValueFrom} from "rxjs";
 import {environment} from "../../../environments/environment";
-import {FiltroEmpresa} from "../../model/FiltroEmpresa";
+import {FiltroEmpresa} from "../../filter/FiltroEmpresa";
 
 @Injectable({
     providedIn: 'root'

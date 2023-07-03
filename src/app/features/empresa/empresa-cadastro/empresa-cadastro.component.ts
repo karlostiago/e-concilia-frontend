@@ -8,9 +8,9 @@ import {ErroHandlerService} from "../../../core/ErroHandlerService";
 import {NgForm} from "@angular/forms";
 
 @Component({
-  selector: 'app-empresa-cadastro',
-  templateUrl: './empresa-cadastro.component.html',
-  styleUrls: ['./empresa-cadastro.component.css']
+    selector: 'app-empresa-cadastro',
+    templateUrl: './empresa-cadastro.component.html',
+    styleUrls: ['./empresa-cadastro.component.css']
 })
 export class EmpresaCadastroComponent implements OnInit {
 
@@ -40,9 +40,9 @@ export class EmpresaCadastroComponent implements OnInit {
         this.empresaService.pesquisarPorId(id).then(response => {
             this.empresa = response;
         })
-        .catch(error => {
-            this.error.capturar(error);
-        });
+            .catch(error => {
+                this.error.capturar(error);
+            });
     }
 
     carregarEstados () {
@@ -53,7 +53,7 @@ export class EmpresaCadastroComponent implements OnInit {
 
     async salvarOuEditar (form: NgForm) {
         if (this.empresa.id) {
-            await this.editar(form);
+            await this.editar();
         } else {
             await this.salvar(form);
         }
@@ -71,7 +71,7 @@ export class EmpresaCadastroComponent implements OnInit {
             });
     }
 
-    async editar (form: NgForm) {
+    async editar () {
         this.empresaService.editar(this.empresa)
             .then(resposta => {
                 this.notificacao.sucesso("Empresa atualizada com sucesso.");

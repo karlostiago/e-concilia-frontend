@@ -17,6 +17,9 @@ import {SharedModule} from "./shared/shared.module";
 import {EmpresaConsultaComponent} from "./features/empresa/empresa-consulta/empresa-consulta.component";
 import {LoaderModule} from "./features/loader/loader.module";
 import {HttpClientModule} from "@angular/common/http";
+import {OperadoraConsultaComponent} from "./features/operadora/operadora-consulta/operadora-consulta.component";
+import {TaxaModule} from "./features/taxa/taxa.module";
+import {TaxaConsultaComponent} from "./features/taxa/taxa-consulta/taxa-consulta.component";
 
 const rotas: Routes = [
     { path: 'consulta/empresas', component: EmpresaConsultaComponent },
@@ -24,7 +27,12 @@ const rotas: Routes = [
     { path: 'editar/empresas/:id', component: EmpresaCadastroComponent },
 
     { path: 'cadastro/contratos/novo', component: ContratoCadastroComponent },
-    { path: 'cadastro/operadoras/novo', component: OperadoraCadastroComponent }
+
+    { path: 'cadastro/operadoras/novo', component: OperadoraCadastroComponent },
+    { path: 'consulta/operadoras', component: OperadoraConsultaComponent },
+    { path: 'editar/operadoras/:id', component: OperadoraCadastroComponent },
+
+    { path: 'consulta/taxas', component: TaxaConsultaComponent }
 ]
 
 @NgModule({
@@ -40,6 +48,7 @@ const rotas: Routes = [
         EmpresaModule,
         ContratoModule,
         OperadoraModule,
+        TaxaModule,
         CoreModule,
         SharedModule,
         LoaderModule,

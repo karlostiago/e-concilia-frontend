@@ -4,13 +4,13 @@ import {Empresa} from "../../../model/Empresa";
 import {EmpresaService} from "../empresa.service";
 import {NotificacaoService} from "../../../shared/notificacao/notificacao.service";
 import {ErroHandlerService} from "../../../core/ErroHandlerService";
-import {FiltroEmpresa} from "../../../model/FiltroEmpresa";
+import {FiltroEmpresa} from "../../../filter/FiltroEmpresa";
 import {ConfirmationService} from "primeng/api";
 
 @Component({
-  selector: 'app-empresa-consulta',
-  templateUrl: './empresa-consulta.component.html',
-  styleUrls: ['./empresa-consulta.component.css']
+    selector: 'app-empresa-consulta',
+    templateUrl: './empresa-consulta.component.html',
+    styleUrls: ['./empresa-consulta.component.css']
 })
 export class EmpresaConsultaComponent implements OnInit {
 
@@ -28,18 +28,17 @@ export class EmpresaConsultaComponent implements OnInit {
         private confirmationService: ConfirmationService) { }
 
     ngOnInit(): void {
-        this.carregarEmpresa();
+        this.carregarEmpresas();
     }
 
     pesquisar () {
         this.empresaService.pesquisar(this.filtroEmpresa).then(empresas => {
-            this.notificacao.sucesso("Consulta concluída com sucesso.");
             this.empresas = empresas;
         })
-        .catch(error => {
-            this.notificacao.atencao("A consulta não retornou nenhum resultado.")
-            this.empresas = [];
-        })
+            .catch(error => {
+                this.notificacao.atencao("A consulta não retornou nenhum resultado.")
+                this.empresas = [];
+            })
     }
 
     novaEmpresa () {
@@ -57,12 +56,12 @@ export class EmpresaConsultaComponent implements OnInit {
 
     excluir (id: number) {
         this.empresaService.excluir(id).then(() => {
-            this.carregarEmpresa();
+            this.carregarEmpresas();
             this.notificacao.sucesso("Empresa excluída com sucesso.");
         })
-        .catch(error => {
-            this.error.capturar(error);
-        })
+            .catch(error => {
+                this.error.capturar(error);
+            })
     }
 
     ativarOuDesativar (empresa: Empresa) {
@@ -78,9 +77,9 @@ export class EmpresaConsultaComponent implements OnInit {
             this.notificacao.sucesso("Empresa ativada com sucesso.");
             empresa.ativo = true;
         })
-        .catch(error => {
-            this.error.capturar(error);
-        })
+            .catch(error => {
+                this.error.capturar(error);
+            })
     }
 
     private desativar (empresa: Empresa) {
@@ -88,12 +87,12 @@ export class EmpresaConsultaComponent implements OnInit {
             this.notificacao.sucesso("Empresa desativada com sucesso.");
             empresa.ativo = false;
         })
-        .catch(error => {
-            this.error.capturar(error);
-        })
+            .catch(error => {
+                this.error.capturar(error);
+            })
     }
 
-    private carregarEmpresa () {
+    private carregarEmpresas () {
         this.empresaService.pesquisar(this.filtroEmpresa).then(empresas => {
             this.empresas = empresas;
         });

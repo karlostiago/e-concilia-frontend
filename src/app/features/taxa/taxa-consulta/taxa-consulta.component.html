@@ -1,0 +1,54 @@
+<form autocomplete="off" class="fade-in">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="color-wine"> Consulta de taxas </h4>
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="form-label">Operadora:</label>
+                    <p-dropdown styleClass="w-100" name="empresa" id="empresa" optionLabel="descricao" optionValue="id" [options]="operadoras" placeholder="Selecione uma operadora" (onChange)="buscar($event)"></p-dropdown>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="card">
+        <div class="card-header">
+            <h3 class="color-wine"> Listagem de taxas </h3>
+        </div>
+
+        <div class="card-body">
+            <p-table [value]="taxas" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="10" styleClass="p-datatable-striped p-datatable p-datatable-gridlines">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th class="w-40">Descrição</th>
+                        <th class="text-center w-15">Valor da taxa</th>
+                        <th class="text-center w-5">Vigora em</th>
+                        <th class="text-center w-5">Válido até</th>
+                        <th class="text-center w-5">Expira em</th>
+                        <th class="text-center w-10">Ativo</th>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-taxa>
+                    <tr>
+                        <td> {{ taxa["descricao"] }} </td>
+                        <td class="text-end"> {{ formatarMoeda(taxa["valor"]) }} </td>
+                        <td class="text-center"> {{ taxa["entraEmVigor"] | date:'dd/MM/yyyy' }} </td>
+                        <td class="text-center"> {{ taxa["validoAte"] | date:'dd/MM/yyyy' }} </td>
+                        <td class="text-center"> {{ taxa["expiraEm"] }} - dias </td>
+                        <td class="text-center">
+                            <span class=" {{ taxa['ativo'] == true ? 'badge text-bg-success' : 'badge text-bg-danger' }} ">
+                                {{ taxa["ativo"] === true ? 'Sim' : 'Não' }}
+                            </span>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</form>
