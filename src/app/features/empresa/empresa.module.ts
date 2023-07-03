@@ -9,12 +9,16 @@ import {InputMaskModule} from "primeng/inputmask";
 import {EmpresaConsultaComponent} from "./empresa-consulta/empresa-consulta.component";
 import {DividerModule} from "primeng/divider";
 import {TableModule} from "primeng/table";
+import {InputSwitchModule} from "primeng/inputswitch";
+import {CnpjPipe} from "../../pipes/cnpj.pipe";
+import {RouterLink} from "@angular/router";
 
 
 @NgModule({
     declarations: [
         EmpresaCadastroComponent,
-        EmpresaConsultaComponent
+        EmpresaConsultaComponent,
+        CnpjPipe
     ],
     exports: [
         EmpresaCadastroComponent,
@@ -29,6 +33,8 @@ import {TableModule} from "primeng/table";
         InputMaskModule,
         DividerModule,
         TableModule,
+        InputSwitchModule,
+        RouterLink
     ]
 })
 export class EmpresaModule { }
