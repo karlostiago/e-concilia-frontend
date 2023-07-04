@@ -9,14 +9,8 @@ export class ErroHandlerService {
     constructor(private notificacao: NotificacaoService) { }
 
     capturar(errorResponse: any) {
-        if (errorResponse.error) {
-            this.notificacao.error(errorResponse.error.message);
-        }
-
-        if (errorResponse.error.errors) {
-            for (const err of errorResponse.error.errors) {
-                this.notificacao.error(err.defaultMessage);
-            }
+        for (const erro of errorResponse.error) {
+            this.notificacao.error(erro.mensagem);
         }
     }
 }
