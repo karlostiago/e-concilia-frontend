@@ -1,24 +1,20 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {firstValueFrom} from "rxjs";
-import {environment} from "../../../environments/environment";
 import {Contrato} from "../../model/Contrato";
+import {AbstractService} from "../../service/AbstractService";
 
 @Injectable({
   providedIn: 'root'
 })
-export class ContratoService {
+export class ContratoService extends AbstractService {
 
-    baseURL = environment.apiUrl;
-
-    constructor(private httpClient: HttpClient) { }
+    constructor(private httpClient: HttpClient) {
+        super();
+    }
 
     async salvar (contrato: Contrato): Promise<Contrato> {
-        let headers = new HttpHeaders();
-        headers = headers.append("Content-Type", "application/json");
-
-        const request = this.httpClient.post(`${this.baseURL}/contratos`, JSON.stringify(contrato), { headers });
-
+        const request = this.httpClient.post(`${this.baseURL}/contratos`, JSON.stringify(contrato), this.options());
         return firstValueFrom(request).then();
     }
 }

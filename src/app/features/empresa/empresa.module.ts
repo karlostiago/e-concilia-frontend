@@ -12,7 +12,7 @@ import {TableModule} from "primeng/table";
 import {InputSwitchModule} from "primeng/inputswitch";
 import {CnpjPipe} from "../../pipes/cnpj.pipe";
 import {RouterLink} from "@angular/router";
-
+import {EmpresaRoutingModule} from "./empresa-routing.module";
 
 @NgModule({
     declarations: [
@@ -34,7 +34,8 @@ import {RouterLink} from "@angular/router";
         DividerModule,
         TableModule,
         InputSwitchModule,
-        RouterLink
+        RouterLink,
+        EmpresaRoutingModule
     ]
 })
 export class EmpresaModule { }

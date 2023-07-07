@@ -7,6 +7,10 @@ import {BreadcrumbComponent} from "./breadcrumb/breadcrumb.component";
 import {TagModule} from "primeng/tag";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {ConfirmationService} from "primeng/api";
+import {TaxaModule} from "../features/taxa/taxa.module";
+import {EmpresaModule} from "../features/empresa/empresa.module";
+import {ContratoModule} from "../features/contrato/contrato.module";
+import {OperadoraModule} from "../features/operadora/operadora.module";
 
 @NgModule({
     declarations: [
@@ -18,7 +22,12 @@ import {ConfirmationService} from "primeng/api";
         NavbarComponent,
         FooterComponent,
         BreadcrumbComponent,
-        ConfirmDialogModule
+        ConfirmDialogModule,
+
+        TaxaModule,
+        EmpresaModule,
+        ContratoModule,
+        OperadoraModule,
     ],
     imports: [
         CommonModule,

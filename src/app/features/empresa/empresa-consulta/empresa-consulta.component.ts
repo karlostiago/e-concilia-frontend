@@ -41,10 +41,6 @@ export class EmpresaConsultaComponent implements OnInit {
             })
     }
 
-    novaEmpresa () {
-        return this.router.navigate(["/cadastro/empresas/novo"]);
-    }
-
     confirmarExclusao (empresa: Empresa) {
         this.confirmationService.confirm({
             message: `Tem certeza que deseja excluir a empresa '${ empresa.razaoSocial }' ?`,

@@ -96,8 +96,4 @@ export class EmpresaCadastroComponent implements OnInit {
             }
         }
     }
-
-    voltar () {
-        return this.router.navigate(["/consulta/empresas"])
-    }
 }

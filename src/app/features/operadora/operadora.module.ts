@@ -13,6 +13,7 @@ import {FormsModule} from "@angular/forms";
 import {CalendarModule} from "primeng/calendar";
 import {CurrencyMaskModule} from "ng2-currency-mask";
 import {RouterLink} from "@angular/router";
+import {OperadoraRoutingModule} from "./operadora-routing.module";
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import {RouterLink} from "@angular/router";
         FormsModule,
         CalendarModule,
         CurrencyMaskModule,
-        RouterLink
+        RouterLink,
+        OperadoraRoutingModule
     ]
 })
 export class OperadoraModule { }

@@ -1,9 +1,10 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {TaxaConsultaComponent} from "./taxa-consulta/taxa-consulta.component";
 import {DropdownModule} from "primeng/dropdown";
 import {ButtonModule} from "primeng/button";
 import {TableModule} from "primeng/table";
+import {TaxaRoutingModule} from "./taxa-routing.module";
 
 @NgModule({
     declarations: [
@@ -13,7 +14,8 @@ import {TableModule} from "primeng/table";
         CommonModule,
         DropdownModule,
         ButtonModule,
-        TableModule
+        TableModule,
+        TaxaRoutingModule
     ]
 })
 export class TaxaModule { }
