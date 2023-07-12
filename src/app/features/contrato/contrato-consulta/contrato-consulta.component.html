@@ -3,5 +3,21 @@
         <div class="card-header">
             <h4 class="color-wine"> Consulta de contratos </h4>
         </div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="form-label">Empresa:</label>
+                    <p-dropdown styleClass="w-100" name="empresa" id="empresa" optionLabel="razaoSocial" optionValue="id"
+                                placeholder="Selecione uma empresa" [options]="empresas"></p-dropdown>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Operadora:</label>
+                    <p-dropdown styleClass="w-100" name="operadora" id="operadora" optionLabel="descricao" optionValue="id"
+                                placeholder="Selecione uma operadora" [options]="operadoras"></p-dropdown>
+                </div>
+            </div>
+        </div>
     </div>
 </form>

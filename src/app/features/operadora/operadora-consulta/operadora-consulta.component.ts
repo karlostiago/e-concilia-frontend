@@ -3,7 +3,6 @@ import {Operadora} from "../../../model/Operadora";
 import {OperadoraService} from "../operadora.service";
 import {FiltroOperadora} from "../../../filter/FiltroOperadora";
 import {NotificacaoService} from "../../../shared/notificacao/notificacao.service";
-import {Empresa} from "../../../model/Empresa";
 import {ConfirmationService} from "primeng/api";
 import {ErroHandlerService} from "../../../core/ErroHandlerService";
 

@@ -9,7 +9,7 @@ import {TableModule} from "primeng/table";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ContratoConsultaComponent } from './contrato-consulta/contrato-consulta.component';
 import {RouterLink} from "@angular/router";
-import {ContratoRoutingModule} from "../taxa/contrato-routing.module";
+import {ContratoRoutingModule} from "./contrato-routing.module";
 
 @NgModule({
     declarations: [
