@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Taxa} from "../../model/Taxa";
-import {firstValueFrom} from "rxjs";
+import {catchError, firstValueFrom, map, Observable, Subscription, tap} from "rxjs";
 import {Operadora} from "../../model/Operadora";
 import {FiltroOperadora} from "../../filter/FiltroOperadora";
 import {AbstractService} from "../../service/AbstractService";

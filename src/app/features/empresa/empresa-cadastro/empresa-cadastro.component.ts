@@ -40,9 +40,9 @@ export class EmpresaCadastroComponent implements OnInit {
         this.empresaService.pesquisarPorId(id).then(response => {
             this.empresa = response;
         })
-            .catch(error => {
-                this.error.capturar(error);
-            });
+        .catch(error => {
+            this.error.capturar(error);
+        });
     }
 
     carregarEstados () {
