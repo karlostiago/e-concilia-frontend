@@ -1,11 +1,13 @@
 import {environment} from "../../environments/environment";
 import {HttpHeaders, HttpParams} from "@angular/common/http";
+import {Observable} from "rxjs";
+import {ErroHandlerService} from "../core/ErroHandlerService";
 
-export abstract class AbstractService {
+export abstract class AbstractService<T> {
 
     protected baseURL =  environment.apiUrl;
 
-    protected constructor() { }
+    protected constructor(protected error: ErroHandlerService) { }
 
     options (httpParams: HttpParams = new HttpParams()) {
         return {
@@ -18,5 +20,18 @@ export abstract class AbstractService {
         let headers = new HttpHeaders();
         headers = headers.append("Content-Type", "application/json");
         return headers;
+    }
+
+    toPromise <T> (request: Observable<Object>): Promise <T> {
+        return new Promise((resolve) => {
+            request.subscribe({
+                next: (data) => {
+                    resolve(data as T);
+                },
+                error: (error) => {
+                    this.error.capturar(error);
+                }
+            })
+        })
     }
 }

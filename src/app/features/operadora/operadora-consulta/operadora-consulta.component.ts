@@ -4,7 +4,6 @@ import {OperadoraService} from "../operadora.service";
 import {FiltroOperadora} from "../../../filter/FiltroOperadora";
 import {NotificacaoService} from "../../../shared/notificacao/notificacao.service";
 import {ConfirmationService} from "primeng/api";
-import {ErroHandlerService} from "../../../core/ErroHandlerService";
 
 @Component({
   selector: 'app-operadora-consulta',
@@ -18,7 +17,6 @@ export class OperadoraConsultaComponent implements OnInit {
 
     constructor(private operadoraService: OperadoraService,
                 private notificacao: NotificacaoService,
-                private error: ErroHandlerService,
                 private confirmationService: ConfirmationService) { }
 
 
@@ -26,14 +24,15 @@ export class OperadoraConsultaComponent implements OnInit {
         this.carregarOperadoras();
     }
 
-    pesquisar () {
-        this.operadoraService.pesquisar(this.filtroOperadora).then(operadoras => {
+    async pesquisar () {
+        await this.operadoraService.pesquisar(this.filtroOperadora).then(operadoras => {
             this.operadoras = operadoras;
-        })
-        .catch(error => {
-            this.notificacao.atencao("A consulta não retornou nenhum resultado.")
-            this.operadoras = [];
-        })
+        });
+
+         if (this.operadoras.length === 0) {
+             this.notificacao.atencao("A consulta não retornou nenhum resultado.")
+             this.operadoras = [];
+         }
     }
 
     confirmarExclusao (operadora: Operadora) {
@@ -42,17 +41,14 @@ export class OperadoraConsultaComponent implements OnInit {
             accept: () => {
                 this.excluir(operadora.id);
             }
-        })
+        });
     }
 
     private excluir (id: number) {
         this.operadoraService.excluir(id).then(() => {
             this.carregarOperadoras();
             this.notificacao.sucesso("Empresa excluída com sucesso.");
-        })
-        .catch(error => {
-            this.error.capturar(error);
-        })
+        });
     }
 
     private carregarOperadoras () {

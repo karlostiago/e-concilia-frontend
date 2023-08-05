@@ -31,14 +31,15 @@ export class EmpresaConsultaComponent implements OnInit {
         this.carregarEmpresas();
     }
 
-    pesquisar () {
-        this.empresaService.pesquisar(this.filtroEmpresa).then(empresas => {
+    async pesquisar () {
+        await this.empresaService.pesquisar(this.filtroEmpresa).then(empresas => {
             this.empresas = empresas;
-        })
-            .catch(error => {
-                this.notificacao.atencao("A consulta não retornou nenhum resultado.")
-                this.empresas = [];
-            })
+        });
+
+        if (this.empresas.length === 0) {
+            this.notificacao.atencao("A consulta não retornou nenhum resultado.");
+            this.empresas = [];
+        }
     }
 
     confirmarExclusao (empresa: Empresa) {
@@ -54,10 +55,7 @@ export class EmpresaConsultaComponent implements OnInit {
         this.empresaService.excluir(id).then(() => {
             this.carregarEmpresas();
             this.notificacao.sucesso("Empresa excluída com sucesso.");
-        })
-            .catch(error => {
-                this.error.capturar(error);
-            })
+        });
     }
 
     ativarOuDesativar (empresa: Empresa) {
@@ -72,20 +70,14 @@ export class EmpresaConsultaComponent implements OnInit {
         this.empresaService.ativar(empresa.id).then(() => {
             this.notificacao.sucesso("Empresa ativada com sucesso.");
             empresa.ativo = true;
-        })
-            .catch(error => {
-                this.error.capturar(error);
-            })
+        });
     }
 
     private desativar (empresa: Empresa) {
         this.empresaService.desativar(empresa.id).then(() => {
             this.notificacao.sucesso("Empresa desativada com sucesso.");
             empresa.ativo = false;
-        })
-            .catch(error => {
-                this.error.capturar(error);
-            })
+        });
     }
 
     private carregarEmpresas () {

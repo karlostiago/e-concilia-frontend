@@ -3,8 +3,7 @@ import {EmpresaService} from "../empresa.service";
 import {Empresa} from "../../../model/Empresa";
 import {NotificacaoService} from "../../../shared/notificacao/notificacao.service";
 import {Estado} from "../../../model/Estado";
-import {ActivatedRoute, Router} from "@angular/router";
-import {ErroHandlerService} from "../../../core/ErroHandlerService";
+import {ActivatedRoute} from "@angular/router";
 import {NgForm} from "@angular/forms";
 
 @Component({
@@ -21,9 +20,7 @@ export class EmpresaCadastroComponent implements OnInit {
     constructor(
         private empresaService: EmpresaService,
         private notificacao: NotificacaoService,
-        private router: Router,
         private activatedRoute: ActivatedRoute,
-        private error: ErroHandlerService
     ) { }
 
     ngOnInit(): void {
@@ -39,9 +36,6 @@ export class EmpresaCadastroComponent implements OnInit {
     pesquisarPorId (id: number) {
         this.empresaService.pesquisarPorId(id).then(response => {
             this.empresa = response;
-        })
-        .catch(error => {
-            this.error.capturar(error);
         });
     }
 
@@ -65,9 +59,6 @@ export class EmpresaCadastroComponent implements OnInit {
                 this.notificacao.sucesso("Empresa cadastrada com sucesso.");
                 this.empresa = new Empresa();
                 form.resetForm();
-            })
-            .catch(error => {
-                this.error.capturar(error);
             });
     }
 
@@ -75,9 +66,6 @@ export class EmpresaCadastroComponent implements OnInit {
         this.empresaService.editar(this.empresa)
             .then(resposta => {
                 this.notificacao.sucesso("Empresa atualizada com sucesso.");
-            })
-            .catch(error => {
-                this.error.capturar(error);
             });
     }
 
@@ -89,10 +77,7 @@ export class EmpresaCadastroComponent implements OnInit {
                 this.empresaService.buscarDadosCnpj(cnpjSemFormatacao)
                     .then(response => {
                         this.empresa = response;
-                    })
-                    .catch(error => {
-                        this.error.capturar(error);
-                    })
+                    });
             }
         }
     }
