@@ -10,11 +10,16 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ContratoConsultaComponent } from './contrato-consulta/contrato-consulta.component';
 import {RouterLink} from "@angular/router";
 import {ContratoRoutingModule} from "./contrato-routing.module";
+import {DialogModule} from "primeng/dialog";
+import {CalendarModule} from "primeng/calendar";
+import {CurrencyMaskModule} from "ng2-currency-mask";
+import { ContratoTaxasComponent } from './contrato-taxas/contrato-taxas.component';
 
 @NgModule({
     declarations: [
         ContratoCadastroComponent,
         ContratoConsultaComponent,
+        ContratoTaxasComponent,
     ],
     exports: [
         ContratoCadastroComponent
@@ -29,7 +34,10 @@ import {ContratoRoutingModule} from "./contrato-routing.module";
         FormsModule,
         ReactiveFormsModule,
         RouterLink,
-        ContratoRoutingModule
+        ContratoRoutingModule,
+        DialogModule,
+        CalendarModule,
+        CurrencyMaskModule
     ]
 })
 export class ContratoModule { }

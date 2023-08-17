@@ -5,13 +5,15 @@ import {Taxa} from "../../../model/Taxa";
 import {EmpresaService} from "../../empresa/empresa.service";
 import {OperadoraService} from "../../operadora/operadora.service";
 import {FiltroEmpresa} from "../../../filter/FiltroEmpresa";
-import {ErroHandlerService} from "../../../core/ErroHandlerService";
 import {FiltroOperadora} from "../../../filter/FiltroOperadora";
 import {FormatacaoMoedaPtBR} from "../../../../helpers/FormatacaoMoedaPtBR";
 import {NgForm} from "@angular/forms";
 import {Contrato} from "../../../model/Contrato";
 import {ContratoService} from "../contrato.service";
 import {NotificacaoService} from "../../../shared/notificacao/notificacao.service";
+import {ActivatedRoute} from "@angular/router";
+import {ConfirmationService} from "primeng/api";
+import {TaxaService} from "../../taxa/taxa.service";
 
 @Component({
   selector: 'app-contrato-cadastro',
@@ -20,31 +22,33 @@ import {NotificacaoService} from "../../../shared/notificacao/notificacao.servic
 })
 export class ContratoCadastroComponent implements OnInit {
 
+    contrato = new Contrato();
     empresas = new Array<Empresa>();
     operadoras = new Array<Operadora>();
-    taxas = new Array<Taxa>();
-    contrato = new Contrato();
+    taxa = new Taxa();
 
     empresaId: number;
     operadoraId: number;
+
+    visivel: boolean;
 
     constructor(private empresaService: EmpresaService,
                 private operadoraService: OperadoraService,
                 private contratoService: ContratoService,
                 private notificacao: NotificacaoService,
-                private error: ErroHandlerService) { }
+                private activatedRoute: ActivatedRoute,
+                private taxaService: TaxaService,
+                private confirmationService: ConfirmationService) { }
 
 
     ngOnInit(): void {
         this.carregarEmpresas();
         this.carregarOperadoras();
-    }
 
-    buscarTaxas (event: any) {
-        const operadoraId = event.value;
-        const  operadora = this.operadoras.filter(operadora => operadora.id === operadoraId)
-        if (operadora.length === 1) {
-            this.taxas = operadora[0].taxas;
+        const contratoId = this.activatedRoute.snapshot.params['numero'];
+
+        if (contratoId) {
+            this.pesquisarPorId(contratoId);
         }
     }
 
@@ -52,44 +56,110 @@ export class ContratoCadastroComponent implements OnInit {
         return FormatacaoMoedaPtBR.formatar(valor);
     }
 
-    salvar(form: NgForm) {
+    salvarOuEditar (form: NgForm) {
+        this.selecionarEmpresa();
+        this.selecionarOperadora();
 
-        const empresas = this.empresas.filter(empresa => empresa.id === this.empresaId);
-        if (empresas.length === 1) {
-           this.contrato.empresa = empresas[0];
+        if (this.contrato.numero) {
+            this.editar();
+        } else {
+            this.salvar(form);
         }
+    }
 
+    dialogIncluirTaxa () {
+        this.visivel = true;
+    }
+
+    temOperadoraSelecionada () {
+        return !!this.operadoraId;
+    }
+
+    salvarTaxa (taxa: Taxa) {
+        this.verificaDuplicidadeDeTaxa(taxa);
+        this.taxaService.validarTaxa(taxa).then(response => {
+            response.ativo = response.expiraEm > 0;
+            this.contrato.taxas.push(response);
+            this.taxa = new Taxa();
+            this.visivel = false;
+        });
+    }
+
+    confirmarExclusao (taxa: Taxa) {
+        this.confirmationService.confirm({
+            message: `Tem certeza que deseja excluir '${ taxa.descricao }' ?`,
+            accept: () => {
+                this.excluirTaxa(taxa);
+            }
+        });
+    }
+
+    private excluirTaxa (taxa: Taxa) {
+        const index = this.contrato.taxas.indexOf(taxa);
+        if (index > -1) {
+            this.contrato.taxas.splice(index, 1);
+        }
+    }
+
+    cancelar () {
+        this.visivel = false;
+        this.taxa = new Taxa();
+    }
+
+    private pesquisarPorId (id: number) {
+        this.contratoService.pesquisarPorId(id).then(contrato => {
+            this.contrato = contrato;
+            this.operadoraId = this.contrato.operadora.id;
+            this.empresaId = this.contrato.empresa.id;
+        });
+    }
+
+    private selecionarOperadora () {
         const operadoras = this.operadoras.filter(operadora => operadora.id === this.operadoraId);
         if (operadoras.length === 1) {
-           this.contrato.operadora = operadoras[0];
+            this.contrato.operadora = operadoras[0];
         }
+    }
 
+    private selecionarEmpresa () {
+        const empresas = this.empresas.filter(empresa => empresa.id === this.empresaId);
+        if (empresas.length === 1) {
+            this.contrato.empresa = empresas[0];
+        }
+    }
+
+    private editar () {
+        this.contratoService.editar(this.contrato).then(() => {
+            this.notificacao.sucesso("Contrato atualizado com sucesso.");
+        });
+    }
+
+    private salvar(form: NgForm) {
         this.contratoService.salvar(this.contrato).then(contrato => {
             this.notificacao.sucesso("Contrato cadastrado com sucesso.");
             this.contrato = new Contrato();
-            this.taxas = new Array<Taxa>();
             form.resetForm();
-        })
-        .catch(error => {
-            this.error.capturar(error);
         });
+    }
+
+    private verificaDuplicidadeDeTaxa (taxa: Taxa) {
+        const taxaEncontrada = this.contrato.taxas.filter(tx=> tx.descricao === taxa.descricao);
+        if (taxaEncontrada.length > 0) {
+            const mensagem = `Taxa ${taxa.descricao}, está duplicada na lista.`;
+            this.notificacao.error(mensagem);
+            throw new Error(mensagem);
+        }
     }
 
     private carregarEmpresas () {
         this.empresaService.pesquisar(new FiltroEmpresa()).then(empresas => {
             this.empresas = empresas;
-        })
-        .catch(error => {
-            this.error.capturar(error);
         });
     }
 
     private carregarOperadoras () {
         this.operadoraService.pesquisar(new FiltroOperadora()).then(operadoras => {
             this.operadoras = operadoras;
-        })
-        .catch(error => {
-            this.error.capturar(error);
         });
     }
 }

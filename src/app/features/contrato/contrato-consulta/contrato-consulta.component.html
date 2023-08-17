@@ -8,15 +8,22 @@
             <div class="row">
                 <div class="col-md-6">
                     <label class="form-label">Empresa:</label>
-                    <p-dropdown styleClass="w-100" name="empresa" id="empresa" optionLabel="razaoSocial" optionValue="id"
+                    <p-dropdown styleClass="w-100" name="empresa" id="empresa" optionLabel="razaoSocial" optionValue="id" [(ngModel)]="filtro.empresaId"
                                 placeholder="Selecione uma empresa" [options]="empresas"></p-dropdown>
                 </div>
 
                 <div class="col-md-6">
                     <label class="form-label">Operadora:</label>
-                    <p-dropdown styleClass="w-100" name="operadora" id="operadora" optionLabel="descricao" optionValue="id"
+                    <p-dropdown styleClass="w-100" name="operadora" id="operadora" optionLabel="descricao" optionValue="id" [(ngModel)]="filtro.operadoraId"
                                 placeholder="Selecione uma operadora" [options]="operadoras"></p-dropdown>
                 </div>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <div class="card-action">
+                <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-search" label="Pesquisar" (click)="pesquisar()" ></button>
+                <button pButton class="p-button-danger p-button-sm float-end" icon="pi pi-plus-circle" routerLink="/cadastro/contratos/novo" label="Novo contrato"></button>
             </div>
         </div>
     </div>
@@ -29,22 +36,34 @@
         </div>
 
         <div class="card-body">
-            <p-table [value]="contratos" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="10" styleClass="p-datatable-striped p-datatable p-datatable-gridlines">
+            <p-table [value]="contratos" [tableStyle]="{ 'min-width': '50rem' }" sortField="empresa.razaoSocial" sortMode="single" rowGroupMode="subheader" groupRowsBy="empresa.razaoSocial" [paginator]="true" [rows]="10" styleClass="p-datatable-striped p-datatable p-datatable-gridlines">
                 <ng-template pTemplate="header">
                     <tr>
                         <th class="text-center" style="min-width: 180px;">Nª Contrato</th>
-                        <th class="text-center" style="min-width: 320px">Empresa</th>
                         <th class="text-center" style="min-width: 320px">Operadora</th>
+                        <th class="text-center" style="min-width: 50px">Taxas</th>
                         <th class="text-center" style="min-width: 120px;">Ativo</th>
                         <th class="text-center" style="min-width: 150px;">Ações</th>
                     </tr>
                 </ng-template>
 
-                <ng-template pTemplate="body" let-contrato>
+                <ng-template pTemplate="groupheader" let-contrato>
+                    <tr pRowGroupHeader>
+                        <td colspan="5">
+                            <span>
+                                <strong><i>{{ contrato["empresa"]["razaoSocial"] }}</i></strong>
+                            </span>
+                        </td>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-contrato let-rowIndex="rowIndex">
                     <tr>
-                        <td class="text-center"> {{ contrato['empresa']['cnpj'] }} </td>
-                        <td class="text-center"> {{ contrato['empresa']['razaoSocial'] }} </td>
+                        <td class="text-center"> {{ completarComZeroEsquerda(contrato['numero']) }} </td>
                         <td class="text-center"> {{ contrato['operadora']['descricao'] }} </td>
+                        <td class="text-center">
+                            <button type="button" pButton icon="pi pi-eye-slash" class="p-button-danger p-button-sm" (click)="detalharTaxas(contrato)"></button>
+                        </td>
                         <td class="text-center">
                             <span class=" {{ contrato['ativo'] == true ? 'badge text-bg-success' : 'badge text-bg-danger' }} ">
                                 {{ contrato["ativo"] === true ? 'Sim' : 'Não' }}
@@ -52,8 +71,8 @@
                         </td>
                         <td class="text-center">
                             <div class="action">
-                                <button type="button" pButton icon="pi pi-trash" class="p-button-danger p-button-sm"></button>
-                                <button pButton icon="pi pi-pencil" class="p-button-danger p-button-sm" [routerLink]="['/editar/contratos', contrato.id]"></button>
+                                <button type="button" pButton icon="pi pi-trash" class="p-button-danger p-button-sm" (click)="confirmarExclusao(contrato)"></button>
+                                <button pButton icon="pi pi-pencil" class="p-button-danger p-button-sm" [routerLink]="['/editar/contratos', contrato['numero']]"></button>
                             </div>
                         </td>
                     </tr>
@@ -62,3 +81,7 @@
         </div>
     </div>
 </form>
+
+<p-dialog [(visible)]="visivel" header="Listagem de taxas" [modal]="true">
+    <app-contrato-taxas [taxas]="taxas"></app-contrato-taxas>
+</p-dialog>

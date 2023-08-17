@@ -4,12 +4,15 @@ import {OperadoraService} from "../../operadora/operadora.service";
 import {Empresa} from "../../../model/Empresa";
 import {Operadora} from "../../../model/Operadora";
 import {FiltroEmpresa} from "../../../model/FiltroEmpresa";
-import {ErroHandlerService} from "../../../core/ErroHandlerService";
 import {FiltroOperadora} from "../../../filter/FiltroOperadora";
 import {Contrato} from "../../../model/Contrato";
-import {Endereco} from "../../../model/Endereco";
-import {Contato} from "../../../model/Contato";
+import {ContratoService} from "../contrato.service";
+import {FiltroContrato} from "../../../filter/FiltroContrato";
+import {StringHelper} from "../../../../helpers/StringHelper";
+import {NotificacaoService} from "../../../shared/notificacao/notificacao.service";
+import {ConfirmationService} from "primeng/api";
 import {Taxa} from "../../../model/Taxa";
+import {TaxaService} from "../../taxa/taxa.service";
 
 @Component({
   selector: 'app-contrato-consulta',
@@ -19,54 +22,83 @@ import {Taxa} from "../../../model/Taxa";
 export class ContratoConsultaComponent implements OnInit {
 
     empresas: Empresa[];
+    taxas = new Array<Taxa>();
     operadoras = new Array<Operadora>();
     contratos = new Array<Contrato>();
+    filtro = new FiltroContrato();
+    visivel = false;
 
     constructor(private empresaService: EmpresaService,
                 private operadoraService: OperadoraService,
-                private error: ErroHandlerService) { }
+                private contratoService: ContratoService,
+                private notificacao: NotificacaoService,
+                private confirmationService: ConfirmationService,
+                private taxaService: TaxaService) { }
 
     ngOnInit(): void {
         this.carregarEmpresas();
         this.carregarOperadoras();
+        this.carregarContratos();
+    }
 
-        const empresa = {
-            id: 1,
-            razaoSocial: 'RAZÃO SOCIAL TESTE',
-            nomeFantasia: 'NOME FANTASIA LTDA',
-            cnpj: '000000000000',
-            endereco:  new Endereco(),
-            contato: new Contato(),
-            ativo: true,
+    completarComZeroEsquerda(numeroContrato: string) {
+        return StringHelper.preencherComZero(numeroContrato, 10, false);
+    }
+
+    confirmarExclusao (contrato: Contrato) {
+        this.confirmationService.confirm({
+            message: `Tem certeza que deseja excluir o contrato de número '${ this.completarComZeroEsquerda(contrato.numero.toString()) }' ?`,
+            accept: () => {
+                this.excluir(contrato.numero);
+            }
+        })
+    }
+
+    async detalharTaxas (contrato: Contrato) {
+        await this.taxaService.buscarPorContrato(contrato).then(taxas => {
+            this.taxas = taxas;
+            this.visivel = true;
+        });
+
+        if (this.taxas.length === 0) {
+            this.notificacao.atencao("A consulta não retornou nenhum resultado.");
+            this.taxas = [];
         }
+    }
 
-        const operadora = {
-            id: 1,
-            descricao:  'IFOOD',
-            taxas: new Array<Taxa>(),
-            ativo: true,
+    async pesquisar() {
+        await this.contratoService.pesquisar(this.filtro).then(contratos => {
+            this.contratos = contratos
+        });
+
+        if (this.contratos.length === 0) {
+            this.notificacao.atencao("A consulta não retornou nenhum resultado.");
+            this.contratos = [];
         }
+    }
 
-        this.contratos = [
-            { empresa: empresa, operadora: operadora, ativo: true }
-        ]
+    private excluir (id: number) {
+        this.contratoService.excluir(id).then(() => {
+            this.carregarContratos();
+            this.notificacao.sucesso("Contrato excluído com sucesso.");
+        });
+    }
+
+    private carregarContratos() {
+        this.contratoService.pesquisar(this.filtro).then(contratos => {
+            this.contratos = contratos
+        });
     }
 
     private carregarEmpresas () {
         this.empresaService.pesquisar(new FiltroEmpresa()).then(empresas => {
             this.empresas = empresas;
-        })
-        .catch(error => {
-            this.error.capturar(error);
         });
     }
 
     private carregarOperadoras () {
         this.operadoraService.pesquisar(new FiltroOperadora()).then(operadoras => {
             this.operadoras = operadoras;
-        })
-        .catch(error => {
-            this.error.capturar(error);
         });
     }
 }

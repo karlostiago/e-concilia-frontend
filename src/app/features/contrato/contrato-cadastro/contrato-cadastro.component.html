@@ -1,4 +1,4 @@
-<form autocomplete="off" class="fade-in" #formulario="ngForm" (ngSubmit)="salvar(formulario)">
+<form autocomplete="off" class="fade-in" #formulario="ngForm" (ngSubmit)="salvarOuEditar(formulario)">
     <div class="card">
         <div class="card-header">
             <h4 class="color-wine"> Cadastro de contratos </h4>
@@ -15,13 +15,13 @@
                 <div class="col-md-6">
                     <label class="form-label">Empresa*:</label>
                     <p-dropdown styleClass="w-100" name="empresa" id="empresa" optionLabel="razaoSocial" optionValue="id" [options]="empresas" placeholder="Selecione uma empresa"
-                                [(ngModel)]="empresaId"></p-dropdown>
+                                [(ngModel)]="empresaId" [required]="true"></p-dropdown>
                 </div>
 
                 <div class="col-md-6">
                     <label class="form-label">Operadora*:</label>
-                    <p-dropdown styleClass="w-100" name="operadora" id="operadora" optionLabel="descricao" optionValue="id" [options]="operadoras" (onChange)="buscarTaxas($event)" placeholder="Selecione uma operadora"
-                                [(ngModel)]="operadoraId"></p-dropdown>
+                    <p-dropdown styleClass="w-100" name="operadora" id="operadora" optionLabel="descricao" optionValue="id" [options]="operadoras" placeholder="Selecione uma operadora"
+                                [(ngModel)]="operadoraId" [required]="true"></p-dropdown>
                 </div>
             </div>
 
@@ -30,22 +30,29 @@
                 <p-inputSwitch id="ativo" name="ativo" [(ngModel)]="contrato.ativo"></p-inputSwitch>
             </div>
         </div>
+
+        <div class="card-footer">
+            <div class="card-action">
+                <button type="button" pButton class="p-button-danger p-button-sm" icon="pi pi-save" label="Incluir taxa" (click)="dialogIncluirTaxa()" [disabled]="!temOperadoraSelecionada()"></button>
+            </div>
+        </div>
     </div>
 
     <br />
 
     <div class="card">
         <div class="card-header">
-            <h3 class="color-wine"> Listagem de taxas por operadora </h3>
+            <h3 class="color-wine"> Listagem de taxas </h3>
         </div>
 
         <div class="card-body">
-            <p-table [value]="taxas" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="10" styleClass="p-datatable-striped p-datatable p-datatable-gridlines">
+            <p-table [value]="contrato.taxas" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="10" styleClass="p-datatable-striped p-datatable p-datatable-gridlines">
                 <ng-template pTemplate="header">
                     <tr>
-                        <th class="w-75">Descrição</th>
+                        <th class="w-50">Descrição</th>
                         <th class="text-center w-15">Valor da taxa</th>
                         <th class="text-center w-10">Ativo</th>
+                        <th class="text-center w-10">Ações</th>
                     </tr>
                 </ng-template>
 
@@ -58,6 +65,11 @@
                                 {{ taxa["ativo"] === true ? 'Sim' : 'Não' }}
                             </span>
                         </td>
+                        <td class="text-center">
+                            <div class="action">
+                                <button type="button" pButton icon="pi pi-trash" class="p-button-danger p-button-sm" (click)="confirmarExclusao(taxa)"></button>
+                            </div>
+                        </td>
                     </tr>
                 </ng-template>
             </p-table>
@@ -65,11 +77,48 @@
 
         <div class="card-footer">
             <div class="card-action">
-                <button pButton class="p-button-danger p-button-sm" icon="pi pi-save" label="Salvar"></button>
+                <button pButton class="p-button-danger p-button-sm" icon="pi pi-save" label="Salvar" [disabled]="!formulario.valid"></button>
                 <button pButton class="p-button-danger p-button-sm p-button-outlined" icon="pi pi-replay" routerLink="/consulta/contratos" label="Voltar"></button>
 
-                <button pButton class="p-button-danger p-button-sm float-end" icon="pi pi-eraser" label="Limpar"></button>
+                <button pButton class="p-button-danger p-button-sm float-end" icon="pi pi-eraser" *ngIf="!contrato.numero" label="Limpar"></button>
             </div>
         </div>
     </div>
 </form>
+
+<p-dialog [(visible)]="visivel" [modal]="true">
+    <ng-template pTemplate="header">
+        <h4 class="color-wine"> Cadastro de taxas </h4>
+    </ng-template>
+
+    <div class="row">
+        <div class="col-md-12">
+            <label class="form-label">Descrição:</label>
+            <input pInputText class="form-control" name="descricao" id="descricao" [(ngModel)]="taxa.descricao" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <label class="form-label">Entrar em vigor:</label>
+            <p-calendar appendTo="body" id="entraEmVigor" [style]="{ 'width': '100%' }" name="entraEmVigor" [(ngModel)]="taxa.entraEmVigor" [readonlyInput]="true" dateFormat="dd/mm/yy"></p-calendar>
+        </div>
+
+        <div class="col-md-6">
+            <label class="form-label">Válido até:</label>
+            <p-calendar appendTo="body" id="validoAte" [style]="{ 'width': '100%' }" name="validoAte" [(ngModel)]="taxa.validoAte" [readonlyInput]="true" dateFormat="dd/mm/yy"></p-calendar>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <label class="form-label">Valor:</label>
+            <input pInputText [(ngModel)]="taxa.valor" class="form-control" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" />
+        </div>
+    </div>
+
+    <ng-template pTemplate="footer">
+        <button pButton class="p-button-danger p-button-sm" icon="pi pi-save" label="Salvar" (click)="salvarTaxa(taxa)"></button>
+        <button pButton class="p-button-danger p-button-sm p-button-outlined" icon="pi pi-replay" label="Cancelar" (click)="cancelar()"></button>
+    </ng-template>
+</p-dialog>

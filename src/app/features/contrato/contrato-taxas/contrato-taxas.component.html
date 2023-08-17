@@ -1,0 +1,21 @@
+<p-table [value]="taxas" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="10" styleClass="p-datatable-striped p-datatable p-datatable-gridlines">
+    <ng-template pTemplate="header">
+        <tr>
+            <th class="w-50">Descrição</th>
+            <th class="text-center w-15">Valor da taxa</th>
+            <th class="text-center w-10">Ativo</th>
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-taxa>
+        <tr>
+            <td> {{ taxa["descricao"] }} </td>
+            <td class="text-end"> {{ formatarMoeda(taxa["valor"]) }} </td>
+            <td class="text-center">
+                    <span class=" {{ taxa['ativo'] == true ? 'badge text-bg-success' : 'badge text-bg-danger' }} ">
+                        {{ taxa["ativo"] === true ? 'Sim' : 'Não' }}
+                    </span>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>

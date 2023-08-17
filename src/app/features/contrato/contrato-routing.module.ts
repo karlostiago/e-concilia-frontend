@@ -6,6 +6,7 @@ import {ContratoConsultaComponent} from "./contrato-consulta/contrato-consulta.c
 const rotas: Routes = [
     { path: 'cadastro/contratos/novo', component: ContratoCadastroComponent },
     { path: 'consulta/contratos', component: ContratoConsultaComponent },
+    { path: 'editar/contratos/:numero', component: ContratoCadastroComponent },
 ]
 
 @NgModule({

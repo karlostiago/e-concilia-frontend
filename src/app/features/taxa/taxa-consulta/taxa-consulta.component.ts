@@ -4,7 +4,8 @@ import {Taxa} from "../../../model/Taxa";
 import {FormatacaoMoedaPtBR} from "../../../../helpers/FormatacaoMoedaPtBR";
 import {OperadoraService} from "../../operadora/operadora.service";
 import {FiltroOperadora} from "../../../filter/FiltroOperadora";
-import {ErroHandlerService} from "../../../core/ErroHandlerService";
+import {TaxaService} from "../taxa.service";
+import {NotificacaoService} from "../../../shared/notificacao/notificacao.service";
 
 @Component({
   selector: 'app-taxa-consulta',
@@ -17,28 +18,36 @@ export class TaxaConsultaComponent implements  OnInit {
     taxas = new Array<Taxa>();
 
     constructor(private operadoraService: OperadoraService,
-                private error: ErroHandlerService) { }
+                private taxaService: TaxaService,
+                private notificacao: NotificacaoService) { }
 
     ngOnInit(): void {
         this.operadoraService.pesquisar(new FiltroOperadora()).then(operadoras => {
            this.operadoras = operadoras;
-        })
-        .catch(error => {
-            this.error.capturar(error);
+        });
+
+        this.taxaService.buscarTodos().then(taxas => {
+            this.taxas = taxas;
         });
     }
 
-    buscar (event: any) {
-        const operadoraId = event.value;
-        this.operadoraService.pesquisarPorId(operadoraId).then(operadora => {
-            this.taxas = operadora.taxas;
-        })
-        .catch(error => {
-            this.error.capturar(error);
+    async buscar (event: any) {
+        const operadora = this.selecionarOperadora(event.value);
+        await this.taxaService.buscarPorOperadora(operadora).then(taxas => {
+            this.taxas = taxas;
         });
+
+        if (this.taxas.length === 0) {
+            this.notificacao.atencao("A consulta não retornou nenhum resultado.");
+            this.taxas = [];
+        }
     }
 
     formatarMoeda (valor: number) {
         return FormatacaoMoedaPtBR.formatar(valor);
+    }
+
+    private selecionarOperadora (operadoraId: number) {
+        return this.operadoras.filter(operadora => operadora.id === operadoraId)[0];
     }
 }

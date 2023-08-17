@@ -1,9 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {Router} from "@angular/router";
 import {Empresa} from "../../../model/Empresa";
 import {EmpresaService} from "../empresa.service";
 import {NotificacaoService} from "../../../shared/notificacao/notificacao.service";
-import {ErroHandlerService} from "../../../core/ErroHandlerService";
 import {FiltroEmpresa} from "../../../filter/FiltroEmpresa";
 import {ConfirmationService} from "primeng/api";
 
@@ -21,10 +19,8 @@ export class EmpresaConsultaComponent implements OnInit {
     @ViewChild('tabela') tabela: any;
 
     constructor(
-        private router: Router,
         private empresaService: EmpresaService,
         private notificacao: NotificacaoService,
-        private error: ErroHandlerService,
         private confirmationService: ConfirmationService) { }
 
     ngOnInit(): void {

@@ -22,10 +22,10 @@
         </div>
 
         <div class="card-body">
-            <p-table [value]="taxas" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="10" styleClass="p-datatable-striped p-datatable p-datatable-gridlines">
+            <p-table [value]="taxas" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="10" sortField="empresa" sortMode="single" rowGroupMode="subheader" groupRowsBy="empresa" styleClass="p-datatable-striped p-datatable p-datatable-gridlines">
                 <ng-template pTemplate="header">
                     <tr>
-                        <th class="w-40">Descrição</th>
+                        <th class="text-center w-40">Descrição</th>
                         <th class="text-center w-15">Valor da taxa</th>
                         <th class="text-center w-5">Vigora em</th>
                         <th class="text-center w-5">Válido até</th>
@@ -34,9 +34,19 @@
                     </tr>
                 </ng-template>
 
+                <ng-template pTemplate="groupheader" let-taxa>
+                    <tr pRowGroupHeader>
+                        <td colspan="6">
+                            <span>
+                                <strong><i>{{ taxa["empresa"] }}</i></strong>
+                            </span>
+                        </td>
+                    </tr>
+                </ng-template>
+
                 <ng-template pTemplate="body" let-taxa>
                     <tr>
-                        <td> {{ taxa["descricao"] }} </td>
+                        <td class="text-center"> {{ taxa["descricao"] }} </td>
                         <td class="text-end"> {{ formatarMoeda(taxa["valor"]) }} </td>
                         <td class="text-center"> {{ taxa["entraEmVigor"] | date:'dd/MM/yyyy' }} </td>
                         <td class="text-center"> {{ taxa["validoAte"] | date:'dd/MM/yyyy' }} </td>

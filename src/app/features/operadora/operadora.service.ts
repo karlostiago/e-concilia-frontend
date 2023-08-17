@@ -17,13 +17,8 @@ export class OperadoraService extends AbstractService<Operadora> {
         super(error);
     }
 
-    async validarTaxa (taxa: Taxa): Promise<Taxa> {
-        const request = this.httpClient.post(`${this.baseURL}/taxas/validar`, JSON.stringify(taxa), this.options());
-        return this.toPromise(request);
-    }
-
     async pesquisarPorId (id: number): Promise<Operadora> {
-        const request =this.httpClient.get(`${this.baseURL}/operadoras/${id}`, this.options());
+        const request = this.httpClient.get(`${this.baseURL}/operadoras/${id}`, this.options());
         return this.toPromise(request);
     }
 
