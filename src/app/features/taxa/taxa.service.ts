@@ -35,4 +35,14 @@ export class TaxaService extends AbstractService<Taxa> {
         const request = this.httpClient.get(`${this.baseURL}/taxas`, this.options());
         return this.toPromise(request);
     }
+
+    async ativar (id: number): Promise<Taxa> {
+        const request =this.httpClient.patch(`${this.baseURL}/taxas/${id}/ativar`, this.options());
+        return this.toPromise(request);
+    }
+
+    async desativar (id: number): Promise<Taxa> {
+        const request =this.httpClient.patch(`${this.baseURL}/taxas/${id}/desativar`, this.options());
+        return this.toPromise(request);
+    }
 }

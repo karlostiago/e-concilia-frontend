@@ -65,9 +65,11 @@
                             <button type="button" pButton icon="pi pi-eye-slash" class="p-button-danger p-button-sm" (click)="detalharTaxas(contrato)"></button>
                         </td>
                         <td class="text-center">
-                            <span class=" {{ contrato['ativo'] == true ? 'badge text-bg-success' : 'badge text-bg-danger' }} ">
-                                {{ contrato["ativo"] === true ? 'Sim' : 'Não' }}
-                            </span>
+                            <a (click)="ativarOuDesativar(contrato)">
+                                <span class=" {{ contrato['ativo'] == true ? 'badge text-bg-success' : 'badge text-bg-danger' }} ">
+                                    {{ contrato["ativo"] === true ? 'Sim' : 'Não' }}
+                                </span>
+                            </a>
                         </td>
                         <td class="text-center">
                             <div class="action">

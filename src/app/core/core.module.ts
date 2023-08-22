@@ -11,6 +11,7 @@ import {TaxaModule} from "../features/taxa/taxa.module";
 import {EmpresaModule} from "../features/empresa/empresa.module";
 import {ContratoModule} from "../features/contrato/contrato.module";
 import {OperadoraModule} from "../features/operadora/operadora.module";
+import {ConciliadorModule} from "../features/conciliador/conciliador.module";
 
 @NgModule({
     declarations: [
@@ -28,6 +29,7 @@ import {OperadoraModule} from "../features/operadora/operadora.module";
         EmpresaModule,
         ContratoModule,
         OperadoraModule,
+        ConciliadorModule
     ],
     imports: [
         CommonModule,

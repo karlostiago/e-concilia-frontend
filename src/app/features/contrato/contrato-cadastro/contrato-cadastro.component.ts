@@ -94,16 +94,16 @@ export class ContratoCadastroComponent implements OnInit {
         });
     }
 
+    cancelar () {
+        this.visivel = false;
+        this.taxa = new Taxa();
+    }
+
     private excluirTaxa (taxa: Taxa) {
         const index = this.contrato.taxas.indexOf(taxa);
         if (index > -1) {
             this.contrato.taxas.splice(index, 1);
         }
-    }
-
-    cancelar () {
-        this.visivel = false;
-        this.taxa = new Taxa();
     }
 
     private pesquisarPorId (id: number) {

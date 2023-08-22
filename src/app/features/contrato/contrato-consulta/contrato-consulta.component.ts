@@ -77,6 +77,28 @@ export class ContratoConsultaComponent implements OnInit {
         }
     }
 
+    ativarOuDesativar (contrato: Contrato) {
+        if (contrato.ativo) {
+            this.desativar(contrato);
+        } else {
+            this.ativar(contrato);
+        }
+    }
+
+    private ativar (contrato: Contrato) {
+        this.contratoService.ativar(contrato.numero).then(() => {
+            this.notificacao.sucesso("Contrato ativada com sucesso.");
+            contrato.ativo = true;
+        });
+    }
+
+    private desativar (contrato: Contrato) {
+        this.contratoService.desativar(contrato.numero).then(() => {
+            this.notificacao.sucesso("Contrato desativada com sucesso.");
+            contrato.ativo = false;
+        });
+    }
+
     private excluir (id: number) {
         this.contratoService.excluir(id).then(() => {
             this.carregarContratos();

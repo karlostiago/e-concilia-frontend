@@ -52,9 +52,11 @@
                         <td class="text-center"> {{ taxa["validoAte"] | date:'dd/MM/yyyy' }} </td>
                         <td class="text-center"> {{ taxa["expiraEm"] }} - dias </td>
                         <td class="text-center">
-                            <span class=" {{ taxa['ativo'] == true ? 'badge text-bg-success' : 'badge text-bg-danger' }} ">
-                                {{ taxa["ativo"] === true ? 'Sim' : 'Não' }}
-                            </span>
+                            <a (click)="ativarOuDesativar(taxa)">
+                                <span class=" {{ taxa['ativo'] == true ? 'badge text-bg-success' : 'badge text-bg-danger' }} ">
+                                    {{ taxa["ativo"] === true ? 'Sim' : 'Não' }}
+                                </span>
+                            </a>
                         </td>
                     </tr>
                 </ng-template>

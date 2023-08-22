@@ -185,6 +185,21 @@ button[disabled] {
     background: #701717;
     color: #fff;
 }
+
+.alert-warning {
+    background: #701717;
+    color: #fff;
+}
+
+.alert-warning:hover {
+    background: #8c2020;
+    transition: 01s;
+}
+
+.alert-warning a {
+    text-decoration: none;
+    color: #fff;
+}
 /**
  * FIM CUSTOM PRIMENG
  */

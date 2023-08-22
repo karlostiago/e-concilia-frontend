@@ -47,6 +47,29 @@ export class TaxaConsultaComponent implements  OnInit {
         return FormatacaoMoedaPtBR.formatar(valor);
     }
 
+    ativarOuDesativar (taxa: Taxa) {
+        if (taxa.ativo) {
+            this.desativar(taxa);
+        } else {
+            this.ativar(taxa);
+        }
+    }
+
+    private ativar (taxa: Taxa) {
+        this.taxaService.ativar(taxa.id).then(() => {
+            this.notificacao.sucesso("Taxa ativada com sucesso.");
+            taxa.ativo = true;
+        });
+    }
+
+    private desativar (taxa: Taxa) {
+        console.log(taxa);
+        this.taxaService.desativar(taxa.id).then(() => {
+            this.notificacao.sucesso("Taxa desativada com sucesso.");
+            taxa.ativo = false;
+        });
+    }
+
     private selecionarOperadora (operadoraId: number) {
         return this.operadoras.filter(operadora => operadora.id === operadoraId)[0];
     }

@@ -37,9 +37,22 @@ export class ContratoService extends AbstractService<Contrato> {
     }
 
     async pesquisar(filtro: FiltroContrato): Promise<Contrato[]> {
+        const request = this.aplicarFiltro(filtro);
+        return this.toPromise(request);
+    }
 
+    async ativar (id: number): Promise<Contrato> {
+        const request =this.httpClient.patch(`${this.baseURL}/contratos/${id}/ativar`, this.options());
+        return this.toPromise(request);
+    }
+
+    async desativar (id: number): Promise<Contrato> {
+        const request =this.httpClient.patch(`${this.baseURL}/contratos/${id}/desativar`, this.options());
+        return this.toPromise(request);
+    }
+
+    private aplicarFiltro(filtro: FiltroContrato) {
         let request = null;
-
         if (filtro.empresaId !== null && filtro.operadoraId != null) {
             request = this.httpClient.get(`${this.baseURL}/contratos?empresaId=${filtro.empresaId}&operadoraId=${filtro.operadoraId}`, this.options());
         }
@@ -52,7 +65,6 @@ export class ContratoService extends AbstractService<Contrato> {
         else {
             request = this.httpClient.get(`${this.baseURL}/contratos`, this.options());
         }
-
-        return this.toPromise(request);
+        return request;
     }
 }
