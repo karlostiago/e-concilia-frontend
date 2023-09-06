@@ -5,6 +5,8 @@ import {ConciliadorRoutingModule} from "./conciliador-routing.module";
 import {FormsModule} from "@angular/forms";
 import { ConciliadorIfoodComponent } from './conciliador-ifood/conciliador-ifood.component';
 import {ButtonModule} from "primeng/button";
+import {InputTextModule} from "primeng/inputtext";
+import {TableModule} from "primeng/table";
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import {ButtonModule} from "primeng/button";
         CommonModule,
         ConciliadorRoutingModule,
         FormsModule,
-        ButtonModule
+        ButtonModule,
+        InputTextModule,
+        TableModule
     ]
 })
 export class ConciliadorModule { }

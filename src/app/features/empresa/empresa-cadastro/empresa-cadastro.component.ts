@@ -53,22 +53,6 @@ export class EmpresaCadastroComponent implements OnInit {
         }
     }
 
-    async salvar (form: NgForm) {
-        this.empresaService.salvar(this.empresa)
-            .then(resposta => {
-                this.notificacao.sucesso("Empresa cadastrada com sucesso.");
-                this.empresa = new Empresa();
-                form.resetForm();
-            });
-    }
-
-    async editar () {
-        this.empresaService.editar(this.empresa)
-            .then(resposta => {
-                this.notificacao.sucesso("Empresa atualizada com sucesso.");
-            });
-    }
-
     async buscarDadosCnpj (cnpj: string) {
         if (cnpj) {
             const cnpjSemFormatacao = cnpj.replace(/[^0-9]/g, "");
@@ -80,5 +64,21 @@ export class EmpresaCadastroComponent implements OnInit {
                     });
             }
         }
+    }
+
+    private async salvar (form: NgForm) {
+        this.empresaService.salvar(this.empresa)
+            .then(resposta => {
+                this.notificacao.sucesso("Empresa cadastrada com sucesso.");
+                this.empresa = new Empresa();
+                form.resetForm();
+            });
+    }
+
+    private async editar () {
+        this.empresaService.editar(this.empresa)
+            .then(resposta => {
+                this.notificacao.sucesso("Empresa atualizada com sucesso.");
+            });
     }
 }

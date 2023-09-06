@@ -7,12 +7,14 @@
         <span class="navbar-title text-overflow">E-Concilia | Conciliador de Operações</span>
 
         <div class="navbar-menu {{ exibirMenu ? 'block' : 'hidden' }} ">
+
             <div class="navbar-menu-title">
                 <span>E-CONCILIA</span>
             </div>
+
             <div class="navbar-divisor"></div>
 
-            <ul class="navbar-menu-item">
+            <ul class="navbar-menu-item" *ngIf="menuPrincipal">
                 <li>
                     <a href="#" (click)="fecharMenu()"> <i class="pi pi-home"></i> Inicial </a>
                 </li>
@@ -29,7 +31,30 @@
                     <a routerLink="/consulta/taxas" (click)="fecharMenu()"> <i class="pi pi-dollar"></i> Taxas </a>
                 </li>
                 <li>
-                    <a routerLink="/consulta/conciliadores" (click)="fecharMenu()"> <i class="pi pi-sync"></i> Conciliadores </a>
+                    <a href="#" (click)="menuConciliadores($event)"> <i class="pi pi-sync"></i> Conciliadores </a>
+                </li>
+                <li>
+                    <a href="#" (click)="menuConfiguracoes($event)"> <i class="pi pi-cog"></i> Configurações </a>
+                </li>
+            </ul>
+
+            <ul class="navbar-menu-item navbar-submenu" *ngIf="exibirMenuConciliadores">
+                <li>
+                    <a href="#" (click)="menuConciliadores($event)"> <i class="pi pi-angle-double-left"></i> Conciliadores </a>
+                    <ul>
+                        <li> <a href="#"> <i class="pi pi-angle-right"></i> Ifood </a> </li>
+                        <li> <a href="#"> <i class="pi pi-angle-right"></i> Rappi </a> </li>
+                        <li> <a href="#"> <i class="pi pi-angle-right"></i> Uber eats </a> </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <ul class="navbar-menu-item navbar-submenu" *ngIf="exibirMenuConfiguracoes">
+                <li>
+                    <a href="#" (click)="menuConfiguracoes($event)"> <i class="pi pi-angle-double-left"></i> Configurações </a>
+                    <ul>
+                        <li> <a href="#"> <i class="pi pi-angle-right"></i> Vincular empresa a operadora </a> </li>
+                    </ul>
                 </li>
             </ul>
         </div>

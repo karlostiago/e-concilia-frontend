@@ -5,7 +5,60 @@
         </div>
 
         <div class="card-body">
+            <div class="row">
+                <div class="col-md-12 mb-10">
+                    <small class="float-end color-wine">Detalhes das vendas realizadas.</small>
+                </div>
+            </div>
 
+            <div class="row">
+                <div class="col-md-3">
+                    <label class="form-label">Data da venda:</label>
+                    <input pInputText readonly class="form-control" id="dataVenda" name="dataVenda" [(ngModel)]="dataVenda" />
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Empresa:</label>
+                    <input pInputText readonly class="form-control" id="empresa" name="empresa" [(ngModel)]="empresa.razaoSocial" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 mb-10">
+                    <br/>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 mb-10">
+                    <p-table [value]="vendas" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="10" styleClass="p-datatable-striped p-datatable p-datatable-gridlines">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th class="text-center w-40">Produto</th>
+                                <th class="text-center w-15">Valor venda</th>
+                                <th class="text-center w-5">Taxa prevista</th>
+                                <th class="text-center w-5">Taxa realizada</th>
+                                <th class="text-center w-5">Diferença</th>
+                                <th class="text-center w-10">Conciliado</th>
+                            </tr>
+                        </ng-template>
+
+                        <ng-template pTemplate="body" let-venda>
+                            <tr>
+                                <td class="text-center"> {{ venda["produto"]["descricao"] }} </td>
+                                <td class="text-end"> {{ formatarMoeda(venda["produto"]["valor"]) }} </td>
+                                <td class="text-end"> {{ formatarMoeda(venda["taxaPrevista"]) }} </td>
+                                <td class="text-end"> {{ formatarMoeda(venda["produto"]["taxa"]) }} </td>
+                                <td class="text-end"> {{ formatarMoeda(venda["valorDiferenca"]) }}</td>
+                                <td class="text-center">
+                                    <span class=" {{ venda['conciliado'] == true ? 'badge text-bg-success' : 'badge text-bg-danger' }} ">
+                                    {{ venda["conciliado"] === true ? 'Sim' : 'Não' }}
+                                    </span>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
         </div>
 
         <div class="card-footer">

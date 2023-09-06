@@ -52,8 +52,8 @@ export class ContratoCadastroComponent implements OnInit {
         }
     }
 
-    formatarMoeda (valor: number) {
-        return FormatacaoMoedaPtBR.formatar(valor);
+    formatarTaxa (valor: number) {
+        return FormatacaoMoedaPtBR.percentual(valor);
     }
 
     salvarOuEditar (form: NgForm) {

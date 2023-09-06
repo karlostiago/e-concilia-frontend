@@ -12,6 +12,6 @@ export class ContratoTaxasComponent {
     @Input() taxas = new Array<Taxa>();
 
     formatarMoeda (valor: number) {
-        return FormatacaoMoedaPtBR.formatar(valor);
+        return FormatacaoMoedaPtBR.percentual(valor);
     }
 }
