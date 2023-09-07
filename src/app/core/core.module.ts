@@ -12,12 +12,13 @@ import {EmpresaModule} from "../features/empresa/empresa.module";
 import {ContratoModule} from "../features/contrato/contrato.module";
 import {OperadoraModule} from "../features/operadora/operadora.module";
 import {ConciliadorModule} from "../features/conciliador/conciliador.module";
+import {ConfiguracaoModule} from "../features/configuracao/configuracao.module";
 
 @NgModule({
     declarations: [
         NavbarComponent,
         FooterComponent,
-        BreadcrumbComponent
+        BreadcrumbComponent,
     ],
     exports: [
         NavbarComponent,
@@ -29,7 +30,8 @@ import {ConciliadorModule} from "../features/conciliador/conciliador.module";
         EmpresaModule,
         ContratoModule,
         OperadoraModule,
-        ConciliadorModule
+        ConciliadorModule,
+        ConfiguracaoModule
     ],
     imports: [
         CommonModule,

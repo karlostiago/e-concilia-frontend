@@ -6,11 +6,11 @@ import {DataHelpers} from "../../../../helpers/DateHelpers";
 import {FormatacaoMoedaPtBR} from "../../../../helpers/FormatacaoMoedaPtBR";
 
 @Component({
-  selector: 'app-conciliador-ifood',
-  templateUrl: './conciliador-ifood.component.html',
-  styleUrls: ['./conciliador-ifood.component.css']
+  selector: 'app-ifood',
+  templateUrl: './ifood.component.html',
+  styleUrls: ['./ifood.component.css']
 })
-export class ConciliadorIfoodComponent implements OnInit {
+export class IfoodComponent implements OnInit {
 
     dataVenda: string;
     empresa = new Empresa();

@@ -10,15 +10,14 @@ import {EmpresaConsultaComponent} from "./empresa-consulta/empresa-consulta.comp
 import {DividerModule} from "primeng/divider";
 import {TableModule} from "primeng/table";
 import {InputSwitchModule} from "primeng/inputswitch";
-import {CnpjPipe} from "../../pipes/cnpj.pipe";
 import {RouterLink} from "@angular/router";
 import {EmpresaRoutingModule} from "./empresa-routing.module";
+import {CnpjModule} from "../../pipes/cnpj/cnpj.module";
 
 @NgModule({
     declarations: [
         EmpresaCadastroComponent,
-        EmpresaConsultaComponent,
-        CnpjPipe
+        EmpresaConsultaComponent
     ],
     exports: [
         EmpresaCadastroComponent,
@@ -35,7 +34,8 @@ import {EmpresaRoutingModule} from "./empresa-routing.module";
         TableModule,
         InputSwitchModule,
         RouterLink,
-        EmpresaRoutingModule
+        EmpresaRoutingModule,
+        CnpjModule
     ]
 })
 export class EmpresaModule { }

@@ -1,11 +1,9 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
-import {ConciliadoresComponent} from "./conciliadores/conciliadores.component";
-import {ConciliadorIfoodComponent} from "./conciliador-ifood/conciliador-ifood.component";
+import {IfoodComponent} from "./ifood/ifood.component";
 
 const rotas: Routes = [
-    { path: 'consulta/conciliadores', component: ConciliadoresComponent },
-    { path: 'consulta/conciliador/ifood', component: ConciliadorIfoodComponent }
+    { path: 'consulta/conciliador/ifood', component: IfoodComponent }
 ]
 
 @NgModule({

@@ -7,7 +7,7 @@ import {Component, OnInit} from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-    exibirMenu = true;
+    exibirMenu = false;
     exibirMenuConciliadores = false;
     exibirMenuConfiguracoes = false;
     menuPrincipal = true;

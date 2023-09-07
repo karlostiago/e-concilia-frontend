@@ -44,7 +44,7 @@ export class TaxaConsultaComponent implements  OnInit {
     }
 
     formatarMoeda (valor: number) {
-        return FormatacaoMoedaPtBR.formatar(valor);
+        return FormatacaoMoedaPtBR.percentual(valor);
     }
 
     ativarOuDesativar (taxa: Taxa) {
