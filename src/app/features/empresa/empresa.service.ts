@@ -16,6 +16,10 @@ export class EmpresaService extends AbstractService<Empresa> {
         super(error);
     }
 
+    pathURL() {
+        return 'empresas';
+    }
+
     async todosEstados () {
         return Constantes.estados;
     }
@@ -26,37 +30,37 @@ export class EmpresaService extends AbstractService<Empresa> {
     }
 
     async salvar (empresa: Empresa): Promise<Empresa> {
-        const request = this.httpClient.post(`${this.baseURL}/empresas`, JSON.stringify(empresa), this.options());
+        const request = this.httpClient.post(`${this.baseURL}/${this.pathURL()}`, JSON.stringify(empresa), this.options());
         return this.toPromise(request);
     }
 
     async editar (empresa: Empresa): Promise<Empresa> {
-        const request = this.httpClient.put(`${this.baseURL}/empresas/${empresa.id}`, JSON.stringify(empresa), this.options());
+        const request = this.httpClient.put(`${this.baseURL}/${this.pathURL()}/${empresa.id}`, JSON.stringify(empresa), this.options());
         return this.toPromise(request);
     }
 
     async pesquisar (filtroEmpresa: FiltroEmpresa): Promise<Empresa[]> {
-        const request = this.httpClient.get(`${this.baseURL}/empresas?cnpj=${filtroEmpresa.cnpj}&razaoSocial=${filtroEmpresa.razaoSocial}`, this.options());
+        const request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}?cnpj=${filtroEmpresa.cnpj}&razaoSocial=${filtroEmpresa.razaoSocial}`, this.options());
         return this.toPromise(request);
     }
 
     async excluir (id: number) {
-        const request = this.httpClient.delete(`${this.baseURL}/empresas/${id}`, this.options());
+        const request = this.httpClient.delete(`${this.baseURL}/${this.pathURL()}/${id}`, this.options());
         return this.toPromise(request);
     }
 
     async pesquisarPorId (id: number): Promise<Empresa> {
-        const request =this.httpClient.get(`${this.baseURL}/empresas/${id}`, this.options());
+        const request =this.httpClient.get(`${this.baseURL}/${this.pathURL()}/${id}`, this.options());
         return this.toPromise(request);
     }
 
     async ativar (id: number): Promise<Empresa> {
-        const request =this.httpClient.patch(`${this.baseURL}/empresas/${id}/ativar`, this.options());
+        const request =this.httpClient.patch(`${this.baseURL}/${this.pathURL()}/${id}/ativar`, this.options());
         return this.toPromise(request);
     }
 
     async desativar (id: number): Promise<Empresa> {
-        const request =this.httpClient.patch(`${this.baseURL}/empresas/${id}/desativar`, this.options());
+        const request =this.httpClient.patch(`${this.baseURL}/${this.pathURL()}/${id}/desativar`, this.options());
         return this.toPromise(request);
     }
 }

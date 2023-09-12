@@ -1,17 +1,16 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
 import {
-    VinculaEmpresaOperadoraCadastroComponent
-} from "./vincula-empresa-operadora-cadastro/vincula-empresa-operadora-cadastro.component";
+    IntegracaoCadastroComponent
+} from "./integracao/integracao-cadastro/integracao-cadastro.component";
 import {
-    VinculaEmpresaOperadoraConsultaComponent
-} from "./vincula-empresa-operadora-consulta/vincula-empresa-operadora-consulta.component";
-
+    IntegracaoConsultaComponent
+} from "./integracao/integracao-consulta/integracao-consulta.component";
 
 const rotas: Routes = [
-    { path: 'cadastro/configuracao/vincula/empresa/operadora', component: VinculaEmpresaOperadoraCadastroComponent },
-    { path: 'editar/configuracao/vincula/empresa/operadora/:id', component: VinculaEmpresaOperadoraCadastroComponent },
-    { path: 'consulta/configuracao/vincula/empresa/operadora', component: VinculaEmpresaOperadoraConsultaComponent }
+    { path: 'cadastro/integracoes/novo', component: IntegracaoCadastroComponent },
+    { path: 'editar/integracoes/:id', component: IntegracaoCadastroComponent },
+    { path: 'consulta/integracoes', component: IntegracaoConsultaComponent }
 ]
 
 @NgModule({

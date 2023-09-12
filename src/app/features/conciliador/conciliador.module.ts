@@ -6,6 +6,8 @@ import { IfoodComponent } from './ifood/ifood.component';
 import {ButtonModule} from "primeng/button";
 import {InputTextModule} from "primeng/inputtext";
 import {TableModule} from "primeng/table";
+import {DropdownModule} from "primeng/dropdown";
+import {CalendarModule} from "primeng/calendar";
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import {TableModule} from "primeng/table";
         FormsModule,
         ButtonModule,
         InputTextModule,
-        TableModule
+        TableModule,
+        DropdownModule,
+        CalendarModule
     ]
 })
 export class ConciliadorModule { }

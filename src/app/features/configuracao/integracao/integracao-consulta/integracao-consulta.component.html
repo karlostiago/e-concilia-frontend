@@ -1,0 +1,72 @@
+<form autocomplete="off" class="fade-in">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="color-wine"> Consultar integrações </h4>
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <label class="form-label">Empresa:</label>
+                    <p-dropdown styleClass="w-100" name="empresa" id="empresa" optionLabel="razaoSocial" optionValue="id" [(ngModel)]="filtro.empresaId"
+                                placeholder="Selecione uma empresa" [options]="empresas"></p-dropdown>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Operadora:</label>
+                    <p-dropdown styleClass="w-100" name="operadora" id="operadora" optionLabel="descricao" optionValue="id" [(ngModel)]="filtro.operadoraId"
+                                placeholder="Selecione uma operadora" [options]="operadoras"></p-dropdown>
+                </div>
+
+                <div class="col-md-4">
+                    <label class="form-label">Código Integração:</label>
+                    <input pInputText class="form-control" name="codigoIntegracao" id="codigoIntegracao" [(ngModel)]="filtro.codigoIntegracao"  />
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <div class="card-action">
+                <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-search" label="Pesquisar" (click)="pesquisar()" ></button>
+                <button pButton class="p-button-danger p-button-sm float-end" icon="pi pi-plus-circle" routerLink="/cadastro/integracoes/novo" label="Nova integração"></button>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="card">
+        <div class="card-header">
+            <h4 class="color-wine"> Listagem de integrações </h4>
+        </div>
+
+        <div class="card-body">
+            <p-table [value]="integracoes" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="10" styleClass="p-datatable-striped p-datatable p-datatable-gridlines" #tabela>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="min-width: 180px;">Código Integração</th>
+                        <th class="text-center" style="min-width: 180px">CNPJ</th>
+                        <th class="text-center" style="min-width: 320px">Empresa</th>
+                        <th class="text-center" style="min-width: 120px;">Operadora</th>
+                        <th class="text-center" style="min-width: 100px;">Ações</th>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-integracao>
+                    <tr>
+                        <td> {{ integracao["codigoIntegracao"] }} </td>
+                        <td class="text-center"> {{ integracao["empresa"]["cnpj"] | cnpj }} </td>
+                        <td class="text-center"> {{ integracao["empresa"]["razaoSocial"] }} </td>
+                        <td class="text-center"> {{ integracao["operadora"]["descricao"] }} </td>
+                        <td class="text-center">
+                            <div class="action">
+                                <button type="button" pButton icon="pi pi-trash" class="p-button-danger p-button-sm" (click)="confirmarExclusao(integracao)"></button>
+                                <button pButton icon="pi pi-pencil" class="p-button-danger p-button-sm" [routerLink]="['/editar/integracoes', integracao.id]"></button>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</form>

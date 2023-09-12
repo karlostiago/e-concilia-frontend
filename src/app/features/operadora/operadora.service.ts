@@ -17,28 +17,32 @@ export class OperadoraService extends AbstractService<Operadora> {
         super(error);
     }
 
+    pathURL() {
+        return 'operadoras';
+    }
+
     async pesquisarPorId (id: number): Promise<Operadora> {
-        const request = this.httpClient.get(`${this.baseURL}/operadoras/${id}`, this.options());
+        const request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}/${id}`, this.options());
         return this.toPromise(request);
     }
 
     async pesquisar (filtro: FiltroOperadora): Promise<Operadora[]> {
-        const request = this.httpClient.get(`${this.baseURL}/operadoras?descricao=${filtro.descricao}`, this.options());
+        const request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}?descricao=${filtro.descricao}`, this.options());
         return this.toPromise(request);
     }
 
     async salvar (operadora: Operadora): Promise<Operadora> {
-        const request = this.httpClient.post(`${this.baseURL}/operadoras`, JSON.stringify(operadora), this.options());
+        const request = this.httpClient.post(`${this.baseURL}/${this.pathURL()}`, JSON.stringify(operadora), this.options());
         return this.toPromise(request);
     }
 
     async editar (operadora: Operadora): Promise<Operadora> {
-        const request = this.httpClient.put(`${this.baseURL}/operadoras/${operadora.id}`, JSON.stringify(operadora), this.options());
+        const request = this.httpClient.put(`${this.baseURL}/${this.pathURL()}/${operadora.id}`, JSON.stringify(operadora), this.options());
         return this.toPromise(request);
     }
 
     async excluir (id: number) {
-        const request = this.httpClient.delete(`${this.baseURL}/operadoras/${id}`, this.options());
+        const request = this.httpClient.delete(`${this.baseURL}/${this.pathURL()}/${id}`, this.options());
         return this.toPromise(request);
     }
 }

@@ -7,25 +7,49 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-md-12 mb-10">
-                    <small class="float-end color-wine">Detalhes das vendas realizadas.</small>
+                    <small class="float-end color-wine">Os campos com ( * ) são obrigatórios.</small>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-md-3">
-                    <label class="form-label">Data da venda:</label>
-                    <input pInputText readonly class="form-control" id="dataVenda" name="dataVenda" [(ngModel)]="dataVenda" />
+                <div class="col-md-2">
+                    <label class="form-label">Data da venda de*:</label>
+                    <p-calendar appendTo="body" id="dtVendaDe" [style]="{ 'width': '100%' }" name="dtVendaDe" [readonlyInput]="true" dateFormat="dd/mm/yy" [(ngModel)]="dtVendaDe"></p-calendar>
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label">Data da venda até*:</label>
+                    <p-calendar appendTo="body" id="dtVendaAte" [style]="{ 'width': '100%' }" name="dtVendaAte" [readonlyInput]="true" dateFormat="dd/mm/yy" [(ngModel)]="dtVendaAte"></p-calendar>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <label class="form-label">Empresa*:</label>
+                    <p-dropdown styleClass="w-100" name="empresa" id="empresa" optionLabel="razaoSocial" optionValue="id" [options]="empresas" placeholder="Selecione uma empresa"
+                                [(ngModel)]="empresaId" [required]="true"></p-dropdown>
                 </div>
                 <div class="col-md-4">
-                    <label class="form-label">Empresa:</label>
-                    <input pInputText readonly class="form-control" id="empresa" name="empresa" [(ngModel)]="empresa.razaoSocial" />
+                    <label class="form-label">Método de pagamento:</label>
+                    <p-dropdown styleClass="w-100" name="metodo" id="metodo" [options]="metodos" placeholder="Selecione um método"></p-dropdown>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Bandeira:</label>
+                    <p-dropdown styleClass="w-100" name="metodo" id="bandeira" [options]="bandeiras" placeholder="Selecione uma bandeira"></p-dropdown>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-12 mb-10">
                     <br/>
+                    <div class="card-action">
+                        <button pButton class="p-button-danger p-button-sm" icon="pi pi-search"  (click)="pesquisar()" label="Pesquisar"></button>
+                        <button pButton class="p-button-danger p-button-sm" icon="pi pi-eraser" label="Limpar"></button>
+                    </div>
                 </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 mb-10"></div>
             </div>
 
             <div class="row">
@@ -34,9 +58,9 @@
                         <ng-template pTemplate="header">
                             <tr>
                                 <th class="text-center w-40">Produto</th>
-                                <th class="text-center w-15">Valor venda</th>
-                                <th class="text-center w-5">Taxa prevista</th>
-                                <th class="text-center w-5">Taxa realizada</th>
+                                <th class="text-center w-15">Tipo pagamento</th>
+                                <th class="text-center w-5">Método pagamento</th>
+                                <th class="text-center w-5">Valor total</th>
                                 <th class="text-center w-5">Diferença</th>
                                 <th class="text-center w-10">Conciliado</th>
                             </tr>
@@ -44,11 +68,11 @@
 
                         <ng-template pTemplate="body" let-venda>
                             <tr>
-                                <td class="text-center"> {{ venda["produto"]["descricao"] }} </td>
-                                <td class="text-end"> {{ formatarMoeda(venda["produto"]["valor"]) }} </td>
-                                <td class="text-end"> {{ formatarMoeda(venda["taxaPrevista"]) }} </td>
-                                <td class="text-end"> {{ formatarMoeda(venda["produto"]["taxa"]) }} </td>
-                                <td class="text-end"> {{ formatarMoeda(venda["valorDiferenca"]) }}</td>
+                                <td class="text-center"> {{ venda["pagamento"]["bandeira"] }} </td>
+                                <td class="text-center"> {{ venda["pagamento"]["tipo"] }} </td>
+                                <td class="text-center"> {{ venda["pagamento"]["metodo"] }} </td>
+                                <td class="text-end"> {{ formatarValor(venda["cobranca"]["gmv"]) }} </td>
+                                <td class="text-end"> </td>
                                 <td class="text-center">
                                     <span class=" {{ venda['conciliado'] == true ? 'badge text-bg-success' : 'badge text-bg-danger' }} ">
                                     {{ venda["conciliado"] === true ? 'Sim' : 'Não' }}
@@ -58,12 +82,6 @@
                         </ng-template>
                     </p-table>
                 </div>
-            </div>
-        </div>
-
-        <div class="card-footer">
-            <div class="card-action">
-                <button pButton class="p-button-danger p-button-sm p-button-outlined" icon="pi pi-replay"  routerLink="/consulta/conciliadores" label="Voltar"></button>
             </div>
         </div>
     </div>

@@ -1,7 +1,7 @@
 <form autocomplete="off" class="fade-in" #formulario="ngForm" (ngSubmit)="salvarOuEditar(formulario)">
     <div class="card">
         <div class="card-header">
-            <h4 class="color-wine"> Vincular empresa a operadora </h4>
+            <h4 class="color-wine"> Cadastrar uma integração </h4>
         </div>
 
         <div class="card-body">
@@ -28,7 +28,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <label class="form-label">ID da loja  *:</label>
-                    <input pInputText class="form-control" name="codigoIntegracao" id="codigoIntegracao" [(ngModel)]="vinculaEmpresaOperadora.codigoIntegracao" [required]="true" />
+                    <input pInputText class="form-control" name="codigoIntegracao" id="codigoIntegracao" [(ngModel)]="integracao.codigoIntegracao" [required]="true" />
                 </div>
             </div>
         </div>
@@ -36,8 +36,8 @@
         <div class="card-footer">
             <div class="card-action">
                 <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-save" label="Salvar" [disabled]="!formulario.valid"></button>
-                <button pButton type="button" class="p-button-danger p-button-sm p-button-outlined" icon="pi pi-replay" label="Voltar" routerLink="/consulta/configuracao/vincula/empresa/operadora"></button>
-                <button pButton type="reset" class="p-button-danger p-button-sm float-end" icon="pi pi-eraser" *ngIf="!vinculaEmpresaOperadora.id" label="Limpar"></button>
+                <button pButton type="button" class="p-button-danger p-button-sm p-button-outlined" icon="pi pi-replay" label="Voltar" routerLink="/consulta/integracoes"></button>
+                <button pButton type="reset" class="p-button-danger p-button-sm float-end" icon="pi pi-eraser" *ngIf="!integracao.id" label="Limpar"></button>
             </div>
         </div>
     </div>

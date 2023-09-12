@@ -9,6 +9,8 @@ export abstract class AbstractService<T> {
 
     protected constructor(protected error: ErroHandlerService) { }
 
+    protected abstract pathURL(): string;
+
     options (httpParams: HttpParams = new HttpParams()) {
         return {
             headers: this.headers(),
