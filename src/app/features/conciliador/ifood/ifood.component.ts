@@ -12,6 +12,7 @@ import {IntegracaoService} from "../../configuracao/integracao/integracao.servic
 import {FiltroConfiguracaoIntegracao} from "../../../filter/FiltroConfiguracaoIntegracao";
 import {OperadoraService} from "../../operadora/operadora.service";
 import {FiltroOperadora} from "../../../filter/FiltroOperadora";
+import {NotificacaoService} from "../../../shared/notificacao/notificacao.service";
 
 @Component({
   selector: 'app-ifood',
@@ -38,6 +39,7 @@ export class IfoodComponent implements OnInit {
         private empresaService: EmpresaService,
         private integracaoService: IntegracaoService,
         private operadoraService: OperadoraService,
+        private notificacao: NotificacaoService,
         private conciliadorService: ConciliadorIfoodService) { }
 
     ngOnInit(): void {
@@ -47,11 +49,12 @@ export class IfoodComponent implements OnInit {
         this.carregarEmpresas();
     }
 
-    formatarMoeda (valor: number) {
-        return FormatacaoMoedaPtBR.formatar(valor);
-    }
-
     async pesquisar () {
+        if (this.empresaId === undefined) {
+            this.notificacao.error("Nenhuma empresa foi selecionada.")
+            return;
+        }
+
         await this.buscarCodigoIntegracao();
         await this.conciliadorService.buscarVendas(this.codigoIntegracao, this.dtVendaDe, this.dtVendaAte).then(vendas => {
             this.vendas = vendas;
@@ -106,4 +109,6 @@ export class IfoodComponent implements OnInit {
             this.empresas = empresas;
         });
     }
+
+    protected readonly Math = Math;
 }

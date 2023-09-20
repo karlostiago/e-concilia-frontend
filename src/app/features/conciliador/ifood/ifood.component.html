@@ -28,11 +28,11 @@
                     <p-dropdown styleClass="w-100" name="empresa" id="empresa" optionLabel="razaoSocial" optionValue="id" [options]="empresas" placeholder="Selecione uma empresa"
                                 [(ngModel)]="empresaId" [required]="true"></p-dropdown>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4" style="display: none">
                     <label class="form-label">Método de pagamento:</label>
                     <p-dropdown styleClass="w-100" name="metodo" id="metodo" [options]="metodos" placeholder="Selecione um método"></p-dropdown>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4" style="display: none">
                     <label class="form-label">Bandeira:</label>
                     <p-dropdown styleClass="w-100" name="metodo" id="bandeira" [options]="bandeiras" placeholder="Selecione uma bandeira"></p-dropdown>
                 </div>
@@ -60,7 +60,9 @@
                                 <th class="text-center w-40">Produto</th>
                                 <th class="text-center w-15">Tipo pagamento</th>
                                 <th class="text-center w-5">Método pagamento</th>
-                                <th class="text-center w-5">Valor total</th>
+                                <th class="text-center w-5">Valor pedido</th>
+                                <th class="text-center w-5">Taxa entrega</th>
+                                <th class="text-center w-5">Taxa aquisição <br /> aplicada / praticada </th>
                                 <th class="text-center w-5">Diferença</th>
                                 <th class="text-center w-10">Conciliado</th>
                             </tr>
@@ -71,10 +73,12 @@
                                 <td class="text-center"> {{ venda["pagamento"]["bandeira"] }} </td>
                                 <td class="text-center"> {{ venda["pagamento"]["tipo"] }} </td>
                                 <td class="text-center"> {{ venda["pagamento"]["metodo"] }} </td>
-                                <td class="text-end"> {{ formatarValor(venda["cobranca"]["gmv"]) }} </td>
-                                <td class="text-end"> </td>
+                                <td class="text-end"> {{ formatarValor(venda["cobranca"]["totalItensPedido"]) }} </td>
+                                <td class="text-end"> {{ formatarValor(venda["cobranca"]["taxaEntrega"]) }} </td>
+                                <td class="text-end"> {{ formatarValor(Math.abs(venda["cobranca"]["taxaAdquirente"])) }} / {{ formatarValor(venda["cobranca"]["taxaAdquirenteAplicada"]) }}</td>
+                                <td class="text-end"> {{ formatarValor(venda["diferenca"]) }} </td>
                                 <td class="text-center">
-                                    <span class=" {{ venda['conciliado'] == true ? 'badge text-bg-success' : 'badge text-bg-danger' }} ">
+                                    <span class=" {{ venda['conciliado'] === true ? 'badge text-bg-success' : 'badge text-bg-danger' }} ">
                                     {{ venda["conciliado"] === true ? 'Sim' : 'Não' }}
                                     </span>
                                 </td>

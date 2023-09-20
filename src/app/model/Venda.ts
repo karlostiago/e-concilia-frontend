@@ -7,6 +7,8 @@ export class Venda {
     dataUltimoProcessamento: Date;
     numeroDocumento: string;
     modeloNegocio: string;
+    conciliado = false;
     pagamento = new Pagamento();
     cobranca = new Cobranca();
+    diferenca: number;
 }

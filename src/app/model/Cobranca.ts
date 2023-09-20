@@ -6,6 +6,7 @@ export class Cobranca {
     beneficioComercio: number;
     comissao: number;
     taxaAdquirente: number;
+    taxaAdquirenteAplicada: number;
     comissaoEntrega: number;
     taxaComissao: number;
     taxaComissaoAdquirente: number;
