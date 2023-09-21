@@ -28,13 +28,13 @@
                     <p-dropdown styleClass="w-100" name="empresa" id="empresa" optionLabel="razaoSocial" optionValue="id" [options]="empresas" placeholder="Selecione uma empresa"
                                 [(ngModel)]="empresaId" [required]="true"></p-dropdown>
                 </div>
-                <div class="col-md-4" style="display: none">
+                <div class="col-md-4">
                     <label class="form-label">Método de pagamento:</label>
-                    <p-dropdown styleClass="w-100" name="metodo" id="metodo" [options]="metodos" placeholder="Selecione um método"></p-dropdown>
+                    <p-dropdown styleClass="w-100" name="metodo" id="metodo" [options]="metodos" placeholder="Selecione um método" [(ngModel)]="metodoPagamento"></p-dropdown>
                 </div>
-                <div class="col-md-4" style="display: none">
+                <div class="col-md-4">
                     <label class="form-label">Bandeira:</label>
-                    <p-dropdown styleClass="w-100" name="metodo" id="bandeira" [options]="bandeiras" placeholder="Selecione uma bandeira"></p-dropdown>
+                    <p-dropdown styleClass="w-100" name="metodo" id="bandeira" [options]="bandeiras" placeholder="Selecione uma bandeira" [(ngModel)]="bandeira"></p-dropdown>
                 </div>
             </div>
 
@@ -43,7 +43,7 @@
                     <br/>
                     <div class="card-action">
                         <button pButton class="p-button-danger p-button-sm" icon="pi pi-search"  (click)="pesquisar()" label="Pesquisar"></button>
-                        <button pButton class="p-button-danger p-button-sm" icon="pi pi-eraser" label="Limpar"></button>
+                        <button pButton class="p-button-danger p-button-sm" icon="pi pi-eraser" label="Limpar" (click)="limpar()"></button>
                     </div>
                 </div>
             </div>
@@ -82,6 +82,17 @@
                                     {{ venda["conciliado"] === true ? 'Sim' : 'Não' }}
                                     </span>
                                 </td>
+                            </tr>
+                        </ng-template>
+
+                        <ng-template pTemplate="footer">
+                            <tr>
+                                <td colspan="3" class="text-end">Total de vendas do período</td>
+                                <td class="text-end"> {{ formatarValor(totalDeVendas) }}</td>
+                                <td class="text-end"> {{ formatarValor(totalTaxaEntrega) }}</td>
+                                <td class="text-end"> {{ formatarValor(totalTarifaAplicada) }} / {{ formatarValor(totalTarifaPraticada) }}</td>
+                                <td class="text-end"> {{ formatarValor(totalDiferenca) }}</td>
+                                <td></td>
                             </tr>
                         </ng-template>
                     </p-table>

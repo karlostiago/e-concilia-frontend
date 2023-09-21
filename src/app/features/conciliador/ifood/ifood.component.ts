@@ -28,12 +28,20 @@ export class IfoodComponent implements OnInit {
     empresaId: number;
     operadoraId: number;
     codigoIntegracao: string;
+    metodoPagamento: string;
+    bandeira: string;
 
     metodos = new Array<String>();
     bandeiras = new Array<String>();
 
     dtVendaDe = new Date();
     dtVendaAte = new Date();
+
+    totalDeVendas = 0;
+    totalTaxaEntrega = 0;
+    totalTarifaAplicada = 0;
+    totalTarifaPraticada = 0;
+    totalDiferenca = 0;
 
     constructor(
         private empresaService: EmpresaService,
@@ -50,15 +58,41 @@ export class IfoodComponent implements OnInit {
     }
 
     async pesquisar () {
-        if (this.empresaId === undefined) {
+        if (this.empresaId === undefined || this.empresaId === -1) {
             this.notificacao.error("Nenhuma empresa foi selecionada.")
             return;
         }
 
         await this.buscarCodigoIntegracao();
-        await this.conciliadorService.buscarVendas(this.codigoIntegracao, this.dtVendaDe, this.dtVendaAte).then(vendas => {
+        await this.conciliadorService.buscarVendas(this.codigoIntegracao, this.dtVendaDe, this.dtVendaAte, this.metodoPagamento, this.bandeira).then(vendas => {
             this.vendas = vendas;
+
+            this.totalDeVendas = 0;
+            this.totalTaxaEntrega = 0;
+            this.totalTarifaAplicada = 0;
+            this.totalTarifaPraticada = 0;
         });
+
+        this.calcularTotalizador();
+    }
+
+    private calcularTotalizador() {
+        for (let venda of this.vendas) {
+            this.totalDeVendas += venda.cobranca.totalItensPedido;
+            this.totalTaxaEntrega += venda.cobranca.taxaEntrega;
+            this.totalTarifaAplicada += Math.abs(venda.cobranca.taxaAdquirente);
+            this.totalTarifaPraticada += venda.cobranca.taxaAdquirenteAplicada;
+            this.totalDiferenca = venda.diferenca;
+        }
+    }
+
+    limpar() {
+        this.dtVendaDe = new Date();
+        this.dtVendaAte = new Date();
+        DataHelpers.remove30Dias(this.dtVendaDe);
+        this.empresaId = -1;
+        this.metodoPagamento = "";
+        this.bandeira = "";
     }
 
     formatarValor (valor: number) {
