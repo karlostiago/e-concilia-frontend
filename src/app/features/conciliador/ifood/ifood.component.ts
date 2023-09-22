@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ConciliadorIfoodService} from "../conciliador-ifood.service";
 import {Empresa} from "../../../model/Empresa";
 import {DataHelpers} from "../../../../helpers/DataHelpers";
@@ -13,6 +13,7 @@ import {FiltroConfiguracaoIntegracao} from "../../../filter/FiltroConfiguracaoIn
 import {OperadoraService} from "../../operadora/operadora.service";
 import {FiltroOperadora} from "../../../filter/FiltroOperadora";
 import {NotificacaoService} from "../../../shared/notificacao/notificacao.service";
+import {Table} from "primeng/table";
 
 @Component({
   selector: 'app-ifood',
@@ -43,6 +44,8 @@ export class IfoodComponent implements OnInit {
     totalTarifaPraticada = 0;
     totalDiferenca = 0;
 
+    @ViewChild('tabela') tabela: Table;
+
     constructor(
         private empresaService: EmpresaService,
         private integracaoService: IntegracaoService,
@@ -71,6 +74,7 @@ export class IfoodComponent implements OnInit {
             this.totalTaxaEntrega = 0;
             this.totalTarifaAplicada = 0;
             this.totalTarifaPraticada = 0;
+            this.tabela.reset();
         });
 
         this.calcularTotalizador();
