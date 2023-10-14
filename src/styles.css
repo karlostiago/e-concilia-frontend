@@ -107,6 +107,10 @@ button[disabled] {
     border-radius: 0 !important;
 }
 
+.card {
+    box-shadow: none!important;
+}
+
 .card-header {
     background-color: #fff !important;
     border-bottom: 1px solid rgba(26, 54, 126, 0.125);

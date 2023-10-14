@@ -4,6 +4,7 @@ import {Venda} from "../../model/Venda";
 import {HttpClient} from "@angular/common/http";
 import {ErroHandlerService} from "../../core/ErroHandlerService";
 import {DataHelpers} from "../../../helpers/DataHelpers";
+import {Conciliador} from "../../model/Conciliador";
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +20,7 @@ export class ConciliadorIfoodService extends AbstractService<Venda>{
         return 'conciliadores/ifood';
     }
 
-    async buscarVendas(lojaId: string, dtVendaDe: Date, dtVendaAte: Date, metodoPagamento: string, bandeira: string): Promise<Venda[]> {
+    async buscarVendas(lojaId: string, dtVendaDe: Date, dtVendaAte: Date, metodoPagamento: string, bandeira: string): Promise<Conciliador> {
         const request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}?lojaId=${lojaId}&dtInicial=${DataHelpers.formatUs(dtVendaDe)}&dtFinal=${DataHelpers.formatUs(dtVendaAte)}&metodoPagamento=${metodoPagamento}&bandeira=${bandeira}`, this.options());
         return this.toPromise(request);
     }

@@ -1,0 +1,51 @@
+<div class="row">
+    <div class="col-md-3 mb-4">
+        <h5 class="color-wine"> Concilidação das vendas </h5>
+        <hr />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-2 text-end">
+        <label class="form-label">Cartão crédito .:::</label>
+    </div>
+    <div class="col-md-10">
+        <label class="form-label"> {{ formatarValor(resumoFinanceiro.totalCredito) }}</label>
+    </div>
+    <div class="col-md-2 text-end">
+        <label class="form-label">Cartão débito .:::</label>
+    </div>
+    <div class="col-md-10">
+        <label class="form-label">{{ formatarValor(resumoFinanceiro.totalDebito) }}</label>
+    </div>
+    <div class="col-md-2 text-end">
+        <label class="form-label">Dinheiro .:::</label>
+    </div>
+    <div class="col-md-10">
+        <label class="form-label">{{ formatarValor(resumoFinanceiro.totalDinheiro) }}</label>
+    </div>
+    <div class="col-md-2 text-end">
+        <label class="form-label">Voucher .:::</label>
+    </div>
+    <div class="col-md-10">
+        <label class="form-label">{{ formatarValor(resumoFinanceiro.totalVoucher) }}</label>
+    </div>
+    <div class="col-md-2 text-end">
+        <label class="form-label">Pix .:::</label>
+    </div>
+    <div class="col-md-10">
+        <label class="form-label">{{ formatarValor(resumoFinanceiro.totalPix) }}</label>
+    </div>
+    <div class="col-md-2 text-end">
+        <label class="form-label">Bank pay .:::</label>
+    </div>
+    <div class="col-md-10">
+        <label class="form-label">{{ formatarValor(resumoFinanceiro.totalBankPay) }}</label>
+    </div>
+    <div class="col-md-2 text-end">
+        <label class="form-label">Outros .:::</label>
+    </div>
+    <div class="col-md-10">
+        <label class="form-label">{{ formatarValor(resumoFinanceiro.totalOutros) }}</label>
+    </div>
+</div>

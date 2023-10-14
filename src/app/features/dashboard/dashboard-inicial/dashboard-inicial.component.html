@@ -1,0 +1,82 @@
+<form autocomplete="off" class="fade-in" #formulario="ngForm">
+    <div class="row">
+        <div class="col-md-12 mb-10 pad-left-1">
+            <h5 class="color-wine">Boas vindas!</h5>
+            <label>Aqui você acompanha uma visão geral de todas as movimentações diárias do mês.</label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 mb-10">
+            <div class="card">
+                <div class="card-body">
+                    <p class="color-wine">
+                        <strong>Filtros:</strong>
+                    </p>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label class="form-label">Data inicial:</label>
+                            <p-calendar appendTo="body" id="dtInicial" [style]="{ 'width': '100%' }" name="dtVendaDe" [readonlyInput]="true" [(ngModel)]="dtInicial" dateFormat="dd/mm/yy"></p-calendar>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label">Data final:</label>
+                            <p-calendar appendTo="body" id="dtFinal" [style]="{ 'width': '100%' }" name="dtVendaDe" [readonlyInput]="true" [(ngModel)]="dtFinal" dateFormat="dd/mm/yy"></p-calendar>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label class="form-label">Lojas:</label>
+                            <p-dropdown styleClass="w-100" name="loja" id="loja" optionLabel="razaoSocial" optionValue="id" placeholder="Selecione uma loja"
+                                       [required]="true"></p-dropdown>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <div class="card-action">
+                        <button pButton class="p-button-danger p-button-sm" icon="pi pi-search">Aplicar filtros</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3 mb-10">
+            <div class="card">
+                <div class="card-header">
+                    <label>Valor bruto de vendas:</label><br>
+                    <h5 class="color-wine">R$ 3.450,19</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-10">
+            <div class="card">
+                <div class="card-header">
+                    <label>Quantidade de vendas:</label><br>
+                    <h5 class="color-wine">85</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-10">
+            <div class="card">
+                <div class="card-header">
+                    <label>Ticket médio:</label><br>
+                    <h5 class="color-wine">R$ 15,45</h5>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 mb-10">
+            <div class="card">
+                <div class="card-header">
+                    <label>Valor de cancelamento:</label><br>
+                    <h5 class="color-wine">R$ 45,95</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

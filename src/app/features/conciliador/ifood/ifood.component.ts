@@ -14,6 +14,8 @@ import {OperadoraService} from "../../operadora/operadora.service";
 import {FiltroOperadora} from "../../../filter/FiltroOperadora";
 import {NotificacaoService} from "../../../shared/notificacao/notificacao.service";
 import {Table} from "primeng/table";
+import {Totalizador} from "../../../model/Totalizador";
+import {Conciliador} from "../../../model/Conciliador";
 
 @Component({
   selector: 'app-ifood',
@@ -22,8 +24,7 @@ import {Table} from "primeng/table";
 })
 export class IfoodComponent implements OnInit {
 
-    vendas = new Array<Venda>();
-
+    conciliador = new Conciliador();
     empresas = new Array<Empresa>();
 
     empresaId: number;
@@ -37,12 +38,6 @@ export class IfoodComponent implements OnInit {
 
     dtVendaDe = new Date();
     dtVendaAte = new Date();
-
-    totalDeVendas = 0;
-    totalTaxaEntrega = 0;
-    totalTarifaAplicada = 0;
-    totalTarifaPraticada = 0;
-    totalDiferenca = 0;
 
     @ViewChild('tabela') tabela: Table;
 
@@ -67,27 +62,10 @@ export class IfoodComponent implements OnInit {
         }
 
         await this.buscarCodigoIntegracao();
-        await this.conciliadorService.buscarVendas(this.codigoIntegracao, this.dtVendaDe, this.dtVendaAte, this.metodoPagamento, this.bandeira).then(vendas => {
-            this.vendas = vendas;
-
-            this.totalDeVendas = 0;
-            this.totalTaxaEntrega = 0;
-            this.totalTarifaAplicada = 0;
-            this.totalTarifaPraticada = 0;
+        await this.conciliadorService.buscarVendas(this.codigoIntegracao, this.dtVendaDe, this.dtVendaAte, this.metodoPagamento, this.bandeira).then(conciliador => {
+            this.conciliador = conciliador;
             this.tabela.reset();
         });
-
-        this.calcularTotalizador();
-    }
-
-    private calcularTotalizador() {
-        for (let venda of this.vendas) {
-            this.totalDeVendas += venda.cobranca.totalItensPedido;
-            this.totalTaxaEntrega += venda.cobranca.taxaEntrega;
-            this.totalTarifaAplicada += Math.abs(venda.cobranca.taxaAdquirente);
-            this.totalTarifaPraticada += venda.cobranca.taxaAdquirenteAplicada;
-            this.totalDiferenca = venda.diferenca;
-        }
     }
 
     limpar() {

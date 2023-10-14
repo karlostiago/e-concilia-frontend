@@ -3,5 +3,6 @@ export enum Metodo {
     CREDIT = "Crédito",
     DEBIT = "Débito",
     VOUCHER = "Voucher",
-    PIX = "Pix"
+    PIX = "Pix",
+    BANK_PAY = "Bank pay"
 }

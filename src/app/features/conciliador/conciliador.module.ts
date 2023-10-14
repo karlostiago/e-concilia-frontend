@@ -8,10 +8,12 @@ import {InputTextModule} from "primeng/inputtext";
 import {TableModule} from "primeng/table";
 import {DropdownModule} from "primeng/dropdown";
 import {CalendarModule} from "primeng/calendar";
+import { ResumoFinanceiroComponent } from './resumo-financeiro/resumo-financeiro.component';
 
 @NgModule({
   declarations: [
-      IfoodComponent
+      IfoodComponent,
+      ResumoFinanceiroComponent
   ],
     imports: [
         CommonModule,

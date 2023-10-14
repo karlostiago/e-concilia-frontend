@@ -13,6 +13,7 @@ import {ContratoModule} from "../features/contrato/contrato.module";
 import {OperadoraModule} from "../features/operadora/operadora.module";
 import {ConciliadorModule} from "../features/conciliador/conciliador.module";
 import {ConfiguracaoModule} from "../features/configuracao/configuracao.module";
+import {DashboardModule} from "../features/dashboard/dashboard.module";
 
 @NgModule({
     declarations: [
@@ -31,7 +32,8 @@ import {ConfiguracaoModule} from "../features/configuracao/configuracao.module";
         ContratoModule,
         OperadoraModule,
         ConciliadorModule,
-        ConfiguracaoModule
+        ConfiguracaoModule,
+        DashboardModule
     ],
     imports: [
         CommonModule,

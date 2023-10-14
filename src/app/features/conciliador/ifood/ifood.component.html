@@ -54,10 +54,10 @@
 
             <div class="row">
                 <div class="col-md-12 mb-10">
-                    <p-table [value]="vendas" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="10" styleClass="p-datatable-striped p-datatable p-datatable-gridlines" #tabela>
+                    <p-table [value]="conciliador.vendas" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="10" styleClass="p-datatable-striped p-datatable p-datatable-gridlines" #tabela>
                         <ng-template pTemplate="header">
                             <tr>
-                                <th class="text-center w-40" rowspan="2">Produto</th>
+                                <th class="text-center w-40" rowspan="2">Bandeira</th>
                                 <th class="text-center w-15" rowspan="2">Tipo pagamento</th>
                                 <th class="text-center w-5" rowspan="2">Método pagamento</th>
                                 <th class="text-center w-5" rowspan="2">Valor pedido</th>
@@ -93,11 +93,11 @@
                         <ng-template pTemplate="footer">
                             <tr>
                                 <td colspan="3" class="text-end">Total de vendas do período</td>
-                                <td class="text-end"> {{ formatarValor(totalDeVendas) }}</td>
-                                <td class="text-end"> {{ formatarValor(totalTaxaEntrega) }}</td>
-                                <td class="text-end"> {{ formatarValor(totalTarifaAplicada) }}</td>
-                                <td class="text-end"> {{ formatarValor(totalTarifaPraticada) }}</td>
-                                <td class="text-end"> {{ formatarValor(totalDiferenca) }}</td>
+                                <td class="text-end"> {{ formatarValor(conciliador.totalizador.totalValorPedido) }}</td>
+                                <td class="text-end"> {{ formatarValor(conciliador.totalizador.totalTaxaEntrega) }}</td>
+                                <td class="text-end"> {{ formatarValor(conciliador.totalizador.totalTaxaAquisicaoPraticada) }}</td>
+                                <td class="text-end"> {{ formatarValor(conciliador.totalizador.totalTaxaAquisicaoAplicada) }}</td>
+                                <td class="text-end"> {{ formatarValor(conciliador.totalizador.totalDiferenca) }}</td>
                                 <td></td>
                             </tr>
                         </ng-template>
@@ -109,45 +109,7 @@
                 <div class="col-md-12 mb-10"></div>
             </div>
 
-            <div class="row" style="display: none">
-                <div class="col-md-3 mb-4">
-                    <h5 class="color-wine"> Concilidação das vendas </h5>
-                    <hr />
-                </div>
-            </div>
-
-            <div class="row" style="display: none">
-                <div class="col-md-1 text-end">
-                    <label class="form-label">Cartão crédito .:::</label>
-                </div>
-                <div class="col-md-11">
-                    <label class="form-label">R$ 0,00</label>
-                </div>
-                <div class="col-md-1 text-end">
-                    <label class="form-label">Cartão débito .:::</label>
-                </div>
-                <div class="col-md-11">
-                    <label class="form-label">R$ 0,00</label>
-                </div>
-                <div class="col-md-1 text-end">
-                    <label class="form-label">Dinheiro .:::</label>
-                </div>
-                <div class="col-md-11">
-                    <label class="form-label">R$ 0,00</label>
-                </div>
-                <div class="col-md-1 text-end">
-                    <label class="form-label">Voucher .:::</label>
-                </div>
-                <div class="col-md-11">
-                    <label class="form-label">R$ 0,00</label>
-                </div>
-                <div class="col-md-1 text-end">
-                    <label class="form-label">Pix .:::</label>
-                </div>
-                <div class="col-md-11">
-                    <label class="form-label">R$ 0,00</label>
-                </div>
-            </div>
+            <app-resumo-financeiro [resumoFinanceiro]="conciliador.resumoFinanceiro"></app-resumo-financeiro>
         </div>
     </div>
 </form>
