@@ -207,3 +207,20 @@ button[disabled] {
 /**
  * FIM CUSTOM PRIMENG
  */
+
+
+
+/**
+ * CONFIG NAVBAR
+ */
+.navbar-menu.hidden {
+    transform: translateX(-240px);
+}
+
+.moving {
+    transition: margin-left 1s;
+}
+
+.ml-240 {
+    margin-left: 240px;
+}

@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {PrimeNGConfig} from "primeng/api";
+import {NavbarService} from "./shared/navbar/navbar.service";
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,15 @@ import {PrimeNGConfig} from "primeng/api";
 })
 export class AppComponent implements OnInit {
 
-    constructor(private config: PrimeNGConfig) {}
+    exibirMenu = false;
+
+    constructor(private config: PrimeNGConfig,
+                private navbarService: NavbarService) {
+
+        this.navbarService.data$.subscribe(data => {
+            this.exibirMenu = data;
+        });
+    }
 
     ngOnInit(): void {
         this.config.setTranslation({

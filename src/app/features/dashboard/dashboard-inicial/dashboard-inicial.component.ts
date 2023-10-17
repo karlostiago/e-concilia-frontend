@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Venda} from "../../../model/Venda";
 
 @Component({
   selector: 'app-dashboard-inicial',
@@ -7,6 +8,7 @@ import {Component, OnInit} from '@angular/core';
 })
 export class DashboardInicialComponent implements OnInit {
 
+    vendas = new Array<Venda>();
     dtInicial = new Date();
     dtFinal = new Date();
 

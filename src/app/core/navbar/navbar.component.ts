@@ -1,4 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {NavbarService} from "../../shared/navbar/navbar.service";
 
 @Component({
   selector: 'app-navbar',
@@ -12,12 +13,14 @@ export class NavbarComponent implements OnInit {
     exibirMenuConfiguracoes = false;
     menuPrincipal = true;
 
-    ngOnInit(): void {
-
+    constructor(private navbarService: NavbarService) {
     }
 
+    ngOnInit(): void { }
+
     fecharMenu () {
-        this.exibirMenu = false;
+        this.exibirMenu = !this.exibirMenu;
+        this.navbarService.setData(this.exibirMenu);
     }
 
     menuConciliadores (e: Event) {

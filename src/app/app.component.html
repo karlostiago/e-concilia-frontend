@@ -2,7 +2,7 @@
     <app-navbar></app-navbar>
     <app-loader></app-loader>
 
-    <div class="main-wrap">
+    <div class="main-wrap {{ exibirMenu ? 'block' : 'hidden' }} {{ exibirMenu ? 'moving ml-240' : 'moving' }}">
         <div class="container-fluid">
             <router-outlet></router-outlet>
         </div>

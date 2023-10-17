@@ -1,6 +1,6 @@
-<nav class="navbar navbar-dark bg-dark wine fixed-top {{ exibirMenu ? 'navbar-translateX' : '' }} ">
+<nav class="navbar navbar-dark bg-dark wine fixed-top {{ exibirMenu ? 'moving ml-240' : 'moving' }} ">
     <div class="container-fluid">
-        <button class="navbar-toggler" type="button" (click)="exibirMenu = !exibirMenu">
+        <button class="navbar-toggler" type="button" (click)="fecharMenu()">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -62,7 +62,7 @@
 <br />
 <br />
 
-<div class="navbar-navegator {{ exibirMenu ? 'navbar-translateX' : '' }}">
+<div class="navbar-navegator {{ exibirMenu ? 'moving ml-240' : 'moving' }}">
     <app-breadcrumb></app-breadcrumb>
 </div>
 

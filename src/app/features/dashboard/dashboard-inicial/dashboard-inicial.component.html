@@ -42,41 +42,5 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-3 mb-10">
-            <div class="card">
-                <div class="card-header">
-                    <label>Valor bruto de vendas:</label><br>
-                    <h5 class="color-wine">R$ 3.450,19</h5>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3 mb-10">
-            <div class="card">
-                <div class="card-header">
-                    <label>Quantidade de vendas:</label><br>
-                    <h5 class="color-wine">85</h5>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3 mb-10">
-            <div class="card">
-                <div class="card-header">
-                    <label>Ticket médio:</label><br>
-                    <h5 class="color-wine">R$ 15,45</h5>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-3 mb-10">
-            <div class="card">
-                <div class="card-header">
-                    <label>Valor de cancelamento:</label><br>
-                    <h5 class="color-wine">R$ 45,95</h5>
-                </div>
-            </div>
-        </div>
-    </div>
+    <app-dashboard-info [vendas]="vendas"></app-dashboard-info>
 </form>

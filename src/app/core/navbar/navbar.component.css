@@ -6,7 +6,7 @@
 
 .navbar-menu {
     min-height: 100%;
-    width: 300px;
+    width: 240px;
     background: #501111;
     border: 1px solid #701717;
     position: fixed;
@@ -29,15 +29,6 @@
 
 .navbar-menu.block {
     transform: translateX(0px);
-}
-
-.navbar-menu.hidden {
-    transform: translateX(-300px);
-}
-
-.navbar-translateX {
-    transition: margin-left 1s;
-    margin-left: 300px;
 }
 
 .navbar-menu-item li {
