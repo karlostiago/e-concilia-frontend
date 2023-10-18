@@ -224,3 +224,7 @@ button[disabled] {
 .ml-240 {
     margin-left: 240px;
 }
+
+.backdrop {
+    border-radius: 0 !important;
+}

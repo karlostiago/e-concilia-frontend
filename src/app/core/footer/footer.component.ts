@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {environment} from "../../../environments/environment";
+import {NavbarService} from "../../shared/navbar/navbar.service";
 
 @Component({
   selector: 'app-footer',
@@ -9,6 +10,13 @@ import {environment} from "../../../environments/environment";
 export class FooterComponent implements OnInit {
 
     ambiente = "Desenvolvimento";
+    exibirMenu = false;
+
+    constructor(private navbarService: NavbarService) {
+        this.navbarService.data$.subscribe(data => {
+            this.exibirMenu = data;
+        });
+    }
 
     ngOnInit(): void {
         if (environment.production) {

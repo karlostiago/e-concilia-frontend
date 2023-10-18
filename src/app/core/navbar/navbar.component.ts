@@ -14,6 +14,7 @@ export class NavbarComponent implements OnInit {
     menuPrincipal = true;
 
     constructor(private navbarService: NavbarService) {
+        this.fecharMenu();
     }
 
     ngOnInit(): void { }
