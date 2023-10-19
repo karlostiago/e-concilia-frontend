@@ -30,7 +30,7 @@ export class DashboardInicialComponent implements OnInit {
     }
 
     pesquisar() {
-        this.dashboardService.buscarInformacoes(this.empresaSelecionadaId, this.filtro.dtInicial, this.filtro.dtInicial).then(dashabord => {
+        this.dashboardService.buscarInformacoes(this.empresaSelecionadaId, this.filtro.dtInicial, this.filtro.dtFinal).then(dashabord => {
             this.dashboard = dashabord;
         });
     }
