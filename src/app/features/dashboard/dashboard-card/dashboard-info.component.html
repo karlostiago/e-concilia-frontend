@@ -3,7 +3,7 @@
         <div class="card">
             <div class="card-header">
                 <label>Valor bruto de vendas:</label><br>
-                <h5 class="color-wine">R$ 3.450,19</h5>
+                <h5 class="color-wine">{{ formatarMoeda(dashboard.valorBrutoVendas) }}</h5>
             </div>
         </div>
     </div>
@@ -12,7 +12,7 @@
         <div class="card">
             <div class="card-header">
                 <label>Quantidade de vendas:</label><br>
-                <h5 class="color-wine">85</h5>
+                <h5 class="color-wine"> {{ dashboard.quantidadeVendas }}</h5>
             </div>
         </div>
     </div>
@@ -21,7 +21,7 @@
         <div class="card">
             <div class="card-header">
                 <label>Ticket médio:</label><br>
-                <h5 class="color-wine">R$ 15,45</h5>
+                <h5 class="color-wine">{{ formatarMoeda(dashboard.ticketMedio) }}</h5>
             </div>
         </div>
     </div>
@@ -30,7 +30,7 @@
         <div class="card">
             <div class="card-header">
                 <label>Valor de cancelamento:</label><br>
-                <h5 class="color-wine">R$ 45,95</h5>
+                <h5 class="color-wine">{{ formatarMoeda(dashboard.valorCancelamento) }}</h5>
             </div>
         </div>
     </div>
@@ -41,7 +41,7 @@
         <div class="card">
             <div class="card-header">
                 <label>Total de taxas:</label><br>
-                <h5 class="color-wine">R$ 450,19</h5>
+                <h5 class="color-wine">{{ formatarMoeda(dashboard.valorTaxas) }}</h5>
             </div>
         </div>
     </div>
@@ -50,7 +50,7 @@
         <div class="card">
             <div class="card-header">
                 <label>Taxa média:</label><br>
-                <h5 class="color-wine">2,85%</h5>
+                <h5 class="color-wine">{{ formatarMoeda(dashboard.taxaMedia) }}</h5>
             </div>
         </div>
     </div>
@@ -59,7 +59,7 @@
         <div class="card">
             <div class="card-header">
                 <label>Valor recebido:</label><br>
-                <h5 class="color-wine">R$ 2.450,00</h5>
+                <h5 class="color-wine">{{ formatarMoeda(dashboard.valorRecebido) }}</h5>
             </div>
         </div>
     </div>
@@ -68,7 +68,7 @@
         <div class="card">
             <div class="card-header">
                 <label>Valor á receber:</label><br>
-                <h5 class="color-wine">R$ 1.000,19</h5>
+                <h5 class="color-wine">{{ formatarMoeda(dashboard.valorReceber) }}</h5>
             </div>
         </div>
     </div>

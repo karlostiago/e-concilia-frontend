@@ -17,30 +17,30 @@
                     <div class="row">
                         <div class="col-md-3">
                             <label class="form-label">Data inicial:</label>
-                            <p-calendar appendTo="body" id="dtInicial" [style]="{ 'width': '100%' }" name="dtVendaDe" [readonlyInput]="true" [(ngModel)]="dtInicial" dateFormat="dd/mm/yy"></p-calendar>
+                            <p-calendar appendTo="body" id="dtInicial" [style]="{ 'width': '100%' }" name="dtInicial" [readonlyInput]="true" [(ngModel)]="filtro.dtInicial" dateFormat="dd/mm/yy"></p-calendar>
                         </div>
 
                         <div class="col-md-3">
                             <label class="form-label">Data final:</label>
-                            <p-calendar appendTo="body" id="dtFinal" [style]="{ 'width': '100%' }" name="dtVendaDe" [readonlyInput]="true" [(ngModel)]="dtFinal" dateFormat="dd/mm/yy"></p-calendar>
+                            <p-calendar appendTo="body" id="dtFinal" [style]="{ 'width': '100%' }" name="dtFinal" [readonlyInput]="true" [(ngModel)]="filtro.dtFinal" dateFormat="dd/mm/yy"></p-calendar>
                         </div>
 
                         <div class="col-md-3">
                             <label class="form-label">Lojas:</label>
                             <p-dropdown styleClass="w-100" name="loja" id="loja" optionLabel="razaoSocial" optionValue="id" placeholder="Selecione uma loja"
-                                       [required]="true"></p-dropdown>
+                                       [options]="empresas" [(ngModel)]="empresaSelecionadaId"></p-dropdown>
                         </div>
                     </div>
                 </div>
 
                 <div class="card-footer">
                     <div class="card-action">
-                        <button pButton class="p-button-danger p-button-sm" icon="pi pi-search">Aplicar filtros</button>
+                        <button pButton class="p-button-danger p-button-sm" icon="pi pi-search" (click)="pesquisar()" label="Aplicar filtros"></button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <app-dashboard-info [vendas]="vendas"></app-dashboard-info>
+    <app-dashboard-info [dashboard]="dashboard"></app-dashboard-info>
 </form>

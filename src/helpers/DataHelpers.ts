@@ -17,6 +17,17 @@ export class DataHelpers {
     static remove30Dias(data: Date): number {
         return data.setDate(data.getDate() - 30);
     }
+
+    static removeDias(data: Date, dias: number): number {
+        return data.setDate(data.getDate() - dias);
+    }
+
+    static primeiroDiaMesCorrente(data: Date) {
+        const dtCorrente = new Date();
+        const primeiroDia = new Date(dtCorrente.getFullYear(), dtCorrente.getMonth(), 1);
+        return data.setDate(primeiroDia.getDate());
+    }
+
     private static adicionarZero(valor: number) {
         return valor < 10 ? '0' + valor : valor;
     }

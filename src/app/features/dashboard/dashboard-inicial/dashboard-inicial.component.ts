@@ -1,5 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {Venda} from "../../../model/Venda";
+import {DashboardService} from "../dashboard.service";
+import {Dashboard} from "../../../model/Dashboard";
+import {EmpresaService} from "../../empresa/empresa.service";
+import {Empresa} from "../../../model/Empresa";
+import {FiltroEmpresa} from "../../../filter/FiltroEmpresa";
+import {FiltroDashboard} from "../../../filter/FiltroDashboard";
+import {DataHelpers} from "../../../../helpers/DataHelpers";
 
 @Component({
   selector: 'app-dashboard-inicial',
@@ -8,11 +15,29 @@ import {Venda} from "../../../model/Venda";
 })
 export class DashboardInicialComponent implements OnInit {
 
-    vendas = new Array<Venda>();
-    dtInicial = new Date();
-    dtFinal = new Date();
+    filtro = new FiltroDashboard();
+    dashboard = new Dashboard();
+    empresas = new Array<Empresa>();
+    empresaSelecionadaId = -1;
 
-    ngOnInit(): void {
+    constructor(private dashboardService: DashboardService,
+                private empresaService: EmpresaService,) {
     }
 
+    ngOnInit(): void {
+        this.pesquisar();
+        this.carregarEmpresas();
+    }
+
+    pesquisar() {
+        this.dashboardService.buscarInformacoes(this.empresaSelecionadaId, this.filtro.dtInicial, this.filtro.dtInicial).then(dashabord => {
+            this.dashboard = dashabord;
+        });
+    }
+
+    private carregarEmpresas () {
+        this.empresaService.pesquisar(new FiltroEmpresa()).then(empresas => {
+            this.empresas = empresas;
+        });
+    }
 }
