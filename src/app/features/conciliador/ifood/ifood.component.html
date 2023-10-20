@@ -62,11 +62,14 @@
                                 <th class="text-center w-5" rowspan="2">Método pagamento</th>
                                 <th class="text-center w-5" rowspan="2">Valor pedido</th>
                                 <th class="text-center w-5" rowspan="2">Taxa entrega</th>
-                                <th class="text-center w-5" colspan="2">Taxa aquisição</th>
+                                <th class="text-center w-5" colspan="2">Taxa pagamento</th>
+                                <th class="text-center w-5" colspan="2">Taxa comissão</th>
                                 <th class="text-center w-5" rowspan="2">Diferença</th>
                                 <th class="text-center w-10" rowspan="2">Conciliado</th>
                             </tr>
                             <tr>
+                                <th class="text-center">Praticada</th>
+                                <th class="text-center">Aplicada</th>
                                 <th class="text-center">Praticada</th>
                                 <th class="text-center">Aplicada</th>
                             </tr>
@@ -81,6 +84,8 @@
                                 <td class="text-end"> {{ formatarValor(venda["cobranca"]["taxaEntrega"]) }} </td>
                                 <td class="text-end"> {{ formatarValor(Math.abs(venda["cobranca"]["taxaAdquirente"])) }} </td>
                                 <td class="text-end"> {{ formatarValor(venda["cobranca"]["taxaAdquirenteAplicada"]) }} </td>
+                                <td class="text-end"> R$ 0,00 </td>
+                                <td class="text-end"> R$ 0,00 </td>
                                 <td class="text-end"> {{ formatarValor(venda["diferenca"]) }} </td>
                                 <td class="text-center">
                                     <span class=" {{ venda['conciliado'] === true ? 'badge text-bg-success' : 'badge text-bg-danger' }} ">
@@ -97,6 +102,8 @@
                                 <td class="text-end"> {{ formatarValor(conciliador.totalizador.totalTaxaEntrega) }}</td>
                                 <td class="text-end"> {{ formatarValor(conciliador.totalizador.totalTaxaAquisicaoPraticada) }}</td>
                                 <td class="text-end"> {{ formatarValor(conciliador.totalizador.totalTaxaAquisicaoAplicada) }}</td>
+                                <td></td>
+                                <td></td>
                                 <td class="text-end"> {{ formatarValor(conciliador.totalizador.totalDiferenca) }}</td>
                                 <td></td>
                             </tr>
