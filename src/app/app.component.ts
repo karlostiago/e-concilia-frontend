@@ -1,6 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {PrimeNGConfig} from "primeng/api";
 import {NavbarService} from "./shared/navbar/navbar.service";
+
+import {Chart} from "chart.js";
+import ChartDataLabels from "chartjs-plugin-datalabels";
 
 @Component({
   selector: 'app-root',
@@ -20,6 +23,7 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        Chart.register(ChartDataLabels);
         this.config.setTranslation({
             firstDayOfWeek: 1,
             dayNames: [ 'Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado' ],
@@ -29,6 +33,6 @@ export class AppComponent implements OnInit {
             monthNamesShort: [ 'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez' ],
             today: 'hoje',
             clear: 'Excluir'
-        })
+        });
     }
 }

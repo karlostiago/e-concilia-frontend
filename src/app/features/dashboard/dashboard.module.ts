@@ -5,14 +5,17 @@ import { DashboardInfoComponent } from './dashboard-card/dashboard-info.componen
 import {ChartModule} from "primeng/chart";
 
 import * as ChartDataLabels from 'chartjs-plugin-datalabels';
+import { DashboardGraficoVendaUltimoSeteDiasComponent } from './dashboard-grafico-venda-ultimo-sete-dias/dashboard-grafico-venda-ultimo-sete-dias.component';
 
 @NgModule({
     declarations: [
-        DashboardInfoComponent
+        DashboardInfoComponent,
+        DashboardGraficoVendaUltimoSeteDiasComponent
     ],
     exports: [
         DashboardInfoComponent,
-        ChartModule
+        ChartModule,
+        DashboardGraficoVendaUltimoSeteDiasComponent
     ],
     imports: [
         CommonModule,
