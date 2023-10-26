@@ -204,6 +204,25 @@ button[disabled] {
     text-decoration: none;
     color: #fff;
 }
+
+.p-datepicker table td {
+    padding: 0.2rem !important;
+}
+
+.p-datepicker table td > span {
+    width: 1.7rem !important;
+    height: 1.7rem !important;
+}
+
+.p-datepicker table {
+    font-size: 10pt !important;
+    margin: -0.147rem 0 !important;
+}
+
+.p-datepicker .p-datepicker-header {
+    padding: 0.2rem !important;
+}
+
 /**
  * FIM CUSTOM PRIMENG
  */

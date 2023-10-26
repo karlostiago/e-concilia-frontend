@@ -8,7 +8,7 @@ import {SharedModule} from "./shared/shared.module";
 import {LoaderModule} from "./core/loader/loader.module";
 import {HttpClientModule} from "@angular/common/http";
 import {AppRoutingModule} from "./app-routing.module";
-import { DashboardInicialComponent } from './features/dashboard/dashboard-inicial/dashboard-inicial.component';
+import {DashboardInicialComponent} from './features/dashboard/dashboard-inicial/dashboard-inicial.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {DropdownModule} from "primeng/dropdown";
 import {CalendarModule} from "primeng/calendar";

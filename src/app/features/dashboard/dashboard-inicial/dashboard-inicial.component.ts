@@ -23,6 +23,9 @@ export class DashboardInicialComponent implements OnInit {
     basicData: any;
     basicOptions: any;
 
+    basicData2: any;
+    basicOptions2: any;
+
     constructor(private dashboardService: DashboardService,
                 private empresaService: EmpresaService,) {
     }
@@ -33,11 +36,24 @@ export class DashboardInicialComponent implements OnInit {
         const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
         const surfaceBorder = documentStyle.getPropertyValue('--surface-border');
 
+        this.basicData2 = {
+            labels: ['12/10', '13/10', '14/10', '15/10', '16/10', '17/10', '18/10', '18/10', '18/10', '18/10', '18/10', '18/10', '18/10', '18/10', '18/10'],
+            datasets: [
+                {
+                    label: 'Cancelamentos dos últimos 7 dias',
+                    data: [540.20, 325.99, 702.58, 620.32, 835.25, 1100.99, 225.18, 125.18, 325.18, 525.18, 425.18, 725.18, 1225.18, 3225.18, 25.18],
+                    backgroundColor: ['rgba(255, 159, 64, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(153, 102, 255, 0.2)'],
+                    borderColor: ['rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)', 'rgb(153, 102, 255)'],
+                    borderWidth: 1,
+                }
+            ]
+        };
+
         this.basicData = {
             labels: ['12/10', '13/10', '14/10', '15/10', '16/10', '17/10', '18/10'],
             datasets: [
                 {
-                    label: 'Vendas',
+                    label: 'Vendas dos últimos 7 dias',
                     data: [540.20, 325.99, 702.58, 620.32, 835.25, 1100.99, 225.18],
                     backgroundColor: ['rgba(255, 159, 64, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(153, 102, 255, 0.2)'],
                     borderColor: ['rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)', 'rgb(153, 102, 255)'],
@@ -85,6 +101,11 @@ export class DashboardInicialComponent implements OnInit {
         this.dashboardService.buscarInformacoes(this.empresaSelecionadaId, this.filtro.dtInicial, this.filtro.dtFinal).then(dashabord => {
             this.dashboard = dashabord;
         });
+    }
+
+    limpar() {
+        this.filtro = new FiltroDashboard();
+        this.empresaSelecionadaId = -1;
     }
 
     private carregarEmpresas () {

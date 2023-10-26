@@ -36,6 +36,7 @@
                 <div class="card-footer">
                     <div class="card-action">
                         <button pButton class="p-button-danger p-button-sm" icon="pi pi-search" (click)="pesquisar()" label="Aplicar filtros"></button>
+                        <button pButton class="p-button-danger p-button-sm float-end" icon="pi pi-eraser" (click)="limpar()" label="Limpar"></button>
                     </div>
                 </div>
             </div>
@@ -56,6 +57,7 @@
         <div class="col-md-6 mb-10">
             <div class="card">
                 <div class="card-body">
+                    <p-chart type="bar" [data]="basicData2" [options]="basicOptions2"></p-chart>
                 </div>
             </div>
         </div>

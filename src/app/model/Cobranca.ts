@@ -1,5 +1,8 @@
 export class Cobranca {
-    gmv: number;
+    valorBruto: number;
+    valorCancelado: number;
+    valorLiquido: number;
+    valorTotal: number;
     taxaEntrega: number;
     totalItensPedido: number;
     beneficioOperadora: number;
