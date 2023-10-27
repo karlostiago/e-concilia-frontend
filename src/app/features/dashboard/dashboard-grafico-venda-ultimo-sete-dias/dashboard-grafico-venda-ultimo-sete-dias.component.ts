@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormatacaoMoedaPtBR} from "../../../../helpers/FormatacaoMoedaPtBR";
 import {DashboardService} from "../dashboard.service";
 import {GraficoVendaUltimo7Dia} from "../../../model/GraficoVendaUltimo7Dia";
@@ -14,12 +14,16 @@ export class DashboardGraficoVendaUltimoSeteDiasComponent implements OnInit {
     options: any;
     graficoVendaUltimo7Dia = new GraficoVendaUltimo7Dia();
 
-    @Input() empresaSelecionadaId: number;
+    empresaInexistente = -1;
 
     constructor(private dashboardService: DashboardService) { }
 
     ngOnInit(): void {
-        this.dashboardService.buscarVendasUltimos7Dias(this.empresaSelecionadaId).then(data => {
+        this.atualizar(this.empresaInexistente);
+    }
+
+    atualizar(empresaId: number) {
+        this.dashboardService.buscarVendasUltimos7Dias(empresaId).then(data => {
             this.graficoVendaUltimo7Dia = data;
             this.getData();
             this.getOptions();

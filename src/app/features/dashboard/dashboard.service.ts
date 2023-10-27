@@ -22,11 +22,17 @@ export class DashboardService extends AbstractService<Dashboard> {
     }
 
     async buscarInformacoes(empresaId: number, dtVendaDe: Date, dtVendaAte: Date): Promise<Dashboard> {
+        if (empresaId == null) {
+            empresaId = -1;
+        }
         const request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}?lojaId=${empresaId}&dtInicial=${DataHelpers.formatUs(dtVendaDe)}&dtFinal=${DataHelpers.formatUs(dtVendaAte)}`, this.options());
         return this.toPromise(request);
     }
 
     async buscarVendasUltimos7Dias(empresaId: number): Promise<GraficoVendaUltimo7Dia> {
+        if (empresaId == null) {
+            empresaId = -1;
+        }
         const request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}/buscar-venda-ultimos-7-dias?lojaId=${empresaId}`, this.options());
         return this.toPromise(request);
     }

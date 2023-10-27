@@ -1,14 +1,13 @@
-import {Component, OnInit} from '@angular/core';
-import {Venda} from "../../../model/Venda";
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {DashboardService} from "../dashboard.service";
 import {Dashboard} from "../../../model/Dashboard";
 import {EmpresaService} from "../../empresa/empresa.service";
 import {Empresa} from "../../../model/Empresa";
 import {FiltroEmpresa} from "../../../filter/FiltroEmpresa";
 import {FiltroDashboard} from "../../../filter/FiltroDashboard";
-import {DataHelpers} from "../../../../helpers/DataHelpers";
-import {FormatacaoMoedaPtBR} from "../../../../helpers/FormatacaoMoedaPtBR";
-import {GraficoVendaUltimo7Dia} from "../../../model/GraficoVendaUltimo7Dia";
+import {
+    DashboardGraficoVendaUltimoSeteDiasComponent
+} from "../dashboard-grafico-venda-ultimo-sete-dias/dashboard-grafico-venda-ultimo-sete-dias.component";
 
 @Component({
   selector: 'app-dashboard-inicial',
@@ -22,7 +21,8 @@ export class DashboardInicialComponent implements OnInit {
     empresaSelecionadaId = -1;
 
     dashboard = new Dashboard();
-    graficoVendaUltimo7Dia = new GraficoVendaUltimo7Dia();
+
+    @ViewChild(DashboardGraficoVendaUltimoSeteDiasComponent) graficoVendaUltimoSeteDiasComponent: DashboardGraficoVendaUltimoSeteDiasComponent;
 
     constructor(private dashboardService: DashboardService,
                 private empresaService: EmpresaService,) {
@@ -36,6 +36,7 @@ export class DashboardInicialComponent implements OnInit {
     pesquisar() {
         this.dashboardService.buscarInformacoes(this.empresaSelecionadaId, this.filtro.dtInicial, this.filtro.dtFinal).then(dashabord => {
             this.dashboard = dashabord;
+            this.graficoVendaUltimoSeteDiasComponent.atualizar(this.empresaSelecionadaId);
         });
     }
 
