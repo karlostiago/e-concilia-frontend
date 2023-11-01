@@ -7,6 +7,6 @@ export class FiltroDashboard {
 
     constructor() {
         DataHelpers.primeiroDiaMesCorrente(this.dtInicial);
-        DataHelpers.removeDias(this.dtFinal, 1);
+        DataHelpers.ultimoDiaMesCorrente(this.dtFinal);
     }
 }

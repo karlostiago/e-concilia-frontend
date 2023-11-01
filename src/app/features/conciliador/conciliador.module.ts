@@ -8,12 +8,15 @@ import {InputTextModule} from "primeng/inputtext";
 import {TableModule} from "primeng/table";
 import {DropdownModule} from "primeng/dropdown";
 import {CalendarModule} from "primeng/calendar";
-import { ResumoFinanceiroComponent } from './resumo-financeiro/resumo-financeiro.component';
+import { ResumoFinanceiroComponent } from './ifood/resumo-financeiro/resumo-financeiro.component';
+import { TaxaComponent } from './ifood/taxa/taxa.component';
+import {DialogModule} from "primeng/dialog";
 
 @NgModule({
   declarations: [
       IfoodComponent,
-      ResumoFinanceiroComponent
+      ResumoFinanceiroComponent,
+      TaxaComponent
   ],
     imports: [
         CommonModule,
@@ -23,7 +26,8 @@ import { ResumoFinanceiroComponent } from './resumo-financeiro/resumo-financeiro
         InputTextModule,
         TableModule,
         DropdownModule,
-        CalendarModule
+        CalendarModule,
+        DialogModule
     ]
 })
 export class ConciliadorModule { }

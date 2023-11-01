@@ -28,6 +28,12 @@ export class DataHelpers {
         return data.setDate(primeiroDia.getDate());
     }
 
+    static ultimoDiaMesCorrente(data: Date) {
+        const dtCorrente = new Date();
+        const ultimoDia = new Date(dtCorrente.getFullYear(), dtCorrente.getMonth() +1, 0);
+        return data.setDate(ultimoDia.getDate());
+    }
+
     private static adicionarZero(valor: number) {
         return valor < 10 ? '0' + valor : valor;
     }

@@ -11,4 +11,7 @@ export class Venda {
     pagamento = new Pagamento();
     cobranca = new Cobranca();
     diferenca: number;
+
+    valorTotalPedido: number;
+    valorCancelado: number;
 }

@@ -67,9 +67,13 @@ export class DashboardGraficoVendaUltimoSeteDiasComponent implements OnInit {
                     enabled: false
                 },
                 legend: {
-                    labels: {
-                        color: textColor
-                    }
+                    display: false,
+                },
+                title: {
+                    display: true,
+                    text: 'Vendas dos últimos 7 dias',
+                    fontSize: 10,
+                    color: textColor
                 }
             },
             scales: {

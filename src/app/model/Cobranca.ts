@@ -2,7 +2,7 @@ export class Cobranca {
     valorBruto: number;
     valorCancelado: number;
     valorLiquido: number;
-    valorTotal: number;
+    valorTotal: number; // remover
     taxaEntrega: number;
     totalItensPedido: number;
     beneficioOperadora: number;
@@ -18,4 +18,5 @@ export class Cobranca {
     valorTaxaAntecipacao: number;
     taxaAntecipacao: number;
     valorTotalTaxaPedido: number;
+    taxaServico: number;
 }

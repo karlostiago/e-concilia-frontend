@@ -20,8 +20,8 @@ export class ConciliadorIfoodService extends AbstractService<Venda>{
         return 'conciliadores/ifood';
     }
 
-    async buscarVendas(lojaId: string, dtVendaDe: Date, dtVendaAte: Date, metodoPagamento: string, bandeira: string): Promise<Conciliador> {
-        const request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}?lojaId=${lojaId}&dtInicial=${DataHelpers.formatUs(dtVendaDe)}&dtFinal=${DataHelpers.formatUs(dtVendaAte)}&metodoPagamento=${metodoPagamento}&bandeira=${bandeira}`, this.options());
+    async buscarVendas(lojaId: string, dtVendaDe: Date, dtVendaAte: Date, metodoPagamento: string, bandeira: string, tipoRecebimento: string): Promise<Conciliador> {
+        const request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}?lojaId=${lojaId}&dtInicial=${DataHelpers.formatUs(dtVendaDe)}&dtFinal=${DataHelpers.formatUs(dtVendaAte)}&metodoPagamento=${metodoPagamento}&bandeira=${bandeira}&tipoRecebimento=${tipoRecebimento}`, this.options());
         return this.toPromise(request);
     }
 }

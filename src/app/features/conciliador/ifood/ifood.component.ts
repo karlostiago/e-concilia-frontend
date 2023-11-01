@@ -16,6 +16,7 @@ import {NotificacaoService} from "../../../shared/notificacao/notificacao.servic
 import {Table} from "primeng/table";
 import {Totalizador} from "../../../model/Totalizador";
 import {Conciliador} from "../../../model/Conciliador";
+import {TipoRecebimento} from "../../../model/TipoRecebimento";
 
 @Component({
   selector: 'app-ifood',
@@ -32,12 +33,18 @@ export class IfoodComponent implements OnInit {
     codigoIntegracao: string;
     metodoPagamento: string;
     bandeira: string;
+    tipoRecebimento: string;
 
     metodos = new Array<String>();
     bandeiras = new Array<String>();
+    tiposRecebimento = new Array<String>();
 
     dtVendaDe = new Date();
     dtVendaAte = new Date();
+
+    visivel: boolean;
+
+    taxas: any;
 
     @ViewChild('tabela') tabela: Table;
 
@@ -53,6 +60,7 @@ export class IfoodComponent implements OnInit {
         this.carregarMetodosPagamento();
         this.carregarBandeiras();
         this.carregarEmpresas();
+        this.carregarTipoRecebimento();
     }
 
     async pesquisar () {
@@ -62,7 +70,7 @@ export class IfoodComponent implements OnInit {
         }
 
         await this.buscarCodigoIntegracao();
-        await this.conciliadorService.buscarVendas(this.codigoIntegracao, this.dtVendaDe, this.dtVendaAte, this.metodoPagamento, this.bandeira).then(conciliador => {
+        await this.conciliadorService.buscarVendas(this.codigoIntegracao, this.dtVendaDe, this.dtVendaAte, this.metodoPagamento, this.bandeira, this.tipoRecebimento).then(conciliador => {
             this.conciliador = conciliador;
             this.tabela.reset();
         });
@@ -75,10 +83,28 @@ export class IfoodComponent implements OnInit {
         this.empresaId = -1;
         this.metodoPagamento = "";
         this.bandeira = "";
+        this.tipoRecebimento = "";
     }
 
     formatarValor (valor: number) {
         return FormatacaoMoedaPtBR.formatar(valor);
+    }
+
+    dialogTaxaContratual (venda?: Venda) {
+        this.visivel = !this.visivel;
+        this.taxas = [];
+
+        if (this.visivel) {
+            this.taxas = [
+                {
+                    'comissao': venda?.cobranca.comissao,
+                    'pagamento': venda?.cobranca.taxaAdquirente,
+                    'servico': venda?.cobranca.taxaServico,
+                    'incentivoPromocional': venda?.cobranca.beneficioComercio,
+                    'taxaEntrega': venda?.cobranca.taxaEntrega
+                }
+            ]
+        }
     }
 
     private async buscarCodigoIntegracao() {
@@ -120,6 +146,13 @@ export class IfoodComponent implements OnInit {
         }
     }
 
+    private carregarTipoRecebimento () {
+        for (const tipoKey in TipoRecebimento) {
+            // @ts-ignore
+            this.tiposRecebimento.push(TipoRecebimento[`${tipoKey}`].toUpperCase());
+        }
+    }
+
     private carregarEmpresas () {
         this.empresaService.pesquisar(new FiltroEmpresa()).then(empresas => {
             this.empresas = empresas;
@@ -127,4 +160,5 @@ export class IfoodComponent implements OnInit {
     }
 
     protected readonly Math = Math;
+    protected readonly Venda = Venda;
 }

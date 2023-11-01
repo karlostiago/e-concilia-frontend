@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
-import {ResumoFinanceiro} from "../../../model/ResumoFinanceiro";
-import {FormatacaoMoedaPtBR} from "../../../../helpers/FormatacaoMoedaPtBR";
+import {ResumoFinanceiro} from "../../../../model/ResumoFinanceiro";
+import {FormatacaoMoedaPtBR} from "../../../../../helpers/FormatacaoMoedaPtBR";
 
 @Component({
   selector: 'app-resumo-financeiro',

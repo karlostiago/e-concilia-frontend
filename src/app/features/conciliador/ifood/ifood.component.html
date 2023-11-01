@@ -23,18 +23,22 @@
             </div>
 
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label class="form-label">Empresa*:</label>
                     <p-dropdown styleClass="w-100" name="empresa" id="empresa" optionLabel="razaoSocial" optionValue="id" [options]="empresas" placeholder="Selecione uma empresa"
                                 [(ngModel)]="empresaId" [required]="true"></p-dropdown>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label class="form-label">Método de pagamento:</label>
                     <p-dropdown styleClass="w-100" name="metodo" id="metodo" [options]="metodos" placeholder="Selecione um método" [(ngModel)]="metodoPagamento"></p-dropdown>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <label class="form-label">Bandeira:</label>
-                    <p-dropdown styleClass="w-100" name="metodo" id="bandeira" [options]="bandeiras" placeholder="Selecione uma bandeira" [(ngModel)]="bandeira"></p-dropdown>
+                    <p-dropdown styleClass="w-100" name="bandeira" id="bandeira" [options]="bandeiras" placeholder="Selecione uma bandeira" [(ngModel)]="bandeira"></p-dropdown>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Venda recebida via:</label>
+                    <p-dropdown styleClass="w-100" name="tipoRecebimento" id="tipoRecebimento" [options]="tiposRecebimento" placeholder="Selecione" [(ngModel)]="tipoRecebimento"></p-dropdown>
                 </div>
             </div>
 
@@ -59,8 +63,9 @@
                             <tr>
                                 <th class="text-center">Data</th>
                                 <th class="text-center">Bandeira</th>
-                                <th class="text-center">Meio pagto</th>
-                                <th class="text-center">Valor Total</th>
+                                <th class="text-center">Meio Pagto</th>
+                                <th class="text-center">Valor Bruto</th>
+                                <th class="text-center">Valor Total Pedido</th>
                                 <th class="text-center">Valor Cancelado</th>
                                 <th class="text-center">Valor Liquído</th>
                                 <th class="text-center">Conciliado</th>
@@ -73,16 +78,17 @@
                                 <td class="text-center"> {{ venda["dataPedido"] | date:'dd/MM/yyyy' }} </td>
                                 <td class="text-center"> {{ venda["pagamento"]["bandeira"] }} </td>
                                 <td class="text-center"> {{ venda["pagamento"]["metodo"] }} </td>
-                                <td class="text-end"> {{ formatarValor(venda["cobranca"]["valorTotal"]) }} </td>
-                                <td class="text-end"> {{ formatarValor(venda["cobranca"]["valorCancelado"]) }} </td>
-                                <td class="text-end"> {{ formatarValor(venda["cobranca"]["valorLiquido"]) }} </td>
+                                <td class="text-end"> {{ formatarValor(venda["valorBruto"]) }} </td>
+                                <td class="text-end"> {{ formatarValor(venda["valorTotalPedido"]) }} </td>
+                                <td class="text-end"> {{ formatarValor(venda["valorCancelado"]) }} </td>
+                                <td class="text-end"> {{ formatarValor(venda["valorLiquido"]) }} </td>
                                 <td class="text-center">
                                     <span class=" {{ venda['conciliado'] === true ? 'badge text-bg-success' : 'badge text-bg-danger' }} ">
                                     {{ venda["conciliado"] === true ? 'Sim' : 'Não' }}
                                     </span>
                                 </td>
                                 <td class="text-center">
-                                    <button type="button" pButton icon="pi pi-eye-slash" class="p-button-danger p-button-sm"></button>
+                                    <button type="button" pButton icon="pi pi-eye-slash" class="p-button-danger p-button-sm" (click)="dialogTaxaContratual(venda)"></button>
                                 </td>
                             </tr>
                         </ng-template>
@@ -90,6 +96,7 @@
                         <ng-template pTemplate="footer">
                             <tr>
                                 <td colspan="3" class="text-end">Total de vendas do período</td>
+                                <td class="text-end"> {{ formatarValor(conciliador.totalizador.totalValorBruto) }}</td>
                                 <td class="text-end"> {{ formatarValor(conciliador.totalizador.totalValorPedido) }}</td>
                                 <td class="text-end"> {{ formatarValor(conciliador.totalizador.totalValorCancelado) }}</td>
                                 <td class="text-end"> {{ formatarValor(conciliador.totalizador.totalValorLiquido) }}</td>
@@ -111,7 +118,10 @@
                 <div class="col-md-12 mb-10"></div>
             </div>
 
-            <app-resumo-financeiro [resumoFinanceiro]="conciliador.resumoFinanceiro"></app-resumo-financeiro>
+<!--            <app-resumo-financeiro [resumoFinanceiro]="conciliador.resumoFinanceiro"></app-resumo-financeiro>-->
         </div>
     </div>
 </form>
+
+<app-taxa [taxas]="taxas" [visivel]="visivel" (fechar)="dialogTaxaContratual()"></app-taxa>
+
