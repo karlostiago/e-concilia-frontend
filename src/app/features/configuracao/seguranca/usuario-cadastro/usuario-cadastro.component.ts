@@ -20,6 +20,19 @@ export class UsuarioCadastroComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        const usuarioId = this.activatedRoute.snapshot.params['id'];
+
+        if (usuarioId) {
+            this.pesquisarPorId(usuarioId);
+        }
+    }
+
+    pesquisarPorId (id: number) {
+        this.usuarioService.pesquisarPorId(id).then(response => {
+            this.usuario = response;
+            this.usuario.confirmaSenha = response.senha;
+            this.usuario.confirmaEmail = response.email;
+        });
     }
 
     async salvarOuEditar (form: NgForm) {

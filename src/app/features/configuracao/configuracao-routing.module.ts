@@ -7,6 +7,7 @@ import {
     IntegracaoConsultaComponent
 } from "./integracao/integracao-consulta/integracao-consulta.component";
 import {UsuarioCadastroComponent} from "./seguranca/usuario-cadastro/usuario-cadastro.component";
+import {UsuarioConsultaComponent} from "./seguranca/usuario-consulta/usuario-consulta.component";
 
 const rotas: Routes = [
     { path: 'cadastro/integracoes/novo', component: IntegracaoCadastroComponent },
@@ -14,6 +15,8 @@ const rotas: Routes = [
     { path: 'consulta/integracoes', component: IntegracaoConsultaComponent },
 
     { path: 'cadastro/usuarios/novo', component: UsuarioCadastroComponent },
+    { path: 'editar/usuarios/:id', component: UsuarioCadastroComponent },
+    { path: 'consulta/usuarios', component: UsuarioConsultaComponent }
 ]
 
 @NgModule({

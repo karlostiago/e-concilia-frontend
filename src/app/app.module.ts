@@ -12,11 +12,15 @@ import {DashboardInicialComponent} from './features/dashboard/dashboard-inicial/
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {DropdownModule} from "primeng/dropdown";
 import {CalendarModule} from "primeng/calendar";
+import { UsuarioConsultaComponent } from './features/configuracao/seguranca/usuario-consulta/usuario-consulta.component';
+import {InputTextModule} from "primeng/inputtext";
+import {TableModule} from "primeng/table";
 
 @NgModule({
     declarations: [
         AppComponent,
-        DashboardInicialComponent
+        DashboardInicialComponent,
+        UsuarioConsultaComponent
     ],
     imports: [
         HttpClientModule,
@@ -30,6 +34,8 @@ import {CalendarModule} from "primeng/calendar";
         ReactiveFormsModule,
         DropdownModule,
         CalendarModule,
+        InputTextModule,
+        TableModule,
     ],
     providers: [],
     bootstrap: [AppComponent]

@@ -1,0 +1,61 @@
+<form autocomplete="off" class="fade-in">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="color-wine"> Consultar usuários </h4>
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="form-label">Nome completo:</label>
+                    <input type="text" pInputText class="form-control" name="nomeCompleto" id="nomeCompleto" [(ngModel)]="filtroUsuario.nomeCompleto" />
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">E-mail:</label>
+                    <input type="text" pInputText class="form-control" name="email" id="email" [(ngModel)]="filtroUsuario.email" />
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <div class="card-action">
+                <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-search" label="Pesquisar" (click)="pesquisar()"></button>
+                <button pButton class="p-button-danger p-button-sm float-end" icon="pi pi-plus-circle" routerLink="/cadastro/usuarios/novo" label="Novo usuário"></button>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="card">
+        <div class="card-header">
+            <h4 class="color-wine"> Listagem de operadoras </h4>
+        </div>
+
+        <div class="card-body">
+            <p-table [value]="usuarios" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="10" styleClass="p-datatable-striped p-datatable p-datatable-gridlines" #tabela>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th class="text-center" style="min-width: 320px">Nome Completo</th>
+                        <th class="text-center" style="min-width: 320px;">Email</th>
+                        <th class="text-center">Ações</th>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-usuario>
+                    <tr>
+                        <td class="text-center"> {{ usuario["nomeCompleto"] }} </td>
+                        <td class="text-center"> {{ usuario["email"] }} </td>
+                        <td class="text-center">
+                            <div class="action">
+                                <button type="button" pButton icon="pi pi-trash" class="p-button-danger p-button-sm" (click)="confirmarExclusao(usuario)"></button>
+                                <button pButton icon="pi pi-pencil" class="p-button-danger p-button-sm" [routerLink]="['/editar/usuarios', usuario.id]"></button>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</form>

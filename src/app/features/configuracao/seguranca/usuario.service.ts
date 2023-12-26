@@ -5,6 +5,7 @@ import {AbstractService} from "../../../service/AbstractService";
 import {Usuario} from "../../../model/Usuario";
 import {Empresa} from "../../../model/Empresa";
 import {FiltroEmpresa} from "../../../filter/FiltroEmpresa";
+import {FiltroUsuario} from "../../../filter/FiltroUsuario";
 
 @Injectable({
   providedIn: 'root'
@@ -35,8 +36,13 @@ export class UsuarioService extends AbstractService<Usuario> {
         return this.toPromise(request);
     }
 
-    async pesquisar (filtroEmpresa: FiltroEmpresa): Promise<Empresa[]> {
-        const request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}?cnpj=${filtroEmpresa.cnpj}&razaoSocial=${filtroEmpresa.razaoSocial}`, this.options());
+    async pesquisar (filtroUsuario: FiltroUsuario): Promise<Usuario[]> {
+        const request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}?nomeCompleto=${filtroUsuario.nomeCompleto}&email=${filtroUsuario.email}`, this.options());
+        return this.toPromise(request);
+    }
+
+    async excluir (id: number) {
+        const request = this.httpClient.delete(`${this.baseURL}/${this.pathURL()}/${id}`, this.options());
         return this.toPromise(request);
     }
 }
