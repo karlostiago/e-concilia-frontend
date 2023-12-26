@@ -1,0 +1,56 @@
+<form autocomplete="off" class="fade-in" #formulario="ngForm" (ngSubmit)="salvarOuEditar(formulario)">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="color-wine"> Cadastro de usuários </h4>
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12 mb-10">
+                    <small class="float-end color-wine">Campos com ( * ) são obrigatórios.</small>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="form-label">Nome completo *:</label>
+                    <input pInputText class="form-control" name="nomeCompleto" id="nomeCompleto" [(ngModel)]="usuario.nomeCompleto" [required]="true" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="form-label">E-mail *:</label>
+                    <input pInputText class="form-control" name="email" id="email" [(ngModel)]="usuario.email" [required]="true" />
+                </div>
+
+
+                <div class="col-md-6">
+                    <label class="form-label">Confirma e-mail *:</label>
+                    <input pInputText class="form-control" name="confirmaEmail" id="confirmaEmail" [(ngModel)]="usuario.confirmaEmail" [required]="true" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <label class="form-label">Senha *:</label>
+                    <input type="password" pInputText class="form-control" name="senha" id="senha" [(ngModel)]="usuario.senha" [required]="true" />
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label">Confirma senha *:</label>
+                    <input type="password" pInputText class="form-control" name="confirmaSenha" id="confirmaSenha" [(ngModel)]="usuario.confirmaSenha" [required]="true" />
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <div class="card-action">
+                <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-save" label="Salvar" [disabled]="!formulario.valid"></button>
+                <button pButton type="button" class="p-button-danger p-button-sm p-button-outlined" icon="pi pi-replay" label="Voltar" routerLink="/consulta/usuarios"></button>
+
+                <button pButton type="reset" class="p-button-danger p-button-sm float-end" icon="pi pi-eraser" label="Limpar" *ngIf="!usuario.id"></button>
+            </div>
+        </div>
+    </div>
+</form>

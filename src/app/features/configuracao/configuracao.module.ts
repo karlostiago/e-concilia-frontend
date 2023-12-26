@@ -13,11 +13,13 @@ import {
 } from './integracao/integracao-consulta/integracao-consulta.component';
 import {TableModule} from "primeng/table";
 import {CnpjModule} from "../../pipes/cnpj/cnpj.module";
+import {UsuarioCadastroComponent} from "./seguranca/usuario-cadastro/usuario-cadastro.component";
 
 @NgModule({
     declarations: [
         IntegracaoCadastroComponent,
-        IntegracaoConsultaComponent
+        IntegracaoConsultaComponent,
+        UsuarioCadastroComponent
     ],
     imports: [
         CommonModule,
