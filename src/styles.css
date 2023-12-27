@@ -223,6 +223,10 @@ button[disabled] {
     padding: 0.2rem !important;
 }
 
+.p-multiselect {
+    height: 50px!important;
+}
+
 /**
  * FIM CUSTOM PRIMENG
  */

@@ -4,7 +4,6 @@ import {ConfirmationService} from "primeng/api";
 import {Usuario} from "../../../../model/Usuario";
 import {FiltroUsuario} from "../../../../filter/FiltroUsuario";
 import {UsuarioService} from "../usuario.service";
-import {Operadora} from "../../../../model/Operadora";
 
 @Component({
   selector: 'app-usuario-consulta',

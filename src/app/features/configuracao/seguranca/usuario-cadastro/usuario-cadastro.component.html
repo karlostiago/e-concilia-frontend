@@ -41,6 +41,11 @@
                     <label class="form-label">Confirma senha *:</label>
                     <input type="password" pInputText class="form-control" name="confirmaSenha" id="confirmaSenha" [(ngModel)]="usuario.confirmaSenha" [required]="true" />
                 </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Permitir lojas *:</label>
+                    <p-multiSelect id="lojas" name="lojas" styleClass="form-control vr-multiselect" [options]="lojas" [(ngModel)]="usuario.lojasPermitidas" optionLabel="razaoSocial" scrollHeight="250px"></p-multiSelect>
+                </div>
             </div>
         </div>
 

@@ -5,4 +5,5 @@ export class Usuario {
     confirmaEmail: string;
     senha: string;
     confirmaSenha: string;
+    lojasPermitidas: [];
 }
