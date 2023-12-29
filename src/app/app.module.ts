@@ -15,12 +15,14 @@ import {CalendarModule} from "primeng/calendar";
 import { UsuarioConsultaComponent } from './features/configuracao/seguranca/usuario-consulta/usuario-consulta.component';
 import {InputTextModule} from "primeng/inputtext";
 import {TableModule} from "primeng/table";
+import { LoginComponent } from './features/seguranca/login/login.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         DashboardInicialComponent,
-        UsuarioConsultaComponent
+        UsuarioConsultaComponent,
+        LoginComponent
     ],
     imports: [
         HttpClientModule,

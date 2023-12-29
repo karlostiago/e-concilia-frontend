@@ -1,5 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NavbarService} from "../../shared/navbar/navbar.service";
+import {ActivatedRoute, Router, RouterStateSnapshot} from "@angular/router";
 
 @Component({
   selector: 'app-navbar',
@@ -13,11 +14,13 @@ export class NavbarComponent implements OnInit {
     exibirMenuConfiguracoes = false;
     menuPrincipal = true;
 
-    constructor(private navbarService: NavbarService) {
+    constructor(private navbarService: NavbarService,) {
         this.fecharMenu();
     }
 
-    ngOnInit(): void { }
+    ngOnInit(): void {
+
+    }
 
     fecharMenu () {
         this.exibirMenu = !this.exibirMenu;
@@ -35,4 +38,6 @@ export class NavbarComponent implements OnInit {
         this.menuPrincipal = !this.menuPrincipal;
         this.exibirMenuConfiguracoes = !this.exibirMenuConfiguracoes;
     }
+
+
 }

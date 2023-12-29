@@ -21,7 +21,7 @@
         <div class="card-footer">
             <div class="card-action">
                 <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-search" label="Pesquisar" (click)="pesquisar()"></button>
-                <button pButton class="p-button-danger p-button-sm float-end" icon="pi pi-plus-circle" routerLink="/cadastro/usuarios/novo" label="Novo usuário"></button>
+                <button pButton class="p-button-danger p-button-sm float-end" icon="pi pi-plus-circle" routerLink="/configuracao/cadastro/usuarios/novo" label="Novo usuário"></button>
             </div>
         </div>
     </div>
@@ -50,7 +50,7 @@
                         <td class="text-center">
                             <div class="action">
                                 <button type="button" pButton icon="pi pi-trash" class="p-button-danger p-button-sm" (click)="confirmarExclusao(usuario)"></button>
-                                <button pButton icon="pi pi-pencil" class="p-button-danger p-button-sm" [routerLink]="['/editar/usuarios', usuario.id]"></button>
+                                <button pButton icon="pi pi-pencil" class="p-button-danger p-button-sm" [routerLink]="['/configuracao/editar/usuarios', usuario.id]"></button>
                             </div>
                         </td>
                     </tr>

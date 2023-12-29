@@ -15,12 +15,15 @@ import {TableModule} from "primeng/table";
 import {CnpjModule} from "../../pipes/cnpj/cnpj.module";
 import {UsuarioCadastroComponent} from "./seguranca/usuario-cadastro/usuario-cadastro.component";
 import {MultiSelectModule} from "primeng/multiselect";
+import { ImportacaoCadastroComponent } from './importacao/importacao-cadastro/importacao-cadastro.component';
+import {CalendarModule} from "primeng/calendar";
 
 @NgModule({
     declarations: [
         IntegracaoCadastroComponent,
         IntegracaoConsultaComponent,
-        UsuarioCadastroComponent
+        UsuarioCadastroComponent,
+        ImportacaoCadastroComponent
     ],
     imports: [
         CommonModule,
@@ -31,7 +34,8 @@ import {MultiSelectModule} from "primeng/multiselect";
         ButtonModule,
         TableModule,
         CnpjModule,
-        MultiSelectModule
+        MultiSelectModule,
+        CalendarModule
     ]
 })
 export class ConfiguracaoModule { }

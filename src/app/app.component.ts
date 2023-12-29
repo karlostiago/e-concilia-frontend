@@ -4,6 +4,7 @@ import {NavbarService} from "./shared/navbar/navbar.service";
 
 import {Chart} from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,8 @@ export class AppComponent implements OnInit {
     exibirMenu = false;
 
     constructor(private config: PrimeNGConfig,
-                private navbarService: NavbarService) {
+                private navbarService: NavbarService,
+                private router: Router) {
 
         this.navbarService.data$.subscribe(data => {
             this.exibirMenu = data;
@@ -34,5 +36,9 @@ export class AppComponent implements OnInit {
             today: 'hoje',
             clear: 'Excluir'
         });
+    }
+
+    exibirNavBar() {
+        return this.router.url !== '/login';
     }
 }

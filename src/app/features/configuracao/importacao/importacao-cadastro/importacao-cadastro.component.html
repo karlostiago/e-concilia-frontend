@@ -1,0 +1,42 @@
+<form autocomplete="off" class="fade-in" #formulario="ngForm">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="color-wine"> Importar base de dados </h4>
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12 mb-10">
+                    <small class="float-end color-wine">Campos com ( * ) são obrigatórios.</small>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="col-md-3">
+                    <label class="form-label">Data inicial:</label>
+                    <p-calendar appendTo="body" id="dataInicial" [style]="{ 'width': '100%' }" name="dataInicial" [readonlyInput]="true" [(ngModel)]="importacao.dataInicial" dateFormat="dd/mm/yy"></p-calendar>
+                </div>
+
+                <div class="col-md-3">
+                    <label class="form-label">Data final:</label>
+                    <p-calendar appendTo="body" id="dataFinal" [style]="{ 'width': '100%' }" name="dataFinal" [readonlyInput]="true" [(ngModel)]="importacao.dataFinal" dateFormat="dd/mm/yy"></p-calendar>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Operadora*:</label>
+                    <p-dropdown styleClass="w-100" name="operadora" id="operadora" optionLabel="descricao" optionValue="id" placeholder="Selecione uma operadora"
+                                [required]="true" [(ngModel)]="importacao.operadora" [options]="operadoras"></p-dropdown>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <div class="card-action">
+                <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-save" label="Processar" [disabled]="!formulario.valid"></button>
+                <button pButton type="button" class="p-button-danger p-button-sm p-button-outlined" icon="pi pi-replay" label="Voltar" routerLink="/configuracao/consulta/integracoes"></button>
+                <button pButton type="reset" class="p-button-danger p-button-sm float-end" icon="pi pi-eraser" label="Limpar"></button>
+            </div>
+        </div>
+    </div>
+</form>
