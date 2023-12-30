@@ -19,7 +19,7 @@ const rotas: Routes = [
     { path: 'configuracao/editar/usuarios/:id', component: UsuarioCadastroComponent },
     { path: 'configuracao/consulta/usuarios', component: UsuarioConsultaComponent },
 
-    { path: 'configuracao/cadastro/importacoes/novo', component: ImportacaoCadastroComponent },
+    { path: 'configuracao/cadastro/importacoes/agendar', component: ImportacaoCadastroComponent },
 ]
 
 @NgModule({
