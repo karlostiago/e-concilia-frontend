@@ -18,7 +18,7 @@ export class TaxaComponent implements OnInit {
     }
 
     formatarValor (valor: number) {
-        return FormatacaoMoedaPtBR.formatar(valor);
+        return FormatacaoMoedaPtBR.monetario(valor);
     }
 
     fecharDialog() {

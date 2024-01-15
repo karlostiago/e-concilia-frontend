@@ -6,4 +6,5 @@ export class Taxa {
     validoAte: Date;
     expiraEm: number;
     ativo: boolean;
+    tipo: string;
 }

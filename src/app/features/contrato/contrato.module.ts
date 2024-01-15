@@ -14,6 +14,7 @@ import {DialogModule} from "primeng/dialog";
 import {CalendarModule} from "primeng/calendar";
 import {CurrencyMaskModule} from "ng2-currency-mask";
 import { ContratoTaxasComponent } from './contrato-taxas/contrato-taxas.component';
+import {RadioButtonModule} from "primeng/radiobutton";
 
 @NgModule({
     declarations: [
@@ -37,7 +38,8 @@ import { ContratoTaxasComponent } from './contrato-taxas/contrato-taxas.componen
         ContratoRoutingModule,
         DialogModule,
         CalendarModule,
-        CurrencyMaskModule
+        CurrencyMaskModule,
+        RadioButtonModule
     ]
 })
 export class ContratoModule { }

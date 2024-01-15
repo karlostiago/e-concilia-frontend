@@ -12,6 +12,6 @@ export class ResumoFinanceiroComponent {
     @Input() resumoFinanceiro = new ResumoFinanceiro();
 
     formatarValor (valor: number) {
-        return FormatacaoMoedaPtBR.formatar(valor);
+        return FormatacaoMoedaPtBR.monetario(valor);
     }
 }

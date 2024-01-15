@@ -60,7 +60,7 @@ export class DashboardGraficoVendaUltimoSeteDiasComponent implements OnInit {
                         weight: '300'
                     },
                     formatter: function(valor: number) {
-                        return FormatacaoMoedaPtBR.formatar(valor);
+                        return FormatacaoMoedaPtBR.monetario(valor);
                     }
                 },
                 tooltip: {
@@ -83,7 +83,7 @@ export class DashboardGraficoVendaUltimoSeteDiasComponent implements OnInit {
                         display: true,
                         color: textColorSecondary,
                         callback: function(valor: number) {
-                            return FormatacaoMoedaPtBR.formatar(valor);
+                            return FormatacaoMoedaPtBR.monetario(valor);
                         }
                     },
                     grid: {

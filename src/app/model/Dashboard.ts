@@ -12,4 +12,6 @@ export class Dashboard {
     valorIncentivoPromocionalLoja = 0;
     valorIncentivoPromocionalOperadora = 0;
     valorTaxaEntrega = 0;
+
+    valorEmRepasse = 0;
 }

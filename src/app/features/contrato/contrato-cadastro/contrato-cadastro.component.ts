@@ -42,9 +42,10 @@ export class ContratoCadastroComponent implements OnInit {
 
 
     ngOnInit(): void {
+        this.taxa.tipo = "PERCENTUAL";
+
         this.carregarEmpresas();
         this.carregarOperadoras();
-
         const contratoId = this.activatedRoute.snapshot.params['numero'];
 
         if (contratoId) {
@@ -52,8 +53,12 @@ export class ContratoCadastroComponent implements OnInit {
         }
     }
 
-    formatarTaxa (valor: number) {
-        return FormatacaoMoedaPtBR.percentual(valor);
+    formatarTaxa (valor: number, tipo: string) {
+        if (tipo === 'PERCENTUAL') {
+            return FormatacaoMoedaPtBR.percentual(valor);
+        } else {
+            return FormatacaoMoedaPtBR.monetario(valor);
+        }
     }
 
     salvarOuEditar (form: NgForm) {
@@ -97,6 +102,7 @@ export class ContratoCadastroComponent implements OnInit {
     cancelar () {
         this.visivel = false;
         this.taxa = new Taxa();
+        this.taxa.tipo = 'PERCENTUAL';
     }
 
     private excluirTaxa (taxa: Taxa) {

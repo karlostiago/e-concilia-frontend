@@ -10,7 +10,7 @@
     <ng-template pTemplate="body" let-taxa>
         <tr>
             <td> {{ taxa["descricao"] }} </td>
-            <td class="text-end"> {{ formatarMoeda(taxa["valor"]) }} </td>
+            <td class="text-end"> {{ formatarMoeda(taxa["valor"], taxa["tipo"]) }} </td>
             <td class="text-center">
                     <span class=" {{ taxa['ativo'] == true ? 'badge text-bg-success' : 'badge text-bg-danger' }} ">
                         {{ taxa["ativo"] === true ? 'Sim' : 'Não' }}

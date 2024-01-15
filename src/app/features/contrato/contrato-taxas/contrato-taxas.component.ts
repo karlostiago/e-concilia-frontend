@@ -11,7 +11,11 @@ export class ContratoTaxasComponent {
 
     @Input() taxas = new Array<Taxa>();
 
-    formatarMoeda (valor: number) {
-        return FormatacaoMoedaPtBR.percentual(valor);
+    formatarMoeda (valor: number, tipo: string) {
+        if (tipo === 'PERCENTUAL') {
+            return FormatacaoMoedaPtBR.percentual(valor);
+        } else {
+            return FormatacaoMoedaPtBR.monetario(valor);
+        }
     }
 }

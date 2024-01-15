@@ -43,8 +43,12 @@ export class TaxaConsultaComponent implements  OnInit {
         }
     }
 
-    formatarMoeda (valor: number) {
-        return FormatacaoMoedaPtBR.percentual(valor);
+    formatarMoeda (valor: number, tipo: string) {
+        if (tipo === 'PERCENTUAL') {
+            return FormatacaoMoedaPtBR.percentual(valor);
+        } else {
+            return FormatacaoMoedaPtBR.monetario(valor);
+        }
     }
 
     ativarOuDesativar (taxa: Taxa) {

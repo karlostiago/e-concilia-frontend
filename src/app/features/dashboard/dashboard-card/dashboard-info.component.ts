@@ -15,6 +15,6 @@ export class DashboardInfoComponent implements OnInit {
     ngOnInit(): void { }
 
     formatarMoeda (valor: number) {
-        return FormatacaoMoedaPtBR.formatar(valor);
+        return FormatacaoMoedaPtBR.monetario(valor);
     }
 }

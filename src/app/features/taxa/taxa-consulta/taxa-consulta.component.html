@@ -47,7 +47,7 @@
                 <ng-template pTemplate="body" let-taxa>
                     <tr>
                         <td class="text-center"> {{ taxa["descricao"] }} </td>
-                        <td class="text-end"> {{ formatarMoeda(taxa["valor"]) }} </td>
+                        <td class="text-end"> {{ formatarMoeda(taxa["valor"], taxa["tipo"]) }} </td>
                         <td class="text-center"> {{ taxa["entraEmVigor"] | date:'dd/MM/yyyy' }} </td>
                         <td class="text-center"> {{ taxa["validoAte"] | date:'dd/MM/yyyy' }} </td>
                         <td class="text-center"> {{ taxa["expiraEm"] }} - dias </td>

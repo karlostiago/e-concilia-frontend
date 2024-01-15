@@ -59,7 +59,7 @@
                 <ng-template pTemplate="body" let-taxa>
                     <tr>
                         <td> {{ taxa["descricao"] }} </td>
-                        <td class="text-end"> {{ formatarTaxa(taxa["valor"]) }}  </td>
+                        <td class="text-end"> {{ formatarTaxa(taxa["valor"], taxa["tipo"]) }}  </td>
                         <td class="text-center">
                             <span class=" {{ taxa['ativo'] == true ? 'badge text-bg-success' : 'badge text-bg-danger' }} ">
                                 {{ taxa["ativo"] === true ? 'Sim' : 'Não' }}
@@ -111,9 +111,24 @@
     </div>
 
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-6">
+            <label class="form-label">Tipo:</label>
+            <div class="flex flex-wrap gap-3" style="display: flex;">
+                <div class="flex align-items-center">
+                    <p-radioButton name="monetario" value="MONETARIO" [(ngModel)]="taxa.tipo" inputId="monetario"></p-radioButton>
+                    <label for="monetario" class="ml-2" style="margin-left: 5px;"> Monetário </label>
+                </div>
+
+                <div class="flex align-items-center">
+                    <p-radioButton name="percentual" value="PERCENTUAL" [(ngModel)]="taxa.tipo" inputId="percentual"></p-radioButton>
+                    <label for="percentual" class="ml-2" style="margin-left: 5px;"> Percentual </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
             <label class="form-label">Valor:</label>
-            <input pInputText [(ngModel)]="taxa.valor" class="form-control" currencyMask [options]="{ prefix: ' ', suffix: '%', thousands: '.', decimal: ',' }" />
+            <input pInputText [(ngModel)]="taxa.valor" *ngIf="taxa.tipo === 'MONETARIO'" class="form-control" currencyMask [options]="{ prefix: 'R$ ', suffix: '', thousands: '.', decimal: ',' }" />
+            <input pInputText [(ngModel)]="taxa.valor" *ngIf="taxa.tipo === 'PERCENTUAL'" class="form-control" currencyMask [options]="{ prefix: ' ', suffix: '%', thousands: '.', decimal: ',' }" />
         </div>
     </div>
 

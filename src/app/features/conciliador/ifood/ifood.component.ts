@@ -14,7 +14,6 @@ import {OperadoraService} from "../../operadora/operadora.service";
 import {FiltroOperadora} from "../../../filter/FiltroOperadora";
 import {NotificacaoService} from "../../../shared/notificacao/notificacao.service";
 import {Table} from "primeng/table";
-import {Totalizador} from "../../../model/Totalizador";
 import {Conciliador} from "../../../model/Conciliador";
 import {TipoRecebimento} from "../../../model/TipoRecebimento";
 
@@ -87,7 +86,7 @@ export class IfoodComponent implements OnInit {
     }
 
     formatarValor (valor: number) {
-        return FormatacaoMoedaPtBR.formatar(valor);
+        return FormatacaoMoedaPtBR.monetario(valor);
     }
 
     dialogTaxaContratual (venda?: Venda) {
