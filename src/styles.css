@@ -28,6 +28,10 @@ input {
     color: #701717!important;
 }
 
+.color-text-green {
+    color: RGBA(25,135,84,var(--bs-bg-opacity,1))!important;
+}
+
 button[disabled] {
     cursor: no-drop!important;
 }
