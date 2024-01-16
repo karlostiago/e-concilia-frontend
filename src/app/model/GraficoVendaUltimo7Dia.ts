@@ -1,4 +1,3 @@
-export class GraficoVendaUltimo7Dia {
-    labels = new Array<string>();
-    data = new Array<number>();
-}
+import {Grafico} from "./Grafico";
+
+export class GraficoVendaUltimo7Dia extends Grafico { }

@@ -8,6 +8,9 @@ import {FiltroDashboard} from "../../../filter/FiltroDashboard";
 import {
     DashboardGraficoVendaUltimoSeteDiasComponent
 } from "../dashboard-grafico-venda-ultimo-sete-dias/dashboard-grafico-venda-ultimo-sete-dias.component";
+import {
+    DashboardGraficoVendaUltimoSeteDiasMeioPagamentoComponent
+} from "../dashboard-grafico-venda-ultimo-sete-dias-meio-pagamento/dashboard-grafico-venda-ultimo-sete-dias-meio-pagamento.component";
 
 @Component({
   selector: 'app-dashboard-inicial',
@@ -23,6 +26,7 @@ export class DashboardInicialComponent implements OnInit {
     dashboard = new Dashboard();
 
     @ViewChild(DashboardGraficoVendaUltimoSeteDiasComponent) graficoVendaUltimoSeteDiasComponent: DashboardGraficoVendaUltimoSeteDiasComponent;
+    @ViewChild(DashboardGraficoVendaUltimoSeteDiasMeioPagamentoComponent) graficoVendaUltimoSeteDiasMeioPagamentoComponent: DashboardGraficoVendaUltimoSeteDiasMeioPagamentoComponent;
 
     constructor(private dashboardService: DashboardService,
                 private empresaService: EmpresaService,) {
@@ -37,6 +41,7 @@ export class DashboardInicialComponent implements OnInit {
         this.dashboardService.buscarInformacoes(this.empresaSelecionadaId, this.filtro.dtInicial, this.filtro.dtFinal).then(dashabord => {
             this.dashboard = dashabord;
             this.graficoVendaUltimoSeteDiasComponent.atualizar(this.empresaSelecionadaId);
+            this.graficoVendaUltimoSeteDiasMeioPagamentoComponent.atualizar(this.empresaSelecionadaId);
         });
     }
 

@@ -57,7 +57,8 @@ export class DashboardGraficoVendaUltimoSeteDiasComponent implements OnInit {
                     align: 'end',
                     anchor: 'end',
                     font: {
-                        weight: '300'
+                        weight: '300',
+                        size: 11
                     },
                     formatter: function(valor: number) {
                         return FormatacaoMoedaPtBR.monetario(valor);

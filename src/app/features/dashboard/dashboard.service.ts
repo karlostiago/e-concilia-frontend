@@ -6,6 +6,7 @@ import {Dashboard} from "../../model/Dashboard";
 import {DataHelpers} from "../../../helpers/DataHelpers";
 import {Venda} from "../../model/Venda";
 import {GraficoVendaUltimo7Dia} from "../../model/GraficoVendaUltimo7Dia";
+import {GraficoVendaUltimo7DiaMeioPagamento} from "../../model/GraficoVendaUltimo7DiaMeioPagamento";
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,7 @@ export class DashboardService extends AbstractService<Dashboard> {
         if (empresaId == null) {
             empresaId = -1;
         }
+
         const request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}?lojaId=${empresaId}&dtInicial=${DataHelpers.formatUs(dtVendaDe)}&dtFinal=${DataHelpers.formatUs(dtVendaAte)}`, this.options());
         return this.toPromise(request);
     }
@@ -33,7 +35,17 @@ export class DashboardService extends AbstractService<Dashboard> {
         if (empresaId == null) {
             empresaId = -1;
         }
+
         const request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}/buscar-venda-ultimos-7-dias?lojaId=${empresaId}`, this.options());
+        return this.toPromise(request);
+    }
+
+    async buscarVendasUltimos7DiasMeioPagamento(empresaId: number): Promise<GraficoVendaUltimo7DiaMeioPagamento> {
+        if (empresaId == null) {
+            empresaId = -1;
+        }
+
+        const request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}/buscar-venda-ultimos-7-dias-meio-pagamento?lojaId=${empresaId}`, this.options());
         return this.toPromise(request);
     }
 }
