@@ -9,8 +9,11 @@ import {
     DashboardGraficoVendaUltimoSeteDiasComponent
 } from "../dashboard-grafico-venda-ultimo-sete-dias/dashboard-grafico-venda-ultimo-sete-dias.component";
 import {
-    DashboardGraficoVendaUltimoSeteDiasMeioPagamentoComponent
-} from "../dashboard-grafico-venda-ultimo-sete-dias-meio-pagamento/dashboard-grafico-venda-ultimo-sete-dias-meio-pagamento.component";
+    DashboardGraficoVendaUltimoSeteDiasCreditoDebitoComponent
+} from "../dashboard-grafico-venda-ultimo-sete-dias-credito-debito/dashboard-grafico-venda-ultimo-sete-dias-credito-debito.component";
+import {
+    DashboardGraficoVendaUltimoSeteDiasDinheiroPixComponent
+} from "../dashboard-grafico-venda-ultimo-sete-dias-dinheiro-pix/dashboard-grafico-venda-ultimo-sete-dias-dinheiro-pix.component";
 
 @Component({
   selector: 'app-dashboard-inicial',
@@ -26,7 +29,8 @@ export class DashboardInicialComponent implements OnInit {
     dashboard = new Dashboard();
 
     @ViewChild(DashboardGraficoVendaUltimoSeteDiasComponent) graficoVendaUltimoSeteDiasComponent: DashboardGraficoVendaUltimoSeteDiasComponent;
-    @ViewChild(DashboardGraficoVendaUltimoSeteDiasMeioPagamentoComponent) graficoVendaUltimoSeteDiasMeioPagamentoComponent: DashboardGraficoVendaUltimoSeteDiasMeioPagamentoComponent;
+    @ViewChild(DashboardGraficoVendaUltimoSeteDiasCreditoDebitoComponent) graficoVendaUltimoSeteDiasCreditoDebito: DashboardGraficoVendaUltimoSeteDiasCreditoDebitoComponent;
+    @ViewChild(DashboardGraficoVendaUltimoSeteDiasDinheiroPixComponent) graficoVendaUltimoSeteDiasDinheiroPix: DashboardGraficoVendaUltimoSeteDiasDinheiroPixComponent;
 
     constructor(private dashboardService: DashboardService,
                 private empresaService: EmpresaService,) {
@@ -41,7 +45,8 @@ export class DashboardInicialComponent implements OnInit {
         this.dashboardService.buscarInformacoes(this.empresaSelecionadaId, this.filtro.dtInicial, this.filtro.dtFinal).then(dashabord => {
             this.dashboard = dashabord;
             this.graficoVendaUltimoSeteDiasComponent.atualizar(this.empresaSelecionadaId);
-            this.graficoVendaUltimoSeteDiasMeioPagamentoComponent.atualizar(this.empresaSelecionadaId);
+            this.graficoVendaUltimoSeteDiasCreditoDebito.atualizar(this.empresaSelecionadaId);
+            this.graficoVendaUltimoSeteDiasDinheiroPix.atualizar(this.empresaSelecionadaId);
         });
     }
 

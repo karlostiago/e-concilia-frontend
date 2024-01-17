@@ -1,18 +1,18 @@
 import {Component, OnInit} from '@angular/core';
-import {GraficoVendaUltimo7DiaMeioPagamento} from "../../../model/GraficoVendaUltimo7DiaMeioPagamento";
+import {GraficoVendaUltimo7DiaCreditoDebito} from "../../../model/GraficoVendaUltimo7DiaCreditoDebito";
 import {DashboardService} from "../dashboard.service";
 import {FormatacaoMoedaPtBR} from "../../../../helpers/FormatacaoMoedaPtBR";
 
 @Component({
-  selector: 'app-dashboard-grafico-venda-ultimo-sete-dias-meio-pagamento',
-  templateUrl: './dashboard-grafico-venda-ultimo-sete-dias-meio-pagamento.component.html',
-  styleUrls: ['./dashboard-grafico-venda-ultimo-sete-dias-meio-pagamento.component.css']
+  selector: 'app-dashboard-grafico-venda-ultimo-sete-dias-credito-debito',
+  templateUrl: './dashboard-grafico-venda-ultimo-sete-dias-credito-debito.component.html',
+  styleUrls: ['./dashboard-grafico-venda-ultimo-sete-dias-credito-debito.component.css']
 })
-export class DashboardGraficoVendaUltimoSeteDiasMeioPagamentoComponent implements OnInit {
+export class DashboardGraficoVendaUltimoSeteDiasCreditoDebitoComponent implements OnInit {
 
     data: any;
     options: any;
-    graficoVendaUltimo7DiasMeioPagamento = new GraficoVendaUltimo7DiaMeioPagamento();
+    graficoVendaUltimo7DiasCreditoDebito = new GraficoVendaUltimo7DiaCreditoDebito();
 
     empresaInexistente = -1;
 
@@ -23,8 +23,8 @@ export class DashboardGraficoVendaUltimoSeteDiasMeioPagamentoComponent implement
     }
 
     atualizar(empresaId: number) {
-        this.dashboardService.buscarVendasUltimos7DiasMeioPagamento(empresaId).then(data => {
-            this.graficoVendaUltimo7DiasMeioPagamento = data;
+        this.dashboardService.buscarVendasUltimos7DiasCreditoDebito(empresaId).then(data => {
+            this.graficoVendaUltimo7DiasCreditoDebito = data;
             this.getData();
             this.getOptions();
         });
@@ -32,42 +32,21 @@ export class DashboardGraficoVendaUltimoSeteDiasMeioPagamentoComponent implement
 
     private getData() {
         this.data = {
-            labels: this.graficoVendaUltimo7DiasMeioPagamento.labels,
+            labels: this.graficoVendaUltimo7DiasCreditoDebito.labels,
             datasets: [
-                {
-                    label: 'Dinheiro',
-                    backgroundColor: 'rgba(255, 159, 64, 0.2)',
-                    borderColor: 'rgb(255, 159, 64)',
-                    borderWidth: 1,
-                    data: this.graficoVendaUltimo7DiasMeioPagamento.dataCash
-                },
                 {
                     label: 'Cartão crédito',
                     backgroundColor: 'rgba(75, 192, 192, 0.2)',
                     borderColor: 'rgb(75, 192, 192)',
                     borderWidth: 1,
-                    data: this.graficoVendaUltimo7DiasMeioPagamento.dataCredit
+                    data: this.graficoVendaUltimo7DiasCreditoDebito.dataCredit
                 },
                 {
                     label: 'Cartão dédito',
                     backgroundColor: 'rgba(200, 172, 235, 0.2)',
                     borderColor: 'rgb(200, 172, 235)',
                     borderWidth: 1,
-                    data: this.graficoVendaUltimo7DiasMeioPagamento.dataDebit
-                },
-                {
-                    label: 'Pix',
-                    backgroundColor: 'rgba(139, 69, 19, 0.2)',
-                    borderColor: 'rgb(139, 69, 19)',
-                    borderWidth: 1,
-                    data: this.graficoVendaUltimo7DiasMeioPagamento.dataPix
-                },
-                {
-                    label: 'Outros',
-                    backgroundColor: 'rgba(70, 130, 180, 0.2)',
-                    borderColor: 'rgb(70, 130, 180)',
-                    borderWidth: 1,
-                    data: this.graficoVendaUltimo7DiasMeioPagamento.dataOther
+                    data: this.graficoVendaUltimo7DiasCreditoDebito.dataDebit
                 }
             ]
         };
@@ -103,7 +82,7 @@ export class DashboardGraficoVendaUltimoSeteDiasMeioPagamentoComponent implement
                 },
                 title: {
                     display: true,
-                    text: 'Vendas dos últimos 7 dias por meio de pagamentos',
+                    text: 'Vendas dos últimos 7 dias em crédito e débito',
                     fontSize: 10,
                     color: textColor
                 }
