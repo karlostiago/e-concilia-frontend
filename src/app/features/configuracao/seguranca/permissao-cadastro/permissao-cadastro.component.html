@@ -1,0 +1,65 @@
+<form autocomplete="off" class="fade-in" #formulario="ngForm">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="color-wine"> Permissões de Usuário</h4>
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12 mb-10">
+                    <small class="float-end color-wine">Campos com ( * ) são obrigatórios.</small>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <label class="form-label">Usuários *:</label>
+                    <p-dropdown optionLabel="nomeCompleto" [options]="usuarios" [(ngModel)]="usuario" optionValue="id"
+                        styleClass="w-100" name="usuarios" id="usuarios" placeholder="Selecione um usuário"
+                        [required]="true"></p-dropdown>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <br>
+    
+    <div class="card">
+        <div class="card-header">
+            <h4 class="color-wine"> Listagem de Permissões </h4>
+        </div>
+        <div class="card-body">
+            <p-table [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="10"
+                styleClass="p-datatable-striped p-datatable p-datatable-gridlines" [value]="telasPermissoes">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="min-width: 180px;">TELA</th>
+                        <th class="text-center" style="min-width: 320px">CADASTRAR</th>
+                        <th class="text-center" style="min-width: 320px">ATUALIZAR</th>
+                        <th class="text-center" style="min-width: 120px;">CONSULTAR</th>
+                        <th class="text-center" style="min-width: 150px;">EXCLUIR</th>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-tela>
+                    <tr>
+                        <td>{{ tela.nome }}</td>
+                        <td class="text-center">
+                            <input type="checkbox" [(ngModel)]="tela.cadastrar" name="telaCadastrar">
+                        </td>
+                        <td class="text-center">
+                            <input type="checkbox" [(ngModel)]="tela.atualizar" name="telaAtualizar">
+                        </td>
+                        <td class="text-center">
+                            <input type="checkbox" [(ngModel)]="tela.consultar" name="telaConsultar">
+                        </td>
+                        <td class="text-center">
+                            <input type="checkbox" [(ngModel)]="tela.excluir" name="telaExcluir">
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</form>

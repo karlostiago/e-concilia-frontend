@@ -15,12 +15,16 @@ import {TableModule} from "primeng/table";
 import {CnpjModule} from "../../pipes/cnpj/cnpj.module";
 import {UsuarioCadastroComponent} from "./seguranca/usuario-cadastro/usuario-cadastro.component";
 import {MultiSelectModule} from "primeng/multiselect";
+import { PermissaoCadastroComponent } from './seguranca/permissao-cadastro/permissao-cadastro.component';
+import { PermissaoConsultaComponent } from './seguranca/permissao-consulta/permissao-consulta.component';
 
 @NgModule({
     declarations: [
         IntegracaoCadastroComponent,
         IntegracaoConsultaComponent,
-        UsuarioCadastroComponent
+        UsuarioCadastroComponent,
+        PermissaoCadastroComponent,
+        PermissaoConsultaComponent
     ],
     imports: [
         CommonModule,
