@@ -5,6 +5,7 @@ import {HttpClient} from "@angular/common/http";
 import {ErroHandlerService} from "../../core/ErroHandlerService";
 import {Contrato} from "../../model/Contrato";
 import {Operadora} from "../../model/Operadora";
+import {SegurancaService} from "../seguranca/seguranca.service";
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,9 @@ import {Operadora} from "../../model/Operadora";
 export class TaxaService extends AbstractService<Taxa> {
 
     constructor(private httpClient: HttpClient,
+                protected override segurancaService: SegurancaService,
                 protected override error: ErroHandlerService) {
-        super(error);
+        super(error, segurancaService);
     }
 
     pathURL() {

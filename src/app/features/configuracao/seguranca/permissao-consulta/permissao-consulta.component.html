@@ -1,0 +1,56 @@
+<form autocomplete="off" class="fade-in">
+
+    <div class="card">
+        <div class="card-header">
+            <h4 class="color-wine"> Consultar Usuários e Permissões </h4>
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="form-label">Nome do Usuário:</label>
+                    <input type="text" pInputText class="form-control" name="nomeUsuario" id="nomeUsuario" [(ngModel)]="filtroUsuario.nomeCompleto" />
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <div class="card-action">
+                <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-search" label="Pesquisar" (click)="pesquisar()"></button>
+            </div>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="card">
+        <div class="card-header">
+            <h4 class="color-wine"> Listagem de Usuários e Permissões </h4>
+        </div>
+
+        <div class="card-body">
+            <p-table [value]="usuarios" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="10" styleClass="p-datatable-striped p-datatable p-datatable-gridlines" #tabelaUsuarios>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="min-width: 180px;">Nome Completo</th>
+                        <th class="text-center" style="min-width: 320px">Permissão</th>
+                        <th class="text-center" style="min-width: 120px;">Ações</th>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-usuario>
+                    <tr>
+                        <td> {{ usuario.nomeCompleto }} </td>
+                        <td class="text-center"> {{ usuario.permissao }}</td>
+                        <td class="text-center">
+                            <div class="action">
+                                <button type="button" pButton icon="pi pi-trash" class="p-button-danger p-button-sm" (click)="dessasociarPermissaoUsuario(usuario)"></button>
+                                <button pButton icon="pi pi-pencil" class="p-button-danger p-button-sm" [routerLink]="['/cadastro/permissao', usuario.id]"></button>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</form>

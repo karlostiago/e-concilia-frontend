@@ -15,6 +15,7 @@ import {ConciliadorModule} from "../features/conciliador/conciliador.module";
 import {ConfiguracaoModule} from "../features/configuracao/configuracao.module";
 import {DashboardModule} from "../features/dashboard/dashboard.module";
 import {SegurancaModule} from "../features/seguranca/seguranca.module";
+import {SegurancaService} from "../features/seguranca/seguranca.service";
 
 @NgModule({
     declarations: [
@@ -44,7 +45,8 @@ import {SegurancaModule} from "../features/seguranca/seguranca.module";
         ConfirmDialogModule
     ],
     providers: [
-        ConfirmationService
+        ConfirmationService,
+        SegurancaService
     ]
 })
 export class CoreModule { }

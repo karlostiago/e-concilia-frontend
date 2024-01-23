@@ -7,6 +7,7 @@ import {DataHelpers} from "../../../helpers/DataHelpers";
 import {GraficoVendaUltimo7Dia} from "../../model/GraficoVendaUltimo7Dia";
 import {GraficoVendaUltimo7DiaCreditoDebito} from "../../model/GraficoVendaUltimo7DiaCreditoDebito";
 import {GraficoVendaUltimo7DiaDinheiroPix} from "../../model/GraficoVendaUltimo7DiaDinheiroPix";
+import {SegurancaService} from "../seguranca/seguranca.service";
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +15,9 @@ import {GraficoVendaUltimo7DiaDinheiroPix} from "../../model/GraficoVendaUltimo7
 export class DashboardService extends AbstractService<Dashboard> {
 
     constructor(private httpClient: HttpClient,
+                protected override segurancaService: SegurancaService,
                 protected override error: ErroHandlerService) {
-        super(error);
+        super(error, segurancaService);
     }
 
     protected pathURL(): string {

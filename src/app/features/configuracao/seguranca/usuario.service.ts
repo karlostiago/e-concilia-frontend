@@ -3,9 +3,8 @@ import {HttpClient} from "@angular/common/http";
 import {ErroHandlerService} from "../../../core/ErroHandlerService";
 import {AbstractService} from "../../../service/AbstractService";
 import {Usuario} from "../../../model/Usuario";
-import {Empresa} from "../../../model/Empresa";
-import {FiltroEmpresa} from "../../../filter/FiltroEmpresa";
 import {FiltroUsuario} from "../../../filter/FiltroUsuario";
+import {SegurancaService} from "../../seguranca/seguranca.service";
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +12,9 @@ import {FiltroUsuario} from "../../../filter/FiltroUsuario";
 export class UsuarioService extends AbstractService<Usuario> {
 
     constructor(private httpClient: HttpClient,
+                protected override segurancaService: SegurancaService,
                 protected override error: ErroHandlerService) {
-        super(error);
+        super(error, segurancaService);
     }
 
     pathURL() {

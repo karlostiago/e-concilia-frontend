@@ -3,7 +3,7 @@ import {AbstractService} from "../../../service/AbstractService";
 import {Importacao} from "../../../model/Importacao";
 import {HttpClient} from "@angular/common/http";
 import {ErroHandlerService} from "../../../core/ErroHandlerService";
-import {Integracao} from "../../../model/Integracao";
+import {SegurancaService} from "../../seguranca/seguranca.service";
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +11,9 @@ import {Integracao} from "../../../model/Integracao";
 export class ImportacaoService extends AbstractService<Importacao> {
 
     constructor(private httpClient: HttpClient,
+                protected override segurancaService: SegurancaService,
                 protected override error: ErroHandlerService) {
-        super(error);
+        super(error, segurancaService);
     }
 
     pathURL() {

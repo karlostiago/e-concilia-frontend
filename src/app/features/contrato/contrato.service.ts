@@ -5,6 +5,7 @@ import {AbstractService} from "../../service/AbstractService";
 import {ErroHandlerService} from "../../core/ErroHandlerService";
 import {FiltroContrato} from "../../filter/FiltroContrato";
 import {Empresa} from "../../model/Empresa";
+import {SegurancaService} from "../seguranca/seguranca.service";
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,9 @@ import {Empresa} from "../../model/Empresa";
 export class ContratoService extends AbstractService<Contrato> {
 
     constructor(private httpClient: HttpClient,
+                protected override segurancaService: SegurancaService,
                 protected override error: ErroHandlerService) {
-        super(error);
+        super(error, segurancaService);
     }
 
     pathURL() {

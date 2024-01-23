@@ -17,13 +17,17 @@ import {UsuarioCadastroComponent} from "./seguranca/usuario-cadastro/usuario-cad
 import {MultiSelectModule} from "primeng/multiselect";
 import { ImportacaoCadastroComponent } from './importacao/importacao-cadastro/importacao-cadastro.component';
 import {CalendarModule} from "primeng/calendar";
+import { PermissaoCadastroComponent } from './seguranca/permissao-cadastro/permissao-cadastro.component';
+import { PermissaoConsultaComponent } from './seguranca/permissao-consulta/permissao-consulta.component';
 
 @NgModule({
     declarations: [
         IntegracaoCadastroComponent,
         IntegracaoConsultaComponent,
         UsuarioCadastroComponent,
-        ImportacaoCadastroComponent
+        ImportacaoCadastroComponent,
+        PermissaoCadastroComponent,
+        PermissaoConsultaComponent
     ],
     imports: [
         CommonModule,

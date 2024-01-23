@@ -12,14 +12,14 @@
                 <span class="login100-form-title">Log In</span>
 
                 <div class="wrap-input100">
-                    <input pInputText class="input100" type="text" id="email" name="email" placeholder="Email" autofocus />
+                    <input pInputText class="input100" type="text" id="email" name="email" placeholder="Email" autofocus [(ngModel)]="email" />
                     <span class="symbol-input100">
                         <i class="pi pi-envelope" aria-hidden="true"></i>
                     </span>
                 </div>
 
                 <div class="wrap-input100">
-                    <input pInputText class="input100" type="password" name="senha" id="senha" placeholder="Senha" />
+                    <input pInputText class="input100" type="password" name="senha" id="senha" placeholder="Senha" [(ngModel)]="senha" />
                     <span class="focus-input100"></span>
                     <span class="symbol-input100">
                         <i class="pi pi-lock" aria-hidden="true"></i>
@@ -27,7 +27,7 @@
                 </div>
 
                 <div class="container-login100-form-btn">
-                    <button pButton class="login100-form-btn" label="Acessar"></button>
+                    <button pButton class="login100-form-btn" label="Acessar" (click)="login()"></button>
                 </div>
 
                 <div class="text-center">

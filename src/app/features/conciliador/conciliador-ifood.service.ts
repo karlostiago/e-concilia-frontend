@@ -5,6 +5,7 @@ import {HttpClient} from "@angular/common/http";
 import {ErroHandlerService} from "../../core/ErroHandlerService";
 import {DataHelpers} from "../../../helpers/DataHelpers";
 import {Conciliador} from "../../model/Conciliador";
+import {SegurancaService} from "../seguranca/seguranca.service";
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,9 @@ import {Conciliador} from "../../model/Conciliador";
 export class ConciliadorIfoodService extends AbstractService<Venda>{
 
     constructor(private httpClient: HttpClient,
+                protected override segurancaService: SegurancaService,
                 protected override error: ErroHandlerService) {
-        super(error);
+        super(error, segurancaService);
     }
 
     pathURL() {

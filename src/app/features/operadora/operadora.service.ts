@@ -1,11 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Taxa} from "../../model/Taxa";
-import {catchError, firstValueFrom, map, Observable, Subscription, tap} from "rxjs";
 import {Operadora} from "../../model/Operadora";
 import {FiltroOperadora} from "../../filter/FiltroOperadora";
 import {AbstractService} from "../../service/AbstractService";
 import {ErroHandlerService} from "../../core/ErroHandlerService";
+import {SegurancaService} from "../seguranca/seguranca.service";
 
 @Injectable({
     providedIn: 'root'
@@ -13,8 +12,9 @@ import {ErroHandlerService} from "../../core/ErroHandlerService";
 export class OperadoraService extends AbstractService<Operadora> {
 
     constructor(private httpClient: HttpClient,
+                protected override segurancaService: SegurancaService,
                 protected override error: ErroHandlerService) {
-        super(error);
+        super(error, segurancaService);
     }
 
     pathURL() {

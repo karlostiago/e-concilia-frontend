@@ -4,6 +4,7 @@ import {ErroHandlerService} from "../../../core/ErroHandlerService";
 import {Integracao} from "../../../model/Integracao";
 import {FiltroConfiguracaoIntegracao} from "../../../filter/FiltroConfiguracaoIntegracao";
 import {AbstractService} from "../../../service/AbstractService";
+import {SegurancaService} from "../../seguranca/seguranca.service";
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,9 @@ import {AbstractService} from "../../../service/AbstractService";
 export class IntegracaoService extends AbstractService<Integracao> {
 
     constructor(private httpClient: HttpClient,
+                protected override segurancaService: SegurancaService,
                 protected override error: ErroHandlerService) {
-        super(error);
+        super(error, segurancaService);
     }
 
     pathURL() {
