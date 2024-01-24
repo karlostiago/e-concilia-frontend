@@ -19,6 +19,7 @@ import { ImportacaoCadastroComponent } from './importacao/importacao-cadastro/im
 import {CalendarModule} from "primeng/calendar";
 import { PermissaoCadastroComponent } from './seguranca/permissao-cadastro/permissao-cadastro.component';
 import { PermissaoConsultaComponent } from './seguranca/permissao-consulta/permissao-consulta.component';
+import {CheckboxModule} from "primeng/checkbox";
 
 @NgModule({
     declarations: [
@@ -39,7 +40,8 @@ import { PermissaoConsultaComponent } from './seguranca/permissao-consulta/permi
         TableModule,
         CnpjModule,
         MultiSelectModule,
-        CalendarModule
+        CalendarModule,
+        CheckboxModule
     ]
 })
 export class ConfiguracaoModule { }

@@ -2,23 +2,23 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
 import {EmpresaConsultaComponent} from "./empresa-consulta/empresa-consulta.component";
 import {EmpresaCadastroComponent} from "./empresa-cadastro/empresa-cadastro.component";
-import {AuthGuard} from "../seguranca/auth.guard";
+import {CanActivate} from "../../auth.guard";
 
 const rotas: Routes = [
     {
         path: 'consulta/empresas',
         component: EmpresaConsultaComponent,
-        canActivate: [AuthGuard]
+        canActivate: [CanActivate]
     },
     {
         path: 'cadastro/empresas/novo',
         component: EmpresaCadastroComponent,
-        canActivate: [AuthGuard]
+        canActivate: [CanActivate]
     },
     {
         path: 'editar/empresas/:id',
         component: EmpresaCadastroComponent,
-        canActivate: [AuthGuard]
+        canActivate: [CanActivate]
     },
 ]
 

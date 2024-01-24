@@ -11,69 +11,69 @@ import {UsuarioConsultaComponent} from "./seguranca/usuario-consulta/usuario-con
 import {ImportacaoCadastroComponent} from "./importacao/importacao-cadastro/importacao-cadastro.component";
 import { PermissaoCadastroComponent } from './seguranca/permissao-cadastro/permissao-cadastro.component';
 import { PermissaoConsultaComponent } from './seguranca/permissao-consulta/permissao-consulta.component';
-import {AuthGuard} from "../seguranca/auth.guard";
+import {CanActivate} from "../../auth.guard";
 
 
 const rotas: Routes = [
     {
         path: 'configuracao/cadastro/integracoes/novo',
         component: IntegracaoCadastroComponent,
-        canActivate: [AuthGuard]
+        canActivate: [CanActivate]
     },
     {
         path: 'configuracao/editar/integracoes/:id',
         component: IntegracaoCadastroComponent,
-        canActivate: [AuthGuard]
+        canActivate: [CanActivate]
     },
     {
         path: 'configuracao/consulta/integracoes',
         component: IntegracaoConsultaComponent,
-        canActivate: [AuthGuard]
+        canActivate: [CanActivate]
     },
     {
         path: 'configuracao/cadastro/usuarios/novo',
         component: UsuarioCadastroComponent,
-        canActivate: [AuthGuard]
+        canActivate: [CanActivate]
     },
     {
         path: 'configuracao/editar/usuarios/:id',
         component: UsuarioCadastroComponent,
-        canActivate: [AuthGuard]
+        canActivate: [CanActivate]
     },
     {
         path: 'configuracao/consulta/usuarios',
         component: UsuarioConsultaComponent,
-        canActivate: [AuthGuard]
+        canActivate: [CanActivate]
     },
     {
         path: 'configuracao/cadastro/importacoes/agendar',
         component: ImportacaoCadastroComponent,
-        canActivate: [AuthGuard]
+        canActivate: [CanActivate]
     },
     {
         path: 'configuracao/cadastro/usuarios/novo',
         component: UsuarioCadastroComponent,
-        canActivate: [AuthGuard]
+        canActivate: [CanActivate]
     },
     {
         path: 'configuracao/editar/usuarios/:id',
         component: UsuarioCadastroComponent,
-        canActivate: [AuthGuard]
+        canActivate: [CanActivate]
     },
     {
         path: 'configuracao/consulta/usuarios',
         component: UsuarioConsultaComponent,
-        canActivate: [AuthGuard]
+        canActivate: [CanActivate]
     },
     {
         path: 'configuracao/cadastro/permissoes/novo',
         component: PermissaoCadastroComponent,
-        canActivate: [AuthGuard]
+        canActivate: [CanActivate]
     },
     {
         path: 'configuracao/consulta/permissoes',
         component: PermissaoConsultaComponent,
-        canActivate: [AuthGuard]
+        canActivate: [CanActivate]
     }
 ]
 

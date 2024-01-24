@@ -14,48 +14,74 @@
             <div class="row">
                 <div class="col-md-4">
                     <label class="form-label">Usuários *:</label>
-                    <p-dropdown optionLabel="nomeCompleto" [options]="usuarios" [(ngModel)]="usuario" optionValue="id"
+                    <p-dropdown optionLabel="nomeCompleto" [options]="usuarios" [(ngModel)]="usuarioId" optionValue="id"
                         styleClass="w-100" name="usuarios" id="usuarios" placeholder="Selecione um usuário"
                         [required]="true"></p-dropdown>
                 </div>
             </div>
+        </div>
 
+        <div class="card-footer">
+            <div class="card-action">
+                <button pButton type="button" class="p-button-danger p-button-sm" icon="pi pi-save" label="Salvar" (click)="salvar()"></button>
+            </div>
         </div>
     </div>
 
     <br>
-    
+
     <div class="card">
         <div class="card-header">
             <h4 class="color-wine"> Listagem de Permissões </h4>
         </div>
+
         <div class="card-body">
-            <p-table [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="10"
-                styleClass="p-datatable-striped p-datatable p-datatable-gridlines" [value]="telasPermissoes">
+            <p-table [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="15"
+                styleClass="p-datatable-striped p-datatable p-datatable-gridlines" [value]="regras">
                 <ng-template pTemplate="header">
                     <tr>
-                        <th style="min-width: 180px;">TELA</th>
-                        <th class="text-center" style="min-width: 320px">CADASTRAR</th>
-                        <th class="text-center" style="min-width: 320px">ATUALIZAR</th>
-                        <th class="text-center" style="min-width: 120px;">CONSULTAR</th>
-                        <th class="text-center" style="min-width: 150px;">EXCLUIR</th>
+                        <th style="min-width: 250px;">Funcionalidade</th>
+                        <th class="text-center" style="min-width: 120px">Agendar</th>
+                        <th class="text-center" style="min-width: 120px">Cadastrar</th>
+                        <th class="text-center" style="min-width: 120px">Atualizar</th>
+                        <th class="text-center" style="min-width: 120px;">Pesquisar</th>
+                        <th class="text-center" style="min-width: 120px;">Deletar</th>
+                        <th class="text-center" style="min-width: 120px;">Ativar</th>
                     </tr>
                 </ng-template>
 
-                <ng-template pTemplate="body" let-tela>
+                <ng-template pTemplate="body" let-regra>
                     <tr>
-                        <td>{{ tela.nome }}</td>
+                        <td>{{ regra['nome'] }}</td>
                         <td class="text-center">
-                            <input type="checkbox" [(ngModel)]="tela.cadastrar" name="telaCadastrar">
+                            <p-checkbox class="vr-checkbox" name="permissao_agendar_{{ naoBloquear(regra, TipoPermissao.AGENDAR) ? 'disabled' : '' }}" [binary]="true" [(ngModel)]="regra['agendar']"
+                                        (onChange)="adicionar(regra, TipoPermissao.AGENDAR, $event)"
+                                        [disabled]="naoBloquear(regra, TipoPermissao.AGENDAR)"></p-checkbox>
                         </td>
                         <td class="text-center">
-                            <input type="checkbox" [(ngModel)]="tela.atualizar" name="telaAtualizar">
+                            <p-checkbox class="vr-checkbox" name="permissao_cadastrar_{{ naoBloquear(regra, TipoPermissao.CADASTRAR) ? 'disabled' : '' }}" [binary]="true" [(ngModel)]="regra['cadastrar']"
+                                        (onChange)="adicionar(regra, TipoPermissao.CADASTRAR, $event)"
+                                        [disabled]="naoBloquear(regra, TipoPermissao.CADASTRAR)"></p-checkbox>
                         </td>
                         <td class="text-center">
-                            <input type="checkbox" [(ngModel)]="tela.consultar" name="telaConsultar">
+                            <p-checkbox class="vr-checkbox" name="permissao_atualizar_{{ naoBloquear(regra, TipoPermissao.ATUALIZAR) ? 'disabled' : '' }}" [binary]="true" [(ngModel)]="regra['atualizar']"
+                                        (onChange)="adicionar(regra, TipoPermissao.ATUALIZAR, $event)"
+                                        [disabled]="naoBloquear(regra, TipoPermissao.ATUALIZAR)"></p-checkbox>
                         </td>
                         <td class="text-center">
-                            <input type="checkbox" [(ngModel)]="tela.excluir" name="telaExcluir">
+                            <p-checkbox class="vr-checkbox" name="permissao_pesquisar_{{ naoBloquear(regra, TipoPermissao.PESQUISAR) ? 'disabled' : '' }}" [binary]="true" [(ngModel)]="regra['pesquisar']"
+                                        (onChange)="adicionar(regra, TipoPermissao.PESQUISAR, $event)"
+                                        [disabled]="naoBloquear(regra, TipoPermissao.PESQUISAR)"></p-checkbox>
+                        </td>
+                        <td class="text-center">
+                            <p-checkbox class="vr-checkbox" name="permissao_deletar_{{ naoBloquear(regra, TipoPermissao.DELETAR) ? 'disabled' : '' }}" [binary]="true" [(ngModel)]="regra['deletar']"
+                                        (onChange)="adicionar(regra, TipoPermissao.DELETAR, $event)"
+                                        [disabled]="naoBloquear(regra, TipoPermissao.DELETAR)"></p-checkbox>
+                        </td>
+                        <td class="text-center">
+                            <p-checkbox class="vr-checkbox" name="permissao_ativar_{{ naoBloquear(regra, TipoPermissao.ATIVAR) ? 'disabled' : '' }}" [binary]="true" [(ngModel)]="regra['ativar']"
+                                        (onChange)="adicionar(regra, TipoPermissao.ATIVAR, $event)"
+                                        [disabled]="naoBloquear(regra, TipoPermissao.ATIVAR)"></p-checkbox>
                         </td>
                     </tr>
                 </ng-template>

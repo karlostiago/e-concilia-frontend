@@ -141,6 +141,11 @@ button[disabled] {
 /**
  * Classes de customização primeng css
  */
+.p-checkbox .p-checkbox-box.p-highlight {
+    border-color: #701717!important;
+    background: #701717!important;
+}
+
 .p-button-label {
     font-weight: normal !important;
 }
