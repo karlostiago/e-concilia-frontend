@@ -67,7 +67,6 @@ export class TaxaConsultaComponent implements  OnInit {
     }
 
     private desativar (taxa: Taxa) {
-        console.log(taxa);
         this.taxaService.desativar(taxa.id).then(() => {
             this.notificacao.sucesso("Taxa desativada com sucesso.");
             taxa.ativo = false;

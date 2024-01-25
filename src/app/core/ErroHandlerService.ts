@@ -10,12 +10,11 @@ export class ErroHandlerService {
 
     capturar(errorResponse: any) {
         if (errorResponse.status === 403) {
-            this.notificacao.error("Não tem permissão para acessar este recurso.");
-            return;
-        }
-
-        for (const erro of errorResponse.error) {
-            this.notificacao.error(erro.mensagem);
+            this.notificacao.error("Acesso não permitido.");
+        } else {
+            for (const erro of errorResponse.error) {
+                this.notificacao.error(erro.mensagem);
+            }
         }
     }
 }

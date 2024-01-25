@@ -13,9 +13,8 @@ import {Permissao} from "../../../model/Permissao";
 export class PermissaoService extends AbstractService<Permissao> {
 
     constructor(private httpClient: HttpClient,
-                protected override segurancaService: SegurancaService,
                 protected override error: ErroHandlerService) {
-        super(error, segurancaService);
+        super(error);
     }
 
     pathURL() {

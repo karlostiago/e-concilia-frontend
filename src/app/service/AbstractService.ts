@@ -9,23 +9,20 @@ export abstract class AbstractService<T> {
     protected baseURL =  environment.apiUrl;
 
     protected constructor(
-        protected error: ErroHandlerService,
-        protected segurancaService?: SegurancaService) { }
+        protected error: ErroHandlerService) { }
 
     protected abstract pathURL(): string;
 
     options (httpParams: HttpParams = new HttpParams()) {
         return {
-            headers: this.headers(this.segurancaService?.getToken()),
+            headers: this.headers(),
             httpParams
         }
     }
 
-    headers (token?: string): HttpHeaders {
+    headers (): HttpHeaders {
         let headers = new HttpHeaders();
         headers = headers.append("Content-Type", "application/json");
-        headers = headers.append("Authorization", "Basic " + token);
-
         return headers;
     }
 
@@ -36,6 +33,7 @@ export abstract class AbstractService<T> {
                     resolve(data as T);
                 },
                 error: (error) => {
+                    console.log(error)
                     this.error.capturar(error);
                 }
             })

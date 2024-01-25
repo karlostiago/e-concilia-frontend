@@ -13,6 +13,7 @@ import {NotificacaoService} from "../../../shared/notificacao/notificacao.servic
 import {ConfirmationService} from "primeng/api";
 import {Taxa} from "../../../model/Taxa";
 import {TaxaService} from "../../taxa/taxa.service";
+import {HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'app-contrato-consulta',

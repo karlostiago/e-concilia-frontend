@@ -19,12 +19,7 @@ const rotas: Routes = [
         path: 'editar/contratos/:numero',
         component: ContratoCadastroComponent,
         canActivate: [CanActivate]
-    },
-    {
-        path: 'contratos/:numero/desativar',
-        redirectTo: '',
-        canActivate: [CanActivate]
-    },
+    }
 ]
 
 @NgModule({

@@ -12,9 +12,8 @@ import {SegurancaService} from "../../seguranca/seguranca.service";
 export class UsuarioService extends AbstractService<Usuario> {
 
     constructor(private httpClient: HttpClient,
-                protected override segurancaService: SegurancaService,
                 protected override error: ErroHandlerService) {
-        super(error, segurancaService);
+        super(error);
     }
 
     pathURL() {

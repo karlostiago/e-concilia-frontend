@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Contrato} from "../../model/Contrato";
 import {AbstractService} from "../../service/AbstractService";
 import {ErroHandlerService} from "../../core/ErroHandlerService";
@@ -13,9 +13,8 @@ import {SegurancaService} from "../seguranca/seguranca.service";
 export class ContratoService extends AbstractService<Contrato> {
 
     constructor(private httpClient: HttpClient,
-                protected override segurancaService: SegurancaService,
                 protected override error: ErroHandlerService) {
-        super(error, segurancaService);
+        super(error);
     }
 
     pathURL() {
@@ -48,12 +47,12 @@ export class ContratoService extends AbstractService<Contrato> {
     }
 
     async ativar (id: number): Promise<Contrato> {
-        const request =this.httpClient.patch(`${this.baseURL}/${this.pathURL()}/${id}/ativar`, this.options());
+        const request = this.httpClient.patch(`${this.baseURL}/${this.pathURL()}/${id}/ativar`, this.options());
         return this.toPromise(request);
     }
 
     async desativar (id: number): Promise<Contrato> {
-        const request =this.httpClient.patch(`${this.baseURL}/${this.pathURL()}/${id}/desativar`, this.options());
+        const request = this.httpClient.patch(`${this.baseURL}/${this.pathURL()}/${id}/desativar`, this.options());
         return this.toPromise(request);
     }
 
