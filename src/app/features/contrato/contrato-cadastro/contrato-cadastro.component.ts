@@ -14,6 +14,7 @@ import {NotificacaoService} from "../../../shared/notificacao/notificacao.servic
 import {ActivatedRoute} from "@angular/router";
 import {ConfirmationService} from "primeng/api";
 import {TaxaService} from "../../taxa/taxa.service";
+import {SegurancaService} from "../../seguranca/seguranca.service";
 
 @Component({
   selector: 'app-contrato-cadastro',
@@ -38,6 +39,7 @@ export class ContratoCadastroComponent implements OnInit {
                 private notificacao: NotificacaoService,
                 private activatedRoute: ActivatedRoute,
                 private taxaService: TaxaService,
+                private segurancaService: SegurancaService,
                 private confirmationService: ConfirmationService) { }
 
 
@@ -158,8 +160,12 @@ export class ContratoCadastroComponent implements OnInit {
     }
 
     private carregarEmpresas () {
+        const usuario = this.segurancaService.getUsuario();
         this.empresaService.pesquisar(new FiltroEmpresa()).then(empresas => {
             this.empresas = empresas;
+            if (usuario !== null) {
+                this.empresas = usuario.lojasPermitidas;
+            }
         });
     }
 

@@ -5,6 +5,7 @@ import {NotificacaoService} from "../../../shared/notificacao/notificacao.servic
 import {Estado} from "../../../model/Estado";
 import {ActivatedRoute} from "@angular/router";
 import {NgForm} from "@angular/forms";
+import {RegraService} from "../../configuracao/seguranca/regra.service";
 
 @Component({
     selector: 'app-empresa-cadastro',

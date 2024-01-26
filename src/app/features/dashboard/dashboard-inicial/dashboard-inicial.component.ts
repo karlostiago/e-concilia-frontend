@@ -14,6 +14,7 @@ import {
 import {
     DashboardGraficoVendaUltimoSeteDiasDinheiroPixComponent
 } from "../dashboard-grafico-venda-ultimo-sete-dias-dinheiro-pix/dashboard-grafico-venda-ultimo-sete-dias-dinheiro-pix.component";
+import {SegurancaService} from "../../seguranca/seguranca.service";
 
 @Component({
   selector: 'app-dashboard-inicial',
@@ -33,7 +34,8 @@ export class DashboardInicialComponent implements OnInit {
     @ViewChild(DashboardGraficoVendaUltimoSeteDiasDinheiroPixComponent) graficoVendaUltimoSeteDiasDinheiroPix: DashboardGraficoVendaUltimoSeteDiasDinheiroPixComponent;
 
     constructor(private dashboardService: DashboardService,
-                private empresaService: EmpresaService,) {
+                private segurancaService: SegurancaService,
+                private empresaService: EmpresaService) {
     }
 
     ngOnInit(): void {
@@ -56,8 +58,12 @@ export class DashboardInicialComponent implements OnInit {
     }
 
     private carregarEmpresas () {
+        const usuario = this.segurancaService.getUsuario();
         this.empresaService.pesquisar(new FiltroEmpresa()).then(empresas => {
             this.empresas = empresas;
+            if (usuario !== null) {
+                this.empresas = usuario.lojasPermitidas;
+            }
         });
     }
 }

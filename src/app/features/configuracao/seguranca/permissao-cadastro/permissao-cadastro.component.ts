@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Usuario} from "../../../../model/Usuario";
-import { UsuarioService } from '../usuario.service';
-import { FiltroUsuario } from '../../../../filter/FiltroUsuario';
+import {UsuarioService} from '../usuario.service';
+import {FiltroUsuario} from '../../../../filter/FiltroUsuario';
 import {Permissao} from "../../../../model/Permissao";
 import {Funcionalidade} from "../../../../model/Funcionalidade";
 import {TipoPermissao} from "../../../../model/TipoPermissao";
 import {PermissaoService} from "../permissao.service";
 import {NotificacaoService} from "../../../../shared/notificacao/notificacao.service";
 import {Regra} from "../../../../model/Regra";
+import {ActivatedRoute} from "@angular/router";
+import {RegraService} from "../regra.service";
 
 @Component({
   selector: 'app-permissao-cadastro',
@@ -25,32 +27,47 @@ export class PermissaoCadastroComponent implements OnInit {
     constructor(
         private usuarioService: UsuarioService,
         private notificacao: NotificacaoService,
+        private activatedRoute: ActivatedRoute,
+        private regraService: RegraService,
         private permissaoService: PermissaoService) { }
 
     ngOnInit(): void {
         this.carregarUsuarios();
         this.carregarRegras();
+
+        const usuarioId = this.activatedRoute.snapshot.params['id'];
+
+        if (usuarioId) {
+            this.pesquisarPorId(usuarioId);
+        }
     }
 
-    salvar() {
-        this.selecionarUsuario();
-
-        console.log(this.permissao);
-
-        this.permissaoService.salvar(this.permissao).then(resposta => {
-            this.notificacao.sucesso("Permissão cadastrada com sucesso.");
+    pesquisarPorId (id: number) {
+        this.permissaoService.pesquisarUsuario(id).then(permissao => {
+            this.permissao = permissao;
+            this.usuarioId = this.permissao.usuario.id;
+            this.regras = this.regraService.buscarPermissao(this.permissao);
+            console.log(this.permissao);
         });
     }
 
-    adicionar(regra: Regra, prefixo: string, event: any) {
+    salvarOuEditar() {
+        console.log(this.permissao)
+        if (this.permissao.id) {
+            this.editar();
+        } else {
+            this.salvar();
+        }
+    }
 
+    adicionar(regra: Regra, prefixo: string, event: any) {
         let funcionalidade = `${prefixo}_${regra.nome.toUpperCase()}`;
-        let salvarOuRemover = event.checked;
+        let salvarOuRemover = event.target.checked;
 
         if (salvarOuRemover) {
             this.adicionarPermissao(regra.code, funcionalidade);
         } else {
-            this.removerPermissao(funcionalidade);
+            this.removerPermissao(regra.code, funcionalidade);
         }
     }
 
@@ -69,6 +86,23 @@ export class PermissaoCadastroComponent implements OnInit {
         return !permissoesDoTipo.some(p => regra.nome.includes(p));
     }
 
+    limpar() {
+        this.permissao = new Permissao();
+    }
+
+    private salvar() {
+        this.selecionarUsuario();
+        this.permissaoService.salvar(this.permissao).then(resposta => {
+            this.notificacao.sucesso("Permissão cadastrada com sucesso.");
+        });
+    }
+
+    private editar() {
+        this.permissaoService.editar(this.permissao).then(resposta => {
+            this.notificacao.sucesso("Permissão atualizada com sucesso.");
+        });
+    }
+
     private selecionarUsuario () {
         const usuarios = this.usuarios.filter(usuario => usuario.id === this.usuarioId);
         if (usuarios.length === 1) {
@@ -76,12 +110,14 @@ export class PermissaoCadastroComponent implements OnInit {
         }
     }
 
-    private removerPermissao(permissao: string) {
+    private removerPermissao(codigo: number, permissao: string) {
+        const tipoPermissoes = permissao.split("_");
         const funcionalidade = this.permissao.funcionalidades.filter(funcionalidade => {
-            return funcionalidade.permissao === permissao
+            return funcionalidade.codigo === codigo && (funcionalidade.permissao === permissao || funcionalidade.permissao === tipoPermissoes[0]);
         })[0];
 
         const index = this.permissao.funcionalidades.indexOf(funcionalidade);
+
         if (index >= 0)
             this.permissao.funcionalidades.splice(index, 1);
     }
@@ -110,18 +146,7 @@ export class PermissaoCadastroComponent implements OnInit {
     }
 
     private carregarRegras() {
-        this.regras = [
-            { code: 1, nome: 'Dashboard', agendar: false, cadastrar: false, atualizar: false, pesquisar: false, deletar: false, ativar: false },
-            { code: 2, nome: 'Empresas', agendar: false, cadastrar: false, atualizar: false, pesquisar: false, deletar: false, ativar: false },
-            { code: 3, nome: 'Contratos', agendar: false, cadastrar: false, atualizar: false, pesquisar: false, deletar: false, ativar: false },
-            { code: 4, nome: 'Operadoras', agendar: false, cadastrar: false, atualizar: false, pesquisar: false, deletar: false, ativar: false },
-            { code: 5, nome: 'Taxas', agendar: false, cadastrar: false, atualizar: false, pesquisar: false, deletar: false, ativar: false },
-            { code: 7, nome: 'Integrações', agendar: false, cadastrar: false, atualizar: false, pesquisar: false, deletar: false, ativar: false },
-            { code: 8, nome: 'Usuários', agendar: false, cadastrar: false, atualizar: false, pesquisar: false, deletar: false, ativar: false },
-            { code: 9, nome: 'Permissões', agendar: false, cadastrar: false, atualizar: false, pesquisar: false, deletar: false, ativar: false },
-            { code: 10, nome: 'Importações', agendar: false, cadastrar: false, atualizar: false, pesquisar: false, deletar: false, ativar: false },
-            { code: 6, nome: 'Conciliador ifood', agendar: false, cadastrar: false, atualizar: false, pesquisar: false, deletar: false, ativar: false },
-        ];
+        this.regras = this.regraService.getRegras();
     }
 
     protected readonly TipoPermissao = TipoPermissao;

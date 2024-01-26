@@ -25,19 +25,20 @@ export class PermissaoService extends AbstractService<Permissao> {
         const request = this.httpClient.post(`${this.baseURL}/${this.pathURL()}`, JSON.stringify(permissao), this.options());
         return this.toPromise(request);
     }
-    /*
-    async pesquisarPorId (id: number): Promise<Usuario> {
-        const request =this.httpClient.get(`${this.baseURL}/${this.pathURL()}/${id}`, this.options());
+
+    async pesquisarUsuario (usuarioId: number): Promise<Permissao> {
+        const request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}/${usuarioId}/usuario`, this.options());
         return this.toPromise(request);
     }
 
-    async editar (usuario: Usuario): Promise<Usuario> {
-        const request = this.httpClient.put(`${this.baseURL}/${this.pathURL()}/${usuario.id}`, JSON.stringify(usuario), this.options());
+
+    async editar (permissao: Permissao): Promise<Permissao> {
+        const request = this.httpClient.put(`${this.baseURL}/${this.pathURL()}/${permissao.id}`, JSON.stringify(permissao), this.options());
         return this.toPromise(request);
     }
 
-    async pesquisar (filtroUsuario: FiltroUsuario): Promise<Usuario[]> {
-        const request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}?nomeCompleto=${filtroUsuario.nomeCompleto}&email=${filtroUsuario.email}`, this.options());
+    async pesquisar (nomeCompleto: string, tipoPermissao: string): Promise<Array<Permissao>> {
+        const request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}?nomeCompleto=${nomeCompleto}&tipoPermissao=${tipoPermissao}`, this.options());
         return this.toPromise(request);
     }
 
@@ -45,5 +46,4 @@ export class PermissaoService extends AbstractService<Permissao> {
         const request = this.httpClient.delete(`${this.baseURL}/${this.pathURL()}/${id}`, this.options());
         return this.toPromise(request);
     }
-     */
 }

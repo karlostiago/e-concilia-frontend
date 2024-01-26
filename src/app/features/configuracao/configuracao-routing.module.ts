@@ -71,6 +71,11 @@ const rotas: Routes = [
         canActivate: [CanActivate]
     },
     {
+        path: 'configuracao/editar/permissoes/:id',
+        component: PermissaoCadastroComponent,
+        canActivate: [CanActivate]
+    },
+    {
         path: 'configuracao/consulta/permissoes',
         component: PermissaoConsultaComponent,
         canActivate: [CanActivate]

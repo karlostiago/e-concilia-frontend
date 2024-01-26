@@ -23,7 +23,10 @@
 
         <div class="card-footer">
             <div class="card-action">
-                <button pButton type="button" class="p-button-danger p-button-sm" icon="pi pi-save" label="Salvar" (click)="salvar()"></button>
+                <button pButton type="button" class="p-button-danger p-button-sm" icon="pi pi-save" label="Salvar" (click)="salvarOuEditar()"></button>
+                <button type="button" pButton class="p-button-danger p-button-sm p-button-outlined" icon="pi pi-replay" label="Voltar" routerLink="/configuracao/consulta/permissoes"></button>
+
+                <button type="reset" pButton class="p-button-danger p-button-sm float-end" icon="pi pi-eraser" (click)="limpar()" *ngIf="!permissao.id" label="Limpar"></button>
             </div>
         </div>
     </div>
@@ -36,7 +39,7 @@
         </div>
 
         <div class="card-body">
-            <p-table [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="15"
+            <p-table [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="15" dataKey="code"
                 styleClass="p-datatable-striped p-datatable p-datatable-gridlines" [value]="regras">
                 <ng-template pTemplate="header">
                     <tr>
@@ -54,34 +57,28 @@
                     <tr>
                         <td>{{ regra['nome'] }}</td>
                         <td class="text-center">
-                            <p-checkbox class="vr-checkbox" name="permissao_agendar_{{ naoBloquear(regra, TipoPermissao.AGENDAR) ? 'disabled' : '' }}" [binary]="true" [(ngModel)]="regra['agendar']"
-                                        (onChange)="adicionar(regra, TipoPermissao.AGENDAR, $event)"
-                                        [disabled]="naoBloquear(regra, TipoPermissao.AGENDAR)"></p-checkbox>
+                            <input type="checkbox" name="agendar" class="p-checkbox" [disabled]="naoBloquear(regra, TipoPermissao.AGENDAR)"
+                                   [checked]="!!regra['agendar']" (change)="adicionar(regra, TipoPermissao.AGENDAR, $event)" />
                         </td>
                         <td class="text-center">
-                            <p-checkbox class="vr-checkbox" name="permissao_cadastrar_{{ naoBloquear(regra, TipoPermissao.CADASTRAR) ? 'disabled' : '' }}" [binary]="true" [(ngModel)]="regra['cadastrar']"
-                                        (onChange)="adicionar(regra, TipoPermissao.CADASTRAR, $event)"
-                                        [disabled]="naoBloquear(regra, TipoPermissao.CADASTRAR)"></p-checkbox>
+                            <input type="checkbox" name="cadastrar" class="p-checkbox" [disabled]="naoBloquear(regra, TipoPermissao.CADASTRAR)"
+                                   [checked]="!!regra['cadastrar']" (change)="adicionar(regra, TipoPermissao.CADASTRAR, $event)" />
                         </td>
                         <td class="text-center">
-                            <p-checkbox class="vr-checkbox" name="permissao_atualizar_{{ naoBloquear(regra, TipoPermissao.ATUALIZAR) ? 'disabled' : '' }}" [binary]="true" [(ngModel)]="regra['atualizar']"
-                                        (onChange)="adicionar(regra, TipoPermissao.ATUALIZAR, $event)"
-                                        [disabled]="naoBloquear(regra, TipoPermissao.ATUALIZAR)"></p-checkbox>
+                            <input type="checkbox" name="atualizar" class="p-checkbox" [disabled]="naoBloquear(regra, TipoPermissao.ATUALIZAR)"
+                                   [checked]="!!regra['atualizar']" (change)="adicionar(regra, TipoPermissao.ATUALIZAR, $event)" />
                         </td>
                         <td class="text-center">
-                            <p-checkbox class="vr-checkbox" name="permissao_pesquisar_{{ naoBloquear(regra, TipoPermissao.PESQUISAR) ? 'disabled' : '' }}" [binary]="true" [(ngModel)]="regra['pesquisar']"
-                                        (onChange)="adicionar(regra, TipoPermissao.PESQUISAR, $event)"
-                                        [disabled]="naoBloquear(regra, TipoPermissao.PESQUISAR)"></p-checkbox>
+                            <input type="checkbox" name="pesquisar" class="p-checkbox" [disabled]="naoBloquear(regra, TipoPermissao.PESQUISAR)"
+                                   [checked]="!!regra['pesquisar']" (change)="adicionar(regra, TipoPermissao.PESQUISAR, $event)" />
                         </td>
                         <td class="text-center">
-                            <p-checkbox class="vr-checkbox" name="permissao_deletar_{{ naoBloquear(regra, TipoPermissao.DELETAR) ? 'disabled' : '' }}" [binary]="true" [(ngModel)]="regra['deletar']"
-                                        (onChange)="adicionar(regra, TipoPermissao.DELETAR, $event)"
-                                        [disabled]="naoBloquear(regra, TipoPermissao.DELETAR)"></p-checkbox>
+                            <input type="checkbox" name="deletar" class="p-checkbox" [disabled]="naoBloquear(regra, TipoPermissao.DELETAR)"
+                                   [checked]="!!regra['deletar']" (change)="adicionar(regra, TipoPermissao.DELETAR, $event)" />
                         </td>
                         <td class="text-center">
-                            <p-checkbox class="vr-checkbox" name="permissao_ativar_{{ naoBloquear(regra, TipoPermissao.ATIVAR) ? 'disabled' : '' }}" [binary]="true" [(ngModel)]="regra['ativar']"
-                                        (onChange)="adicionar(regra, TipoPermissao.ATIVAR, $event)"
-                                        [disabled]="naoBloquear(regra, TipoPermissao.ATIVAR)"></p-checkbox>
+                            <input type="checkbox" name="ativar" class="p-checkbox" [disabled]="naoBloquear(regra, TipoPermissao.ATIVAR)"
+                                   [checked]="!!regra['ativar']" (change)="adicionar(regra, TipoPermissao.ATIVAR, $event)" />
                         </td>
                     </tr>
                 </ng-template>

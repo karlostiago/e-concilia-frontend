@@ -14,6 +14,7 @@ import {ConfirmationService} from "primeng/api";
 import {Taxa} from "../../../model/Taxa";
 import {TaxaService} from "../../taxa/taxa.service";
 import {HttpHeaders} from "@angular/common/http";
+import {SegurancaService} from "../../seguranca/seguranca.service";
 
 @Component({
   selector: 'app-contrato-consulta',
@@ -33,6 +34,7 @@ export class ContratoConsultaComponent implements OnInit {
                 private operadoraService: OperadoraService,
                 private contratoService: ContratoService,
                 private notificacao: NotificacaoService,
+                private segurancaService: SegurancaService,
                 private confirmationService: ConfirmationService,
                 private taxaService: TaxaService) { }
 
@@ -114,8 +116,12 @@ export class ContratoConsultaComponent implements OnInit {
     }
 
     private carregarEmpresas () {
+        const usuario = this.segurancaService.getUsuario();
         this.empresaService.pesquisar(new FiltroEmpresa()).then(empresas => {
             this.empresas = empresas;
+            if (usuario !== null) {
+                this.empresas = usuario.lojasPermitidas;
+            }
         });
     }
 

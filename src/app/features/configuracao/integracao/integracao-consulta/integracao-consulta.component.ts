@@ -10,6 +10,7 @@ import {FiltroEmpresa} from "../../../../model/FiltroEmpresa";
 import {FiltroOperadora} from "../../../../filter/FiltroOperadora";
 import {ConfirmationService} from "primeng/api";
 import {IntegracaoService} from "../integracao.service";
+import {SegurancaService} from "../../../seguranca/seguranca.service";
 
 @Component({
   selector: 'app-integracao-cadastro-consulta',
@@ -29,6 +30,7 @@ export class IntegracaoConsultaComponent implements OnInit {
     constructor(private integracaoService: IntegracaoService,
                 private empresaService: EmpresaService,
                 private operadoraService: OperadoraService,
+                private segurancaService: SegurancaService,
                 private confirmationService: ConfirmationService,
                 private notificacao: NotificacaoService) { }
 
@@ -74,8 +76,12 @@ export class IntegracaoConsultaComponent implements OnInit {
     }
 
     private carregarEmpresas () {
+        const usuario = this.segurancaService.getUsuario();
         this.empresaService.pesquisar(new FiltroEmpresa()).then(empresas => {
             this.empresas = empresas;
+            if (usuario !== null) {
+                this.empresas = usuario.lojasPermitidas;
+            }
         });
     }
 

@@ -7,9 +7,13 @@
 
         <div class="card-body">
             <div class="row">
-                <div class="col-md-6">
-                    <label class="form-label">Nome do Usuário:</label>
-                    <input type="text" pInputText class="form-control" name="nomeUsuario" id="nomeUsuario" [(ngModel)]="filtroUsuario.nomeCompleto" />
+                <div class="col-md-9">
+                    <label class="form-label">Nome usuário:</label>
+                    <input type="text" pInputText class="form-control" name="nomeCompleto" id="nomeUsuario" [(ngModel)]="nomeCompleto" />
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Tipo permissão:</label>
+                    <p-dropdown styleClass="w-100" name="bandeira" id="bandeira" [options]="tipoPermissoes" placeholder="Selecione um tipo permissão" [(ngModel)]="tipoPermissao"></p-dropdown>
                 </div>
             </div>
         </div>
@@ -17,6 +21,8 @@
         <div class="card-footer">
             <div class="card-action">
                 <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-search" label="Pesquisar" (click)="pesquisar()"></button>
+                <button type="reset" pButton class="p-button-danger p-button-sm" icon="pi pi-eraser" label="Limpar"></button>
+
                 <button pButton class="p-button-danger p-button-sm float-end" icon="pi pi-plus-circle" routerLink="/configuracao/cadastro/permissoes/novo" label="Nova permissão"></button>
             </div>
         </div>
@@ -30,23 +36,21 @@
         </div>
 
         <div class="card-body">
-            <p-table [value]="usuarios" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="10" styleClass="p-datatable-striped p-datatable p-datatable-gridlines" #tabelaUsuarios>
+            <p-table [value]="permissoes" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="10" styleClass="p-datatable-striped p-datatable p-datatable-gridlines" #tabelaUsuarios>
                 <ng-template pTemplate="header">
                     <tr>
-                        <th style="min-width: 180px;">Nome Completo</th>
-                        <th class="text-center" style="min-width: 320px">Permissão</th>
-                        <th class="text-center" style="min-width: 120px;">Ações</th>
+                        <th style="min-width: 480px;">Nome Completo</th>
+                        <th class="text-center" style="max-width: 80px;">Ações</th>
                     </tr>
                 </ng-template>
 
-                <ng-template pTemplate="body" let-usuario>
+                <ng-template pTemplate="body" let-permissao>
                     <tr>
-                        <td> {{ usuario.nomeCompleto }} </td>
-                        <td class="text-center"> {{ usuario.permissao }}</td>
+                        <td> {{ permissao['usuario']['nomeCompleto'] }} </td>
                         <td class="text-center">
                             <div class="action">
-                                <button type="button" pButton icon="pi pi-trash" class="p-button-danger p-button-sm" (click)="dessasociarPermissaoUsuario(usuario)"></button>
-                                <button pButton icon="pi pi-pencil" class="p-button-danger p-button-sm" [routerLink]="['/cadastro/permissao', usuario.id]"></button>
+                                <button type="button" pButton icon="pi pi-trash" class="p-button-danger p-button-sm"></button>
+                                <button pButton icon="pi pi-pencil" class="p-button-danger p-button-sm" [routerLink]="['/configuracao/editar/permissoes', permissao['usuario'].id]"></button>
                             </div>
                         </td>
                     </tr>

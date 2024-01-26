@@ -1,3 +1,8 @@
 .vr-checkbox {
     cursor: no-drop!important;
 }
+
+.p-checkbox:disabled {
+    cursor: no-drop;
+}
+

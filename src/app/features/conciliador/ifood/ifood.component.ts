@@ -16,6 +16,7 @@ import {NotificacaoService} from "../../../shared/notificacao/notificacao.servic
 import {Table} from "primeng/table";
 import {Conciliador} from "../../../model/Conciliador";
 import {TipoRecebimento} from "../../../model/TipoRecebimento";
+import {SegurancaService} from "../../seguranca/seguranca.service";
 
 @Component({
   selector: 'app-ifood',
@@ -52,6 +53,7 @@ export class IfoodComponent implements OnInit {
         private integracaoService: IntegracaoService,
         private operadoraService: OperadoraService,
         private notificacao: NotificacaoService,
+        private segurancaService: SegurancaService,
         private conciliadorService: ConciliadorIfoodService) { }
 
     ngOnInit(): void {
@@ -153,8 +155,12 @@ export class IfoodComponent implements OnInit {
     }
 
     private carregarEmpresas () {
+        const usuario = this.segurancaService.getUsuario();
         this.empresaService.pesquisar(new FiltroEmpresa()).then(empresas => {
             this.empresas = empresas;
+            if (usuario !== null) {
+                this.empresas = usuario.lojasPermitidas;
+            }
         });
     }
 

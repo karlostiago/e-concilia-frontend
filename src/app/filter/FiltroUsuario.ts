@@ -1,4 +1,4 @@
 export class FiltroUsuario {
-    nomeCompleto = null;
-    email= null;
+    nomeCompleto: string | null;
+    email: string | null;
 }

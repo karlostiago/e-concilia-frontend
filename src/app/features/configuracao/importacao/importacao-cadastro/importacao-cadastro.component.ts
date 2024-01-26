@@ -9,6 +9,7 @@ import {Empresa} from "../../../../model/Empresa";
 import {ImportacaoService} from "../importacao.service";
 import {NotificacaoService} from "../../../../shared/notificacao/notificacao.service";
 import {NgForm} from "@angular/forms";
+import {SegurancaService} from "../../../seguranca/seguranca.service";
 
 @Component({
   selector: 'app-cadastro-importacao',
@@ -28,6 +29,7 @@ export class ImportacaoCadastroComponent implements OnInit {
     constructor(private operadoraService: OperadoraService,
                 private empresaService: EmpresaService,
                 private importacaoService: ImportacaoService,
+                private segurancaService: SegurancaService,
                 private notificacao: NotificacaoService) {
     }
 
@@ -76,8 +78,12 @@ export class ImportacaoCadastroComponent implements OnInit {
     }
 
     private carregarEmpresas () {
+        const usuario = this.segurancaService.getUsuario();
         this.empresaService.pesquisar(new FiltroEmpresa()).then(empresas => {
             this.empresas = empresas;
+            if (usuario !== null) {
+                this.empresas = usuario.lojasPermitidas;
+            }
         });
     }
 

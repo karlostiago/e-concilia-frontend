@@ -33,7 +33,6 @@ export abstract class AbstractService<T> {
                     resolve(data as T);
                 },
                 error: (error) => {
-                    console.log(error)
                     this.error.capturar(error);
                 }
             })

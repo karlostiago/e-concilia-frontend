@@ -10,6 +10,7 @@ import {NgForm} from "@angular/forms";
 import {NotificacaoService} from "../../../../shared/notificacao/notificacao.service";
 import {ActivatedRoute} from "@angular/router";
 import {IntegracaoService} from "../integracao.service";
+import {SegurancaService} from "../../../seguranca/seguranca.service";
 
 @Component({
   selector: 'app-integracao-cadastro',
@@ -29,6 +30,7 @@ export class IntegracaoCadastroComponent implements OnInit {
                 private operadoraService: OperadoraService,
                 private integracaoService: IntegracaoService,
                 private activatedRoute: ActivatedRoute,
+                private segurancaService: SegurancaService,
                 private notificacao: NotificacaoService) { }
 
     ngOnInit(): void {
@@ -90,8 +92,12 @@ export class IntegracaoCadastroComponent implements OnInit {
     }
 
     private carregarEmpresas () {
+        const usuario = this.segurancaService.getUsuario();
         this.empresaService.pesquisar(new FiltroEmpresa()).then(empresas => {
             this.empresas = empresas;
+            if (usuario !== null) {
+                this.empresas = usuario.lojasPermitidas;
+            }
         });
     }
 

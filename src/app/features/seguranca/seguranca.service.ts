@@ -5,6 +5,8 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {ErroHandlerService} from "../../core/ErroHandlerService";
 import {NotificacaoService} from "../../shared/notificacao/notificacao.service";
 import {ActivatedRouteSnapshot, RouterStateSnapshot} from "@angular/router";
+import {Usuario} from "../../model/Usuario";
+import {FiltroUsuario} from "../../filter/FiltroUsuario";
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +15,7 @@ export class SegurancaService extends AbstractService<UsuarioService>{
 
     private logado = false;
     private token: string;
+    private usuarioLogado: Usuario | null;
 
     constructor(private httpClient: HttpClient,
                 private notificacao: NotificacaoService,
@@ -21,26 +24,19 @@ export class SegurancaService extends AbstractService<UsuarioService>{
     }
 
     async login (email: string, senha: string): Promise<void> {
-        let headers = new HttpHeaders();
         this.token = this.gerarToken(email, senha);
-
-        headers = headers.append("Content-Type", "application/json");
-        headers = headers.append("Authorization", "Basic " + this.token);
-
-        const options = {
-            headers: headers
-        }
-
-        const request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}/login`, options);
+        const request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}/login`, { });
 
         return new Promise((resolve) => {
             request.subscribe({
-                next: () => {
+                next: (response) => {
                     resolve();
                     this.logado = true;
+                    this.usuarioLogado = response as Usuario;
                 },
                 error: (error) => {
                     this.logado = false;
+                    this.usuarioLogado = null;
                     this.notificacao.error("Usuário ou senha inválido.");
                 }
             });
@@ -49,6 +45,10 @@ export class SegurancaService extends AbstractService<UsuarioService>{
 
     getToken() {
         return this.token;
+    }
+
+    getUsuario() {
+        return this.usuarioLogado;
     }
 
     isLogado(): boolean {
