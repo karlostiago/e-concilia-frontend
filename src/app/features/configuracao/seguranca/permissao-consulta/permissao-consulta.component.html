@@ -49,7 +49,7 @@
                         <td> {{ permissao['usuario']['nomeCompleto'] }} </td>
                         <td class="text-center">
                             <div class="action">
-                                <button type="button" pButton icon="pi pi-trash" class="p-button-danger p-button-sm"></button>
+                                <button type="button" pButton icon="pi pi-trash" class="p-button-danger p-button-sm" (click)="confirmarExclusao(permissao)"></button>
                                 <button pButton icon="pi pi-pencil" class="p-button-danger p-button-sm" [routerLink]="['/configuracao/editar/permissoes', permissao['usuario'].id]"></button>
                             </div>
                         </td>

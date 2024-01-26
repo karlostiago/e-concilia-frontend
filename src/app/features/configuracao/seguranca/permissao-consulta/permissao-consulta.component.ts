@@ -56,6 +56,7 @@ export class PermissaoConsultaComponent implements OnInit {
     private excluir (id: number) {
         this.permissaoService.excluir(id).then(() => {
             this.notificacao.sucesso("Permissão excluído com sucesso.");
+            this.pesquisar();
         });
     }
 
