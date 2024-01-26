@@ -36,6 +36,9 @@
                 <li *ngIf="temAcessoMenuConfiguracao()">
                     <a href="#" (click)="menuConfiguracoes($event)"> <i class="pi pi-cog"></i> Configurações </a>
                 </li>
+                <li>
+                    <a (click)="segurancaService.logout()"> <i class="pi pi-sign-out"></i> Sair </a>
+                </li>
             </ul>
 
             <ul class="navbar-menu-item navbar-submenu" *ngIf="exibirMenuConciliadores">

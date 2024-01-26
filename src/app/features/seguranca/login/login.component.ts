@@ -20,7 +20,8 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit(): void {
-
+        this.email = 'econcilia';
+        this.senha = 'admin';
     }
 
     login() {

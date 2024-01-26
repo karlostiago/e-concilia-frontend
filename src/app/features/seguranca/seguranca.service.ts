@@ -4,7 +4,7 @@ import {UsuarioService} from "../configuracao/seguranca/usuario.service";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {ErroHandlerService} from "../../core/ErroHandlerService";
 import {NotificacaoService} from "../../shared/notificacao/notificacao.service";
-import {ActivatedRouteSnapshot, RouterStateSnapshot} from "@angular/router";
+import {ActivatedRouteSnapshot, Router, RouterStateSnapshot} from "@angular/router";
 import {Usuario} from "../../model/Usuario";
 import {FiltroUsuario} from "../../filter/FiltroUsuario";
 import {PermissaoService} from "../configuracao/seguranca/permissao.service";
@@ -21,6 +21,7 @@ export class SegurancaService extends AbstractService<UsuarioService>{
 
     constructor(private httpClient: HttpClient,
                 private notificacao: NotificacaoService,
+                private router: Router,
                 protected override error: ErroHandlerService) {
         super(error);
     }
@@ -43,6 +44,11 @@ export class SegurancaService extends AbstractService<UsuarioService>{
                 }
             });
         })
+    }
+
+    async logout() {
+        this.notificacao.sucesso("Logout realizado com sucesso.");
+        return this.router.navigate(['/login']);
     }
 
     getToken() {
