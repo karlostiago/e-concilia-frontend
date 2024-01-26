@@ -4,6 +4,7 @@ import {OperadoraService} from "../operadora.service";
 import {FiltroOperadora} from "../../../filter/FiltroOperadora";
 import {NotificacaoService} from "../../../shared/notificacao/notificacao.service";
 import {ConfirmationService} from "primeng/api";
+import {SegurancaService} from "../../seguranca/seguranca.service";
 
 @Component({
   selector: 'app-operadora-consulta',
@@ -17,6 +18,7 @@ export class OperadoraConsultaComponent implements OnInit {
 
     constructor(private operadoraService: OperadoraService,
                 private notificacao: NotificacaoService,
+                public segurancaService: SegurancaService,
                 private confirmationService: ConfirmationService) { }
 
 

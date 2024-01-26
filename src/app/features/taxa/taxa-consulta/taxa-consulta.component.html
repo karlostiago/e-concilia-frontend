@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <label class="form-label">Operadora:</label>
-                    <p-dropdown styleClass="w-100" name="empresa" id="empresa" optionLabel="descricao" optionValue="id" [options]="operadoras" placeholder="Selecione uma operadora" (onChange)="buscar($event)"></p-dropdown>
+                    <p-dropdown styleClass="w-100" name="empresa" id="empresa" optionLabel="descricao" optionValue="id" [options]="operadoras" placeholder="Selecione uma operadora" (onChange)="buscar($event)" [disabled]="!segurancaService.temPermissao('ROLE_PESQUISAR_TAXA')"></p-dropdown>
                 </div>
             </div>
         </div>
@@ -30,7 +30,7 @@
                         <th class="text-center w-5">Vigora em</th>
                         <th class="text-center w-5">Válido até</th>
                         <th class="text-center w-5">Expira em</th>
-                        <th class="text-center w-10">Ativo</th>
+                        <th *ngIf="segurancaService.temPermissao('ROLE_ATIVAR_TAXA')" class="text-center w-10">Ativo</th>
                     </tr>
                 </ng-template>
 
@@ -51,7 +51,7 @@
                         <td class="text-center"> {{ taxa["entraEmVigor"] | date:'dd/MM/yyyy' }} </td>
                         <td class="text-center"> {{ taxa["validoAte"] | date:'dd/MM/yyyy' }} </td>
                         <td class="text-center"> {{ taxa["expiraEm"] }} - dias </td>
-                        <td class="text-center">
+                        <td *ngIf="segurancaService.temPermissao('ROLE_ATIVAR_TAXA')" class="text-center">
                             <a (click)="ativarOuDesativar(taxa)">
                                 <span class=" {{ taxa['ativo'] == true ? 'badge text-bg-success' : 'badge text-bg-danger' }} ">
                                     {{ taxa["ativo"] === true ? 'Sim' : 'Não' }}

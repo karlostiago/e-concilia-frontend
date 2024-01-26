@@ -46,7 +46,7 @@
                 <div class="col-md-12 mb-10">
                     <br/>
                     <div class="card-action">
-                        <button pButton class="p-button-danger p-button-sm" icon="pi pi-search"  (click)="pesquisar()" label="Pesquisar"></button>
+                        <button pButton class="p-button-danger p-button-sm" icon="pi pi-search"  (click)="pesquisar()" label="Pesquisar" [disabled]="!segurancaService.temPermissao('ROLE_PESQUISAR_CONCILIADOR_IFOOD')"></button>
                         <button pButton class="p-button-danger p-button-sm" icon="pi pi-eraser" label="Limpar" (click)="limpar()"></button>
                     </div>
                 </div>

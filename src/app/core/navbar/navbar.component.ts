@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {NavbarService} from "../../shared/navbar/navbar.service";
-import {ActivatedRoute, Router, RouterStateSnapshot} from "@angular/router";
+import {SegurancaService} from "../../features/seguranca/seguranca.service";
 
 @Component({
   selector: 'app-navbar',
@@ -14,7 +14,8 @@ export class NavbarComponent implements OnInit {
     exibirMenuConfiguracoes = false;
     menuPrincipal = true;
 
-    constructor(private navbarService: NavbarService,) {
+    constructor(private navbarService: NavbarService,
+                public segurancaService: SegurancaService) {
         this.fecharMenu();
     }
 
@@ -39,5 +40,10 @@ export class NavbarComponent implements OnInit {
         this.exibirMenuConfiguracoes = !this.exibirMenuConfiguracoes;
     }
 
-
+    temAcessoMenuConfiguracao() {
+        return this.segurancaService.temPermissao('ROLE_MENU_INTEGRACAO')
+            || this.segurancaService.temPermissao('ROLE_MENU_USUARIO')
+            || this.segurancaService.temPermissao('ROLE_MENU_PERMISSAO')
+            || this.segurancaService.temPermissao('ROLE_PESQUISAR_IMPORTACAO');
+    }
 }

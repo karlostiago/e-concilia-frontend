@@ -7,6 +7,7 @@ import {ConfirmationService} from 'primeng/api';
 import {PermissaoService} from "../permissao.service";
 import {Permissao} from "../../../../model/Permissao";
 import {TipoPermissao} from "../../../../model/TipoPermissao";
+import {SegurancaService} from "../../../seguranca/seguranca.service";
 
 @Component({
   selector: 'app-permissao-consulta',
@@ -23,7 +24,7 @@ export class PermissaoConsultaComponent implements OnInit {
 
     filtroUsuario = new FiltroUsuario();
 
-    constructor(private usuarioService: UsuarioService,
+    constructor(public segurancaService: SegurancaService,
                 private permissaoService: PermissaoService,
                 private notificacao: NotificacaoService,
                 private confirmationService: ConfirmationService) { }

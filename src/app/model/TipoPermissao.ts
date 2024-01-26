@@ -5,4 +5,5 @@ export enum TipoPermissao {
     PESQUISAR = 'PESQUISAR',
     DELETAR = 'DELETAR',
     ATIVAR = 'ATIVAR',
+    MENU = 'MENU',
 }

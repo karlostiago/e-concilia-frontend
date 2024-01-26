@@ -34,7 +34,7 @@ export class ContratoConsultaComponent implements OnInit {
                 private operadoraService: OperadoraService,
                 private contratoService: ContratoService,
                 private notificacao: NotificacaoService,
-                private segurancaService: SegurancaService,
+                public segurancaService: SegurancaService,
                 private confirmationService: ConfirmationService,
                 private taxaService: TaxaService) { }
 

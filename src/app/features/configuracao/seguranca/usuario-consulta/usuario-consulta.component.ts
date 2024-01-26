@@ -4,6 +4,7 @@ import {ConfirmationService} from "primeng/api";
 import {Usuario} from "../../../../model/Usuario";
 import {FiltroUsuario} from "../../../../filter/FiltroUsuario";
 import {UsuarioService} from "../usuario.service";
+import {SegurancaService} from "../../../seguranca/seguranca.service";
 
 @Component({
   selector: 'app-usuario-consulta',
@@ -17,6 +18,7 @@ export class UsuarioConsultaComponent implements OnInit {
 
     constructor(private usuarioService: UsuarioService,
                 private notificacao: NotificacaoService,
+                public segurancaService: SegurancaService,
                 private confirmationService: ConfirmationService) { }
 
     ngOnInit(): void {

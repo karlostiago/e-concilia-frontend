@@ -42,6 +42,9 @@ export class RegraService extends AbstractService<Regra> {
                 case 'AGENDAR':
                     regra.agendar = true;
                     break;
+                case 'MENU':
+                    regra.menu = true;
+                    break;
             }
         }
 
@@ -50,16 +53,16 @@ export class RegraService extends AbstractService<Regra> {
 
     getRegras(): Array<Regra> {
         return [
-            { code: 1, nome: 'Dashboard', agendar: false, cadastrar: false, atualizar: false, pesquisar: false, deletar: false, ativar: false },
-            { code: 2, nome: 'Empresas', agendar: false, cadastrar: false, atualizar: false, pesquisar: false, deletar: false, ativar: false },
-            { code: 3, nome: 'Contratos', agendar: false, cadastrar: false, atualizar: false, pesquisar: false, deletar: false, ativar: false },
-            { code: 4, nome: 'Operadoras', agendar: false, cadastrar: false, atualizar: false, pesquisar: false, deletar: false, ativar: false },
-            { code: 5, nome: 'Taxas', agendar: false, cadastrar: false, atualizar: false, pesquisar: false, deletar: false, ativar: false },
-            { code: 7, nome: 'Integrações', agendar: false, cadastrar: false, atualizar: false, pesquisar: false, deletar: false, ativar: false },
-            { code: 8, nome: 'Usuários', agendar: false, cadastrar: false, atualizar: false, pesquisar: false, deletar: false, ativar: false },
-            { code: 9, nome: 'Permissões', agendar: false, cadastrar: false, atualizar: false, pesquisar: false, deletar: false, ativar: false },
-            { code: 10, nome: 'Importações', agendar: false, cadastrar: false, atualizar: false, pesquisar: false, deletar: false, ativar: false },
-            { code: 6, nome: 'Conciliador ifood', agendar: false, cadastrar: false, atualizar: false, pesquisar: false, deletar: false, ativar: false },
+            { code: 1, nome: 'Dashboard', agendar: false, cadastrar: false, atualizar: false, pesquisar: false, deletar: false, ativar: false, menu: false },
+            { code: 2, nome: 'Empresas', agendar: false, cadastrar: false, atualizar: false, pesquisar: false, deletar: false, ativar: false, menu: false },
+            { code: 3, nome: 'Contratos', agendar: false, cadastrar: false, atualizar: false, pesquisar: false, deletar: false, ativar: false, menu: false },
+            { code: 4, nome: 'Operadoras', agendar: false, cadastrar: false, atualizar: false, pesquisar: false, deletar: false, ativar: false, menu: false },
+            { code: 5, nome: 'Taxas', agendar: false, cadastrar: false, atualizar: false, pesquisar: false, deletar: false, ativar: false, menu: false },
+            { code: 7, nome: 'Integrações', agendar: false, cadastrar: false, atualizar: false, pesquisar: false, deletar: false, ativar: false, menu: false },
+            { code: 8, nome: 'Usuários', agendar: false, cadastrar: false, atualizar: false, pesquisar: false, deletar: false, ativar: false, menu: false },
+            { code: 9, nome: 'Permissões', agendar: false, cadastrar: false, atualizar: false, pesquisar: false, deletar: false, ativar: false, menu: false },
+            { code: 10, nome: 'Importações', agendar: false, cadastrar: false, atualizar: false, pesquisar: false, deletar: false, ativar: false, menu: false },
+            { code: 6, nome: 'Conciliador ifood', agendar: false, cadastrar: false, atualizar: false, pesquisar: false, deletar: false, ativar: false, menu: false },
         ]
     }
 }

@@ -20,8 +20,8 @@
 
         <div class="card-footer">
             <div class="card-action">
-                <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-search" label="Pesquisar" (click)="pesquisar()"></button>
-                <button pButton class="p-button-danger p-button-sm float-end" icon="pi pi-plus-circle" routerLink="/cadastro/empresas/novo" label="Nova empresa"></button>
+                <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-search" label="Pesquisar" (click)="pesquisar()" [disabled]="!segurancaService.temPermissao('ROLE_PESQUISAR_EMPRESA')"></button>
+                <button pButton class="p-button-danger p-button-sm float-end" icon="pi pi-plus-circle" routerLink="/cadastro/empresas/novo" [disabled]="!segurancaService.temPermissao('ROLE_CADASTRAR_EMPRESA')" label="Nova empresa"></button>
             </div>
         </div>
     </div>
@@ -40,7 +40,7 @@
                         <th style="min-width: 180px;">Cnpj</th>
                         <th class="text-center" style="min-width: 320px">Razão Social</th>
                         <th class="text-center" style="min-width: 320px">Nome Fantasia</th>
-                        <th class="text-center" style="min-width: 120px;">Ativo</th>
+                        <th *ngIf="segurancaService.temPermissao('ROLE_ATIVAR_EMPRESA')" class="text-center" style="min-width: 120px;">Ativo</th>
                         <th class="text-center" style="min-width: 150px;">Ações</th>
                     </tr>
                 </ng-template>
@@ -50,17 +50,17 @@
                         <td> {{ empresa["cnpj"] | cnpj }} </td>
                         <td class="text-center"> {{ empresa["razaoSocial"] }}</td>
                         <td class="text-center"> {{ empresa["nomeFantasia"] }}</td>
-                        <td class="text-center">
+                        <td *ngIf="segurancaService.temPermissao('ROLE_ATIVAR_EMPRESA')" class="text-center">
                             <a (click)="ativarOuDesativar(empresa)">
-                                <span class=" {{ empresa['ativo'] == true ? 'badge text-bg-success' : 'badge text-bg-danger' }} ">
+                                <span class=" {{ empresa['ativo'] == true ? 'badge text-bg-success' : 'badge text-bg-danger' }} " disabled="disabled">
                                     {{ empresa["ativo"] === true ? 'Sim' : 'Não' }}
                                 </span>
                             </a>
                         </td>
                         <td class="text-center">
                             <div class="action">
-                                <button type="button" pButton icon="pi pi-trash" class="p-button-danger p-button-sm" (click)="confirmarExclusao(empresa)"></button>
-                                <button pButton icon="pi pi-pencil" class="p-button-danger p-button-sm" [routerLink]="['/editar/empresas', empresa.id]"></button>
+                                <button type="button" pButton icon="pi pi-trash" class="p-button-danger p-button-sm" [disabled]="!segurancaService.temPermissao('ROLE_DELETAR_EMPRESA')" (click)="confirmarExclusao(empresa)"></button>
+                                <button pButton icon="pi pi-pencil" class="p-button-danger p-button-sm" [disabled]="!segurancaService.temPermissao('ROLE_EDITAR_EMPRESA')" [routerLink]="['/editar/empresas', empresa.id]"></button>
                             </div>
                         </td>
                     </tr>

@@ -30,7 +30,7 @@ export class IntegracaoConsultaComponent implements OnInit {
     constructor(private integracaoService: IntegracaoService,
                 private empresaService: EmpresaService,
                 private operadoraService: OperadoraService,
-                private segurancaService: SegurancaService,
+                public segurancaService: SegurancaService,
                 private confirmationService: ConfirmationService,
                 private notificacao: NotificacaoService) { }
 

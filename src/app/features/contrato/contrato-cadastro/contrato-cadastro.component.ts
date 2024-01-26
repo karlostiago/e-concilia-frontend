@@ -39,7 +39,7 @@ export class ContratoCadastroComponent implements OnInit {
                 private notificacao: NotificacaoService,
                 private activatedRoute: ActivatedRoute,
                 private taxaService: TaxaService,
-                private segurancaService: SegurancaService,
+                public segurancaService: SegurancaService,
                 private confirmationService: ConfirmationService) { }
 
 

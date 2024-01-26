@@ -6,6 +6,7 @@ import {OperadoraService} from "../../operadora/operadora.service";
 import {FiltroOperadora} from "../../../filter/FiltroOperadora";
 import {TaxaService} from "../taxa.service";
 import {NotificacaoService} from "../../../shared/notificacao/notificacao.service";
+import {SegurancaService} from "../../seguranca/seguranca.service";
 
 @Component({
   selector: 'app-taxa-consulta',
@@ -19,6 +20,7 @@ export class TaxaConsultaComponent implements  OnInit {
 
     constructor(private operadoraService: OperadoraService,
                 private taxaService: TaxaService,
+                public segurancaService: SegurancaService,
                 private notificacao: NotificacaoService) { }
 
     ngOnInit(): void {

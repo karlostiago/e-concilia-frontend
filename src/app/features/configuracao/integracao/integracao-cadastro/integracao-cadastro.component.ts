@@ -30,7 +30,7 @@ export class IntegracaoCadastroComponent implements OnInit {
                 private operadoraService: OperadoraService,
                 private integracaoService: IntegracaoService,
                 private activatedRoute: ActivatedRoute,
-                private segurancaService: SegurancaService,
+                public segurancaService: SegurancaService,
                 private notificacao: NotificacaoService) { }
 
     ngOnInit(): void {

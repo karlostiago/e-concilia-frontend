@@ -26,6 +26,7 @@ export class DashboardInicialComponent implements OnInit {
     filtro = new FiltroDashboard();
     empresas = new Array<Empresa>();
     empresaSelecionadaId = -1;
+    empresasSelecionadas = new Array<string>();
 
     dashboard = new Dashboard();
 
@@ -34,17 +35,18 @@ export class DashboardInicialComponent implements OnInit {
     @ViewChild(DashboardGraficoVendaUltimoSeteDiasDinheiroPixComponent) graficoVendaUltimoSeteDiasDinheiroPix: DashboardGraficoVendaUltimoSeteDiasDinheiroPixComponent;
 
     constructor(private dashboardService: DashboardService,
-                private segurancaService: SegurancaService,
+                public segurancaService: SegurancaService,
                 private empresaService: EmpresaService) {
     }
 
     ngOnInit(): void {
-        this.pesquisar();
         this.carregarEmpresas();
     }
 
     pesquisar() {
-        this.dashboardService.buscarInformacoes(this.empresaSelecionadaId, this.filtro.dtInicial, this.filtro.dtFinal).then(dashabord => {
+        this.selecionarEmpresa();
+
+        this.dashboardService.buscarInformacoes(this.empresasSelecionadas.join(','), this.filtro.dtInicial, this.filtro.dtFinal).then(dashabord => {
             this.dashboard = dashabord;
             this.graficoVendaUltimoSeteDiasComponent.atualizar(this.empresaSelecionadaId);
             this.graficoVendaUltimoSeteDiasCreditoDebito.atualizar(this.empresaSelecionadaId);
@@ -55,15 +57,34 @@ export class DashboardInicialComponent implements OnInit {
     limpar() {
         this.filtro = new FiltroDashboard();
         this.empresaSelecionadaId = -1;
+        this.carregarEmpresasPreSelecionadas();
+    }
+
+    private selecionarEmpresa() {
+        if (this.empresaSelecionadaId && this.empresaSelecionadaId > 0) {
+            this.empresasSelecionadas = []
+            this.empresasSelecionadas.push(this.empresaSelecionadaId.toString());
+        }
     }
 
     private carregarEmpresas () {
         const usuario = this.segurancaService.getUsuario();
-        this.empresaService.pesquisar(new FiltroEmpresa()).then(empresas => {
-            this.empresas = empresas;
+        this.empresaService.pesquisar(new FiltroEmpresa()).then(lojas => {
+            this.empresas = lojas;
             if (usuario !== null) {
                 this.empresas = usuario.lojasPermitidas;
             }
+            this.carregarEmpresasPreSelecionadas();
+            this.pesquisar();
         });
+    }
+
+    private carregarEmpresasPreSelecionadas() {
+        if (this.empresaSelecionadaId || this.empresaSelecionadaId === -1) {
+            this.empresasSelecionadas = [];
+            for (const empresa of this.empresas) {
+                this.empresasSelecionadas.push(empresa.id.toString());
+            }
+        }
     }
 }

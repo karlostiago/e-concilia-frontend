@@ -26,8 +26,8 @@
 
         <div class="card-footer">
             <div class="card-action">
-                <button type="submit" pButton class="p-button-danger p-button-sm" icon="pi pi-save" label="Salvar" [disabled]="!formulario.valid"></button>
-                <button type="button" pButton class="p-button-danger p-button-sm p-button-outlined" icon="pi pi-replay" (click)="voltar()" label="Voltar"></button>
+                <button type="submit" pButton class="p-button-danger p-button-sm" icon="pi pi-save" label="Salvar" [disabled]="!formulario.valid && !segurancaService.temPermissao('ROLE_CADASTRAR_OPERADORA')"></button>
+                <button type="button" pButton class="p-button-danger p-button-sm p-button-outlined" icon="pi pi-replay" (click)="voltar()" label="Voltar" [disabled]="!segurancaService.temPermissao('ROLE_PESQUISAR_OPERADORA')"></button>
 
                 <button type="reset" pButton class="p-button-danger p-button-sm float-end" icon="pi pi-eraser" *ngIf="!operadora.id" label="Limpar"></button>
             </div>

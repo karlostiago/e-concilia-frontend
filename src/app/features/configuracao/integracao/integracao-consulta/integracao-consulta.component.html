@@ -27,8 +27,8 @@
 
         <div class="card-footer">
             <div class="card-action">
-                <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-search" label="Pesquisar" (click)="pesquisar()" ></button>
-                <button pButton class="p-button-danger p-button-sm float-end" icon="pi pi-plus-circle" routerLink="/configuracao/cadastro/integracoes/novo" label="Nova integração"></button>
+                <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-search" label="Pesquisar" (click)="pesquisar()" [disabled]="!segurancaService.temPermissao('ROLE_PESQUISAR_INTEGRACAO')"></button>
+                <button pButton class="p-button-danger p-button-sm float-end" icon="pi pi-plus-circle" routerLink="/configuracao/cadastro/integracoes/novo" label="Nova integração" [disabled]="!segurancaService.temPermissao('ROLE_CADASTRAR_INTEGRACAO')"></button>
             </div>
         </div>
     </div>
@@ -60,8 +60,8 @@
                         <td class="text-center"> {{ integracao["operadora"]["descricao"] }} </td>
                         <td class="text-center">
                             <div class="action">
-                                <button type="button" pButton icon="pi pi-trash" class="p-button-danger p-button-sm" (click)="confirmarExclusao(integracao)"></button>
-                                <button pButton icon="pi pi-pencil" class="p-button-danger p-button-sm" [routerLink]="['/configuracao/editar/integracoes', integracao.id]"></button>
+                                <button type="button" pButton icon="pi pi-trash" class="p-button-danger p-button-sm" (click)="confirmarExclusao(integracao)" [disabled]="!segurancaService.temPermissao('ROLE_DELETAR_INTEGRACAO')"></button>
+                                <button pButton icon="pi pi-pencil" class="p-button-danger p-button-sm" [routerLink]="['/configuracao/editar/integracoes', integracao.id]" [disabled]="!segurancaService.temPermissao('ROLE_EDITAR_INTEGRACAO')"></button>
                             </div>
                         </td>
                     </tr>

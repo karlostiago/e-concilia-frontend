@@ -95,8 +95,8 @@
 
         <div class="card-footer">
             <div class="card-action">
-                <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-save" label="Salvar" [disabled]="!formulario.valid"></button>
-                <button pButton type="button" class="p-button-danger p-button-sm p-button-outlined" icon="pi pi-replay" label="Voltar" routerLink="/consulta/empresas"></button>
+                <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-save" label="Salvar" [disabled]="!formulario.valid && !segurancaService.temPermissao('ROLE_CADASTRAR_EMPRESA')"></button>
+                <button pButton type="button" class="p-button-danger p-button-sm p-button-outlined" icon="pi pi-replay" label="Voltar" routerLink="/consulta/empresas" [disabled]="!segurancaService.temPermissao('ROLE_PESQUISAR_EMPRESA')"></button>
 
                 <button pButton type="reset" class="p-button-danger p-button-sm float-end" icon="pi pi-eraser" *ngIf="!empresa.id" label="Limpar"></button>
             </div>

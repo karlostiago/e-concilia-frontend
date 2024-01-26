@@ -7,4 +7,5 @@ export class Regra {
     pesquisar: boolean;
     deletar: boolean;
     ativar: boolean;
+    menu: boolean;
 }

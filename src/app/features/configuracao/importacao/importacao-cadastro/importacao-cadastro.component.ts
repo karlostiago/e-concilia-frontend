@@ -29,7 +29,7 @@ export class ImportacaoCadastroComponent implements OnInit {
     constructor(private operadoraService: OperadoraService,
                 private empresaService: EmpresaService,
                 private importacaoService: ImportacaoService,
-                private segurancaService: SegurancaService,
+                public segurancaService: SegurancaService,
                 private notificacao: NotificacaoService) {
     }
 

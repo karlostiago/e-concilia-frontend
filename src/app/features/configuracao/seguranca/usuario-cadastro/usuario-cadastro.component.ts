@@ -7,6 +7,7 @@ import {UsuarioService} from "../usuario.service";
 import {FiltroEmpresa} from "../../../../model/FiltroEmpresa";
 import {EmpresaService} from "../../../empresa/empresa.service";
 import {Empresa} from "../../../../model/Empresa";
+import {SegurancaService} from "../../../seguranca/seguranca.service";
 
 @Component({
   selector: 'app-usuario-cadastro',
@@ -20,6 +21,7 @@ export class UsuarioCadastroComponent implements OnInit {
 
     constructor(private usuarioService: UsuarioService,
                 private empresaService: EmpresaService,
+                public segurancaService: SegurancaService,
                 private notificacao: NotificacaoService,
                 private activatedRoute: ActivatedRoute,) {
     }

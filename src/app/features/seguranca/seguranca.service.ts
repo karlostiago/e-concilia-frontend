@@ -7,6 +7,8 @@ import {NotificacaoService} from "../../shared/notificacao/notificacao.service";
 import {ActivatedRouteSnapshot, RouterStateSnapshot} from "@angular/router";
 import {Usuario} from "../../model/Usuario";
 import {FiltroUsuario} from "../../filter/FiltroUsuario";
+import {PermissaoService} from "../configuracao/seguranca/permissao.service";
+import {Seguranca} from "../../model/Seguranca";
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,7 @@ export class SegurancaService extends AbstractService<UsuarioService>{
 
     private logado = false;
     private token: string;
-    private usuarioLogado: Usuario | null;
+    private seguranca: Seguranca;
 
     constructor(private httpClient: HttpClient,
                 private notificacao: NotificacaoService,
@@ -32,11 +34,11 @@ export class SegurancaService extends AbstractService<UsuarioService>{
                 next: (response) => {
                     resolve();
                     this.logado = true;
-                    this.usuarioLogado = response as Usuario;
+                    this.seguranca = response as Seguranca;
                 },
                 error: (error) => {
                     this.logado = false;
-                    this.usuarioLogado = null;
+                    this.seguranca = new Seguranca();
                     this.notificacao.error("Usuário ou senha inválido.");
                 }
             });
@@ -48,11 +50,15 @@ export class SegurancaService extends AbstractService<UsuarioService>{
     }
 
     getUsuario() {
-        return this.usuarioLogado;
+        return this.seguranca.usuario;
     }
 
     isLogado(): boolean {
         return this.logado;
+    }
+
+    temPermissao(permissao: string) {
+        return this.seguranca?.permissoes.includes(permissao);
     }
 
     protected pathURL(): string {

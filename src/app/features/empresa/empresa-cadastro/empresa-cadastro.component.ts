@@ -6,6 +6,7 @@ import {Estado} from "../../../model/Estado";
 import {ActivatedRoute} from "@angular/router";
 import {NgForm} from "@angular/forms";
 import {RegraService} from "../../configuracao/seguranca/regra.service";
+import {SegurancaService} from "../../seguranca/seguranca.service";
 
 @Component({
     selector: 'app-empresa-cadastro',
@@ -19,6 +20,7 @@ export class EmpresaCadastroComponent implements OnInit {
     empresa = new Empresa();
 
     constructor(
+        public segurancaService: SegurancaService,
         private empresaService: EmpresaService,
         private notificacao: NotificacaoService,
         private activatedRoute: ActivatedRoute,

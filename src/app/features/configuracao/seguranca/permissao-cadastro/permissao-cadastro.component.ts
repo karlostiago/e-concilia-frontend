@@ -10,6 +10,7 @@ import {NotificacaoService} from "../../../../shared/notificacao/notificacao.ser
 import {Regra} from "../../../../model/Regra";
 import {ActivatedRoute} from "@angular/router";
 import {RegraService} from "../regra.service";
+import {SegurancaService} from "../../../seguranca/seguranca.service";
 
 @Component({
   selector: 'app-permissao-cadastro',
@@ -29,6 +30,7 @@ export class PermissaoCadastroComponent implements OnInit {
         private notificacao: NotificacaoService,
         private activatedRoute: ActivatedRoute,
         private regraService: RegraService,
+        public segurancaService: SegurancaService,
         private permissaoService: PermissaoService) { }
 
     ngOnInit(): void {
@@ -79,6 +81,7 @@ export class PermissaoCadastroComponent implements OnInit {
             [TipoPermissao.PESQUISAR]: ['Empresas', 'Contratos', 'Operadoras', 'Usuários', 'Permissões', 'Conciliador', 'Integrações', 'Taxas', 'Dashboard'],
             [TipoPermissao.DELETAR]: ['Empresas', 'Contratos', 'Operadoras', 'Usuários', 'Permissões', 'Integrações'],
             [TipoPermissao.ATIVAR]: ['Empresas', 'Contratos', 'Taxas'],
+            [TipoPermissao.MENU]: ['Empresas', 'Contratos', 'Operadoras', 'Usuários', 'Permissões', 'Integrações', 'Taxas', 'Importações', 'Conciliador'],
         };
 
         const permissoesDoTipo = permissoesPorTipo[tipoPermissao];

@@ -15,8 +15,8 @@
 
         <div class="card-footer">
             <div class="card-action">
-                <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-search" label="Pesquisar" (click)="pesquisar()"></button>
-                <button pButton class="p-button-danger p-button-sm float-end" icon="pi pi-plus-circle" routerLink="/cadastro/operadoras/novo" label="Nova operadora"></button>
+                <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-search" label="Pesquisar" (click)="pesquisar()" [disabled]="!segurancaService.temPermissao('ROLE_PESQUISAR_OPERADORA')"></button>
+                <button pButton class="p-button-danger p-button-sm float-end" icon="pi pi-plus-circle" routerLink="/cadastro/operadoras/novo" label="Nova operadora" [disabled]="!segurancaService.temPermissao('ROLE_CADASTRO_OPERADORA')"></button>
             </div>
         </div>
     </div>
@@ -48,8 +48,8 @@
                         </td>
                         <td class="text-center">
                             <div class="action">
-                                <button type="button" pButton icon="pi pi-trash" class="p-button-danger p-button-sm" (click)="confirmarExclusao(operadora)"></button>
-                                <button pButton icon="pi pi-pencil" class="p-button-danger p-button-sm" [routerLink]="['/editar/operadoras', operadora.id]"></button>
+                                <button type="button" pButton icon="pi pi-trash" class="p-button-danger p-button-sm" (click)="confirmarExclusao(operadora)" [disabled]="!segurancaService.temPermissao('ROLE_DELETAR_OPERADORA')"></button>
+                                <button pButton icon="pi pi-pencil" class="p-button-danger p-button-sm" [routerLink]="['/editar/operadoras', operadora.id]" [disabled]="!segurancaService.temPermissao('ROLE_EDITAR_OPERADORA')"></button>
                             </div>
                         </td>
                     </tr>

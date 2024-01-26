@@ -3,8 +3,6 @@ import {ConciliadorIfoodService} from "../conciliador-ifood.service";
 import {Empresa} from "../../../model/Empresa";
 import {DataHelpers} from "../../../../helpers/DataHelpers";
 import {FormatacaoMoedaPtBR} from "../../../../helpers/FormatacaoMoedaPtBR";
-import {EmpresaService} from "../../empresa/empresa.service";
-import {FiltroEmpresa} from "../../../filter/FiltroEmpresa";
 import {Metodo} from "../../../model/Metodo";
 import {Bandeira} from "../../../model/Bandeira";
 import {Venda} from "../../../model/Venda";
@@ -17,6 +15,8 @@ import {Table} from "primeng/table";
 import {Conciliador} from "../../../model/Conciliador";
 import {TipoRecebimento} from "../../../model/TipoRecebimento";
 import {SegurancaService} from "../../seguranca/seguranca.service";
+import {EmpresaService} from "../../empresa/empresa.service";
+import {FiltroEmpresa} from "../../../model/FiltroEmpresa";
 
 @Component({
   selector: 'app-ifood',
@@ -49,11 +49,11 @@ export class IfoodComponent implements OnInit {
     @ViewChild('tabela') tabela: Table;
 
     constructor(
-        private empresaService: EmpresaService,
         private integracaoService: IntegracaoService,
         private operadoraService: OperadoraService,
         private notificacao: NotificacaoService,
-        private segurancaService: SegurancaService,
+        public segurancaService: SegurancaService,
+        private empresaService: EmpresaService,
         private conciliadorService: ConciliadorIfoodService) { }
 
     ngOnInit(): void {

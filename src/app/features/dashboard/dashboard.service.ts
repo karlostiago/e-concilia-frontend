@@ -7,7 +7,6 @@ import {DataHelpers} from "../../../helpers/DataHelpers";
 import {GraficoVendaUltimo7Dia} from "../../model/GraficoVendaUltimo7Dia";
 import {GraficoVendaUltimo7DiaCreditoDebito} from "../../model/GraficoVendaUltimo7DiaCreditoDebito";
 import {GraficoVendaUltimo7DiaDinheiroPix} from "../../model/GraficoVendaUltimo7DiaDinheiroPix";
-import {SegurancaService} from "../seguranca/seguranca.service";
 
 @Injectable({
   providedIn: 'root'
@@ -23,11 +22,8 @@ export class DashboardService extends AbstractService<Dashboard> {
         return "dashboard";
     }
 
-    async buscarInformacoes(empresaId: number, dtVendaDe: Date, dtVendaAte: Date): Promise<Dashboard> {
-        if (empresaId == null) {
-            empresaId = -1;
-        }
-
+    async buscarInformacoes(empresaId: string, dtVendaDe: Date, dtVendaAte: Date): Promise<Dashboard> {
+        console.log(empresaId)
         const request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}?lojaId=${empresaId}&dtInicial=${DataHelpers.formatUs(dtVendaDe)}&dtFinal=${DataHelpers.formatUs(dtVendaAte)}`, this.options());
         return this.toPromise(request);
     }

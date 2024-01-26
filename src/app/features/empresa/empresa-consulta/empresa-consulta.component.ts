@@ -4,6 +4,7 @@ import {EmpresaService} from "../empresa.service";
 import {NotificacaoService} from "../../../shared/notificacao/notificacao.service";
 import {FiltroEmpresa} from "../../../filter/FiltroEmpresa";
 import {ConfirmationService} from "primeng/api";
+import {SegurancaService} from "../../seguranca/seguranca.service";
 
 @Component({
     selector: 'app-empresa-consulta',
@@ -19,6 +20,7 @@ export class EmpresaConsultaComponent implements OnInit {
     @ViewChild('tabela') tabela: any;
 
     constructor(
+        public segurancaService: SegurancaService,
         private empresaService: EmpresaService,
         private notificacao: NotificacaoService,
         private confirmationService: ConfirmationService) { }

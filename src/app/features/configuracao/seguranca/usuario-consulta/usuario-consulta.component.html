@@ -20,8 +20,8 @@
 
         <div class="card-footer">
             <div class="card-action">
-                <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-search" label="Pesquisar" (click)="pesquisar()"></button>
-                <button pButton class="p-button-danger p-button-sm float-end" icon="pi pi-plus-circle" routerLink="/configuracao/cadastro/usuarios/novo" label="Novo usuário"></button>
+                <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-search" label="Pesquisar" (click)="pesquisar()" [disabled]="!segurancaService.temPermissao('ROLE_PESQUISAR_USUARIO')"></button>
+                <button pButton class="p-button-danger p-button-sm float-end" icon="pi pi-plus-circle" routerLink="/configuracao/cadastro/usuarios/novo" label="Novo usuário" [disabled]="!segurancaService.temPermissao('ROLE_CADASTRAR_USUARIO')"></button>
             </div>
         </div>
     </div>
@@ -49,8 +49,8 @@
                         <td class="text-center"> {{ usuario["email"] }} </td>
                         <td class="text-center">
                             <div class="action">
-                                <button type="button" pButton icon="pi pi-trash" class="p-button-danger p-button-sm" (click)="confirmarExclusao(usuario)"></button>
-                                <button pButton icon="pi pi-pencil" class="p-button-danger p-button-sm" [routerLink]="['/configuracao/editar/usuarios', usuario.id]"></button>
+                                <button type="button" pButton icon="pi pi-trash" class="p-button-danger p-button-sm" (click)="confirmarExclusao(usuario)" [disabled]="!segurancaService.temPermissao('ROLE_DELETAR_USUARIO')"></button>
+                                <button pButton icon="pi pi-pencil" class="p-button-danger p-button-sm" [routerLink]="['/configuracao/editar/usuarios', usuario.id]" [disabled]="!segurancaService.temPermissao('ROLE_EDITAR_USUARIO')"></button>
                             </div>
                         </td>
                     </tr>

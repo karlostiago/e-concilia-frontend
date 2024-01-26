@@ -4,6 +4,7 @@ import {NotificacaoService} from "../../../shared/notificacao/notificacao.servic
 import {OperadoraService} from "../operadora.service";
 import {NgForm} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
+import {SegurancaService} from "../../seguranca/seguranca.service";
 
 @Component({
   selector: 'app-operadora-cadastro',
@@ -18,6 +19,7 @@ export class OperadoraCadastroComponent implements OnInit {
         private notificacao: NotificacaoService,
         private operadoraService: OperadoraService,
         private router: Router,
+        public segurancaService: SegurancaService,
         private activatedRoute: ActivatedRoute) {}
 
     ngOnInit(): void {
