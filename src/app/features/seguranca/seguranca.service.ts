@@ -46,9 +46,23 @@ export class SegurancaService extends AbstractService<UsuarioService>{
         })
     }
 
-    async logout() {
-        this.notificacao.sucesso("Logout realizado com sucesso.");
-        return this.router.navigate(['/login']);
+    async logout(): Promise<void> {
+        const request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}/logout`, { });
+        return new Promise((resolve) => {
+            request.subscribe({
+                next: () => {
+                    resolve();
+                    this.token = '';
+                    this.logado = false;
+                    this.seguranca = new Seguranca();
+                    this.notificacao.sucesso("Logout realizado com sucesso.");
+                    this.router.navigate(['/login']);
+                },
+                error: (error) => {
+                    this.notificacao.error(error);
+                }
+            });
+        });
     }
 
     getToken() {

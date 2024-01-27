@@ -53,7 +53,7 @@
     width: 290px;
     position: relative;
     top: 10%;
-    left: 10%;
+    left: 19%;
     transform: translate(-19%, -19%);
 }
 
@@ -191,6 +191,10 @@
     .login100-form {
         width: 50%;
     }
+
+    .txt2 {
+        bottom: -70px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -205,10 +209,18 @@
     .login100-form {
         width: 100%;
     }
+
+    .txt2 {
+        bottom: -70px;
+    }
 }
 
 @media (max-width: 576px) {
     .wrap-login100 {
         padding: 100px 15px 33px 15px;
+    }
+
+    .txt2 {
+        bottom: -70px;
     }
 }
