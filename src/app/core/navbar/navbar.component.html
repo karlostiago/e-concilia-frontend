@@ -43,21 +43,31 @@
 
             <ul class="navbar-menu-item navbar-submenu" *ngIf="exibirMenuConciliadores">
                 <li>
-                    <a href="#" (click)="menuConciliadores($event)"> <i class="pi pi-angle-double-left"></i> Conciliadores </a>
+                    <a href="#" (click)="menuConciliadores($event)"> <i class="pi pi-angle-double-left"></i>
+                        Conciliadores </a>
                     <ul>
-                        <li *ngIf="segurancaService.temPermissao('ROLE_PESQUISAR_CONCILIADOR_IFOOD')"> <a routerLink="/consulta/conciliador/ifood"> <i class="pi pi-angle-right"></i> Ifood </a> </li>
+                        <li *ngIf="segurancaService.temPermissao('ROLE_PESQUISAR_CONCILIADOR_IFOOD')"><a
+                            routerLink="/consulta/conciliador/ifood"> <i class="pi pi-angle-right"></i> Ifood </a></li>
                     </ul>
                 </li>
             </ul>
 
             <ul class="navbar-menu-item navbar-submenu" *ngIf="exibirMenuConfiguracoes">
                 <li>
-                    <a href="#" (click)="menuConfiguracoes($event)"> <i class="pi pi-angle-double-left"></i> Configurações </a>
+                    <a href="#" (click)="menuConfiguracoes($event)"> <i class="pi pi-angle-double-left"></i>
+                        Configurações </a>
                     <ul>
-                        <li *ngIf="segurancaService.temPermissao('ROLE_PESQUISAR_INTEGRACAO')"> <a routerLink="configuracao/consulta/integracoes"> <i class="pi pi-share-alt"></i> Integrações </a> </li>
-                        <li *ngIf="segurancaService.temPermissao('ROLE_PESQUISAR_USUARIO')"> <a routerLink="configuracao/consulta/usuarios"> <i class="pi pi-user"></i> Usuários </a> </li>
-                        <li *ngIf="segurancaService.temPermissao('ROLE_PESQUISAR_PERMISSAO')"> <a routerLink="configuracao/consulta/permissoes"> <i class="pi pi-shield"></i> Permissões </a> </li>
-                        <li *ngIf="segurancaService.temPermissao('ROLE_PESQUISAR_IMPORTACAO')"> <a routerLink="configuracao/cadastro/importacoes/agendar"> <i class="pi pi-download"></i> Importações </a> </li>
+                        <li *ngIf="segurancaService.temPermissao('ROLE_PESQUISAR_INTEGRACAO')"><a
+                            routerLink="configuracao/consulta/integracoes"> <i class="pi pi-share-alt"></i> Integrações
+                        </a></li>
+                        <li *ngIf="segurancaService.temPermissao('ROLE_PESQUISAR_USUARIO')"><a
+                            routerLink="configuracao/consulta/usuarios"> <i class="pi pi-user"></i> Usuários </a></li>
+                        <li *ngIf="segurancaService.temPermissao('ROLE_PESQUISAR_PERMISSAO')"><a
+                            routerLink="configuracao/consulta/permissoes"> <i class="pi pi-shield"></i> Permissões </a>
+                        </li>
+                        <li *ngIf="segurancaService.temPermissao('ROLE_PESQUISAR_IMPORTACAO')"><a
+                            routerLink="configuracao/cadastro/importacoes/agendar"> <i class="pi pi-download"></i>
+                            Importações </a></li>
                     </ul>
                 </li>
             </ul>
@@ -65,8 +75,8 @@
     </div>
 </nav>
 
-<br />
-<br />
+<br/>
+<br/>
 
 <div class="navbar-navegator {{ exibirMenu ? 'moving ml-240' : 'moving' }}">
     <app-breadcrumb></app-breadcrumb>

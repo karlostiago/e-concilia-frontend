@@ -21,7 +21,7 @@ import {ProgressSpinnerModule} from "primeng/progressspinner";
         ProgressSpinnerModule
     ],
     providers: [
-        { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }
+        {provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true}
     ]
 })
 export class LoaderModule {

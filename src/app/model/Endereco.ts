@@ -1,4 +1,5 @@
 import {Estado} from "./Estado";
+
 export class Endereco {
     logradouro: string;
     numero: string;

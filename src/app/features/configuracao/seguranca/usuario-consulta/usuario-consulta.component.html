@@ -8,25 +8,31 @@
             <div class="row">
                 <div class="col-md-6">
                     <label class="form-label">Nome completo:</label>
-                    <input type="text" pInputText class="form-control" name="nomeCompleto" id="nomeCompleto" [(ngModel)]="filtroUsuario.nomeCompleto" />
+                    <input type="text" pInputText class="form-control" name="nomeCompleto" id="nomeCompleto"
+                           [(ngModel)]="filtroUsuario.nomeCompleto"/>
                 </div>
 
                 <div class="col-md-6">
                     <label class="form-label">E-mail:</label>
-                    <input type="text" pInputText class="form-control" name="email" id="email" [(ngModel)]="filtroUsuario.email" />
+                    <input type="text" pInputText class="form-control" name="email" id="email"
+                           [(ngModel)]="filtroUsuario.email"/>
                 </div>
             </div>
         </div>
 
         <div class="card-footer">
             <div class="card-action">
-                <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-search" label="Pesquisar" (click)="pesquisar()" [disabled]="!segurancaService.temPermissao('ROLE_PESQUISAR_USUARIO')"></button>
-                <button pButton class="p-button-danger p-button-sm float-end" icon="pi pi-plus-circle" routerLink="/configuracao/cadastro/usuarios/novo" label="Novo usuário" [disabled]="!segurancaService.temPermissao('ROLE_CADASTRAR_USUARIO')"></button>
+                <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-search" label="Pesquisar"
+                        (click)="pesquisar()"
+                        [disabled]="!segurancaService.temPermissao('ROLE_PESQUISAR_USUARIO')"></button>
+                <button pButton class="p-button-danger p-button-sm float-end" icon="pi pi-plus-circle"
+                        routerLink="/configuracao/cadastro/usuarios/novo" label="Novo usuário"
+                        [disabled]="!segurancaService.temPermissao('ROLE_CADASTRAR_USUARIO')"></button>
             </div>
         </div>
     </div>
 
-    <br />
+    <br/>
 
     <div class="card">
         <div class="card-header">
@@ -34,7 +40,8 @@
         </div>
 
         <div class="card-body">
-            <p-table [value]="usuarios" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="10" styleClass="p-datatable-striped p-datatable p-datatable-gridlines" #tabela>
+            <p-table [value]="usuarios" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="10"
+                     styleClass="p-datatable-striped p-datatable p-datatable-gridlines" #tabela>
                 <ng-template pTemplate="header">
                     <tr>
                         <th class="text-center" style="min-width: 320px">Nome Completo</th>
@@ -45,12 +52,16 @@
 
                 <ng-template pTemplate="body" let-usuario>
                     <tr>
-                        <td class="text-center"> {{ usuario["nomeCompleto"] }} </td>
-                        <td class="text-center"> {{ usuario["email"] }} </td>
+                        <td class="text-center"> {{ usuario["nomeCompleto"] }}</td>
+                        <td class="text-center"> {{ usuario["email"] }}</td>
                         <td class="text-center">
                             <div class="action">
-                                <button type="button" pButton icon="pi pi-trash" class="p-button-danger p-button-sm" (click)="confirmarExclusao(usuario)" [disabled]="!segurancaService.temPermissao('ROLE_DELETAR_USUARIO')"></button>
-                                <button pButton icon="pi pi-pencil" class="p-button-danger p-button-sm" [routerLink]="['/configuracao/editar/usuarios', usuario.id]" [disabled]="!segurancaService.temPermissao('ROLE_EDITAR_USUARIO')"></button>
+                                <button type="button" pButton icon="pi pi-trash" class="p-button-danger p-button-sm"
+                                        (click)="confirmarExclusao(usuario)"
+                                        [disabled]="!segurancaService.temPermissao('ROLE_DELETAR_USUARIO')"></button>
+                                <button pButton icon="pi pi-pencil" class="p-button-danger p-button-sm"
+                                        [routerLink]="['/configuracao/editar/usuarios', usuario.id]"
+                                        [disabled]="!segurancaService.temPermissao('ROLE_EDITAR_USUARIO')"></button>
                             </div>
                         </td>
                     </tr>

@@ -1,14 +1,12 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {Contrato} from "../../model/Contrato";
 import {AbstractService} from "../../service/AbstractService";
 import {ErroHandlerService} from "../../core/ErroHandlerService";
 import {FiltroContrato} from "../../filter/FiltroContrato";
-import {Empresa} from "../../model/Empresa";
-import {SegurancaService} from "../seguranca/seguranca.service";
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class ContratoService extends AbstractService<Contrato> {
 
@@ -21,22 +19,22 @@ export class ContratoService extends AbstractService<Contrato> {
         return 'contratos';
     }
 
-    async salvar (contrato: Contrato): Promise<Contrato> {
+    async salvar(contrato: Contrato): Promise<Contrato> {
         const request = this.httpClient.post(`${this.baseURL}/${this.pathURL()}`, JSON.stringify(contrato), this.options());
         return this.toPromise(request);
     }
 
-    async editar (contrato: Contrato): Promise<Contrato> {
+    async editar(contrato: Contrato): Promise<Contrato> {
         const request = this.httpClient.put(`${this.baseURL}/${this.pathURL()}/${contrato.numero}`, JSON.stringify(contrato), this.options());
         return this.toPromise(request);
     }
 
-    async excluir (id: number) {
+    async excluir(id: number) {
         const request = this.httpClient.delete(`${this.baseURL}/${this.pathURL()}/${id}`, this.options());
         return this.toPromise(request);
     }
 
-    async pesquisarPorId (id: number): Promise<Contrato> {
+    async pesquisarPorId(id: number): Promise<Contrato> {
         const request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}/${id}`, this.options());
         return this.toPromise(request);
     }
@@ -46,12 +44,12 @@ export class ContratoService extends AbstractService<Contrato> {
         return this.toPromise(request);
     }
 
-    async ativar (id: number): Promise<Contrato> {
+    async ativar(id: number): Promise<Contrato> {
         const request = this.httpClient.patch(`${this.baseURL}/${this.pathURL()}/${id}/ativar`, this.options());
         return this.toPromise(request);
     }
 
-    async desativar (id: number): Promise<Contrato> {
+    async desativar(id: number): Promise<Contrato> {
         const request = this.httpClient.patch(`${this.baseURL}/${this.pathURL()}/${id}/desativar`, this.options());
         return this.toPromise(request);
     }
@@ -61,14 +59,11 @@ export class ContratoService extends AbstractService<Contrato> {
 
         if (filtro.empresaId !== null && filtro.operadoraId != null) {
             request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}?empresaId=${filtro.empresaId}&operadoraId=${filtro.operadoraId}`, this.options());
-        }
-        else if (filtro.empresaId !== null) {
+        } else if (filtro.empresaId !== null) {
             request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}?empresaId=${filtro.empresaId}`, this.options());
-        }
-        else if (filtro.operadoraId !== null) {
+        } else if (filtro.operadoraId !== null) {
             request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}?operadoraId=${filtro.operadoraId}`, this.options());
-        }
-        else {
+        } else {
             request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}`, this.options());
         }
         return request;

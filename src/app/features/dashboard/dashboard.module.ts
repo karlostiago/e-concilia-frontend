@@ -12,20 +12,25 @@ import {
 import {
     DashboardGraficoVendaUltimoSeteDiasDinheiroPixComponent
 } from "./dashboard-grafico-venda-ultimo-sete-dias-dinheiro-pix/dashboard-grafico-venda-ultimo-sete-dias-dinheiro-pix.component";
+import {
+    DashboardGraficoVendaUltimoSeteDiasPercentualComponent
+} from "./dashboard-grafico-venda-ultimo-sete-dias-percentual/dashboard-grafico-venda-ultimo-sete-dias-percentual.component";
 
 @NgModule({
     declarations: [
         DashboardInfoComponent,
         DashboardGraficoVendaUltimoSeteDiasComponent,
         DashboardGraficoVendaUltimoSeteDiasCreditoDebitoComponent,
-        DashboardGraficoVendaUltimoSeteDiasDinheiroPixComponent
+        DashboardGraficoVendaUltimoSeteDiasDinheiroPixComponent,
+        DashboardGraficoVendaUltimoSeteDiasPercentualComponent
     ],
     exports: [
         DashboardInfoComponent,
         ChartModule,
         DashboardGraficoVendaUltimoSeteDiasComponent,
         DashboardGraficoVendaUltimoSeteDiasCreditoDebitoComponent,
-        DashboardGraficoVendaUltimoSeteDiasDinheiroPixComponent
+        DashboardGraficoVendaUltimoSeteDiasDinheiroPixComponent,
+        DashboardGraficoVendaUltimoSeteDiasPercentualComponent
     ],
     imports: [
         CommonModule,
@@ -33,4 +38,5 @@ import {
         ChartModule
     ]
 })
-export class DashboardModule { }
+export class DashboardModule {
+}

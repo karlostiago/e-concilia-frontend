@@ -9,4 +9,5 @@ import {CnpjPipe} from "../cnpj.pipe";
         CnpjPipe
     ]
 })
-export class CnpjModule { }
+export class CnpjModule {
+}

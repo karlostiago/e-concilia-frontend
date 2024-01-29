@@ -13,13 +13,12 @@ import {NotificacaoService} from "../../../shared/notificacao/notificacao.servic
 import {ConfirmationService} from "primeng/api";
 import {Taxa} from "../../../model/Taxa";
 import {TaxaService} from "../../taxa/taxa.service";
-import {HttpHeaders} from "@angular/common/http";
 import {SegurancaService} from "../../seguranca/seguranca.service";
 
 @Component({
-  selector: 'app-contrato-consulta',
-  templateUrl: './contrato-consulta.component.html',
-  styleUrls: ['./contrato-consulta.component.css']
+    selector: 'app-contrato-consulta',
+    templateUrl: './contrato-consulta.component.html',
+    styleUrls: ['./contrato-consulta.component.css']
 })
 export class ContratoConsultaComponent implements OnInit {
 
@@ -36,7 +35,8 @@ export class ContratoConsultaComponent implements OnInit {
                 private notificacao: NotificacaoService,
                 public segurancaService: SegurancaService,
                 private confirmationService: ConfirmationService,
-                private taxaService: TaxaService) { }
+                private taxaService: TaxaService) {
+    }
 
     ngOnInit(): void {
         this.carregarEmpresas();
@@ -48,16 +48,16 @@ export class ContratoConsultaComponent implements OnInit {
         return StringHelper.preencherComZero(numeroContrato, 10, false);
     }
 
-    confirmarExclusao (contrato: Contrato) {
+    confirmarExclusao(contrato: Contrato) {
         this.confirmationService.confirm({
-            message: `Tem certeza que deseja excluir o contrato de número '${ this.completarComZeroEsquerda(contrato.numero.toString()) }' ?`,
+            message: `Tem certeza que deseja excluir o contrato de número '${this.completarComZeroEsquerda(contrato.numero.toString())}' ?`,
             accept: () => {
                 this.excluir(contrato.numero);
             }
         })
     }
 
-    async detalharTaxas (contrato: Contrato) {
+    async detalharTaxas(contrato: Contrato) {
         await this.taxaService.buscarPorContrato(contrato).then(taxas => {
             this.taxas = taxas;
             this.visivel = true;
@@ -80,7 +80,7 @@ export class ContratoConsultaComponent implements OnInit {
         }
     }
 
-    ativarOuDesativar (contrato: Contrato) {
+    ativarOuDesativar(contrato: Contrato) {
         if (contrato.ativo) {
             this.desativar(contrato);
         } else {
@@ -88,21 +88,21 @@ export class ContratoConsultaComponent implements OnInit {
         }
     }
 
-    private ativar (contrato: Contrato) {
+    private ativar(contrato: Contrato) {
         this.contratoService.ativar(contrato.numero).then(() => {
             this.notificacao.sucesso("Contrato ativada com sucesso.");
             contrato.ativo = true;
         });
     }
 
-    private desativar (contrato: Contrato) {
+    private desativar(contrato: Contrato) {
         this.contratoService.desativar(contrato.numero).then(() => {
             this.notificacao.sucesso("Contrato desativada com sucesso.");
             contrato.ativo = false;
         });
     }
 
-    private excluir (id: number) {
+    private excluir(id: number) {
         this.contratoService.excluir(id).then(() => {
             this.carregarContratos();
             this.notificacao.sucesso("Contrato excluído com sucesso.");
@@ -115,7 +115,7 @@ export class ContratoConsultaComponent implements OnInit {
         });
     }
 
-    private carregarEmpresas () {
+    private carregarEmpresas() {
         const usuario = this.segurancaService.getUsuario();
         this.empresaService.pesquisar(new FiltroEmpresa()).then(empresas => {
             this.empresas = empresas;
@@ -125,7 +125,7 @@ export class ContratoConsultaComponent implements OnInit {
         });
     }
 
-    private carregarOperadoras () {
+    private carregarOperadoras() {
         this.operadoraService.pesquisar(new FiltroOperadora()).then(operadoras => {
             this.operadoras = operadoras;
         });

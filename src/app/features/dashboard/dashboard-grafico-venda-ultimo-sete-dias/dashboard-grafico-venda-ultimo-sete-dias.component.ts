@@ -4,9 +4,9 @@ import {DashboardService} from "../dashboard.service";
 import {GraficoVendaUltimo7Dia} from "../../../model/GraficoVendaUltimo7Dia";
 
 @Component({
-  selector: 'app-dashboard-grafico-venda-ultimo-sete-dias',
-  templateUrl: './dashboard-grafico-venda-ultimo-sete-dias.component.html',
-  styleUrls: ['./dashboard-grafico-venda-ultimo-sete-dias.component.css']
+    selector: 'app-dashboard-grafico-venda-ultimo-sete-dias',
+    templateUrl: './dashboard-grafico-venda-ultimo-sete-dias.component.html',
+    styleUrls: ['./dashboard-grafico-venda-ultimo-sete-dias.component.css']
 })
 export class DashboardGraficoVendaUltimoSeteDiasComponent implements OnInit {
 
@@ -16,7 +16,8 @@ export class DashboardGraficoVendaUltimoSeteDiasComponent implements OnInit {
 
     empresaInexistente = -1;
 
-    constructor(private dashboardService: DashboardService) { }
+    constructor(private dashboardService: DashboardService) {
+    }
 
     ngOnInit(): void {
         this.atualizar(this.empresaInexistente);
@@ -31,15 +32,16 @@ export class DashboardGraficoVendaUltimoSeteDiasComponent implements OnInit {
     }
 
     private getData() {
+        const documentStyle = getComputedStyle(document.documentElement);
         this.data = {
             labels: this.graficoVendaUltimo7Dia.labels,
             datasets: [
                 {
                     label: 'Vendas dos últimos 7 dias',
                     data: this.graficoVendaUltimo7Dia.data,
-                    backgroundColor: ['rgba(255, 159, 64, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(153, 102, 255, 0.2)'],
-                    borderColor: ['rgb(255, 159, 64)', 'rgb(75, 192, 192)', 'rgb(54, 162, 235)', 'rgb(153, 102, 255)'],
-                    borderWidth: 1,
+                    backgroundColor: [documentStyle.getPropertyValue('--blue-500'), documentStyle.getPropertyValue('--green-500'), documentStyle.getPropertyValue('--indigo-500'), documentStyle.getPropertyValue('--orange-500'), documentStyle.getPropertyValue('--red-500'), documentStyle.getPropertyValue('--gray-500'), documentStyle.getPropertyValue('--teal-500')],
+                    hoverBackgroundColor: [documentStyle.getPropertyValue('--blue-400'), documentStyle.getPropertyValue('--green-400'), documentStyle.getPropertyValue('--indigo-400'), documentStyle.getPropertyValue('--orange-400'), documentStyle.getPropertyValue('--red-400'), documentStyle.getPropertyValue('--gray-400'), documentStyle.getPropertyValue('--teal-400')],
+                    borderWidth: 0,
                 }
             ]
         };
@@ -60,7 +62,7 @@ export class DashboardGraficoVendaUltimoSeteDiasComponent implements OnInit {
                         weight: '300',
                         size: 11
                     },
-                    formatter: function(valor: number) {
+                    formatter: function (valor: number) {
                         return FormatacaoMoedaPtBR.monetario(valor);
                     }
                 },
@@ -83,7 +85,7 @@ export class DashboardGraficoVendaUltimoSeteDiasComponent implements OnInit {
                     ticks: {
                         display: true,
                         color: textColorSecondary,
-                        callback: function(valor: number) {
+                        callback: function (valor: number) {
                             return FormatacaoMoedaPtBR.monetario(valor);
                         }
                     },

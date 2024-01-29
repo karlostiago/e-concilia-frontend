@@ -8,20 +8,25 @@
             <div class="row">
                 <div class="col-md-12">
                     <label class="form-label">Descrição:</label>
-                    <input type="text" pInputText class="form-control" name="descricao" id="descricao" [(ngModel)]="filtroOperadora.descricao" />
+                    <input type="text" pInputText class="form-control" name="descricao" id="descricao"
+                           [(ngModel)]="filtroOperadora.descricao"/>
                 </div>
             </div>
         </div>
 
         <div class="card-footer">
             <div class="card-action">
-                <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-search" label="Pesquisar" (click)="pesquisar()" [disabled]="!segurancaService.temPermissao('ROLE_PESQUISAR_OPERADORA')"></button>
-                <button pButton class="p-button-danger p-button-sm float-end" icon="pi pi-plus-circle" routerLink="/cadastro/operadoras/novo" label="Nova operadora" [disabled]="!segurancaService.temPermissao('ROLE_CADASTRO_OPERADORA')"></button>
+                <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-search" label="Pesquisar"
+                        (click)="pesquisar()"
+                        [disabled]="!segurancaService.temPermissao('ROLE_PESQUISAR_OPERADORA')"></button>
+                <button pButton class="p-button-danger p-button-sm float-end" icon="pi pi-plus-circle"
+                        routerLink="/cadastro/operadoras/novo" label="Nova operadora"
+                        [disabled]="!segurancaService.temPermissao('ROLE_CADASTRAR_OPERADORA')"></button>
             </div>
         </div>
     </div>
 
-    <br />
+    <br/>
 
     <div class="card">
         <div class="card-header">
@@ -29,7 +34,8 @@
         </div>
 
         <div class="card-body">
-            <p-table [value]="operadoras" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="10" styleClass="p-datatable-striped p-datatable p-datatable-gridlines" #tabela>
+            <p-table [value]="operadoras" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="10"
+                     styleClass="p-datatable-striped p-datatable p-datatable-gridlines" #tabela>
                 <ng-template pTemplate="header">
                     <tr>
                         <th class="text-center" style="min-width: 520px">Descrição</th>
@@ -40,16 +46,21 @@
 
                 <ng-template pTemplate="body" let-operadora>
                     <tr>
-                        <td> {{ operadora["descricao"] }} </td>
+                        <td> {{ operadora["descricao"] }}</td>
                         <td class="text-center">
-                             <span class=" {{ operadora['ativo'] == true ? 'badge text-bg-success' : 'badge text-bg-danger' }} ">
+                             <span
+                                 class=" {{ operadora['ativo'] == true ? 'badge text-bg-success' : 'badge text-bg-danger' }} ">
                                 {{ operadora["ativo"] === true ? 'Sim' : 'Não' }}
                             </span>
                         </td>
                         <td class="text-center">
                             <div class="action">
-                                <button type="button" pButton icon="pi pi-trash" class="p-button-danger p-button-sm" (click)="confirmarExclusao(operadora)" [disabled]="!segurancaService.temPermissao('ROLE_DELETAR_OPERADORA')"></button>
-                                <button pButton icon="pi pi-pencil" class="p-button-danger p-button-sm" [routerLink]="['/editar/operadoras', operadora.id]" [disabled]="!segurancaService.temPermissao('ROLE_EDITAR_OPERADORA')"></button>
+                                <button type="button" pButton icon="pi pi-trash" class="p-button-danger p-button-sm"
+                                        (click)="confirmarExclusao(operadora)"
+                                        [disabled]="!segurancaService.temPermissao('ROLE_DELETAR_OPERADORA')"></button>
+                                <button pButton icon="pi pi-pencil" class="p-button-danger p-button-sm"
+                                        [routerLink]="['/editar/operadoras', operadora.id]"
+                                        [disabled]="!segurancaService.temPermissao('ROLE_EDITAR_OPERADORA')"></button>
                             </div>
                         </td>
                     </tr>

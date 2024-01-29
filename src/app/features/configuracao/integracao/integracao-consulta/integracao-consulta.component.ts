@@ -13,9 +13,9 @@ import {IntegracaoService} from "../integracao.service";
 import {SegurancaService} from "../../../seguranca/seguranca.service";
 
 @Component({
-  selector: 'app-integracao-cadastro-consulta',
-  templateUrl: './integracao-consulta.component.html',
-  styleUrls: ['./integracao-consulta.component.css']
+    selector: 'app-integracao-cadastro-consulta',
+    templateUrl: './integracao-consulta.component.html',
+    styleUrls: ['./integracao-consulta.component.css']
 })
 export class IntegracaoConsultaComponent implements OnInit {
 
@@ -32,7 +32,8 @@ export class IntegracaoConsultaComponent implements OnInit {
                 private operadoraService: OperadoraService,
                 public segurancaService: SegurancaService,
                 private confirmationService: ConfirmationService,
-                private notificacao: NotificacaoService) { }
+                private notificacao: NotificacaoService) {
+    }
 
     ngOnInit(): void {
         this.carregarConfiguracoes();
@@ -40,16 +41,16 @@ export class IntegracaoConsultaComponent implements OnInit {
         this.carregarOperadoras();
     }
 
-    confirmarExclusao (configuracao: Integracao) {
+    confirmarExclusao(configuracao: Integracao) {
         this.confirmationService.confirm({
-            message: `Tem certeza que deseja excluir esta integração '${ configuracao.codigoIntegracao }' ? Ao deletar não será mais possível acessar as suas conciliações!`,
+            message: `Tem certeza que deseja excluir esta integração '${configuracao.codigoIntegracao}' ? Ao deletar não será mais possível acessar as suas conciliações!`,
             accept: () => {
                 this.excluir(configuracao.id);
             }
         })
     }
 
-    excluir (id: number) {
+    excluir(id: number) {
         this.integracaoService.excluir(id).then(() => {
             this.carregarConfiguracoes();
             this.notificacao.sucesso("Configuração excluída com sucesso.");
@@ -69,13 +70,13 @@ export class IntegracaoConsultaComponent implements OnInit {
         }
     }
 
-    private carregarConfiguracoes () {
+    private carregarConfiguracoes() {
         this.integracaoService.pesquisar(this.filtro).then(configuracoes => {
             this.integracoes = configuracoes;
         });
     }
 
-    private carregarEmpresas () {
+    private carregarEmpresas() {
         const usuario = this.segurancaService.getUsuario();
         this.empresaService.pesquisar(new FiltroEmpresa()).then(empresas => {
             this.empresas = empresas;
@@ -85,7 +86,7 @@ export class IntegracaoConsultaComponent implements OnInit {
         });
     }
 
-    private carregarOperadoras () {
+    private carregarOperadoras() {
         this.operadoraService.pesquisar(new FiltroOperadora()).then(operadoras => {
             this.operadoras = operadoras;
         });

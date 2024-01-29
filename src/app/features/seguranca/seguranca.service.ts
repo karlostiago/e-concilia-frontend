@@ -8,9 +8,9 @@ import {Router} from "@angular/router";
 import {Seguranca} from "../../model/Seguranca";
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
-export class SegurancaService extends AbstractService<UsuarioService>{
+export class SegurancaService extends AbstractService<UsuarioService> {
 
     private logado = false;
     private token: string;
@@ -23,9 +23,9 @@ export class SegurancaService extends AbstractService<UsuarioService>{
         super(error);
     }
 
-    async login (email: string, senha: string): Promise<void> {
+    async login(email: string, senha: string): Promise<void> {
         this.token = this.gerarToken(email, senha);
-        const request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}/login`, { });
+        const request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}/login`, {});
 
         return new Promise((resolve) => {
             request.subscribe({
@@ -44,7 +44,7 @@ export class SegurancaService extends AbstractService<UsuarioService>{
     }
 
     async logout(): Promise<void> {
-        const request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}/logout`, { });
+        const request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}/logout`, {});
         return new Promise((resolve) => {
             request.subscribe({
                 next: () => {

@@ -7,9 +7,9 @@ import {UsuarioService} from "../usuario.service";
 import {SegurancaService} from "../../../seguranca/seguranca.service";
 
 @Component({
-  selector: 'app-usuario-consulta',
-  templateUrl: './usuario-consulta.component.html',
-  styleUrls: ['./usuario-consulta.component.css']
+    selector: 'app-usuario-consulta',
+    templateUrl: './usuario-consulta.component.html',
+    styleUrls: ['./usuario-consulta.component.css']
 })
 export class UsuarioConsultaComponent implements OnInit {
 
@@ -19,13 +19,14 @@ export class UsuarioConsultaComponent implements OnInit {
     constructor(private usuarioService: UsuarioService,
                 private notificacao: NotificacaoService,
                 public segurancaService: SegurancaService,
-                private confirmationService: ConfirmationService) { }
+                private confirmationService: ConfirmationService) {
+    }
 
     ngOnInit(): void {
         this.carregarUsuarios();
     }
 
-    async pesquisar () {
+    async pesquisar() {
         await this.usuarioService.pesquisar(this.filtroUsuario).then(usuarios => {
             this.usuarios = usuarios;
         });
@@ -36,23 +37,23 @@ export class UsuarioConsultaComponent implements OnInit {
         }
     }
 
-    confirmarExclusao (usuario: Usuario) {
+    confirmarExclusao(usuario: Usuario) {
         this.confirmationService.confirm({
-            message: `Tem certeza que deseja excluir o usuário '${ usuario.nomeCompleto }' ?`,
+            message: `Tem certeza que deseja excluir o usuário '${usuario.nomeCompleto}' ?`,
             accept: () => {
                 this.excluir(usuario.id);
             }
         });
     }
 
-    private excluir (id: number) {
+    private excluir(id: number) {
         this.usuarioService.excluir(id).then(() => {
             this.carregarUsuarios();
             this.notificacao.sucesso("Usuário excluído com sucesso.");
         });
     }
 
-    private carregarUsuarios () {
+    private carregarUsuarios() {
         this.usuarioService.pesquisar(this.filtroUsuario).then(usuarios => {
             this.usuarios = usuarios;
         });

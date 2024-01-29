@@ -7,9 +7,9 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {SegurancaService} from "../../seguranca/seguranca.service";
 
 @Component({
-  selector: 'app-operadora-cadastro',
-  templateUrl: './operadora-cadastro.component.html',
-  styleUrls: ['./operadora-cadastro.component.css']
+    selector: 'app-operadora-cadastro',
+    templateUrl: './operadora-cadastro.component.html',
+    styleUrls: ['./operadora-cadastro.component.css']
 })
 export class OperadoraCadastroComponent implements OnInit {
 
@@ -20,7 +20,8 @@ export class OperadoraCadastroComponent implements OnInit {
         private operadoraService: OperadoraService,
         private router: Router,
         public segurancaService: SegurancaService,
-        private activatedRoute: ActivatedRoute) {}
+        private activatedRoute: ActivatedRoute) {
+    }
 
     ngOnInit(): void {
         const operadoraId = this.activatedRoute.snapshot.params['id'];
@@ -30,13 +31,13 @@ export class OperadoraCadastroComponent implements OnInit {
         }
     }
 
-    pesquisarPorId (id: number) {
+    pesquisarPorId(id: number) {
         this.operadoraService.pesquisarPorId(id).then(response => {
             this.operadora = response;
         });
     }
 
-    async salvarOuEditar (form: NgForm) {
+    async salvarOuEditar(form: NgForm) {
         if (this.operadora.id) {
             await this.editar();
         } else {
@@ -52,13 +53,13 @@ export class OperadoraCadastroComponent implements OnInit {
         });
     }
 
-    async editar () {
+    async editar() {
         this.operadoraService.editar(this.operadora).then(resposta => {
             this.notificacao.sucesso("Operadora atualizada com sucesso.");
         });
     }
 
-    voltar () {
+    voltar() {
         return this.router.navigate(["/consulta/operadoras"])
     }
 }

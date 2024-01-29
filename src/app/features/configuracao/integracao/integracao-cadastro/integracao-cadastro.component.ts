@@ -13,9 +13,9 @@ import {IntegracaoService} from "../integracao.service";
 import {SegurancaService} from "../../../seguranca/seguranca.service";
 
 @Component({
-  selector: 'app-integracao-cadastro',
-  templateUrl: './integracao-cadastro.component.html',
-  styleUrls: ['./integracao-cadastro.component.css']
+    selector: 'app-integracao-cadastro',
+    templateUrl: './integracao-cadastro.component.html',
+    styleUrls: ['./integracao-cadastro.component.css']
 })
 export class IntegracaoCadastroComponent implements OnInit {
 
@@ -31,7 +31,8 @@ export class IntegracaoCadastroComponent implements OnInit {
                 private integracaoService: IntegracaoService,
                 private activatedRoute: ActivatedRoute,
                 public segurancaService: SegurancaService,
-                private notificacao: NotificacaoService) { }
+                private notificacao: NotificacaoService) {
+    }
 
     ngOnInit(): void {
         this.carregarEmpresas();
@@ -44,7 +45,7 @@ export class IntegracaoCadastroComponent implements OnInit {
         }
     }
 
-    pesquisarPorId (id: number) {
+    pesquisarPorId(id: number) {
         this.integracaoService.pesquisarPorId(id).then(integracao => {
             this.integracao = integracao;
             this.empresaId = integracao.empresa.id;
@@ -52,7 +53,7 @@ export class IntegracaoCadastroComponent implements OnInit {
         });
     }
 
-    salvarOuEditar (form: NgForm) {
+    salvarOuEditar(form: NgForm) {
         this.selecionarEmpresa();
         this.selecionarOperadora();
 
@@ -63,7 +64,7 @@ export class IntegracaoCadastroComponent implements OnInit {
         }
     }
 
-    private editar () {
+    private editar() {
         this.integracaoService.editar(this.integracao).then(() => {
             this.notificacao.sucesso("Integração atualizada com sucesso.");
         });
@@ -77,21 +78,21 @@ export class IntegracaoCadastroComponent implements OnInit {
         });
     }
 
-    private selecionarOperadora () {
+    private selecionarOperadora() {
         const operadoras = this.operadoras.filter(operadora => operadora.id === this.operadoraId);
         if (operadoras.length === 1) {
             this.integracao.operadora = operadoras[0];
         }
     }
 
-    private selecionarEmpresa () {
+    private selecionarEmpresa() {
         const empresas = this.empresas.filter(empresa => empresa.id === this.empresaId);
         if (empresas.length === 1) {
             this.integracao.empresa = empresas[0];
         }
     }
 
-    private carregarEmpresas () {
+    private carregarEmpresas() {
         const usuario = this.segurancaService.getUsuario();
         this.empresaService.pesquisar(new FiltroEmpresa()).then(empresas => {
             this.empresas = empresas;
@@ -101,7 +102,7 @@ export class IntegracaoCadastroComponent implements OnInit {
         });
     }
 
-    private carregarOperadoras () {
+    private carregarOperadoras() {
         this.operadoraService.pesquisar(new FiltroOperadora()).then(operadoras => {
             this.operadoras = operadoras;
         });

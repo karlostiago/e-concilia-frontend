@@ -1,4 +1,4 @@
 export class FiltroContrato {
     empresaId = null;
-    operadoraId= null;
+    operadoraId = null;
 }

@@ -9,26 +9,33 @@
             <div class="row">
                 <div class="col-md-9">
                     <label class="form-label">Nome usuário:</label>
-                    <input type="text" pInputText class="form-control" name="nomeCompleto" id="nomeUsuario" [(ngModel)]="nomeCompleto" />
+                    <input type="text" pInputText class="form-control" name="nomeCompleto" id="nomeUsuario"
+                           [(ngModel)]="nomeCompleto"/>
                 </div>
                 <div class="col-md-3">
                     <label class="form-label">Tipo permissão:</label>
-                    <p-dropdown styleClass="w-100" name="bandeira" id="bandeira" [options]="tipoPermissoes" placeholder="Selecione um tipo permissão" [(ngModel)]="tipoPermissao"></p-dropdown>
+                    <p-dropdown styleClass="w-100" name="bandeira" id="bandeira" [options]="tipoPermissoes"
+                                placeholder="Selecione um tipo permissão" [(ngModel)]="tipoPermissao"></p-dropdown>
                 </div>
             </div>
         </div>
 
         <div class="card-footer">
             <div class="card-action">
-                <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-search" label="Pesquisar" (click)="pesquisar()" [disabled]="!segurancaService.temPermissao('ROLE_PESQUISAR_PERMISSAO')"></button>
-                <button type="reset" pButton class="p-button-danger p-button-sm" icon="pi pi-eraser" label="Limpar"></button>
+                <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-search" label="Pesquisar"
+                        (click)="pesquisar()"
+                        [disabled]="!segurancaService.temPermissao('ROLE_PESQUISAR_PERMISSAO')"></button>
+                <button type="reset" pButton class="p-button-danger p-button-sm" icon="pi pi-eraser"
+                        label="Limpar"></button>
 
-                <button pButton class="p-button-danger p-button-sm float-end" icon="pi pi-plus-circle" routerLink="/configuracao/cadastro/permissoes/novo" label="Nova permissão" [disabled]="!segurancaService.temPermissao('ROLE_CADASTRAR_PERMISSAO')"></button>
+                <button pButton class="p-button-danger p-button-sm float-end" icon="pi pi-plus-circle"
+                        routerLink="/configuracao/cadastro/permissoes/novo" label="Nova permissão"
+                        [disabled]="!segurancaService.temPermissao('ROLE_CADASTRAR_PERMISSAO')"></button>
             </div>
         </div>
     </div>
 
-    <br />
+    <br/>
 
     <div class="card">
         <div class="card-header">
@@ -36,7 +43,8 @@
         </div>
 
         <div class="card-body">
-            <p-table [value]="permissoes" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="10" styleClass="p-datatable-striped p-datatable p-datatable-gridlines" #tabelaUsuarios>
+            <p-table [value]="permissoes" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="10"
+                     styleClass="p-datatable-striped p-datatable p-datatable-gridlines" #tabelaUsuarios>
                 <ng-template pTemplate="header">
                     <tr>
                         <th style="min-width: 480px;">Nome Completo</th>
@@ -46,11 +54,15 @@
 
                 <ng-template pTemplate="body" let-permissao>
                     <tr>
-                        <td> {{ permissao['usuario']['nomeCompleto'] }} </td>
+                        <td> {{ permissao['usuario']['nomeCompleto'] }}</td>
                         <td class="text-center">
                             <div class="action">
-                                <button type="button" pButton icon="pi pi-trash" class="p-button-danger p-button-sm" (click)="confirmarExclusao(permissao)" [disabled]="!segurancaService.temPermissao('ROLE_DELETAR_PERMISSAO')"></button>
-                                <button pButton icon="pi pi-pencil" class="p-button-danger p-button-sm" [routerLink]="['/configuracao/editar/permissoes', permissao['usuario'].id]" [disabled]="!segurancaService.temPermissao('ROLE_EDITAR_PERMISSAO')"></button>
+                                <button type="button" pButton icon="pi pi-trash" class="p-button-danger p-button-sm"
+                                        (click)="confirmarExclusao(permissao)"
+                                        [disabled]="!segurancaService.temPermissao('ROLE_DELETAR_PERMISSAO')"></button>
+                                <button pButton icon="pi pi-pencil" class="p-button-danger p-button-sm"
+                                        [routerLink]="['/configuracao/editar/permissoes', permissao['usuario'].id]"
+                                        [disabled]="!segurancaService.temPermissao('ROLE_EDITAR_PERMISSAO')"></button>
                             </div>
                         </td>
                     </tr>

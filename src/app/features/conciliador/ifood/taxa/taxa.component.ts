@@ -2,9 +2,9 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormatacaoMoedaPtBR} from "../../../../../helpers/FormatacaoMoedaPtBR";
 
 @Component({
-  selector: 'app-taxa',
-  templateUrl: './taxa.component.html',
-  styleUrls: ['./taxa.component.css']
+    selector: 'app-taxa',
+    templateUrl: './taxa.component.html',
+    styleUrls: ['./taxa.component.css']
 })
 export class TaxaComponent implements OnInit {
 
@@ -17,7 +17,7 @@ export class TaxaComponent implements OnInit {
     ngOnInit(): void {
     }
 
-    formatarValor (valor: number) {
+    formatarValor(valor: number) {
         return FormatacaoMoedaPtBR.monetario(valor);
     }
 

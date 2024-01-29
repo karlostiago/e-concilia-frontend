@@ -1,13 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {GraficoVendaUltimo7DiaCreditoDebito} from "../../../model/GraficoVendaUltimo7DiaCreditoDebito";
 import {DashboardService} from "../dashboard.service";
 import {FormatacaoMoedaPtBR} from "../../../../helpers/FormatacaoMoedaPtBR";
 import {GraficoVendaUltimo7DiaDinheiroPix} from "../../../model/GraficoVendaUltimo7DiaDinheiroPix";
 
 @Component({
-  selector: 'app-dashboard-grafico-venda-ultimo-sete-dias-dinheiro-pix',
-  templateUrl: './dashboard-grafico-venda-ultimo-sete-dias-dinheiro-pix.component.html',
-  styleUrls: ['./dashboard-grafico-venda-ultimo-sete-dias-dinheiro-pix.component.css']
+    selector: 'app-dashboard-grafico-venda-ultimo-sete-dias-dinheiro-pix',
+    templateUrl: './dashboard-grafico-venda-ultimo-sete-dias-dinheiro-pix.component.html',
+    styleUrls: ['./dashboard-grafico-venda-ultimo-sete-dias-dinheiro-pix.component.css']
 })
 export class DashboardGraficoVendaUltimoSeteDiasDinheiroPixComponent implements OnInit {
 
@@ -17,7 +16,8 @@ export class DashboardGraficoVendaUltimoSeteDiasDinheiroPixComponent implements 
 
     empresaInexistente = -1;
 
-    constructor(private dashboardService: DashboardService) { }
+    constructor(private dashboardService: DashboardService) {
+    }
 
     ngOnInit(): void {
         this.atualizar(this.empresaInexistente);
@@ -32,21 +32,22 @@ export class DashboardGraficoVendaUltimoSeteDiasDinheiroPixComponent implements 
     }
 
     private getData() {
+        const documentStyle = getComputedStyle(document.documentElement);
         this.data = {
             labels: this.graficoVendaUltimo7DiaDinheiroPix.labels,
             datasets: [
                 {
                     label: 'Dinheiro',
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgb(75, 192, 192)',
-                    borderWidth: 1,
+                    backgroundColor: documentStyle.getPropertyValue('--blue-500'),
+                    hoverBackgroundColor: documentStyle.getPropertyValue('--blue-400'),
+                    borderWidth: 0,
                     data: this.graficoVendaUltimo7DiaDinheiroPix.dataCash
                 },
                 {
                     label: 'Pix',
-                    backgroundColor: 'rgba(255, 159, 64, 0.2)',
-                    borderColor: 'rgb(255, 159, 64)',
-                    borderWidth: 1,
+                    backgroundColor: documentStyle.getPropertyValue('--teal-500'),
+                    hoverBackgroundColor: documentStyle.getPropertyValue('--teal-400'),
+                    borderWidth: 0,
                     data: this.graficoVendaUltimo7DiaDinheiroPix.dataPix
                 }
             ]
@@ -71,7 +72,7 @@ export class DashboardGraficoVendaUltimoSeteDiasDinheiroPixComponent implements 
                         weight: '300',
                         size: 11
                     },
-                    formatter: function(valor: number) {
+                    formatter: function (valor: number) {
                         return FormatacaoMoedaPtBR.monetario(valor);
                     }
                 },
@@ -93,7 +94,7 @@ export class DashboardGraficoVendaUltimoSeteDiasDinheiroPixComponent implements 
                     stacked: false,
                     ticks: {
                         color: textColorSecondary,
-                        callback: function(valor: number) {
+                        callback: function (valor: number) {
                             return FormatacaoMoedaPtBR.monetario(valor);
                         },
                         font: {

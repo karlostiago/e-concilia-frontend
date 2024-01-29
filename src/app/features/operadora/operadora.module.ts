@@ -8,7 +8,7 @@ import {TableModule} from "primeng/table";
 import {DialogModule} from "primeng/dialog";
 import {InputMaskModule} from "primeng/inputmask";
 import {InputNumberModule} from "primeng/inputnumber";
-import { OperadoraConsultaComponent } from './operadora-consulta/operadora-consulta.component';
+import {OperadoraConsultaComponent} from './operadora-consulta/operadora-consulta.component';
 import {FormsModule} from "@angular/forms";
 import {CalendarModule} from "primeng/calendar";
 import {CurrencyMaskModule} from "ng2-currency-mask";
@@ -40,4 +40,5 @@ import {OperadoraRoutingModule} from "./operadora-routing.module";
         OperadoraRoutingModule
     ]
 })
-export class OperadoraModule { }
+export class OperadoraModule {
+}

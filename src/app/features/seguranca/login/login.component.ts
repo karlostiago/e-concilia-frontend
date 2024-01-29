@@ -4,9 +4,9 @@ import {NotificacaoService} from "../../../shared/notificacao/notificacao.servic
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
 
@@ -20,7 +20,8 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit(): void {
-
+        this.email = 'econcilia'
+        this.senha = 'admin'
     }
 
     login() {
@@ -29,8 +30,8 @@ export class LoginComponent implements OnInit {
                 this.notificacao.sucesso("Login realizado com sucesso.");
             });
         })
-        .catch(() => {
-            this.notificacao.error("Usuário/Senha inválidos.")
-        });
+            .catch(() => {
+                this.notificacao.error("Usuário/Senha inválidos.")
+            });
     }
 }

@@ -8,7 +8,9 @@ import {LoaderService} from "./loader.service";
 })
 export class LoaderInterceptor implements HttpInterceptor {
 
-    constructor(public loaderService: LoaderService) { }
+    constructor(public loaderService: LoaderService) {
+    }
+
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
         this.loaderService.show();

@@ -38,4 +38,5 @@ import {CnpjModule} from "../../pipes/cnpj/cnpj.module";
         CnpjModule
     ]
 })
-export class EmpresaModule { }
+export class EmpresaModule {
+}

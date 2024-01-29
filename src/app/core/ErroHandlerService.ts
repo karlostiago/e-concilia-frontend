@@ -6,7 +6,8 @@ import {NotificacaoService} from "../shared/notificacao/notificacao.service";
 })
 export class ErroHandlerService {
 
-    constructor(private notificacao: NotificacaoService) { }
+    constructor(private notificacao: NotificacaoService) {
+    }
 
     capturar(errorResponse: any) {
         if (errorResponse.status === 403) {

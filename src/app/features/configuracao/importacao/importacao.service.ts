@@ -3,10 +3,9 @@ import {AbstractService} from "../../../service/AbstractService";
 import {Importacao} from "../../../model/Importacao";
 import {HttpClient} from "@angular/common/http";
 import {ErroHandlerService} from "../../../core/ErroHandlerService";
-import {SegurancaService} from "../../seguranca/seguranca.service";
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class ImportacaoService extends AbstractService<Importacao> {
 
@@ -19,13 +18,13 @@ export class ImportacaoService extends AbstractService<Importacao> {
         return 'importacoes';
     }
 
-    async agendar (importacao: Importacao): Promise<Importacao> {
+    async agendar(importacao: Importacao): Promise<Importacao> {
         const request = this.httpClient.post(`${this.baseURL}/${this.pathURL()}`, JSON.stringify(importacao), this.options());
         return this.toPromise(request);
     }
 
-    async buscarPorAgendados (): Promise<Importacao[]> {
-        const request =this.httpClient.get(`${this.baseURL}/${this.pathURL()}`, this.options());
+    async buscarPorAgendados(): Promise<Importacao[]> {
+        const request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}`, this.options());
         return this.toPromise(request);
     }
 }

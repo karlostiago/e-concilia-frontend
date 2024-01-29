@@ -19,9 +19,9 @@ import {EmpresaService} from "../../empresa/empresa.service";
 import {FiltroEmpresa} from "../../../model/FiltroEmpresa";
 
 @Component({
-  selector: 'app-ifood',
-  templateUrl: './ifood.component.html',
-  styleUrls: ['./ifood.component.css']
+    selector: 'app-ifood',
+    templateUrl: './ifood.component.html',
+    styleUrls: ['./ifood.component.css']
 })
 export class IfoodComponent implements OnInit {
 
@@ -54,7 +54,8 @@ export class IfoodComponent implements OnInit {
         private notificacao: NotificacaoService,
         public segurancaService: SegurancaService,
         private empresaService: EmpresaService,
-        private conciliadorService: ConciliadorIfoodService) { }
+        private conciliadorService: ConciliadorIfoodService) {
+    }
 
     ngOnInit(): void {
         DataHelpers.remove30Dias(this.dtVendaDe);
@@ -64,7 +65,7 @@ export class IfoodComponent implements OnInit {
         this.carregarTipoRecebimento();
     }
 
-    async pesquisar () {
+    async pesquisar() {
         if (this.empresaId === undefined || this.empresaId === -1) {
             this.notificacao.error("Nenhuma empresa foi selecionada.")
             return;
@@ -87,11 +88,11 @@ export class IfoodComponent implements OnInit {
         this.tipoRecebimento = "";
     }
 
-    formatarValor (valor: number) {
+    formatarValor(valor: number) {
         return FormatacaoMoedaPtBR.monetario(valor);
     }
 
-    dialogTaxaContratual (venda?: Venda) {
+    dialogTaxaContratual(venda?: Venda) {
         this.visivel = !this.visivel;
         this.taxas = [];
 
@@ -133,28 +134,28 @@ export class IfoodComponent implements OnInit {
         });
     }
 
-    private carregarMetodosPagamento () {
+    private carregarMetodosPagamento() {
         for (const metodoKey in Metodo) {
             // @ts-ignore
             this.metodos.push(Metodo[`${metodoKey}`].toUpperCase());
         }
     }
 
-    private carregarBandeiras () {
+    private carregarBandeiras() {
         for (const bandeiraKey in Bandeira) {
             // @ts-ignore
             this.bandeiras.push(Bandeira[`${bandeiraKey}`].toUpperCase());
         }
     }
 
-    private carregarTipoRecebimento () {
+    private carregarTipoRecebimento() {
         for (const tipoKey in TipoRecebimento) {
             // @ts-ignore
             this.tiposRecebimento.push(TipoRecebimento[`${tipoKey}`].toUpperCase());
         }
     }
 
-    private carregarEmpresas () {
+    private carregarEmpresas() {
         const usuario = this.segurancaService.getUsuario();
         this.empresaService.pesquisar(new FiltroEmpresa()).then(empresas => {
             this.empresas = empresas;

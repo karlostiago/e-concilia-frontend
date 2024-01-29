@@ -9,7 +9,7 @@ import {GraficoVendaUltimo7DiaCreditoDebito} from "../../model/GraficoVendaUltim
 import {GraficoVendaUltimo7DiaDinheiroPix} from "../../model/GraficoVendaUltimo7DiaDinheiroPix";
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class DashboardService extends AbstractService<Dashboard> {
 
@@ -51,6 +51,15 @@ export class DashboardService extends AbstractService<Dashboard> {
         }
 
         const request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}/buscar-venda-ultimos-7-dias-dinheito-pix?lojaId=${empresaId}`, this.options());
+        return this.toPromise(request);
+    }
+
+    async buscarPercentualVendasUltimos7Dias(empresaId: number): Promise<GraficoVendaUltimo7Dia> {
+        if (empresaId == null) {
+            empresaId = -1;
+        }
+
+        const request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}/buscar-percentual-venda-ultimos-7-dias?lojaId=${empresaId}`, this.options());
         return this.toPromise(request);
     }
 }

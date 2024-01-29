@@ -9,11 +9,11 @@ import {NotificacaoService} from "../../../shared/notificacao/notificacao.servic
 import {SegurancaService} from "../../seguranca/seguranca.service";
 
 @Component({
-  selector: 'app-taxa-consulta',
-  templateUrl: './taxa-consulta.component.html',
-  styleUrls: ['./taxa-consulta.component.css']
+    selector: 'app-taxa-consulta',
+    templateUrl: './taxa-consulta.component.html',
+    styleUrls: ['./taxa-consulta.component.css']
 })
-export class TaxaConsultaComponent implements  OnInit {
+export class TaxaConsultaComponent implements OnInit {
 
     operadoras = new Array<Operadora>();
     taxas = new Array<Taxa>();
@@ -21,11 +21,12 @@ export class TaxaConsultaComponent implements  OnInit {
     constructor(private operadoraService: OperadoraService,
                 private taxaService: TaxaService,
                 public segurancaService: SegurancaService,
-                private notificacao: NotificacaoService) { }
+                private notificacao: NotificacaoService) {
+    }
 
     ngOnInit(): void {
         this.operadoraService.pesquisar(new FiltroOperadora()).then(operadoras => {
-           this.operadoras = operadoras;
+            this.operadoras = operadoras;
         });
 
         this.taxaService.buscarTodos().then(taxas => {
@@ -33,7 +34,7 @@ export class TaxaConsultaComponent implements  OnInit {
         });
     }
 
-    async buscar (event: any) {
+    async buscar(event: any) {
         const operadora = this.selecionarOperadora(event.value);
         await this.taxaService.buscarPorOperadora(operadora).then(taxas => {
             this.taxas = taxas;
@@ -45,7 +46,7 @@ export class TaxaConsultaComponent implements  OnInit {
         }
     }
 
-    formatarMoeda (valor: number, tipo: string) {
+    formatarMoeda(valor: number, tipo: string) {
         if (tipo === 'PERCENTUAL') {
             return FormatacaoMoedaPtBR.percentual(valor);
         } else {
@@ -53,7 +54,7 @@ export class TaxaConsultaComponent implements  OnInit {
         }
     }
 
-    ativarOuDesativar (taxa: Taxa) {
+    ativarOuDesativar(taxa: Taxa) {
         if (taxa.ativo) {
             this.desativar(taxa);
         } else {
@@ -61,21 +62,21 @@ export class TaxaConsultaComponent implements  OnInit {
         }
     }
 
-    private ativar (taxa: Taxa) {
+    private ativar(taxa: Taxa) {
         this.taxaService.ativar(taxa.id).then(() => {
             this.notificacao.sucesso("Taxa ativada com sucesso.");
             taxa.ativo = true;
         });
     }
 
-    private desativar (taxa: Taxa) {
+    private desativar(taxa: Taxa) {
         this.taxaService.desativar(taxa.id).then(() => {
             this.notificacao.sucesso("Taxa desativada com sucesso.");
             taxa.ativo = false;
         });
     }
 
-    private selecionarOperadora (operadoraId: number) {
+    private selecionarOperadora(operadoraId: number) {
         return this.operadoras.filter(operadora => operadora.id === operadoraId)[0];
     }
 }

@@ -1,13 +1,12 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {ErroHandlerService} from "../../../core/ErroHandlerService";
 import {Integracao} from "../../../model/Integracao";
 import {FiltroConfiguracaoIntegracao} from "../../../filter/FiltroConfiguracaoIntegracao";
 import {AbstractService} from "../../../service/AbstractService";
-import {SegurancaService} from "../../seguranca/seguranca.service";
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class IntegracaoService extends AbstractService<Integracao> {
 
@@ -20,7 +19,7 @@ export class IntegracaoService extends AbstractService<Integracao> {
         return 'integracoes';
     }
 
-    async salvar (integracao: Integracao): Promise<Integracao> {
+    async salvar(integracao: Integracao): Promise<Integracao> {
         const request = this.httpClient.post(`${this.baseURL}/${this.pathURL()}`, JSON.stringify(integracao), this.options());
         return this.toPromise(request);
     }
@@ -30,17 +29,17 @@ export class IntegracaoService extends AbstractService<Integracao> {
         return this.toPromise(request);
     }
 
-    async pesquisarPorId (id: number): Promise<Integracao> {
-        const request =this.httpClient.get(`${this.baseURL}/${this.pathURL()}/${id}`, this.options());
+    async pesquisarPorId(id: number): Promise<Integracao> {
+        const request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}/${id}`, this.options());
         return this.toPromise(request);
     }
 
-    async editar (vinculaEmpresaOperadora: Integracao): Promise<Integracao> {
+    async editar(vinculaEmpresaOperadora: Integracao): Promise<Integracao> {
         const request = this.httpClient.put(`${this.baseURL}/${this.pathURL()}/${vinculaEmpresaOperadora.id}`, JSON.stringify(vinculaEmpresaOperadora), this.options());
         return this.toPromise(request);
     }
 
-    async excluir (id: number) {
+    async excluir(id: number) {
         const request = this.httpClient.delete(`${this.baseURL}/${this.pathURL()}/${id}`, this.options());
         return this.toPromise(request);
     }
@@ -54,14 +53,11 @@ export class IntegracaoService extends AbstractService<Integracao> {
 
         if (filtro.empresaId !== null && filtro.operadoraId != null) {
             request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}?empresaId=${filtro.empresaId}&operadoraId=${filtro.operadoraId}`, this.options());
-        }
-        else if (filtro.empresaId !== null) {
+        } else if (filtro.empresaId !== null) {
             request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}?empresaId=${filtro.empresaId}`, this.options());
-        }
-        else if (filtro.operadoraId !== null) {
+        } else if (filtro.operadoraId !== null) {
             request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}?operadoraId=${filtro.operadoraId}`, this.options());
-        }
-        else {
+        } else {
             request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}`, this.options());
         }
 

@@ -30,7 +30,7 @@ export class DataHelpers {
 
     static ultimoDiaMesCorrente(data: Date) {
         const dtCorrente = new Date();
-        const ultimoDia = new Date(dtCorrente.getFullYear(), dtCorrente.getMonth() +1, 0);
+        const ultimoDia = new Date(dtCorrente.getFullYear(), dtCorrente.getMonth() + 1, 0);
         return data.setDate(ultimoDia.getDate());
     }
 

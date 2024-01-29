@@ -12,9 +12,9 @@ import {NgForm} from "@angular/forms";
 import {SegurancaService} from "../../../seguranca/seguranca.service";
 
 @Component({
-  selector: 'app-cadastro-importacao',
-  templateUrl: './importacao-cadastro.component.html',
-  styleUrls: ['./importacao-cadastro.component.css']
+    selector: 'app-cadastro-importacao',
+    templateUrl: './importacao-cadastro.component.html',
+    styleUrls: ['./importacao-cadastro.component.css']
 })
 export class ImportacaoCadastroComponent implements OnInit {
 
@@ -63,21 +63,21 @@ export class ImportacaoCadastroComponent implements OnInit {
         });
     }
 
-    private selecionarOperadora () {
+    private selecionarOperadora() {
         const operadoras = this.operadoras.filter(operadora => operadora.id === this.operadoraId);
         if (operadoras.length === 1) {
             this.importacao.operadora = operadoras[0];
         }
     }
 
-    private selecionarEmpresa () {
+    private selecionarEmpresa() {
         const empresas = this.empresas.filter(empresa => empresa.id === this.empresaId);
         if (empresas.length === 1) {
             this.importacao.empresa = empresas[0];
         }
     }
 
-    private carregarEmpresas () {
+    private carregarEmpresas() {
         const usuario = this.segurancaService.getUsuario();
         this.empresaService.pesquisar(new FiltroEmpresa()).then(empresas => {
             this.empresas = empresas;
@@ -87,7 +87,7 @@ export class ImportacaoCadastroComponent implements OnInit {
         });
     }
 
-    private carregarOperadoras () {
+    private carregarOperadoras() {
         this.operadoraService.pesquisar(new FiltroOperadora()).then(operadoras => {
             this.operadoras = operadoras;
         });

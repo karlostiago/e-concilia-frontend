@@ -25,15 +25,15 @@ input {
 }
 
 .color-wine {
-    color: #701717!important;
+    color: #701717 !important;
 }
 
 .color-text-green {
-    color: RGBA(25,135,84,var(--bs-bg-opacity,1))!important;
+    color: RGBA(25, 135, 84, var(--bs-bg-opacity, 1)) !important;
 }
 
 button[disabled] {
-    cursor: no-drop!important;
+    cursor: no-drop !important;
 }
 
 /**
@@ -63,15 +63,15 @@ button[disabled] {
  * Classes helpers para ajustar tamanho (width)
  */
 .w-10 {
-    width: 10%!important;
+    width: 10% !important;
 }
 
 .w-15 {
-    width: 15%!important;
+    width: 15% !important;
 }
 
 .w-50 {
-    width: 50%!important;
+    width: 50% !important;
 }
 
 .mb-10 {
@@ -113,7 +113,7 @@ button[disabled] {
 }
 
 .card {
-    box-shadow: none!important;
+    box-shadow: none !important;
 }
 
 .card-header {
@@ -121,7 +121,7 @@ button[disabled] {
     border-bottom: 1px solid rgba(26, 54, 126, 0.125);
 }
 
-.card-footer{
+.card-footer {
     background-color: #fff !important;
     border-top: 1px solid rgba(26, 54, 126, 0.125);
 }
@@ -143,8 +143,8 @@ button[disabled] {
  * Classes de customização primeng css
  */
 .p-checkbox .p-checkbox-box.p-highlight {
-    border-color: #701717!important;
-    background: #701717!important;
+    border-color: #701717 !important;
+    background: #701717 !important;
 }
 
 .p-button-label {
@@ -152,32 +152,32 @@ button[disabled] {
 }
 
 .p-button.p-button-sm {
-    padding: 0.3232rem 0.9898rem!important;
+    padding: 0.3232rem 0.9898rem !important;
 }
 
 .p-button-danger {
-    background-color: #701717!important;
+    background-color: #701717 !important;
     border: 1px solid #701717 !important;
 }
 
 .p-button-danger:hover {
-    background-color: #873535!important;
+    background-color: #873535 !important;
     border: 1px solid #873535 !important;
 }
 
 .p-button-danger.p-button-outlined {
-    background-color: transparent!important;
-    color: #701717!important;
-    border: 1px solid!important;
+    background-color: transparent !important;
+    color: #701717 !important;
+    border: 1px solid !important;
 }
 
 .p-button-danger.p-button-outlined:hover {
-    background: rgba(239, 68, 68, 0.04)!important;
+    background: rgba(239, 68, 68, 0.04) !important;
 }
 
 .p-dropdown .p-dropdown-trigger {
-    background: #701717!important;
-    color: #fff!important;
+    background: #701717 !important;
+    color: #fff !important;
 }
 
 .p-datatable .p-datatable-tbody > tr > td,
@@ -186,13 +186,13 @@ button[disabled] {
 }
 
 .p-datatable .p-datatable-thead > tr > th {
-    background-color: #701717!important;
-    color:#fff !important;
-    font-weight: normal!important;
+    background-color: #701717 !important;
+    color: #fff !important;
+    font-weight: normal !important;
 }
 
 .p-inputswitch.p-inputswitch-checked .p-inputswitch-slider {
-    background: #701717!important;
+    background: #701717 !important;
 }
 
 .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
@@ -234,13 +234,12 @@ button[disabled] {
 }
 
 .p-multiselect {
-    height: 50px!important;
+    height: 50px !important;
 }
 
 /**
  * FIM CUSTOM PRIMENG
  */
-
 
 
 /**

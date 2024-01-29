@@ -13,9 +13,9 @@ import {RegraService} from "../regra.service";
 import {SegurancaService} from "../../../seguranca/seguranca.service";
 
 @Component({
-  selector: 'app-permissao-cadastro',
-  templateUrl: './permissao-cadastro.component.html',
-  styleUrls: ['./permissao-cadastro.component.css']
+    selector: 'app-permissao-cadastro',
+    templateUrl: './permissao-cadastro.component.html',
+    styleUrls: ['./permissao-cadastro.component.css']
 })
 export class PermissaoCadastroComponent implements OnInit {
 
@@ -31,7 +31,8 @@ export class PermissaoCadastroComponent implements OnInit {
         private activatedRoute: ActivatedRoute,
         private regraService: RegraService,
         public segurancaService: SegurancaService,
-        private permissaoService: PermissaoService) { }
+        private permissaoService: PermissaoService) {
+    }
 
     ngOnInit(): void {
         this.carregarUsuarios();
@@ -44,12 +45,11 @@ export class PermissaoCadastroComponent implements OnInit {
         }
     }
 
-    pesquisarPorId (id: number) {
+    pesquisarPorId(id: number) {
         this.permissaoService.pesquisarUsuario(id).then(permissao => {
             this.permissao = permissao;
             this.usuarioId = this.permissao.usuario.id;
             this.regras = this.regraService.buscarPermissao(this.permissao);
-            console.log(this.permissao);
         });
     }
 
@@ -105,7 +105,7 @@ export class PermissaoCadastroComponent implements OnInit {
         });
     }
 
-    private selecionarUsuario () {
+    private selecionarUsuario() {
         const usuarios = this.usuarios.filter(usuario => usuario.id === this.usuarioId);
         if (usuarios.length === 1) {
             this.permissao.usuario = usuarios[0];
@@ -141,7 +141,7 @@ export class PermissaoCadastroComponent implements OnInit {
 
     }
 
-    private carregarUsuarios () {
+    private carregarUsuarios() {
         this.usuarioService.pesquisar(new FiltroUsuario()).then(usuarios => {
             this.usuarios = usuarios;
         });

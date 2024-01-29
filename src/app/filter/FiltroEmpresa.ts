@@ -1,4 +1,4 @@
 export class FiltroEmpresa {
     cnpj = "";
-    razaoSocial= "";
+    razaoSocial = "";
 }

@@ -14,30 +14,37 @@
             <div class="row">
                 <div class="col-md-6">
                     <label class="form-label">Empresa*:</label>
-                    <p-dropdown styleClass="w-100" name="empresa" id="empresa" optionLabel="razaoSocial" optionValue="id" [options]="empresas" placeholder="Selecione uma empresa"
+                    <p-dropdown styleClass="w-100" name="empresa" id="empresa" optionLabel="razaoSocial"
+                                optionValue="id" [options]="empresas" placeholder="Selecione uma empresa"
                                 [(ngModel)]="empresaId" [required]="true"></p-dropdown>
                 </div>
 
                 <div class="col-md-6">
                     <label class="form-label">Operadora*:</label>
-                    <p-dropdown styleClass="w-100" name="operadora" id="operadora" optionLabel="descricao" optionValue="id" [options]="operadoras" placeholder="Selecione uma operadora"
+                    <p-dropdown styleClass="w-100" name="operadora" id="operadora" optionLabel="descricao"
+                                optionValue="id" [options]="operadoras" placeholder="Selecione uma operadora"
                                 [(ngModel)]="operadoraId" [required]="true"></p-dropdown>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-4">
-                    <label class="form-label">ID da loja  *:</label>
-                    <input pInputText class="form-control" name="codigoIntegracao" id="codigoIntegracao" [(ngModel)]="integracao.codigoIntegracao" [required]="true" />
+                    <label class="form-label">ID da loja *:</label>
+                    <input pInputText class="form-control" name="codigoIntegracao" id="codigoIntegracao"
+                           [(ngModel)]="integracao.codigoIntegracao" [required]="true"/>
                 </div>
             </div>
         </div>
 
         <div class="card-footer">
             <div class="card-action">
-                <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-save" label="Salvar" [disabled]="!formulario.valid && !segurancaService.temPermissao('ROLE_CADASTRAR_INTEGRACAO')"></button>
-                <button pButton type="button" class="p-button-danger p-button-sm p-button-outlined" icon="pi pi-replay" label="Voltar" routerLink="/configuracao/consulta/integracoes" [disabled]="!segurancaService.temPermissao('ROLE_PESQUISAR_INTEGRACAO')"></button>
-                <button pButton type="reset" class="p-button-danger p-button-sm float-end" icon="pi pi-eraser" *ngIf="!integracao.id" label="Limpar"></button>
+                <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-save" label="Salvar"
+                        [disabled]="!formulario.valid && !segurancaService.temPermissao('ROLE_CADASTRAR_INTEGRACAO')"></button>
+                <button pButton type="button" class="p-button-danger p-button-sm p-button-outlined" icon="pi pi-replay"
+                        label="Voltar" routerLink="/configuracao/consulta/integracoes"
+                        [disabled]="!segurancaService.temPermissao('ROLE_PESQUISAR_INTEGRACAO')"></button>
+                <button pButton type="reset" class="p-button-danger p-button-sm float-end" icon="pi pi-eraser"
+                        *ngIf="!integracao.id" label="Limpar"></button>
             </div>
         </div>
     </div>

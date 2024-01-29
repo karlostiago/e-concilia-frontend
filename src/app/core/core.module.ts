@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {NavbarComponent} from "./navbar/navbar.component";
 import {RouterLink} from "@angular/router";
 import {FooterComponent} from "./footer/footer.component";
@@ -49,4 +49,5 @@ import {SegurancaService} from "../features/seguranca/seguranca.service";
         SegurancaService
     ]
 })
-export class CoreModule { }
+export class CoreModule {
+}

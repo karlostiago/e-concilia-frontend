@@ -17,9 +17,9 @@ import {TaxaService} from "../../taxa/taxa.service";
 import {SegurancaService} from "../../seguranca/seguranca.service";
 
 @Component({
-  selector: 'app-contrato-cadastro',
-  templateUrl: './contrato-cadastro.component.html',
-  styleUrls: ['./contrato-cadastro.component.css']
+    selector: 'app-contrato-cadastro',
+    templateUrl: './contrato-cadastro.component.html',
+    styleUrls: ['./contrato-cadastro.component.css']
 })
 export class ContratoCadastroComponent implements OnInit {
 
@@ -40,7 +40,8 @@ export class ContratoCadastroComponent implements OnInit {
                 private activatedRoute: ActivatedRoute,
                 private taxaService: TaxaService,
                 public segurancaService: SegurancaService,
-                private confirmationService: ConfirmationService) { }
+                private confirmationService: ConfirmationService) {
+    }
 
 
     ngOnInit(): void {
@@ -55,7 +56,7 @@ export class ContratoCadastroComponent implements OnInit {
         }
     }
 
-    formatarTaxa (valor: number, tipo: string) {
+    formatarTaxa(valor: number, tipo: string) {
         if (tipo === 'PERCENTUAL') {
             return FormatacaoMoedaPtBR.percentual(valor);
         } else {
@@ -63,7 +64,7 @@ export class ContratoCadastroComponent implements OnInit {
         }
     }
 
-    salvarOuEditar (form: NgForm) {
+    salvarOuEditar(form: NgForm) {
         this.selecionarEmpresa();
         this.selecionarOperadora();
 
@@ -74,15 +75,15 @@ export class ContratoCadastroComponent implements OnInit {
         }
     }
 
-    dialogIncluirTaxa () {
+    dialogIncluirTaxa() {
         this.visivel = true;
     }
 
-    temOperadoraSelecionada () {
+    temOperadoraSelecionada() {
         return !!this.operadoraId;
     }
 
-    salvarTaxa (taxa: Taxa) {
+    salvarTaxa(taxa: Taxa) {
         this.verificaDuplicidadeDeTaxa(taxa);
         this.taxaService.validarTaxa(taxa).then(response => {
             response.ativo = response.expiraEm > 0;
@@ -92,29 +93,29 @@ export class ContratoCadastroComponent implements OnInit {
         });
     }
 
-    confirmarExclusao (taxa: Taxa) {
+    confirmarExclusao(taxa: Taxa) {
         this.confirmationService.confirm({
-            message: `Tem certeza que deseja excluir '${ taxa.descricao }' ?`,
+            message: `Tem certeza que deseja excluir '${taxa.descricao}' ?`,
             accept: () => {
                 this.excluirTaxa(taxa);
             }
         });
     }
 
-    cancelar () {
+    cancelar() {
         this.visivel = false;
         this.taxa = new Taxa();
         this.taxa.tipo = 'PERCENTUAL';
     }
 
-    private excluirTaxa (taxa: Taxa) {
+    private excluirTaxa(taxa: Taxa) {
         const index = this.contrato.taxas.indexOf(taxa);
         if (index > -1) {
             this.contrato.taxas.splice(index, 1);
         }
     }
 
-    private pesquisarPorId (id: number) {
+    private pesquisarPorId(id: number) {
         this.contratoService.pesquisarPorId(id).then(contrato => {
             this.contrato = contrato;
             this.operadoraId = this.contrato.operadora.id;
@@ -122,21 +123,21 @@ export class ContratoCadastroComponent implements OnInit {
         });
     }
 
-    private selecionarOperadora () {
+    private selecionarOperadora() {
         const operadoras = this.operadoras.filter(operadora => operadora.id === this.operadoraId);
         if (operadoras.length === 1) {
             this.contrato.operadora = operadoras[0];
         }
     }
 
-    private selecionarEmpresa () {
+    private selecionarEmpresa() {
         const empresas = this.empresas.filter(empresa => empresa.id === this.empresaId);
         if (empresas.length === 1) {
             this.contrato.empresa = empresas[0];
         }
     }
 
-    private editar () {
+    private editar() {
         this.contratoService.editar(this.contrato).then(() => {
             this.notificacao.sucesso("Contrato atualizado com sucesso.");
         });
@@ -150,8 +151,8 @@ export class ContratoCadastroComponent implements OnInit {
         });
     }
 
-    private verificaDuplicidadeDeTaxa (taxa: Taxa) {
-        const taxaEncontrada = this.contrato.taxas.filter(tx=> tx.descricao === taxa.descricao);
+    private verificaDuplicidadeDeTaxa(taxa: Taxa) {
+        const taxaEncontrada = this.contrato.taxas.filter(tx => tx.descricao === taxa.descricao);
         if (taxaEncontrada.length > 0) {
             const mensagem = `Taxa ${taxa.descricao}, está duplicada na lista.`;
             this.notificacao.error(mensagem);
@@ -159,7 +160,7 @@ export class ContratoCadastroComponent implements OnInit {
         }
     }
 
-    private carregarEmpresas () {
+    private carregarEmpresas() {
         const usuario = this.segurancaService.getUsuario();
         this.empresaService.pesquisar(new FiltroEmpresa()).then(empresas => {
             this.empresas = empresas;
@@ -169,7 +170,7 @@ export class ContratoCadastroComponent implements OnInit {
         });
     }
 
-    private carregarOperadoras () {
+    private carregarOperadoras() {
         this.operadoraService.pesquisar(new FiltroOperadora()).then(operadoras => {
             this.operadoras = operadoras;
         });

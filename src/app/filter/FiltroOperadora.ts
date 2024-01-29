@@ -1,3 +1,3 @@
 export class FiltroOperadora {
-    descricao= "";
+    descricao = "";
 }

@@ -15,18 +15,23 @@
                 <div class="col-md-4">
                     <label class="form-label">Usuários *:</label>
                     <p-dropdown optionLabel="nomeCompleto" [options]="usuarios" [(ngModel)]="usuarioId" optionValue="id"
-                        styleClass="w-100" name="usuarios" id="usuarios" placeholder="Selecione um usuário"
-                        [required]="true"></p-dropdown>
+                                styleClass="w-100" name="usuarios" id="usuarios" placeholder="Selecione um usuário"
+                                [required]="true"></p-dropdown>
                 </div>
             </div>
         </div>
 
         <div class="card-footer">
             <div class="card-action">
-                <button pButton type="button" class="p-button-danger p-button-sm" icon="pi pi-save" label="Salvar" (click)="salvarOuEditar()" [disabled]="!segurancaService.temPermissao('ROLE_CADASTRAR_PERMISSAO')"></button>
-                <button type="button" pButton class="p-button-danger p-button-sm p-button-outlined" icon="pi pi-replay" label="Voltar" routerLink="/configuracao/consulta/permissoes" [disabled]="!segurancaService.temPermissao('ROLE_PESQUISAR_PERMISSAO')"></button>
+                <button pButton type="button" class="p-button-danger p-button-sm" icon="pi pi-save" label="Salvar"
+                        (click)="salvarOuEditar()"
+                        [disabled]="!segurancaService.temPermissao('ROLE_CADASTRAR_PERMISSAO')"></button>
+                <button type="button" pButton class="p-button-danger p-button-sm p-button-outlined" icon="pi pi-replay"
+                        label="Voltar" routerLink="/configuracao/consulta/permissoes"
+                        [disabled]="!segurancaService.temPermissao('ROLE_PESQUISAR_PERMISSAO')"></button>
 
-                <button type="reset" pButton class="p-button-danger p-button-sm float-end" icon="pi pi-eraser" (click)="limpar()" *ngIf="!permissao.id" label="Limpar"></button>
+                <button type="reset" pButton class="p-button-danger p-button-sm float-end" icon="pi pi-eraser"
+                        (click)="limpar()" *ngIf="!permissao.id" label="Limpar"></button>
             </div>
         </div>
     </div>
@@ -40,7 +45,7 @@
 
         <div class="card-body">
             <p-table [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="15" dataKey="code"
-                styleClass="p-datatable-striped p-datatable p-datatable-gridlines" [value]="regras">
+                     styleClass="p-datatable-striped p-datatable p-datatable-gridlines" [value]="regras">
                 <ng-template pTemplate="header">
                     <tr>
                         <th style="min-width: 250px;">Funcionalidade</th>
@@ -58,32 +63,45 @@
                     <tr>
                         <td>{{ regra['nome'] }}</td>
                         <td class="text-center">
-                            <input type="checkbox" name="menu" class="p-checkbox" [disabled]="naoBloquear(regra, TipoPermissao.MENU)"
-                                   [checked]="!!regra['menu']" (change)="adicionar(regra, TipoPermissao.MENU, $event)" />
+                            <input type="checkbox" name="menu" class="p-checkbox"
+                                   [disabled]="naoBloquear(regra, TipoPermissao.MENU)"
+                                   [checked]="!!regra['menu']" (change)="adicionar(regra, TipoPermissao.MENU, $event)"/>
                         </td>
                         <td class="text-center">
-                            <input type="checkbox" name="agendar" class="p-checkbox" [disabled]="naoBloquear(regra, TipoPermissao.AGENDAR)"
-                                   [checked]="!!regra['agendar']" (change)="adicionar(regra, TipoPermissao.AGENDAR, $event)" />
+                            <input type="checkbox" name="agendar" class="p-checkbox"
+                                   [disabled]="naoBloquear(regra, TipoPermissao.AGENDAR)"
+                                   [checked]="!!regra['agendar']"
+                                   (change)="adicionar(regra, TipoPermissao.AGENDAR, $event)"/>
                         </td>
                         <td class="text-center">
-                            <input type="checkbox" name="cadastrar" class="p-checkbox" [disabled]="naoBloquear(regra, TipoPermissao.CADASTRAR)"
-                                   [checked]="!!regra['cadastrar']" (change)="adicionar(regra, TipoPermissao.CADASTRAR, $event)" />
+                            <input type="checkbox" name="cadastrar" class="p-checkbox"
+                                   [disabled]="naoBloquear(regra, TipoPermissao.CADASTRAR)"
+                                   [checked]="!!regra['cadastrar']"
+                                   (change)="adicionar(regra, TipoPermissao.CADASTRAR, $event)"/>
                         </td>
                         <td class="text-center">
-                            <input type="checkbox" name="atualizar" class="p-checkbox" [disabled]="naoBloquear(regra, TipoPermissao.ATUALIZAR)"
-                                   [checked]="!!regra['atualizar']" (change)="adicionar(regra, TipoPermissao.ATUALIZAR, $event)" />
+                            <input type="checkbox" name="atualizar" class="p-checkbox"
+                                   [disabled]="naoBloquear(regra, TipoPermissao.ATUALIZAR)"
+                                   [checked]="!!regra['atualizar']"
+                                   (change)="adicionar(regra, TipoPermissao.ATUALIZAR, $event)"/>
                         </td>
                         <td class="text-center">
-                            <input type="checkbox" name="pesquisar" class="p-checkbox" [disabled]="naoBloquear(regra, TipoPermissao.PESQUISAR)"
-                                   [checked]="!!regra['pesquisar']" (change)="adicionar(regra, TipoPermissao.PESQUISAR, $event)" />
+                            <input type="checkbox" name="pesquisar" class="p-checkbox"
+                                   [disabled]="naoBloquear(regra, TipoPermissao.PESQUISAR)"
+                                   [checked]="!!regra['pesquisar']"
+                                   (change)="adicionar(regra, TipoPermissao.PESQUISAR, $event)"/>
                         </td>
                         <td class="text-center">
-                            <input type="checkbox" name="deletar" class="p-checkbox" [disabled]="naoBloquear(regra, TipoPermissao.DELETAR)"
-                                   [checked]="!!regra['deletar']" (change)="adicionar(regra, TipoPermissao.DELETAR, $event)" />
+                            <input type="checkbox" name="deletar" class="p-checkbox"
+                                   [disabled]="naoBloquear(regra, TipoPermissao.DELETAR)"
+                                   [checked]="!!regra['deletar']"
+                                   (change)="adicionar(regra, TipoPermissao.DELETAR, $event)"/>
                         </td>
                         <td class="text-center">
-                            <input type="checkbox" name="ativar" class="p-checkbox" [disabled]="naoBloquear(regra, TipoPermissao.ATIVAR)"
-                                   [checked]="!!regra['ativar']" (change)="adicionar(regra, TipoPermissao.ATIVAR, $event)" />
+                            <input type="checkbox" name="ativar" class="p-checkbox"
+                                   [disabled]="naoBloquear(regra, TipoPermissao.ATIVAR)"
+                                   [checked]="!!regra['ativar']"
+                                   (change)="adicionar(regra, TipoPermissao.ATIVAR, $event)"/>
                         </td>
                     </tr>
                 </ng-template>

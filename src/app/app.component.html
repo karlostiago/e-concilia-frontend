@@ -2,7 +2,8 @@
     <app-navbar *ngIf="exibirNavBar()"></app-navbar>
     <app-loader></app-loader>
 
-    <div class="main-wrap {{ exibirMenu && exibirNavBar() ? 'block' : 'hidden' }} {{ exibirMenu && exibirNavBar() ? 'moving ml-240' : 'moving' }}">
+    <div
+        class="main-wrap {{ exibirMenu && exibirNavBar() ? 'block' : 'hidden' }} {{ exibirMenu && exibirNavBar() ? 'moving ml-240' : 'moving' }}">
         <div class="container-fluid">
             <router-outlet></router-outlet>
         </div>
@@ -18,8 +19,10 @@
 
     <p-confirmDialog [style]="{ width: '55vw' }" header="Confirmação" icon="pi pi-exclamation-triangle" #confirmDialog>
         <p-footer>
-            <button type="button" pButton icon="pi pi-check" label="Sim" class="p-button-danger p-button-sm" (click)="confirmDialog.accept()"></button>
-            <button type="button" pButton icon="pi pi-times" label="Não" class="p-button-danger p-button-sm" (click)="confirmDialog.reject()"></button>
+            <button type="button" pButton icon="pi pi-check" label="Sim" class="p-button-danger p-button-sm"
+                    (click)="confirmDialog.accept()"></button>
+            <button type="button" pButton icon="pi pi-times" label="Não" class="p-button-danger p-button-sm"
+                    (click)="confirmDialog.reject()"></button>
         </p-footer>
     </p-confirmDialog>
 </div>

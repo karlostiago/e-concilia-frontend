@@ -18,4 +18,5 @@ import {TaxaRoutingModule} from "./taxa-routing.module";
         TaxaRoutingModule
     ]
 })
-export class TaxaModule { }
+export class TaxaModule {
+}

@@ -4,9 +4,9 @@ import {DashboardService} from "../dashboard.service";
 import {FormatacaoMoedaPtBR} from "../../../../helpers/FormatacaoMoedaPtBR";
 
 @Component({
-  selector: 'app-dashboard-grafico-venda-ultimo-sete-dias-credito-debito',
-  templateUrl: './dashboard-grafico-venda-ultimo-sete-dias-credito-debito.component.html',
-  styleUrls: ['./dashboard-grafico-venda-ultimo-sete-dias-credito-debito.component.css']
+    selector: 'app-dashboard-grafico-venda-ultimo-sete-dias-credito-debito',
+    templateUrl: './dashboard-grafico-venda-ultimo-sete-dias-credito-debito.component.html',
+    styleUrls: ['./dashboard-grafico-venda-ultimo-sete-dias-credito-debito.component.css']
 })
 export class DashboardGraficoVendaUltimoSeteDiasCreditoDebitoComponent implements OnInit {
 
@@ -16,7 +16,8 @@ export class DashboardGraficoVendaUltimoSeteDiasCreditoDebitoComponent implement
 
     empresaInexistente = -1;
 
-    constructor(private dashboardService: DashboardService) { }
+    constructor(private dashboardService: DashboardService) {
+    }
 
     ngOnInit(): void {
         this.atualizar(this.empresaInexistente);
@@ -31,21 +32,22 @@ export class DashboardGraficoVendaUltimoSeteDiasCreditoDebitoComponent implement
     }
 
     private getData() {
+        const documentStyle = getComputedStyle(document.documentElement);
         this.data = {
             labels: this.graficoVendaUltimo7DiasCreditoDebito.labels,
             datasets: [
                 {
                     label: 'Cartão crédito',
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgb(75, 192, 192)',
-                    borderWidth: 1,
+                    backgroundColor: documentStyle.getPropertyValue('--blue-500'),
+                    hoverBackgroundColor: documentStyle.getPropertyValue('--blue-400'),
+                    borderWidth: 0,
                     data: this.graficoVendaUltimo7DiasCreditoDebito.dataCredit
                 },
                 {
                     label: 'Cartão dédito',
-                    backgroundColor: 'rgba(200, 172, 235, 0.2)',
-                    borderColor: 'rgb(200, 172, 235)',
-                    borderWidth: 1,
+                    backgroundColor: documentStyle.getPropertyValue('--teal-500'),
+                    hoverBackgroundColor: documentStyle.getPropertyValue('--teal-400'),
+                    borderWidth: 0,
                     data: this.graficoVendaUltimo7DiasCreditoDebito.dataDebit
                 }
             ]
@@ -70,7 +72,7 @@ export class DashboardGraficoVendaUltimoSeteDiasCreditoDebitoComponent implement
                         weight: '300',
                         size: 11
                     },
-                    formatter: function(valor: number) {
+                    formatter: function (valor: number) {
                         return FormatacaoMoedaPtBR.monetario(valor);
                     }
                 },
@@ -92,7 +94,7 @@ export class DashboardGraficoVendaUltimoSeteDiasCreditoDebitoComponent implement
                     stacked: false,
                     ticks: {
                         color: textColorSecondary,
-                        callback: function(valor: number) {
+                        callback: function (valor: number) {
                             return FormatacaoMoedaPtBR.monetario(valor);
                         },
                         font: {

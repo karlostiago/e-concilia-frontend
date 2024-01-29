@@ -14,23 +14,29 @@
             <div class="row">
                 <div class="col-md-2">
                     <label class="form-label">Data inicial:</label>
-                    <p-calendar appendTo="body" id="dataInicial" [style]="{ 'width': '100%' }" name="dataInicial" [readonlyInput]="true" [(ngModel)]="importacao.dataInicial" dateFormat="dd/mm/yy"></p-calendar>
+                    <p-calendar appendTo="body" id="dataInicial" [style]="{ 'width': '100%' }" name="dataInicial"
+                                [readonlyInput]="true" [(ngModel)]="importacao.dataInicial"
+                                dateFormat="dd/mm/yy"></p-calendar>
                 </div>
 
                 <div class="col-md-2">
                     <label class="form-label">Data final:</label>
-                    <p-calendar appendTo="body" id="dataFinal" [style]="{ 'width': '100%' }" name="dataFinal" [readonlyInput]="true" [(ngModel)]="importacao.dataFinal" dateFormat="dd/mm/yy"></p-calendar>
+                    <p-calendar appendTo="body" id="dataFinal" [style]="{ 'width': '100%' }" name="dataFinal"
+                                [readonlyInput]="true" [(ngModel)]="importacao.dataFinal"
+                                dateFormat="dd/mm/yy"></p-calendar>
                 </div>
 
                 <div class="col-md-4">
                     <label class="form-label">Operadora*:</label>
-                    <p-dropdown styleClass="w-100" name="operadora" id="operadora" optionLabel="descricao" optionValue="id" placeholder="Selecione uma operadora"
+                    <p-dropdown styleClass="w-100" name="operadora" id="operadora" optionLabel="descricao"
+                                optionValue="id" placeholder="Selecione uma operadora"
                                 [required]="true" [(ngModel)]="operadoraId" [options]="operadoras"></p-dropdown>
                 </div>
 
                 <div class="col-md-4">
                     <label class="form-label">Empresa*:</label>
-                    <p-dropdown styleClass="w-100" name="empresa" id="empresa" optionLabel="razaoSocial" optionValue="id" [(ngModel)]="empresaId"
+                    <p-dropdown styleClass="w-100" name="empresa" id="empresa" optionLabel="razaoSocial"
+                                optionValue="id" [(ngModel)]="empresaId"
                                 [required]="true" placeholder="Selecione uma empresa" [options]="empresas"></p-dropdown>
                 </div>
             </div>
@@ -38,14 +44,16 @@
 
         <div class="card-footer">
             <div class="card-action">
-                <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-clock" label="Agendar" [disabled]="!formulario.valid && !segurancaService.temPermissao('ROLE_AGENDAR_IMPORTACAO')"></button>
-<!--                <button pButton type="button" class="p-button-danger p-button-sm p-button-outlined" icon="pi pi-replay" label="Voltar" routerLink="/configuracao/consulta/integracoes"></button>-->
-                <button pButton type="button" class="p-button-danger p-button-sm float-end" icon="pi pi-eraser" label="Limpar" (click)="limpar(formulario)"></button>
+                <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-clock" label="Agendar"
+                        [disabled]="!formulario.valid && !segurancaService.temPermissao('ROLE_AGENDAR_IMPORTACAO')"></button>
+                <!--                <button pButton type="button" class="p-button-danger p-button-sm p-button-outlined" icon="pi pi-replay" label="Voltar" routerLink="/configuracao/consulta/integracoes"></button>-->
+                <button pButton type="button" class="p-button-danger p-button-sm float-end" icon="pi pi-eraser"
+                        label="Limpar" (click)="limpar(formulario)"></button>
             </div>
         </div>
     </div>
 
-    <br />
+    <br/>
 
     <div class="card">
         <div class="card-header">
@@ -53,7 +61,8 @@
         </div>
 
         <div class="card-body">
-            <p-table [value]="importacoes" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="10" styleClass="p-datatable-striped p-datatable p-datatable-gridlines">
+            <p-table [value]="importacoes" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="10"
+                     styleClass="p-datatable-striped p-datatable p-datatable-gridlines">
                 <ng-template pTemplate="header">
                     <tr>
                         <th class="text-center w-10">Data inicial</th>
@@ -66,11 +75,11 @@
 
                 <ng-template pTemplate="body" let-importacao>
                     <tr>
-                        <td class="text-center"> {{ importacao["dataInicial"] | date:'dd/MM/yyyy' }} </td>
-                        <td class="text-center"> {{ importacao["dataFinal"] | date:'dd/MM/yyyy' }}  </td>
-                        <td class="text-center"> {{ importacao["empresa"]["razaoSocial"] }} </td>
-                        <td class="text-center"> {{ importacao["operadora"]["descricao"] }} </td>
-                        <td class="text-center"> {{ importacao["situacao"] }} </td>
+                        <td class="text-center"> {{ importacao["dataInicial"] | date:'dd/MM/yyyy' }}</td>
+                        <td class="text-center"> {{ importacao["dataFinal"] | date:'dd/MM/yyyy' }}</td>
+                        <td class="text-center"> {{ importacao["empresa"]["razaoSocial"] }}</td>
+                        <td class="text-center"> {{ importacao["operadora"]["descricao"] }}</td>
+                        <td class="text-center"> {{ importacao["situacao"] }}</td>
                     </tr>
                 </ng-template>
             </p-table>

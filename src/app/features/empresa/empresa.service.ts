@@ -5,7 +5,6 @@ import {HttpClient} from "@angular/common/http";
 import {FiltroEmpresa} from "../../filter/FiltroEmpresa";
 import {AbstractService} from "../../service/AbstractService";
 import {ErroHandlerService} from "../../core/ErroHandlerService";
-import {SegurancaService} from "../seguranca/seguranca.service";
 
 @Injectable({
     providedIn: 'root'
@@ -21,47 +20,47 @@ export class EmpresaService extends AbstractService<Empresa> {
         return 'empresas';
     }
 
-    async todosEstados () {
+    async todosEstados() {
         return Constantes.estados;
     }
 
-    async buscarDadosCnpj (cnpj: string): Promise<Empresa> {
+    async buscarDadosCnpj(cnpj: string): Promise<Empresa> {
         const request = this.httpClient.get(`${this.baseURL}/cnpj/${cnpj}`, this.options());
         return this.toPromise(request);
     }
 
-    async salvar (empresa: Empresa): Promise<Empresa> {
+    async salvar(empresa: Empresa): Promise<Empresa> {
         const request = this.httpClient.post(`${this.baseURL}/${this.pathURL()}`, JSON.stringify(empresa), this.options());
         return this.toPromise(request);
     }
 
-    async editar (empresa: Empresa): Promise<Empresa> {
+    async editar(empresa: Empresa): Promise<Empresa> {
         const request = this.httpClient.put(`${this.baseURL}/${this.pathURL()}/${empresa.id}`, JSON.stringify(empresa), this.options());
         return this.toPromise(request);
     }
 
-    async pesquisar (filtroEmpresa: FiltroEmpresa): Promise<Empresa[]> {
+    async pesquisar(filtroEmpresa: FiltroEmpresa): Promise<Empresa[]> {
         const request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}?cnpj=${filtroEmpresa.cnpj}&razaoSocial=${filtroEmpresa.razaoSocial}`, this.options());
         return this.toPromise(request);
     }
 
-    async excluir (id: number) {
+    async excluir(id: number) {
         const request = this.httpClient.delete(`${this.baseURL}/${this.pathURL()}/${id}`, this.options());
         return this.toPromise(request);
     }
 
-    async pesquisarPorId (id: number): Promise<Empresa> {
-        const request =this.httpClient.get(`${this.baseURL}/${this.pathURL()}/${id}`, this.options());
+    async pesquisarPorId(id: number): Promise<Empresa> {
+        const request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}/${id}`, this.options());
         return this.toPromise(request);
     }
 
-    async ativar (id: number): Promise<Empresa> {
-        const request =this.httpClient.patch(`${this.baseURL}/${this.pathURL()}/${id}/ativar`, this.options());
+    async ativar(id: number): Promise<Empresa> {
+        const request = this.httpClient.patch(`${this.baseURL}/${this.pathURL()}/${id}/ativar`, this.options());
         return this.toPromise(request);
     }
 
-    async desativar (id: number): Promise<Empresa> {
-        const request =this.httpClient.patch(`${this.baseURL}/${this.pathURL()}/${id}/desativar`, this.options());
+    async desativar(id: number): Promise<Empresa> {
+        const request = this.httpClient.patch(`${this.baseURL}/${this.pathURL()}/${id}/desativar`, this.options());
         return this.toPromise(request);
     }
 }

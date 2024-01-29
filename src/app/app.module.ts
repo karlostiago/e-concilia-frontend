@@ -12,10 +12,10 @@ import {DashboardInicialComponent} from './features/dashboard/dashboard-inicial/
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {DropdownModule} from "primeng/dropdown";
 import {CalendarModule} from "primeng/calendar";
-import { UsuarioConsultaComponent } from './features/configuracao/seguranca/usuario-consulta/usuario-consulta.component';
+import {UsuarioConsultaComponent} from './features/configuracao/seguranca/usuario-consulta/usuario-consulta.component';
 import {InputTextModule} from "primeng/inputtext";
 import {TableModule} from "primeng/table";
-import { LoginComponent } from './features/seguranca/login/login.component';
+import {LoginComponent} from './features/seguranca/login/login.component';
 import {AuthInterceptor} from "./auth.interceptor";
 
 @NgModule({

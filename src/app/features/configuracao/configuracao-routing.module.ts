@@ -1,16 +1,12 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
-import {
-    IntegracaoCadastroComponent
-} from "./integracao/integracao-cadastro/integracao-cadastro.component";
-import {
-    IntegracaoConsultaComponent
-} from "./integracao/integracao-consulta/integracao-consulta.component";
+import {IntegracaoCadastroComponent} from "./integracao/integracao-cadastro/integracao-cadastro.component";
+import {IntegracaoConsultaComponent} from "./integracao/integracao-consulta/integracao-consulta.component";
 import {UsuarioCadastroComponent} from "./seguranca/usuario-cadastro/usuario-cadastro.component";
 import {UsuarioConsultaComponent} from "./seguranca/usuario-consulta/usuario-consulta.component";
 import {ImportacaoCadastroComponent} from "./importacao/importacao-cadastro/importacao-cadastro.component";
-import { PermissaoCadastroComponent } from './seguranca/permissao-cadastro/permissao-cadastro.component';
-import { PermissaoConsultaComponent } from './seguranca/permissao-consulta/permissao-consulta.component';
+import {PermissaoCadastroComponent} from './seguranca/permissao-cadastro/permissao-cadastro.component';
+import {PermissaoConsultaComponent} from './seguranca/permissao-consulta/permissao-consulta.component';
 import {CanActivate} from "../../auth.guard";
 
 

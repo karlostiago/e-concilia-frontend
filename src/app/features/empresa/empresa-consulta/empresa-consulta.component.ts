@@ -23,13 +23,14 @@ export class EmpresaConsultaComponent implements OnInit {
         public segurancaService: SegurancaService,
         private empresaService: EmpresaService,
         private notificacao: NotificacaoService,
-        private confirmationService: ConfirmationService) { }
+        private confirmationService: ConfirmationService) {
+    }
 
     ngOnInit(): void {
         this.carregarEmpresas();
     }
 
-    async pesquisar () {
+    async pesquisar() {
         await this.empresaService.pesquisar(this.filtroEmpresa).then(empresas => {
             this.empresas = empresas;
         });
@@ -40,23 +41,23 @@ export class EmpresaConsultaComponent implements OnInit {
         }
     }
 
-    confirmarExclusao (empresa: Empresa) {
+    confirmarExclusao(empresa: Empresa) {
         this.confirmationService.confirm({
-            message: `Tem certeza que deseja excluir a empresa '${ empresa.razaoSocial }' ?`,
+            message: `Tem certeza que deseja excluir a empresa '${empresa.razaoSocial}' ?`,
             accept: () => {
                 this.excluir(empresa.id);
             }
         })
     }
 
-    excluir (id: number) {
+    excluir(id: number) {
         this.empresaService.excluir(id).then(() => {
             this.carregarEmpresas();
             this.notificacao.sucesso("Empresa excluída com sucesso.");
         });
     }
 
-    ativarOuDesativar (empresa: Empresa) {
+    ativarOuDesativar(empresa: Empresa) {
         if (empresa.ativo) {
             this.desativar(empresa);
         } else {
@@ -64,21 +65,21 @@ export class EmpresaConsultaComponent implements OnInit {
         }
     }
 
-    private ativar (empresa: Empresa) {
+    private ativar(empresa: Empresa) {
         this.empresaService.ativar(empresa.id).then(() => {
             this.notificacao.sucesso("Empresa ativada com sucesso.");
             empresa.ativo = true;
         });
     }
 
-    private desativar (empresa: Empresa) {
+    private desativar(empresa: Empresa) {
         this.empresaService.desativar(empresa.id).then(() => {
             this.notificacao.sucesso("Empresa desativada com sucesso.");
             empresa.ativo = false;
         });
     }
 
-    private carregarEmpresas () {
+    private carregarEmpresas() {
         this.empresaService.pesquisar(this.filtroEmpresa).then(empresas => {
             this.empresas = empresas;
         });

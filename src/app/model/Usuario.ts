@@ -1,5 +1,3 @@
-import {Perfil} from "./Perfil";
-
 export class Usuario {
     id: number;
     nomeCompleto: string;

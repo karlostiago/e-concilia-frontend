@@ -3,9 +3,9 @@ import {environment} from "../../../environments/environment";
 import {NavbarService} from "../../shared/navbar/navbar.service";
 
 @Component({
-  selector: 'app-footer',
-  templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.css']
+    selector: 'app-footer',
+    templateUrl: './footer.component.html',
+    styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit {
 

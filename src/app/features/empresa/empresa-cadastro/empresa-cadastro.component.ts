@@ -5,7 +5,6 @@ import {NotificacaoService} from "../../../shared/notificacao/notificacao.servic
 import {Estado} from "../../../model/Estado";
 import {ActivatedRoute} from "@angular/router";
 import {NgForm} from "@angular/forms";
-import {RegraService} from "../../configuracao/seguranca/regra.service";
 import {SegurancaService} from "../../seguranca/seguranca.service";
 
 @Component({
@@ -24,7 +23,8 @@ export class EmpresaCadastroComponent implements OnInit {
         private empresaService: EmpresaService,
         private notificacao: NotificacaoService,
         private activatedRoute: ActivatedRoute,
-    ) { }
+    ) {
+    }
 
     ngOnInit(): void {
         this.carregarEstados();
@@ -36,19 +36,19 @@ export class EmpresaCadastroComponent implements OnInit {
         }
     }
 
-    pesquisarPorId (id: number) {
+    pesquisarPorId(id: number) {
         this.empresaService.pesquisarPorId(id).then(response => {
             this.empresa = response;
         });
     }
 
-    carregarEstados () {
+    carregarEstados() {
         this.empresaService.todosEstados().then(response => {
             this.estados = response;
         });
     }
 
-    async salvarOuEditar (form: NgForm) {
+    async salvarOuEditar(form: NgForm) {
         if (this.empresa.id) {
             await this.editar();
         } else {
@@ -56,7 +56,7 @@ export class EmpresaCadastroComponent implements OnInit {
         }
     }
 
-    async buscarDadosCnpj (cnpj: string) {
+    async buscarDadosCnpj(cnpj: string) {
         if (cnpj) {
             const cnpjSemFormatacao = cnpj.replace(/[^0-9]/g, "");
 
@@ -69,7 +69,7 @@ export class EmpresaCadastroComponent implements OnInit {
         }
     }
 
-    private async salvar (form: NgForm) {
+    private async salvar(form: NgForm) {
         this.empresaService.salvar(this.empresa)
             .then(resposta => {
                 this.notificacao.sucesso("Empresa cadastrada com sucesso.");
@@ -78,7 +78,7 @@ export class EmpresaCadastroComponent implements OnInit {
             });
     }
 
-    private async editar () {
+    private async editar() {
         this.empresaService.editar(this.empresa)
             .then(resposta => {
                 this.notificacao.sucesso("Empresa atualizada com sucesso.");

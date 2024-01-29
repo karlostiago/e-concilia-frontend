@@ -4,9 +4,10 @@ import {Injectable} from "@angular/core";
 import {SegurancaService} from "./features/seguranca/seguranca.service";
 
 @Injectable()
-export class AuthInterceptor implements HttpInterceptor{
+export class AuthInterceptor implements HttpInterceptor {
 
-    constructor(private segurancaService: SegurancaService) { }
+    constructor(private segurancaService: SegurancaService) {
+    }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         req = req.clone({

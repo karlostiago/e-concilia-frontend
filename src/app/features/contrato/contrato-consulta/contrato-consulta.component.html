@@ -8,13 +8,15 @@
             <div class="row">
                 <div class="col-md-6">
                     <label class="form-label">Empresa:</label>
-                    <p-dropdown styleClass="w-100" name="empresa" id="empresa" optionLabel="razaoSocial" optionValue="id" [(ngModel)]="filtro.empresaId"
+                    <p-dropdown styleClass="w-100" name="empresa" id="empresa" optionLabel="razaoSocial"
+                                optionValue="id" [(ngModel)]="filtro.empresaId"
                                 placeholder="Selecione uma empresa" [options]="empresas"></p-dropdown>
                 </div>
 
                 <div class="col-md-6">
                     <label class="form-label">Operadora:</label>
-                    <p-dropdown styleClass="w-100" name="operadora" id="operadora" optionLabel="descricao" optionValue="id" [(ngModel)]="filtro.operadoraId"
+                    <p-dropdown styleClass="w-100" name="operadora" id="operadora" optionLabel="descricao"
+                                optionValue="id" [(ngModel)]="filtro.operadoraId"
                                 placeholder="Selecione uma operadora" [options]="operadoras"></p-dropdown>
                 </div>
             </div>
@@ -22,13 +24,17 @@
 
         <div class="card-footer">
             <div class="card-action">
-                <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-search" label="Pesquisar" (click)="pesquisar()" [disabled]="!segurancaService.temPermissao('ROLE_PESQUISAR_CONTRATO')"></button>
-                <button pButton class="p-button-danger p-button-sm float-end" icon="pi pi-plus-circle" routerLink="/cadastro/contratos/novo" label="Novo contrato" [disabled]="!segurancaService.temPermissao('ROLE_CADASTRAR_CONTRATO')"></button>
+                <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-search" label="Pesquisar"
+                        (click)="pesquisar()"
+                        [disabled]="!segurancaService.temPermissao('ROLE_PESQUISAR_CONTRATO')"></button>
+                <button pButton class="p-button-danger p-button-sm float-end" icon="pi pi-plus-circle"
+                        routerLink="/cadastro/contratos/novo" label="Novo contrato"
+                        [disabled]="!segurancaService.temPermissao('ROLE_CADASTRAR_CONTRATO')"></button>
             </div>
         </div>
     </div>
 
-    <br />
+    <br/>
 
     <div class="card">
         <div class="card-header">
@@ -36,13 +42,17 @@
         </div>
 
         <div class="card-body">
-            <p-table [value]="contratos" [tableStyle]="{ 'min-width': '50rem' }" sortField="empresa.razaoSocial" sortMode="single" rowGroupMode="subheader" groupRowsBy="empresa.razaoSocial" [paginator]="true" [rows]="10" styleClass="p-datatable-striped p-datatable p-datatable-gridlines">
+            <p-table [value]="contratos" [tableStyle]="{ 'min-width': '50rem' }" sortField="empresa.razaoSocial"
+                     sortMode="single" rowGroupMode="subheader" groupRowsBy="empresa.razaoSocial" [paginator]="true"
+                     [rows]="10" styleClass="p-datatable-striped p-datatable p-datatable-gridlines">
                 <ng-template pTemplate="header">
                     <tr>
                         <th class="text-center" style="min-width: 180px;">Nª Contrato</th>
                         <th class="text-center" style="min-width: 320px">Operadora</th>
                         <th class="text-center" style="min-width: 50px">Taxas</th>
-                        <th *ngIf="segurancaService.temPermissao('ROLE_ATIVAR_CONTRATO')" class="text-center" style="min-width: 120px;">Ativo</th>
+                        <th *ngIf="segurancaService.temPermissao('ROLE_ATIVAR_CONTRATO')" class="text-center"
+                            style="min-width: 120px;">Ativo
+                        </th>
                         <th class="text-center" style="min-width: 150px;">Ações</th>
                     </tr>
                 </ng-template>
@@ -59,22 +69,29 @@
 
                 <ng-template pTemplate="body" let-contrato let-rowIndex="rowIndex">
                     <tr>
-                        <td class="text-center"> {{ completarComZeroEsquerda(contrato['numero']) }} </td>
-                        <td class="text-center"> {{ contrato['operadora']['descricao'] }} </td>
+                        <td class="text-center"> {{ completarComZeroEsquerda(contrato['numero']) }}</td>
+                        <td class="text-center"> {{ contrato['operadora']['descricao'] }}</td>
                         <td class="text-center">
-                            <button type="button" pButton icon="pi pi-eye-slash" class="p-button-danger p-button-sm" (click)="detalharTaxas(contrato)" [disabled]="!segurancaService.temPermissao('ROLE_PESQUISAR_TAXA')"></button>
+                            <button type="button" pButton icon="pi pi-eye-slash" class="p-button-danger p-button-sm"
+                                    (click)="detalharTaxas(contrato)"
+                                    [disabled]="!segurancaService.temPermissao('ROLE_PESQUISAR_TAXA')"></button>
                         </td>
                         <td *ngIf="segurancaService.temPermissao('ROLE_ATIVAR_CONTRATO')" class="text-center">
                             <a (click)="ativarOuDesativar(contrato)">
-                                <span class=" {{ contrato['ativo'] == true ? 'badge text-bg-success' : 'badge text-bg-danger' }} ">
+                                <span
+                                    class=" {{ contrato['ativo'] == true ? 'badge text-bg-success' : 'badge text-bg-danger' }} ">
                                     {{ contrato["ativo"] === true ? 'Sim' : 'Não' }}
                                 </span>
                             </a>
                         </td>
                         <td class="text-center">
                             <div class="action">
-                                <button type="button" pButton icon="pi pi-trash" class="p-button-danger p-button-sm" (click)="confirmarExclusao(contrato)" [disabled]="!segurancaService.temPermissao('ROLE_DELETAR_CONTRATO')"></button>
-                                <button pButton icon="pi pi-pencil" class="p-button-danger p-button-sm" [routerLink]="['/editar/contratos', contrato['numero']]" [disabled]="!segurancaService.temPermissao('ROLE_EDITAR_CONTRATO')"></button>
+                                <button type="button" pButton icon="pi pi-trash" class="p-button-danger p-button-sm"
+                                        (click)="confirmarExclusao(contrato)"
+                                        [disabled]="!segurancaService.temPermissao('ROLE_DELETAR_CONTRATO')"></button>
+                                <button pButton icon="pi pi-pencil" class="p-button-danger p-button-sm"
+                                        [routerLink]="['/editar/contratos', contrato['numero']]"
+                                        [disabled]="!segurancaService.temPermissao('ROLE_EDITAR_CONTRATO')"></button>
                             </div>
                         </td>
                     </tr>

@@ -14,76 +14,91 @@
             <div class="row">
                 <div class="col-md-3">
                     <label class="form-label">CNPJ *:</label>
-                    <p-inputMask mask="99.999.999/9999-99" [autoFocus]="true" name="cnpj" id="cnpj" styleClass="form-control" autofocus [(ngModel)]="empresa.cnpj" [required]="true"
-                                 (keyup)="buscarDadosCnpj(empresa.cnpj)" ></p-inputMask>
+                    <p-inputMask mask="99.999.999/9999-99" [autoFocus]="true" name="cnpj" id="cnpj"
+                                 styleClass="form-control" autofocus [(ngModel)]="empresa.cnpj" [required]="true"
+                                 (keyup)="buscarDadosCnpj(empresa.cnpj)"></p-inputMask>
                 </div>
 
                 <div class="col-md-9">
                     <label class="form-label">Razão Social *:</label>
-                    <input pInputText class="form-control" name="razaoSocial" id="razaoSocial" [(ngModel)]="empresa.razaoSocial" [required]="true" />
+                    <input pInputText class="form-control" name="razaoSocial" id="razaoSocial"
+                           [(ngModel)]="empresa.razaoSocial" [required]="true"/>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-6">
                     <label class="form-label">Nome Fantasia *:</label>
-                    <input pInputText class="form-control" name="nomeFantasia" id="nomeFantasia" [(ngModel)]="empresa.nomeFantasia" [required]="true" />
+                    <input pInputText class="form-control" name="nomeFantasia" id="nomeFantasia"
+                           [(ngModel)]="empresa.nomeFantasia" [required]="true"/>
                 </div>
 
                 <div class="col-md-4">
                     <label class="form-label">Endereço *:</label>
-                    <input pInputText class="form-control" name="endereco" id="endereco" [(ngModel)]="empresa.endereco.logradouro" [required]="true" />
+                    <input pInputText class="form-control" name="endereco" id="endereco"
+                           [(ngModel)]="empresa.endereco.logradouro" [required]="true"/>
                 </div>
 
                 <div class="col-md-2">
                     <label class="form-label">Número *:</label>
-                    <input pInputText class="form-control" name="numero" id="numero" [(ngModel)]="empresa.endereco.numero" [required]="true" />
+                    <input pInputText class="form-control" name="numero" id="numero"
+                           [(ngModel)]="empresa.endereco.numero" [required]="true"/>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-8">
                     <label class="form-label">Complemento:</label>
-                    <input pInputText class="form-control" name="complemento" id="complemento" [(ngModel)]="empresa.endereco.complemento" />
+                    <input pInputText class="form-control" name="complemento" id="complemento"
+                           [(ngModel)]="empresa.endereco.complemento"/>
                 </div>
 
                 <div class="col-md-4">
                     <label class="form-label">Bairro:</label>
-                    <input pInputText class="form-control" name="bairro" id="bairro" [(ngModel)]="empresa.endereco.bairro" />
+                    <input pInputText class="form-control" name="bairro" id="bairro"
+                           [(ngModel)]="empresa.endereco.bairro"/>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-4">
                     <label class="form-label">Cidade:</label>
-                    <input pInputText class="form-control" name="cidade" id="cidade" [(ngModel)]="empresa.endereco.cidade" />
+                    <input pInputText class="form-control" name="cidade" id="cidade"
+                           [(ngModel)]="empresa.endereco.cidade"/>
                 </div>
 
                 <div class="col-md-4">
                     <label class="form-label">UF *:</label>
-                    <p-dropdown optionLabel="uf" optionValue="uf" styleClass="w-100" name="uf" id="uf" [options]="estados" placeholder="Selecione UF" [(ngModel)]="empresa.endereco.estado.uf" [required]="true"></p-dropdown>
+                    <p-dropdown optionLabel="uf" optionValue="uf" styleClass="w-100" name="uf" id="uf"
+                                [options]="estados" placeholder="Selecione UF" [(ngModel)]="empresa.endereco.estado.uf"
+                                [required]="true"></p-dropdown>
                 </div>
 
                 <div class="col-md-4">
                     <label class="form-label">Cep *:</label>
-                    <p-inputMask mask="99999-999" name="cep" id="cep" styleClass="form-control" [(ngModel)]="empresa.endereco.cep" [required]="true"></p-inputMask>
+                    <p-inputMask mask="99999-999" name="cep" id="cep" styleClass="form-control"
+                                 [(ngModel)]="empresa.endereco.cep" [required]="true"></p-inputMask>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-6">
                     <label class="form-label">E-mail *:</label>
-                    <input pInputText class="form-control" name="email" id="email" [(ngModel)]="empresa.contato.email" [required]="true"/>
+                    <input pInputText class="form-control" name="email" id="email" [(ngModel)]="empresa.contato.email"
+                           [required]="true"/>
                 </div>
 
                 <div class="col-md-3">
                     <label class="form-label">Telefone Fixo:</label>
-                    <p-inputMask mask="(99) 9999-9999" name="telefoneFixo" id="telefoneFixo" styleClass="form-control" [(ngModel)]="empresa.contato.telefone" ></p-inputMask>
+                    <p-inputMask mask="(99) 9999-9999" name="telefoneFixo" id="telefoneFixo" styleClass="form-control"
+                                 [(ngModel)]="empresa.contato.telefone"></p-inputMask>
                 </div>
 
                 <div class="col-md-3">
                     <label class="form-label">Telefone Celular *:</label>
-                    <p-inputMask mask="(99) 99999-9999" name="telefoneCelular" id="telefoneCelular" styleClass="form-control" [(ngModel)]="empresa.contato.celular" [required]="true"></p-inputMask>
+                    <p-inputMask mask="(99) 99999-9999" name="telefoneCelular" id="telefoneCelular"
+                                 styleClass="form-control" [(ngModel)]="empresa.contato.celular"
+                                 [required]="true"></p-inputMask>
                 </div>
             </div>
 
@@ -95,10 +110,14 @@
 
         <div class="card-footer">
             <div class="card-action">
-                <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-save" label="Salvar" [disabled]="!formulario.valid && !segurancaService.temPermissao('ROLE_CADASTRAR_EMPRESA')"></button>
-                <button pButton type="button" class="p-button-danger p-button-sm p-button-outlined" icon="pi pi-replay" label="Voltar" routerLink="/consulta/empresas" [disabled]="!segurancaService.temPermissao('ROLE_PESQUISAR_EMPRESA')"></button>
+                <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-save" label="Salvar"
+                        [disabled]="!formulario.valid && !segurancaService.temPermissao('ROLE_CADASTRAR_EMPRESA')"></button>
+                <button pButton type="button" class="p-button-danger p-button-sm p-button-outlined" icon="pi pi-replay"
+                        label="Voltar" routerLink="/consulta/empresas"
+                        [disabled]="!segurancaService.temPermissao('ROLE_PESQUISAR_EMPRESA')"></button>
 
-                <button pButton type="reset" class="p-button-danger p-button-sm float-end" icon="pi pi-eraser" *ngIf="!empresa.id" label="Limpar"></button>
+                <button pButton type="reset" class="p-button-danger p-button-sm float-end" icon="pi pi-eraser"
+                        *ngIf="!empresa.id" label="Limpar"></button>
             </div>
         </div>
     </div>

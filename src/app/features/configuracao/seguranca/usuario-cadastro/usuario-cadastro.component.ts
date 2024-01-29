@@ -11,9 +11,9 @@ import {SegurancaService} from "../../../seguranca/seguranca.service";
 import {Perfil} from "../../../../model/Perfil";
 
 @Component({
-  selector: 'app-usuario-cadastro',
-  templateUrl: './usuario-cadastro.component.html',
-  styleUrls: ['./usuario-cadastro.component.css']
+    selector: 'app-usuario-cadastro',
+    templateUrl: './usuario-cadastro.component.html',
+    styleUrls: ['./usuario-cadastro.component.css']
 })
 export class UsuarioCadastroComponent implements OnInit {
 
@@ -39,7 +39,7 @@ export class UsuarioCadastroComponent implements OnInit {
         this.carregarEmpresas();
     }
 
-    pesquisarPorId (id: number) {
+    pesquisarPorId(id: number) {
         this.usuarioService.pesquisarPorId(id).then(response => {
             this.usuario = response;
             this.usuario.confirmaSenha = response.senha;
@@ -48,7 +48,7 @@ export class UsuarioCadastroComponent implements OnInit {
         });
     }
 
-    async salvarOuEditar (form: NgForm) {
+    async salvarOuEditar(form: NgForm) {
         if (this.usuario.id) {
             await this.editar();
         } else {
@@ -56,7 +56,7 @@ export class UsuarioCadastroComponent implements OnInit {
         }
     }
 
-    private async salvar (form: NgForm) {
+    private async salvar(form: NgForm) {
         this.usuarioService.salvar(this.usuario)
             .then(resposta => {
                 this.notificacao.sucesso("Usuário cadastrado com sucesso.");
@@ -65,20 +65,20 @@ export class UsuarioCadastroComponent implements OnInit {
             });
     }
 
-    private async editar () {
+    private async editar() {
         this.usuarioService.editar(this.usuario)
             .then(resposta => {
                 this.notificacao.sucesso("Usuário atualizado com sucesso.");
             });
     }
 
-    private carregarEmpresas () {
+    private carregarEmpresas() {
         this.empresaService.pesquisar(new FiltroEmpresa()).then(empresas => {
             this.lojas = empresas;
         });
     }
 
-    private carregarPerfis () {
+    private carregarPerfis() {
         for (const perfilKey in Perfil) {
             // @ts-ignore
             this.perfis.push(Perfil[`${perfilKey}`].toUpperCase());
