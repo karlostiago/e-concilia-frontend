@@ -1,13 +1,10 @@
 import {Injectable} from '@angular/core';
 import {AbstractService} from "../../service/AbstractService";
 import {UsuarioService} from "../configuracao/seguranca/usuario.service";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {ErroHandlerService} from "../../core/ErroHandlerService";
 import {NotificacaoService} from "../../shared/notificacao/notificacao.service";
-import {ActivatedRouteSnapshot, Router, RouterStateSnapshot} from "@angular/router";
-import {Usuario} from "../../model/Usuario";
-import {FiltroUsuario} from "../../filter/FiltroUsuario";
-import {PermissaoService} from "../configuracao/seguranca/permissao.service";
+import {Router} from "@angular/router";
 import {Seguranca} from "../../model/Seguranca";
 
 @Injectable({

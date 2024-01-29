@@ -8,6 +8,7 @@ import {FiltroEmpresa} from "../../../../model/FiltroEmpresa";
 import {EmpresaService} from "../../../empresa/empresa.service";
 import {Empresa} from "../../../../model/Empresa";
 import {SegurancaService} from "../../../seguranca/seguranca.service";
+import {Perfil} from "../../../../model/Perfil";
 
 @Component({
   selector: 'app-usuario-cadastro',
@@ -18,15 +19,17 @@ export class UsuarioCadastroComponent implements OnInit {
 
     lojas: Empresa[];
     usuario = new Usuario();
+    perfis = new Array<String>();
 
     constructor(private usuarioService: UsuarioService,
                 private empresaService: EmpresaService,
                 public segurancaService: SegurancaService,
                 private notificacao: NotificacaoService,
-                private activatedRoute: ActivatedRoute,) {
+                private activatedRoute: ActivatedRoute) {
     }
 
     ngOnInit(): void {
+        this.carregarPerfis();
         const usuarioId = this.activatedRoute.snapshot.params['id'];
 
         if (usuarioId) {
@@ -41,6 +44,7 @@ export class UsuarioCadastroComponent implements OnInit {
             this.usuario = response;
             this.usuario.confirmaSenha = response.senha;
             this.usuario.confirmaEmail = response.email;
+            this.usuario.perfil = this.usuario.perfil.toUpperCase();
         });
     }
 
@@ -72,5 +76,12 @@ export class UsuarioCadastroComponent implements OnInit {
         this.empresaService.pesquisar(new FiltroEmpresa()).then(empresas => {
             this.lojas = empresas;
         });
+    }
+
+    private carregarPerfis () {
+        for (const perfilKey in Perfil) {
+            // @ts-ignore
+            this.perfis.push(Perfil[`${perfilKey}`].toUpperCase());
+        }
     }
 }

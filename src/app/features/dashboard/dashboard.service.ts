@@ -23,7 +23,6 @@ export class DashboardService extends AbstractService<Dashboard> {
     }
 
     async buscarInformacoes(empresaId: string, dtVendaDe: Date, dtVendaAte: Date): Promise<Dashboard> {
-        console.log(empresaId)
         const request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}?lojaId=${empresaId}&dtInicial=${DataHelpers.formatUs(dtVendaDe)}&dtFinal=${DataHelpers.formatUs(dtVendaAte)}`, this.options());
         return this.toPromise(request);
     }

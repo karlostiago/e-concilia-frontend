@@ -47,6 +47,14 @@
                     <p-multiSelect id="lojas" name="lojas" styleClass="form-control vr-multiselect" [options]="lojas" [(ngModel)]="usuario.lojasPermitidas" optionLabel="razaoSocial" scrollHeight="250px"></p-multiSelect>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <label class="form-label">Perfil:</label>
+                    <p-dropdown styleClass="w-100" name="perfil" id="perfil" [options]="perfis" placeholder="Selecione um perfil"
+                                [(ngModel)]="usuario.perfil"></p-dropdown>
+                </div>
+            </div>
         </div>
 
         <div class="card-footer">

@@ -1,3 +1,5 @@
+import {Perfil} from "./Perfil";
+
 export class Usuario {
     id: number;
     nomeCompleto: string;
@@ -6,4 +8,5 @@ export class Usuario {
     senha: string;
     confirmaSenha: string;
     lojasPermitidas: [];
+    perfil: string;
 }

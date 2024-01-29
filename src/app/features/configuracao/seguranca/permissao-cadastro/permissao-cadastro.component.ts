@@ -54,7 +54,6 @@ export class PermissaoCadastroComponent implements OnInit {
     }
 
     salvarOuEditar() {
-        console.log(this.permissao)
         if (this.permissao.id) {
             this.editar();
         } else {
