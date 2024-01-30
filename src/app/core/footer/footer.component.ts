@@ -23,4 +23,8 @@ export class FooterComponent implements OnInit {
             this.ambiente = "Produção";
         }
     }
+
+    getVersao() {
+        return environment.version;
+    }
 }

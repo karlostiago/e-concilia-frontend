@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormatacaoMoedaPtBR} from "../../../../helpers/FormatacaoMoedaPtBR";
 import {DashboardService} from "../dashboard.service";
 import {GraficoVendaUltimo7Dia} from "../../../model/GraficoVendaUltimo7Dia";
+import {NumberHelper} from "../../../../helpers/NumberHelper";
 
 @Component({
     selector: 'app-dashboard-grafico-venda-ultimo-sete-dias',
@@ -26,8 +27,10 @@ export class DashboardGraficoVendaUltimoSeteDiasComponent implements OnInit {
     atualizar(empresaId: number) {
         this.dashboardService.buscarVendasUltimos7Dias(empresaId).then(data => {
             this.graficoVendaUltimo7Dia = data;
+            const max = NumberHelper.max(50, 50, ...data.data);
+
             this.getData();
-            this.getOptions();
+            this.getOptions(max);
         });
     }
 
@@ -47,7 +50,7 @@ export class DashboardGraficoVendaUltimoSeteDiasComponent implements OnInit {
         };
     }
 
-    private getOptions() {
+    private getOptions(max: number) {
         const documentStyle = getComputedStyle(document.documentElement);
         const textColor = documentStyle.getPropertyValue('--text-color');
         const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
@@ -81,6 +84,7 @@ export class DashboardGraficoVendaUltimoSeteDiasComponent implements OnInit {
             },
             scales: {
                 y: {
+                    max: max,
                     beginAtZero: true,
                     ticks: {
                         display: true,

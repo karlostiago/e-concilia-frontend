@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {SegurancaService} from "../seguranca.service";
 import {NotificacaoService} from "../../../shared/notificacao/notificacao.service";
 import {Router} from "@angular/router";
+import {environment} from "../../../../environments/environment";
 
 @Component({
     selector: 'app-login',
@@ -20,8 +21,8 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.email = 'econcilia'
-        this.senha = 'admin'
+
+
     }
 
     login() {
@@ -33,5 +34,9 @@ export class LoginComponent implements OnInit {
             .catch(() => {
                 this.notificacao.error("Usuário/Senha inválidos.")
             });
+    }
+
+    getVersao() {
+        return environment.version;
     }
 }

@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {DashboardService} from "../dashboard.service";
 import {FormatacaoMoedaPtBR} from "../../../../helpers/FormatacaoMoedaPtBR";
 import {GraficoVendaUltimo7DiaDinheiroPix} from "../../../model/GraficoVendaUltimo7DiaDinheiroPix";
+import {NumberHelper} from "../../../../helpers/NumberHelper";
 
 @Component({
     selector: 'app-dashboard-grafico-venda-ultimo-sete-dias-dinheiro-pix',
@@ -26,8 +27,10 @@ export class DashboardGraficoVendaUltimoSeteDiasDinheiroPixComponent implements 
     atualizar(empresaId: number) {
         this.dashboardService.buscarVendasUltimos7DiasDinheiroPix(empresaId).then(data => {
             this.graficoVendaUltimo7DiaDinheiroPix = data;
+            const max = NumberHelper.max(50, 50, ...data.dataCash, ...data.dataPix);
+
             this.getData();
-            this.getOptions();
+            this.getOptions(max);
         });
     }
 
@@ -54,7 +57,7 @@ export class DashboardGraficoVendaUltimoSeteDiasDinheiroPixComponent implements 
         };
     }
 
-    private getOptions() {
+    private getOptions(max: number) {
         const documentStyle = getComputedStyle(document.documentElement);
         const textColor = documentStyle.getPropertyValue('--text-color');
         const textColorSecondary = documentStyle.getPropertyValue('--text-color-secondary');
@@ -91,8 +94,12 @@ export class DashboardGraficoVendaUltimoSeteDiasDinheiroPixComponent implements 
             },
             scales: {
                 x: {
+                    max: max,
                     stacked: false,
                     ticks: {
+                        autoSkip: false,
+                        maxRotation: 20,
+                        minRotation: 20,
                         color: textColorSecondary,
                         callback: function (valor: number) {
                             return FormatacaoMoedaPtBR.monetario(valor);
