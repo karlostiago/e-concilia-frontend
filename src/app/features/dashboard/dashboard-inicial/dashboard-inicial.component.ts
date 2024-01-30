@@ -52,10 +52,10 @@ export class DashboardInicialComponent implements OnInit {
 
         this.dashboardService.buscarInformacoes(this.empresasSelecionadas.join(','), this.filtro.dtInicial, this.filtro.dtFinal).then(dashabord => {
             this.dashboard = dashabord;
-            this.graficoVendaUltimoSeteDiasComponent.atualizar(this.empresaSelecionadaId);
-            this.graficoVendaUltimoSeteDiasCreditoDebito.atualizar(this.empresaSelecionadaId);
-            this.graficoVendaUltimoSeteDiasDinheiroPix.atualizar(this.empresaSelecionadaId);
-            this.graficoVendaUltimoSeteDiasPercentual.atualizar(this.empresaSelecionadaId);
+            this.graficoVendaUltimoSeteDiasComponent.atualizar();
+            this.graficoVendaUltimoSeteDiasCreditoDebito.atualizar();
+            this.graficoVendaUltimoSeteDiasDinheiroPix.atualizar();
+            this.graficoVendaUltimoSeteDiasPercentual.atualizar();
         });
     }
 

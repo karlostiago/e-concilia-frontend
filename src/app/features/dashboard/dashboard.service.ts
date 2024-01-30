@@ -27,38 +27,22 @@ export class DashboardService extends AbstractService<Dashboard> {
         return this.toPromise(request);
     }
 
-    async buscarVendasUltimos7Dias(empresaId: number): Promise<GraficoVendaUltimo7Dia> {
-        if (empresaId == null) {
-            empresaId = -1;
-        }
-
+    async buscarVendasUltimos7Dias(empresaId: string): Promise<GraficoVendaUltimo7Dia> {
         const request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}/buscar-venda-ultimos-7-dias?lojaId=${empresaId}`, this.options());
         return this.toPromise(request);
     }
 
-    async buscarVendasUltimos7DiasCreditoDebito(empresaId: number): Promise<GraficoVendaUltimo7DiaCreditoDebito> {
-        if (empresaId == null) {
-            empresaId = -1;
-        }
-
+    async buscarVendasUltimos7DiasCreditoDebito(empresaId: string): Promise<GraficoVendaUltimo7DiaCreditoDebito> {
         const request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}/buscar-venda-ultimos-7-dias-credito-debito?lojaId=${empresaId}`, this.options());
         return this.toPromise(request);
     }
 
-    async buscarVendasUltimos7DiasDinheiroPix(empresaId: number): Promise<GraficoVendaUltimo7DiaDinheiroPix> {
-        if (empresaId == null) {
-            empresaId = -1;
-        }
-
+    async buscarVendasUltimos7DiasDinheiroPix(empresaId: string): Promise<GraficoVendaUltimo7DiaDinheiroPix> {
         const request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}/buscar-venda-ultimos-7-dias-dinheito-pix?lojaId=${empresaId}`, this.options());
         return this.toPromise(request);
     }
 
-    async buscarPercentualVendasUltimos7Dias(empresaId: number): Promise<GraficoVendaUltimo7Dia> {
-        if (empresaId == null) {
-            empresaId = -1;
-        }
-
+    async buscarPercentualVendasUltimos7Dias(empresaId: string): Promise<GraficoVendaUltimo7Dia> {
         const request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}/buscar-percentual-venda-ultimos-7-dias?lojaId=${empresaId}`, this.options());
         return this.toPromise(request);
     }

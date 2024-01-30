@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {DashboardService} from "../dashboard.service";
 import {FormatacaoMoedaPtBR} from "../../../../helpers/FormatacaoMoedaPtBR";
 import {GraficoVendaUltimo7DiaDinheiroPix} from "../../../model/GraficoVendaUltimo7DiaDinheiroPix";
@@ -15,17 +15,17 @@ export class DashboardGraficoVendaUltimoSeteDiasDinheiroPixComponent implements 
     options: any;
     graficoVendaUltimo7DiaDinheiroPix = new GraficoVendaUltimo7DiaDinheiroPix();
 
-    empresaInexistente = -1;
+    @Input() empresas = new Array<string>();
 
     constructor(private dashboardService: DashboardService) {
     }
 
     ngOnInit(): void {
-        this.atualizar(this.empresaInexistente);
+
     }
 
-    atualizar(empresaId: number) {
-        this.dashboardService.buscarVendasUltimos7DiasDinheiroPix(empresaId).then(data => {
+    atualizar() {
+        this.dashboardService.buscarVendasUltimos7DiasDinheiroPix(this.empresas.join(',')).then(data => {
             this.graficoVendaUltimo7DiaDinheiroPix = data;
             const max = NumberHelper.max(50, 50, ...data.dataCash, ...data.dataPix);
 

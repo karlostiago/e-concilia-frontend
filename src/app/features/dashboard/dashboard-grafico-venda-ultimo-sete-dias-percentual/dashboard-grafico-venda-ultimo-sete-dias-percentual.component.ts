@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormatacaoMoedaPtBR} from "../../../../helpers/FormatacaoMoedaPtBR";
 import {DashboardService} from "../dashboard.service";
 import {GraficoVendaUltimo7DiaPercentual} from "../../../model/GraficoVendaUltimo7DiaDPercentual";
@@ -14,17 +14,17 @@ export class DashboardGraficoVendaUltimoSeteDiasPercentualComponent implements O
     options: any;
     grafico = new GraficoVendaUltimo7DiaPercentual();
 
-    empresaInexistente = -1;
+    @Input() empresas = new Array<string>();
 
     constructor(private dashboardService: DashboardService) {
     }
 
     ngOnInit(): void {
-        this.atualizar(this.empresaInexistente);
+
     }
 
-    atualizar(empresaId: number) {
-        this.dashboardService.buscarPercentualVendasUltimos7Dias(empresaId).then(data => {
+    atualizar() {
+        this.dashboardService.buscarPercentualVendasUltimos7Dias(this.empresas.join(',')).then(data => {
             this.grafico = data;
             this.getData();
             this.getOptions();
@@ -48,7 +48,7 @@ export class DashboardGraficoVendaUltimoSeteDiasPercentualComponent implements O
 
     private getOptions() {
         this.options = {
-            cutout: '60%',
+            cutout: '55%',
             plugins: {
                 datalabels: {
                     align: 'start',

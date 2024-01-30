@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {GraficoVendaUltimo7DiaCreditoDebito} from "../../../model/GraficoVendaUltimo7DiaCreditoDebito";
 import {DashboardService} from "../dashboard.service";
 import {FormatacaoMoedaPtBR} from "../../../../helpers/FormatacaoMoedaPtBR";
@@ -15,17 +15,17 @@ export class DashboardGraficoVendaUltimoSeteDiasCreditoDebitoComponent implement
     options: any;
     graficoVendaUltimo7DiasCreditoDebito = new GraficoVendaUltimo7DiaCreditoDebito();
 
-    empresaInexistente = -1;
+    @Input() empresas = new Array<string>();
 
     constructor(private dashboardService: DashboardService) {
     }
 
     ngOnInit(): void {
-        this.atualizar(this.empresaInexistente);
+        // this.atualizar();
     }
 
-    atualizar(empresaId: number) {
-        this.dashboardService.buscarVendasUltimos7DiasCreditoDebito(empresaId).then(data => {
+    atualizar() {
+        this.dashboardService.buscarVendasUltimos7DiasCreditoDebito(this.empresas.join(',')).then(data => {
             this.graficoVendaUltimo7DiasCreditoDebito = data;
             const max = NumberHelper.max(50, 50, ...data.dataCredit, ...data.dataDebit);
 
