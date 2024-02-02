@@ -15,13 +15,13 @@
                     </p>
 
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <label class="form-label">Período:</label>
                             <p-calendar name="periodo" id="periodo" [style]="{ 'width': '100%' }"
                                         [(ngModel)]="filtro.periodo" [readonlyInput]="true" view="month" dateFormat="MM/yy"></p-calendar>
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <label class="form-label">Lojas:</label>
                             <p-dropdown styleClass="w-100" name="loja" id="loja" optionLabel="razaoSocial"
                                         optionValue="id" placeholder="Selecione uma loja"
