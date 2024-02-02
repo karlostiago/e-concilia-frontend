@@ -45,9 +45,9 @@
                 <li>
                     <a href="#" (click)="menuConciliadores($event)"> <i class="pi pi-angle-double-left"></i>
                         Conciliadores </a>
-                    <ul>
+                    <ul class="p-left-50">
                         <li *ngIf="segurancaService.temPermissao('ROLE_PESQUISAR_CONCILIADOR_IFOOD')"><a
-                            routerLink="/consulta/conciliador/ifood"> <i class="pi pi-angle-right"></i> Ifood </a></li>
+                            routerLink="/consulta/conciliador/ifood"> <i class="pi pi-calculator"></i> Ifood </a></li>
                     </ul>
                 </li>
             </ul>
@@ -56,7 +56,7 @@
                 <li>
                     <a href="#" (click)="menuConfiguracoes($event)"> <i class="pi pi-angle-double-left"></i>
                         Configurações </a>
-                    <ul>
+                    <ul class="p-left-50">
                         <li *ngIf="segurancaService.temPermissao('ROLE_PESQUISAR_INTEGRACAO')"><a
                             routerLink="configuracao/consulta/integracoes"> <i class="pi pi-share-alt"></i> Integrações
                         </a></li>

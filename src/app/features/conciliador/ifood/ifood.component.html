@@ -76,9 +76,10 @@
                                 <th class="text-center">Bandeira</th>
                                 <th class="text-center">Meio Pagto</th>
                                 <th class="text-center">Valor Bruto</th>
-                                <th class="text-center">Valor Total Pedido</th>
+                                <th class="text-center">Valor Pedido</th>
                                 <th class="text-center">Valor Cancelado</th>
                                 <th class="text-center">Valor Liquído</th>
+                                <th class="text-center">Reprocess.</th>
                                 <th class="text-center">Conciliado</th>
                                 <th class="text-center">Ver. Taxas</th>
                             </tr>
@@ -93,6 +94,7 @@
                                 <td class="text-end"> {{ formatarValor(venda["valorTotalPedido"]) }}</td>
                                 <td class="text-end"> {{ formatarValor(venda["valorCancelado"]) }}</td>
                                 <td class="text-end"> {{ formatarValor(venda["valorLiquido"]) }}</td>
+                                <td> Não </td>
                                 <td class="text-center">
                                     <span
                                         class=" {{ venda['conciliado'] === true ? 'badge text-bg-success' : 'badge text-bg-danger' }} ">
@@ -120,6 +122,7 @@
                                 <!--                                <td></td>-->
                                 <!--                                <td></td>-->
                                 <!--                                <td class="text-end"> {{ formatarValor(conciliador.totalizador.totalDiferenca) }}</td>-->
+                                <td></td>
                                 <td></td>
                                 <td></td>
                             </tr>

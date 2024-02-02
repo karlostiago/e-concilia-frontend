@@ -18,6 +18,7 @@ import {SegurancaService} from "../../seguranca/seguranca.service";
 import {
     DashboardGraficoVendaUltimoSeteDiasPercentualComponent
 } from "../dashboard-grafico-venda-ultimo-sete-dias-percentual/dashboard-grafico-venda-ultimo-sete-dias-percentual.component";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-dashboard-inicial',
@@ -40,6 +41,7 @@ export class DashboardInicialComponent implements OnInit {
 
     constructor(private dashboardService: DashboardService,
                 public segurancaService: SegurancaService,
+                private router: Router,
                 private empresaService: EmpresaService) {
     }
 
@@ -49,6 +51,7 @@ export class DashboardInicialComponent implements OnInit {
 
     pesquisar() {
         this.selecionarEmpresa();
+        this.filtro.calcularPeriodo();
 
         this.dashboardService.buscarInformacoes(this.empresasSelecionadas.join(','), this.filtro.dtInicial, this.filtro.dtFinal).then(dashabord => {
             this.dashboard = dashabord;
@@ -63,6 +66,12 @@ export class DashboardInicialComponent implements OnInit {
         this.filtro = new FiltroDashboard();
         this.empresaSelecionadaId = -1;
         this.carregarEmpresasPreSelecionadas();
+    }
+
+    atualizar() {
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+           this.router.navigate([this.router.url]).then(() => { });
+        });
     }
 
     private selecionarEmpresa() {

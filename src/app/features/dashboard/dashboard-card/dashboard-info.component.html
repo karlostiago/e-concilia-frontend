@@ -58,8 +58,8 @@
     <div class="col-md-3 mb-10">
         <div class="card">
             <div class="card-header">
-                <label>Incentivo promocional operadora:</label><br>
-                <h5 class="color-wine">{{ formatarMoeda(dashboard.valorIncentivoPromocionalOperadora) }}</h5>
+                <label>Total em comissões:</label><br>
+                <h5 class="color-wine">{{ formatarMoeda(dashboard.valorComissao) }}</h5>
             </div>
         </div>
     </div>
@@ -67,8 +67,17 @@
     <div class="col-md-3 mb-10">
         <div class="card">
             <div class="card-header">
-                <label>Promoções:</label><br>
-                <h5 class="color-wine">{{ formatarMoeda(dashboard.valorIncentivoPromocionalLoja) }}</h5>
+                <label>Total em promoções:</label><br>
+                <h5 class="color-wine">{{ formatarMoeda(dashboard.valorPromocao) }}</h5>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3 mb-10">
+        <div class="card">
+            <div class="card-header">
+                <label>Comissão transação pagamento:</label><br>
+                <h5 class="color-wine">{{ formatarMoeda(dashboard.valorComissaoTransacao) }}</h5>
             </div>
         </div>
     </div>
