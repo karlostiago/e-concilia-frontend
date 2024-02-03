@@ -8,6 +8,7 @@ export class Venda {
     numeroDocumento: string;
     modeloNegocio: string;
     conciliado = false;
+    reprocessada = false;
     pagamento = new Pagamento();
     cobranca = new Cobranca();
     diferenca: number;

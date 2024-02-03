@@ -94,11 +94,14 @@
                                 <td class="text-end"> {{ formatarValor(venda["valorTotalPedido"]) }}</td>
                                 <td class="text-end"> {{ formatarValor(venda["valorCancelado"]) }}</td>
                                 <td class="text-end"> {{ formatarValor(venda["valorLiquido"]) }}</td>
-                                <td> Não </td>
                                 <td class="text-center">
-                                    <span
-                                        class=" {{ venda['conciliado'] === true ? 'badge text-bg-success' : 'badge text-bg-danger' }} ">
-                                    {{ venda["conciliado"] === true ? 'Sim' : 'Não' }}
+                                    <span class=" {{ venda['reprocessada'] === true ? 'badge text-bg-danger' : 'badge text-bg-success' }} ">
+                                        {{ venda["reprocessada"] === true ? 'Sim' : 'Não' }}
+                                    </span>
+                                </td>
+                                <td class="text-center">
+                                    <span class=" {{ venda['conciliado'] === true ? 'badge text-bg-success' : 'badge text-bg-danger' }} ">
+                                        {{ venda["conciliado"] === true ? 'Sim' : 'Não' }}
                                     </span>
                                 </td>
                                 <td class="text-center">
