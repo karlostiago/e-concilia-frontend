@@ -68,3 +68,9 @@
 ul.p-left-50 {
     padding-left: 50px!important;
 }
+
+.notification {
+    color: #fff;
+    position: relative;
+    right: 15px;
+}
