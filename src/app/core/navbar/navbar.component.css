@@ -74,3 +74,10 @@ ul.p-left-50 {
     position: relative;
     right: 15px;
 }
+
+.container-user {
+    position: absolute;
+    left: 80px;
+    top: 35px;
+    font-size: 12px;
+}

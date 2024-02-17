@@ -32,6 +32,10 @@ input {
     color: RGBA(25, 135, 84, var(--bs-bg-opacity, 1)) !important;
 }
 
+.color-text-white {
+    color: RGBA(255, 255, 255, var(--bs-bg-opacity, 1)) !important;
+}
+
 button[disabled] {
     cursor: no-drop !important;
 }

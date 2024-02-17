@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NavbarService} from "../../shared/navbar/navbar.service";
 import {SegurancaService} from "../../features/seguranca/seguranca.service";
+import {DataHelpers} from "../../../helpers/DataHelpers";
 
 @Component({
     selector: 'app-navbar',
@@ -9,6 +10,8 @@ import {SegurancaService} from "../../features/seguranca/seguranca.service";
 })
 export class NavbarComponent implements OnInit {
 
+    hora: string;
+    usuario: string;
     exibirMenu = false;
     exibirMenuConciliadores = false;
     exibirMenuConfiguracoes = false;
@@ -20,7 +23,20 @@ export class NavbarComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.carregarNomeUsuario();
+        this.atualizarRelogio();
+        setInterval(() => {
+            this.atualizarRelogio();
+        }, 1000);
+    }
 
+    dataCorrente() {
+        return DataHelpers.formatPtBr(new Date());
+    }
+
+    atualizarRelogio() {
+        const data = new Date();
+        this.hora = `${this.adicionarZero(data.getHours())}:${this.adicionarZero(data.getMinutes())}:${this.adicionarZero(data.getSeconds())}`;
     }
 
     fecharMenu() {
@@ -45,5 +61,23 @@ export class NavbarComponent implements OnInit {
             || this.segurancaService.temPermissao('ROLE_MENU_USUARIO')
             || this.segurancaService.temPermissao('ROLE_MENU_PERMISSAO')
             || this.segurancaService.temPermissao('ROLE_PESQUISAR_IMPORTACAO');
+    }
+
+    private carregarNomeUsuario() {
+        if (this.segurancaService.getUsuario()) {
+            const user = this.segurancaService.getUsuario().nomeCompleto;
+            const nomes = user.split(" ");
+            if (nomes.length > 1) {
+                this.usuario = `${nomes[0]} ${nomes[1].charAt(0).toUpperCase()}`;
+            } else {
+                this.usuario = `${nomes[0]}`;
+            }
+        } else {
+            this.usuario = "ECONCILIA";
+        }
+    }
+
+    private adicionarZero(numero: number): string {
+        return numero < 10 ? `0${numero}` : `${numero}`;
     }
 }
