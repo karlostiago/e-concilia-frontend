@@ -15,6 +15,9 @@ import {
 import {
     DashboardGraficoVendaUltimoSeteDiasPercentualComponent
 } from "./dashboard-grafico-venda-ultimo-sete-dias-percentual/dashboard-grafico-venda-ultimo-sete-dias-percentual.component";
+import {
+    DashboardGraficoVendaMensalComponent
+} from "./dashboard-grafico-venda-mensal/dashboard-grafico-venda-mensal.component";
 
 @NgModule({
     declarations: [
@@ -22,7 +25,8 @@ import {
         DashboardGraficoVendaUltimoSeteDiasComponent,
         DashboardGraficoVendaUltimoSeteDiasCreditoDebitoComponent,
         DashboardGraficoVendaUltimoSeteDiasDinheiroPixComponent,
-        DashboardGraficoVendaUltimoSeteDiasPercentualComponent
+        DashboardGraficoVendaUltimoSeteDiasPercentualComponent,
+        DashboardGraficoVendaMensalComponent
     ],
     exports: [
         DashboardInfoComponent,
@@ -30,7 +34,8 @@ import {
         DashboardGraficoVendaUltimoSeteDiasComponent,
         DashboardGraficoVendaUltimoSeteDiasCreditoDebitoComponent,
         DashboardGraficoVendaUltimoSeteDiasDinheiroPixComponent,
-        DashboardGraficoVendaUltimoSeteDiasPercentualComponent
+        DashboardGraficoVendaUltimoSeteDiasPercentualComponent,
+        DashboardGraficoVendaMensalComponent
     ],
     imports: [
         CommonModule,

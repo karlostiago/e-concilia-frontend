@@ -84,4 +84,14 @@
             </div>
         </div>
     </div>
+
+    <div class="row" *ngIf="segurancaService.temPermissao('ROLE_PESQUISAR_DASHBOARD')">
+        <div class="col-md-12 mb-10">
+            <div class="card">
+                <div class="card-body">
+                    <app-dashboard-grafico-venda-mensal [dataInicial]="filtro.dtInicial" [dataFinal]="filtro.dtFinal" [empresas]="empresasSelecionadas"></app-dashboard-grafico-venda-mensal>
+                </div>
+            </div>
+        </div>
+    </div>
 </form>

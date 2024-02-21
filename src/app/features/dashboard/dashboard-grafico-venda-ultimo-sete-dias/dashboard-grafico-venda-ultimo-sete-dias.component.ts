@@ -14,9 +14,6 @@ export class DashboardGraficoVendaUltimoSeteDiasComponent implements OnInit {
     data: any;
     options: any;
     graficoVendaUltimo7Dia = new GraficoVendaUltimo7Dia();
-
-    empresaInexistente = -1;
-
     @Input() empresas = new Array<string>();
 
     constructor(private dashboardService: DashboardService) {

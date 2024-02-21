@@ -19,6 +19,9 @@ import {
     DashboardGraficoVendaUltimoSeteDiasPercentualComponent
 } from "../dashboard-grafico-venda-ultimo-sete-dias-percentual/dashboard-grafico-venda-ultimo-sete-dias-percentual.component";
 import {Router} from "@angular/router";
+import {
+    DashboardGraficoVendaMensalComponent
+} from "../dashboard-grafico-venda-mensal/dashboard-grafico-venda-mensal.component";
 
 @Component({
     selector: 'app-dashboard-inicial',
@@ -38,6 +41,7 @@ export class DashboardInicialComponent implements OnInit {
     @ViewChild(DashboardGraficoVendaUltimoSeteDiasCreditoDebitoComponent) graficoVendaUltimoSeteDiasCreditoDebito: DashboardGraficoVendaUltimoSeteDiasCreditoDebitoComponent;
     @ViewChild(DashboardGraficoVendaUltimoSeteDiasDinheiroPixComponent) graficoVendaUltimoSeteDiasDinheiroPix: DashboardGraficoVendaUltimoSeteDiasDinheiroPixComponent;
     @ViewChild(DashboardGraficoVendaUltimoSeteDiasPercentualComponent) graficoVendaUltimoSeteDiasPercentual: DashboardGraficoVendaUltimoSeteDiasPercentualComponent;
+    @ViewChild(DashboardGraficoVendaMensalComponent) graficoVendaMensal: DashboardGraficoVendaMensalComponent;
 
     constructor(private dashboardService: DashboardService,
                 public segurancaService: SegurancaService,
@@ -59,6 +63,7 @@ export class DashboardInicialComponent implements OnInit {
             this.graficoVendaUltimoSeteDiasCreditoDebito.atualizar();
             this.graficoVendaUltimoSeteDiasDinheiroPix.atualizar();
             this.graficoVendaUltimoSeteDiasPercentual.atualizar();
+            this.graficoVendaMensal.atualizar();
         });
     }
 
