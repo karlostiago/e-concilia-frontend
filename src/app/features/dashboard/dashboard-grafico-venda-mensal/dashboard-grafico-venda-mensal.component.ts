@@ -75,7 +75,10 @@ export class DashboardGraficoVendaMensalComponent implements OnInit {
                 },
                 y: {
                     ticks: {
-                        color: textColorSecondary
+                        color: textColorSecondary,
+                        callback: function (valor: number) {
+                            return FormatacaoMoedaPtBR.monetario(valor);
+                        }
                     },
                     grid: {
                         color: surfaceBorder
