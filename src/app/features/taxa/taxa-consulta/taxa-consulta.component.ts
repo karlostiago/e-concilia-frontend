@@ -5,7 +5,7 @@ import {FormatacaoMoedaPtBR} from "../../../../helpers/FormatacaoMoedaPtBR";
 import {OperadoraService} from "../../operadora/operadora.service";
 import {FiltroOperadora} from "../../../filter/FiltroOperadora";
 import {TaxaService} from "../taxa.service";
-import {NotificacaoService} from "../../../shared/notificacao/notificacao.service";
+import {AlertaService} from "../../../shared/alerta/alerta.service";
 import {SegurancaService} from "../../seguranca/seguranca.service";
 
 @Component({
@@ -21,7 +21,7 @@ export class TaxaConsultaComponent implements OnInit {
     constructor(private operadoraService: OperadoraService,
                 private taxaService: TaxaService,
                 public segurancaService: SegurancaService,
-                private notificacao: NotificacaoService) {
+                private alerta: AlertaService) {
     }
 
     ngOnInit(): void {
@@ -41,7 +41,7 @@ export class TaxaConsultaComponent implements OnInit {
         });
 
         if (this.taxas.length === 0) {
-            this.notificacao.atencao("A consulta não retornou nenhum resultado.");
+            this.alerta.atencao("A consulta não retornou nenhum resultado.");
             this.taxas = [];
         }
     }
@@ -64,14 +64,14 @@ export class TaxaConsultaComponent implements OnInit {
 
     private ativar(taxa: Taxa) {
         this.taxaService.ativar(taxa.id).then(() => {
-            this.notificacao.sucesso("Taxa ativada com sucesso.");
+            this.alerta.sucesso("Taxa ativada com sucesso.");
             taxa.ativo = true;
         });
     }
 
     private desativar(taxa: Taxa) {
         this.taxaService.desativar(taxa.id).then(() => {
-            this.notificacao.sucesso("Taxa desativada com sucesso.");
+            this.alerta.sucesso("Taxa desativada com sucesso.");
             taxa.ativo = false;
         });
     }

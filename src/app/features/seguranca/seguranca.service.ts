@@ -3,7 +3,7 @@ import {AbstractService} from "../../service/AbstractService";
 import {UsuarioService} from "../configuracao/seguranca/usuario.service";
 import {HttpClient} from "@angular/common/http";
 import {ErroHandlerService} from "../../core/ErroHandlerService";
-import {NotificacaoService} from "../../shared/notificacao/notificacao.service";
+import {AlertaService} from "../../shared/alerta/alerta.service";
 import {Router} from "@angular/router";
 import {Seguranca} from "../../model/Seguranca";
 
@@ -17,7 +17,7 @@ export class SegurancaService extends AbstractService<UsuarioService> {
     private seguranca: Seguranca;
 
     constructor(private httpClient: HttpClient,
-                private notificacao: NotificacaoService,
+                private alerta: AlertaService,
                 private router: Router,
                 protected override error: ErroHandlerService) {
         super(error);
@@ -37,7 +37,7 @@ export class SegurancaService extends AbstractService<UsuarioService> {
                 error: (error) => {
                     this.logado = false;
                     this.seguranca = new Seguranca();
-                    this.notificacao.error("Usuário ou senha inválido.");
+                    this.alerta.error("Usuário ou senha inválido.");
                 }
             });
         })
@@ -52,11 +52,11 @@ export class SegurancaService extends AbstractService<UsuarioService> {
                     this.token = '';
                     this.logado = false;
                     this.seguranca = new Seguranca();
-                    this.notificacao.sucesso("Logout realizado com sucesso.");
+                    this.alerta.sucesso("Logout realizado com sucesso.");
                     this.router.navigate(['/login']);
                 },
                 error: (error) => {
-                    this.notificacao.error(error);
+                    this.alerta.error(error);
                 }
             });
         });
@@ -67,7 +67,7 @@ export class SegurancaService extends AbstractService<UsuarioService> {
     }
 
     getUsuario() {
-        return this.seguranca.usuario;
+        return this.seguranca?.usuario;
     }
 
     isLogado(): boolean {

@@ -12,12 +12,12 @@
             <small class="color-text-white">Bem-vindo: {{ usuario }} - {{ dataCorrente() }} {{ hora }}</small>
         </div>
 
-        <a href="#" class="notification">
+        <a class="notification" (click)="notificacoesDialog()">
             <i class="pi pi-bell">
-<!--                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">-->
-<!--                    10+-->
-<!--                    <span class="visually-hidden">notificações não lidas</span>-->
-<!--                </span>-->
+                <span *ngIf="quantidadeNotificacoes > 0" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    {{ quantidadeNotificacoes }}
+                    <span class="visually-hidden">notificações não lidas</span>
+                </span>
             </i>
         </a>
 
@@ -96,4 +96,12 @@
 <div class="navbar-navegator {{ exibirMenu ? 'moving ml-240' : 'moving' }}">
     <app-breadcrumb></app-breadcrumb>
 </div>
+
+<p-dialog [(visible)]="visivel" [modal]="true">
+    <ng-template pTemplate="header">
+        <h4 class="color-wine"> Notificações </h4>
+    </ng-template>
+
+    <app-notificacao-consulta (quantidade)="atualizarNotificacoes($event)"></app-notificacao-consulta>
+</p-dialog>
 

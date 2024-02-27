@@ -6,7 +6,7 @@ import {Permissao} from "../../../../model/Permissao";
 import {Funcionalidade} from "../../../../model/Funcionalidade";
 import {TipoPermissao} from "../../../../model/TipoPermissao";
 import {PermissaoService} from "../permissao.service";
-import {NotificacaoService} from "../../../../shared/notificacao/notificacao.service";
+import {AlertaService} from "../../../../shared/alerta/alerta.service";
 import {Regra} from "../../../../model/Regra";
 import {ActivatedRoute} from "@angular/router";
 import {RegraService} from "../regra.service";
@@ -27,7 +27,7 @@ export class PermissaoCadastroComponent implements OnInit {
 
     constructor(
         private usuarioService: UsuarioService,
-        private notificacao: NotificacaoService,
+        private alerta: AlertaService,
         private activatedRoute: ActivatedRoute,
         private regraService: RegraService,
         public segurancaService: SegurancaService,
@@ -95,13 +95,13 @@ export class PermissaoCadastroComponent implements OnInit {
     private salvar() {
         this.selecionarUsuario();
         this.permissaoService.salvar(this.permissao).then(resposta => {
-            this.notificacao.sucesso("Permissão cadastrada com sucesso.");
+            this.alerta.sucesso("Permissão cadastrada com sucesso.");
         });
     }
 
     private editar() {
         this.permissaoService.editar(this.permissao).then(resposta => {
-            this.notificacao.sucesso("Permissão atualizada com sucesso.");
+            this.alerta.sucesso("Permissão atualizada com sucesso.");
         });
     }
 

@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {Empresa} from "../../../model/Empresa";
 import {EmpresaService} from "../empresa.service";
-import {NotificacaoService} from "../../../shared/notificacao/notificacao.service";
+import {AlertaService} from "../../../shared/alerta/alerta.service";
 import {FiltroEmpresa} from "../../../filter/FiltroEmpresa";
 import {ConfirmationService} from "primeng/api";
 import {SegurancaService} from "../../seguranca/seguranca.service";
@@ -22,7 +22,7 @@ export class EmpresaConsultaComponent implements OnInit {
     constructor(
         public segurancaService: SegurancaService,
         private empresaService: EmpresaService,
-        private notificacao: NotificacaoService,
+        private alerta: AlertaService,
         private confirmationService: ConfirmationService) {
     }
 
@@ -36,7 +36,7 @@ export class EmpresaConsultaComponent implements OnInit {
         });
 
         if (this.empresas.length === 0) {
-            this.notificacao.atencao("A consulta não retornou nenhum resultado.");
+            this.alerta.atencao("A consulta não retornou nenhum resultado.");
             this.empresas = [];
         }
     }
@@ -53,7 +53,7 @@ export class EmpresaConsultaComponent implements OnInit {
     excluir(id: number) {
         this.empresaService.excluir(id).then(() => {
             this.carregarEmpresas();
-            this.notificacao.sucesso("Empresa excluída com sucesso.");
+            this.alerta.sucesso("Empresa excluída com sucesso.");
         });
     }
 
@@ -67,14 +67,14 @@ export class EmpresaConsultaComponent implements OnInit {
 
     private ativar(empresa: Empresa) {
         this.empresaService.ativar(empresa.id).then(() => {
-            this.notificacao.sucesso("Empresa ativada com sucesso.");
+            this.alerta.sucesso("Empresa ativada com sucesso.");
             empresa.ativo = true;
         });
     }
 
     private desativar(empresa: Empresa) {
         this.empresaService.desativar(empresa.id).then(() => {
-            this.notificacao.sucesso("Empresa desativada com sucesso.");
+            this.alerta.sucesso("Empresa desativada com sucesso.");
             empresa.ativo = false;
         });
     }

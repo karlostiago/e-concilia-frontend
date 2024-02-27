@@ -16,6 +16,9 @@ import {ConfiguracaoModule} from "../features/configuracao/configuracao.module";
 import {DashboardModule} from "../features/dashboard/dashboard.module";
 import {SegurancaModule} from "../features/seguranca/seguranca.module";
 import {SegurancaService} from "../features/seguranca/seguranca.service";
+import {DialogModule} from "primeng/dialog";
+import {TableModule} from "primeng/table";
+import {NotificacaoModule} from "../features/notificacao/notificacao.module";
 
 @NgModule({
     declarations: [
@@ -42,7 +45,10 @@ import {SegurancaService} from "../features/seguranca/seguranca.service";
         CommonModule,
         RouterLink,
         TagModule,
-        ConfirmDialogModule
+        ConfirmDialogModule,
+        DialogModule,
+        TableModule,
+        NotificacaoModule
     ],
     providers: [
         ConfirmationService,

@@ -7,7 +7,7 @@ import {FiltroOperadora} from "../../../../filter/FiltroOperadora";
 import {EmpresaService} from "../../../empresa/empresa.service";
 import {OperadoraService} from "../../../operadora/operadora.service";
 import {NgForm} from "@angular/forms";
-import {NotificacaoService} from "../../../../shared/notificacao/notificacao.service";
+import {AlertaService} from "../../../../shared/alerta/alerta.service";
 import {ActivatedRoute} from "@angular/router";
 import {IntegracaoService} from "../integracao.service";
 import {SegurancaService} from "../../../seguranca/seguranca.service";
@@ -31,7 +31,7 @@ export class IntegracaoCadastroComponent implements OnInit {
                 private integracaoService: IntegracaoService,
                 private activatedRoute: ActivatedRoute,
                 public segurancaService: SegurancaService,
-                private notificacao: NotificacaoService) {
+                private alerta: AlertaService) {
     }
 
     ngOnInit(): void {
@@ -66,13 +66,13 @@ export class IntegracaoCadastroComponent implements OnInit {
 
     private editar() {
         this.integracaoService.editar(this.integracao).then(() => {
-            this.notificacao.sucesso("Integração atualizada com sucesso.");
+            this.alerta.sucesso("Integração atualizada com sucesso.");
         });
     }
 
     private salvar(form: NgForm) {
         this.integracaoService.salvar(this.integracao).then(integracao => {
-            this.notificacao.sucesso("Integração realizada com sucesso.");
+            this.alerta.sucesso("Integração realizada com sucesso.");
             this.integracao = new Integracao();
             form.resetForm();
         });

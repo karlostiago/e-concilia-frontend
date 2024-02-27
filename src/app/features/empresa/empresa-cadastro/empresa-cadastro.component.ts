@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {EmpresaService} from "../empresa.service";
 import {Empresa} from "../../../model/Empresa";
-import {NotificacaoService} from "../../../shared/notificacao/notificacao.service";
+import {AlertaService} from "../../../shared/alerta/alerta.service";
 import {Estado} from "../../../model/Estado";
 import {ActivatedRoute} from "@angular/router";
 import {NgForm} from "@angular/forms";
@@ -21,7 +21,7 @@ export class EmpresaCadastroComponent implements OnInit {
     constructor(
         public segurancaService: SegurancaService,
         private empresaService: EmpresaService,
-        private notificacao: NotificacaoService,
+        private alerta: AlertaService,
         private activatedRoute: ActivatedRoute,
     ) {
     }
@@ -72,7 +72,7 @@ export class EmpresaCadastroComponent implements OnInit {
     private async salvar(form: NgForm) {
         this.empresaService.salvar(this.empresa)
             .then(resposta => {
-                this.notificacao.sucesso("Empresa cadastrada com sucesso.");
+                this.alerta.sucesso("Empresa cadastrada com sucesso.");
                 this.empresa = new Empresa();
                 form.resetForm();
             });
@@ -81,7 +81,7 @@ export class EmpresaCadastroComponent implements OnInit {
     private async editar() {
         this.empresaService.editar(this.empresa)
             .then(resposta => {
-                this.notificacao.sucesso("Empresa atualizada com sucesso.");
+                this.alerta.sucesso("Empresa atualizada com sucesso.");
             });
     }
 }

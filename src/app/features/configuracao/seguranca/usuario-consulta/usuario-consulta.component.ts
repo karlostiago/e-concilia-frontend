@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {NotificacaoService} from "../../../../shared/notificacao/notificacao.service";
+import {AlertaService} from "../../../../shared/alerta/alerta.service";
 import {ConfirmationService} from "primeng/api";
 import {Usuario} from "../../../../model/Usuario";
 import {FiltroUsuario} from "../../../../filter/FiltroUsuario";
@@ -17,7 +17,7 @@ export class UsuarioConsultaComponent implements OnInit {
     filtroUsuario = new FiltroUsuario();
 
     constructor(private usuarioService: UsuarioService,
-                private notificacao: NotificacaoService,
+                private alerta: AlertaService,
                 public segurancaService: SegurancaService,
                 private confirmationService: ConfirmationService) {
     }
@@ -32,7 +32,7 @@ export class UsuarioConsultaComponent implements OnInit {
         });
 
         if (this.usuarios.length === 0) {
-            this.notificacao.atencao("A consulta não retornou nenhum resultado.")
+            this.alerta.atencao("A consulta não retornou nenhum resultado.")
             this.usuarios = [];
         }
     }
@@ -49,7 +49,7 @@ export class UsuarioConsultaComponent implements OnInit {
     private excluir(id: number) {
         this.usuarioService.excluir(id).then(() => {
             this.carregarUsuarios();
-            this.notificacao.sucesso("Usuário excluído com sucesso.");
+            this.alerta.sucesso("Usuário excluído com sucesso.");
         });
     }
 

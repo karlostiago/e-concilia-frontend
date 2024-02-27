@@ -3,7 +3,7 @@ import {FiltroConfiguracaoIntegracao} from "../../../../filter/FiltroConfiguraca
 import {Operadora} from "../../../../model/Operadora";
 import {Empresa} from "../../../../model/Empresa";
 import {Integracao} from "../../../../model/Integracao";
-import {NotificacaoService} from "../../../../shared/notificacao/notificacao.service";
+import {AlertaService} from "../../../../shared/alerta/alerta.service";
 import {EmpresaService} from "../../../empresa/empresa.service";
 import {OperadoraService} from "../../../operadora/operadora.service";
 import {FiltroEmpresa} from "../../../../model/FiltroEmpresa";
@@ -32,7 +32,7 @@ export class IntegracaoConsultaComponent implements OnInit {
                 private operadoraService: OperadoraService,
                 public segurancaService: SegurancaService,
                 private confirmationService: ConfirmationService,
-                private notificacao: NotificacaoService) {
+                private alerta: AlertaService) {
     }
 
     ngOnInit(): void {
@@ -53,7 +53,7 @@ export class IntegracaoConsultaComponent implements OnInit {
     excluir(id: number) {
         this.integracaoService.excluir(id).then(() => {
             this.carregarConfiguracoes();
-            this.notificacao.sucesso("Configuração excluída com sucesso.");
+            this.alerta.sucesso("Configuração excluída com sucesso.");
         });
     }
 
@@ -65,7 +65,7 @@ export class IntegracaoConsultaComponent implements OnInit {
         });
 
         if (this.integracoes.length === 0) {
-            this.notificacao.atencao("A consulta não retornou nenhum resultado.");
+            this.alerta.atencao("A consulta não retornou nenhum resultado.");
             this.integracoes = [];
         }
     }

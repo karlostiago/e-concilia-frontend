@@ -10,7 +10,7 @@ import {IntegracaoService} from "../../configuracao/integracao/integracao.servic
 import {FiltroConfiguracaoIntegracao} from "../../../filter/FiltroConfiguracaoIntegracao";
 import {OperadoraService} from "../../operadora/operadora.service";
 import {FiltroOperadora} from "../../../filter/FiltroOperadora";
-import {NotificacaoService} from "../../../shared/notificacao/notificacao.service";
+import {AlertaService} from "../../../shared/alerta/alerta.service";
 import {Table} from "primeng/table";
 import {Conciliador} from "../../../model/Conciliador";
 import {TipoRecebimento} from "../../../model/TipoRecebimento";
@@ -51,7 +51,7 @@ export class IfoodComponent implements OnInit {
     constructor(
         private integracaoService: IntegracaoService,
         private operadoraService: OperadoraService,
-        private notificacao: NotificacaoService,
+        private alerta: AlertaService,
         public segurancaService: SegurancaService,
         private empresaService: EmpresaService,
         private conciliadorService: ConciliadorIfoodService) {
@@ -67,7 +67,7 @@ export class IfoodComponent implements OnInit {
 
     async pesquisar() {
         if (this.empresaId === undefined || this.empresaId === -1) {
-            this.notificacao.error("Nenhuma empresa foi selecionada.")
+            this.alerta.error("Nenhuma empresa foi selecionada.")
             return;
         }
 

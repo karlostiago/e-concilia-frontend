@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Operadora} from "../../../model/Operadora";
 import {OperadoraService} from "../operadora.service";
 import {FiltroOperadora} from "../../../filter/FiltroOperadora";
-import {NotificacaoService} from "../../../shared/notificacao/notificacao.service";
+import {AlertaService} from "../../../shared/alerta/alerta.service";
 import {ConfirmationService} from "primeng/api";
 import {SegurancaService} from "../../seguranca/seguranca.service";
 
@@ -17,7 +17,7 @@ export class OperadoraConsultaComponent implements OnInit {
     filtroOperadora = new FiltroOperadora();
 
     constructor(private operadoraService: OperadoraService,
-                private notificacao: NotificacaoService,
+                private alerta: AlertaService,
                 public segurancaService: SegurancaService,
                 private confirmationService: ConfirmationService) {
     }
@@ -33,7 +33,7 @@ export class OperadoraConsultaComponent implements OnInit {
         });
 
         if (this.operadoras.length === 0) {
-            this.notificacao.atencao("A consulta não retornou nenhum resultado.")
+            this.alerta.atencao("A consulta não retornou nenhum resultado.")
             this.operadoras = [];
         }
     }
@@ -50,7 +50,7 @@ export class OperadoraConsultaComponent implements OnInit {
     private excluir(id: number) {
         this.operadoraService.excluir(id).then(() => {
             this.carregarOperadoras();
-            this.notificacao.sucesso("Empresa excluída com sucesso.");
+            this.alerta.sucesso("Empresa excluída com sucesso.");
         });
     }
 

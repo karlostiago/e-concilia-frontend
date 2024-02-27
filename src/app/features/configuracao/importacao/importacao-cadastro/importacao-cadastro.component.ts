@@ -7,7 +7,7 @@ import {FiltroEmpresa} from "../../../../model/FiltroEmpresa";
 import {EmpresaService} from "../../../empresa/empresa.service";
 import {Empresa} from "../../../../model/Empresa";
 import {ImportacaoService} from "../importacao.service";
-import {NotificacaoService} from "../../../../shared/notificacao/notificacao.service";
+import {AlertaService} from "../../../../shared/alerta/alerta.service";
 import {NgForm} from "@angular/forms";
 import {SegurancaService} from "../../../seguranca/seguranca.service";
 
@@ -30,7 +30,7 @@ export class ImportacaoCadastroComponent implements OnInit {
                 private empresaService: EmpresaService,
                 private importacaoService: ImportacaoService,
                 public segurancaService: SegurancaService,
-                private notificacao: NotificacaoService) {
+                private alerta: AlertaService) {
     }
 
     ngOnInit(): void {
@@ -44,7 +44,7 @@ export class ImportacaoCadastroComponent implements OnInit {
         this.selecionarOperadora();
 
         this.importacaoService.agendar(this.importacao).then(importacao => {
-            this.notificacao.sucesso("Importação agendada com sucesso.");
+            this.alerta.sucesso("Importação agendada com sucesso.");
             this.importacoes.push(importacao);
             this.limpar(form);
         });

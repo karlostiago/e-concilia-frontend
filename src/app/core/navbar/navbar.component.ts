@@ -1,7 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {NavbarService} from "../../shared/navbar/navbar.service";
 import {SegurancaService} from "../../features/seguranca/seguranca.service";
 import {DataHelpers} from "../../../helpers/DataHelpers";
+import {
+    ConsultaNotificacaoComponent
+} from "../../features/notificacao/notificacao-consulta/consulta-notificacao.component";
+import {AlertaService} from "../../shared/alerta/alerta.service";
 
 @Component({
     selector: 'app-navbar',
@@ -17,7 +21,14 @@ export class NavbarComponent implements OnInit {
     exibirMenuConfiguracoes = false;
     menuPrincipal = true;
 
+    visivel: boolean;
+
+    quantidadeNotificacoes: number;
+
+    @ViewChild(ConsultaNotificacaoComponent) notificacaoComponent: ConsultaNotificacaoComponent;
+
     constructor(private navbarService: NavbarService,
+                private alerta: AlertaService,
                 public segurancaService: SegurancaService) {
         this.fecharMenu();
     }
@@ -25,6 +36,7 @@ export class NavbarComponent implements OnInit {
     ngOnInit(): void {
         this.carregarNomeUsuario();
         this.atualizarRelogio();
+
         setInterval(() => {
             this.atualizarRelogio();
         }, 1000);
@@ -61,6 +73,23 @@ export class NavbarComponent implements OnInit {
             || this.segurancaService.temPermissao('ROLE_MENU_USUARIO')
             || this.segurancaService.temPermissao('ROLE_MENU_PERMISSAO')
             || this.segurancaService.temPermissao('ROLE_PESQUISAR_IMPORTACAO');
+    }
+
+    notificacoesDialog() {
+        if (this.quantidadeNotificacoes === 0) {
+            this.alerta.sucesso('Parabéns, todas as notificações já foram lidas.')
+            return;
+        }
+        this.visivel = !this.visivel;
+        this.carregarNotificacoes();
+    }
+
+    atualizarNotificacoes(quantidade: number) {
+        this.quantidadeNotificacoes = quantidade;
+    }
+
+    private carregarNotificacoes() {
+        this.notificacaoComponent.pesquisar();
     }
 
     private carregarNomeUsuario() {

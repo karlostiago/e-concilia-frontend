@@ -1,12 +1,12 @@
 import {Injectable} from "@angular/core";
-import {NotificacaoService} from "../shared/notificacao/notificacao.service";
+import {AlertaService} from "../shared/alerta/alerta.service";
 
 @Injectable({
     providedIn: 'root'
 })
 export class ErroHandlerService {
 
-    constructor(private notificacao: NotificacaoService) {
+    constructor(private notificacao: AlertaService) {
     }
 
     capturar(errorResponse: any) {

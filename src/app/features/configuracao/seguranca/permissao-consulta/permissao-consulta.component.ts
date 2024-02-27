@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FiltroUsuario} from "../../../../filter/FiltroUsuario";
-import {NotificacaoService} from "../../../../shared/notificacao/notificacao.service";
+import {AlertaService} from "../../../../shared/alerta/alerta.service";
 import {ConfirmationService} from 'primeng/api';
 import {PermissaoService} from "../permissao.service";
 import {Permissao} from "../../../../model/Permissao";
@@ -24,7 +24,7 @@ export class PermissaoConsultaComponent implements OnInit {
 
     constructor(public segurancaService: SegurancaService,
                 private permissaoService: PermissaoService,
-                private notificacao: NotificacaoService,
+                private alerta: AlertaService,
                 private confirmationService: ConfirmationService) {
     }
 
@@ -39,7 +39,7 @@ export class PermissaoConsultaComponent implements OnInit {
         });
 
         if (this.permissoes.length === 0) {
-            this.notificacao.atencao("A consulta não retornou nenhum resultado.")
+            this.alerta.atencao("A consulta não retornou nenhum resultado.")
             this.permissoes = [];
         }
     }
@@ -55,7 +55,7 @@ export class PermissaoConsultaComponent implements OnInit {
 
     private excluir(id: number) {
         this.permissaoService.excluir(id).then(() => {
-            this.notificacao.sucesso("Permissão excluído com sucesso.");
+            this.alerta.sucesso("Permissão excluído com sucesso.");
             this.pesquisar();
         });
     }

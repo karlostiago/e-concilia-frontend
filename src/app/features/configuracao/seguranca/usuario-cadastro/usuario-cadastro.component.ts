@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Usuario} from "../../../../model/Usuario";
 import {NgForm} from "@angular/forms";
-import {NotificacaoService} from "../../../../shared/notificacao/notificacao.service";
+import {AlertaService} from "../../../../shared/alerta/alerta.service";
 import {ActivatedRoute} from "@angular/router";
 import {UsuarioService} from "../usuario.service";
 import {FiltroEmpresa} from "../../../../model/FiltroEmpresa";
@@ -24,7 +24,7 @@ export class UsuarioCadastroComponent implements OnInit {
     constructor(private usuarioService: UsuarioService,
                 private empresaService: EmpresaService,
                 public segurancaService: SegurancaService,
-                private notificacao: NotificacaoService,
+                private alerta: AlertaService,
                 private activatedRoute: ActivatedRoute) {
     }
 
@@ -59,7 +59,7 @@ export class UsuarioCadastroComponent implements OnInit {
     private async salvar(form: NgForm) {
         this.usuarioService.salvar(this.usuario)
             .then(resposta => {
-                this.notificacao.sucesso("Usuário cadastrado com sucesso.");
+                this.alerta.sucesso("Usuário cadastrado com sucesso.");
                 this.usuario = new Usuario();
                 form.resetForm();
             });
@@ -68,7 +68,7 @@ export class UsuarioCadastroComponent implements OnInit {
     private async editar() {
         this.usuarioService.editar(this.usuario)
             .then(resposta => {
-                this.notificacao.sucesso("Usuário atualizado com sucesso.");
+                this.alerta.sucesso("Usuário atualizado com sucesso.");
             });
     }
 

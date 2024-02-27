@@ -9,7 +9,7 @@ import {Contrato} from "../../../model/Contrato";
 import {ContratoService} from "../contrato.service";
 import {FiltroContrato} from "../../../filter/FiltroContrato";
 import {StringHelper} from "../../../../helpers/StringHelper";
-import {NotificacaoService} from "../../../shared/notificacao/notificacao.service";
+import {AlertaService} from "../../../shared/alerta/alerta.service";
 import {ConfirmationService} from "primeng/api";
 import {Taxa} from "../../../model/Taxa";
 import {TaxaService} from "../../taxa/taxa.service";
@@ -32,7 +32,7 @@ export class ContratoConsultaComponent implements OnInit {
     constructor(private empresaService: EmpresaService,
                 private operadoraService: OperadoraService,
                 private contratoService: ContratoService,
-                private notificacao: NotificacaoService,
+                private alerta: AlertaService,
                 public segurancaService: SegurancaService,
                 private confirmationService: ConfirmationService,
                 private taxaService: TaxaService) {
@@ -64,7 +64,7 @@ export class ContratoConsultaComponent implements OnInit {
         });
 
         if (this.taxas.length === 0) {
-            this.notificacao.atencao("A consulta não retornou nenhum resultado.");
+            this.alerta.atencao("A consulta não retornou nenhum resultado.");
             this.taxas = [];
         }
     }
@@ -75,7 +75,7 @@ export class ContratoConsultaComponent implements OnInit {
         });
 
         if (this.contratos.length === 0) {
-            this.notificacao.atencao("A consulta não retornou nenhum resultado.");
+            this.alerta.atencao("A consulta não retornou nenhum resultado.");
             this.contratos = [];
         }
     }
@@ -90,14 +90,14 @@ export class ContratoConsultaComponent implements OnInit {
 
     private ativar(contrato: Contrato) {
         this.contratoService.ativar(contrato.numero).then(() => {
-            this.notificacao.sucesso("Contrato ativada com sucesso.");
+            this.alerta.sucesso("Contrato ativada com sucesso.");
             contrato.ativo = true;
         });
     }
 
     private desativar(contrato: Contrato) {
         this.contratoService.desativar(contrato.numero).then(() => {
-            this.notificacao.sucesso("Contrato desativada com sucesso.");
+            this.alerta.sucesso("Contrato desativada com sucesso.");
             contrato.ativo = false;
         });
     }
@@ -105,7 +105,7 @@ export class ContratoConsultaComponent implements OnInit {
     private excluir(id: number) {
         this.contratoService.excluir(id).then(() => {
             this.carregarContratos();
-            this.notificacao.sucesso("Contrato excluído com sucesso.");
+            this.alerta.sucesso("Contrato excluído com sucesso.");
         });
     }
 

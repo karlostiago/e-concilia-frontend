@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Operadora} from "../../../model/Operadora";
-import {NotificacaoService} from "../../../shared/notificacao/notificacao.service";
+import {AlertaService} from "../../../shared/alerta/alerta.service";
 import {OperadoraService} from "../operadora.service";
 import {NgForm} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
@@ -16,7 +16,7 @@ export class OperadoraCadastroComponent implements OnInit {
     operadora = new Operadora();
 
     constructor(
-        private notificacao: NotificacaoService,
+        private alerta: AlertaService,
         private operadoraService: OperadoraService,
         private router: Router,
         public segurancaService: SegurancaService,
@@ -47,7 +47,7 @@ export class OperadoraCadastroComponent implements OnInit {
 
     salvar(ngForm: NgForm) {
         this.operadoraService.salvar(this.operadora).then(operadora => {
-            this.notificacao.sucesso("Operadora cadastrada com sucesso.");
+            this.alerta.sucesso("Operadora cadastrada com sucesso.");
             this.operadora = new Operadora();
             ngForm.resetForm();
         });
@@ -55,7 +55,7 @@ export class OperadoraCadastroComponent implements OnInit {
 
     async editar() {
         this.operadoraService.editar(this.operadora).then(resposta => {
-            this.notificacao.sucesso("Operadora atualizada com sucesso.");
+            this.alerta.sucesso("Operadora atualizada com sucesso.");
         });
     }
 

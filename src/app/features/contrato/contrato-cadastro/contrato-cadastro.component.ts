@@ -10,7 +10,7 @@ import {FormatacaoMoedaPtBR} from "../../../../helpers/FormatacaoMoedaPtBR";
 import {NgForm} from "@angular/forms";
 import {Contrato} from "../../../model/Contrato";
 import {ContratoService} from "../contrato.service";
-import {NotificacaoService} from "../../../shared/notificacao/notificacao.service";
+import {AlertaService} from "../../../shared/alerta/alerta.service";
 import {ActivatedRoute} from "@angular/router";
 import {ConfirmationService} from "primeng/api";
 import {TaxaService} from "../../taxa/taxa.service";
@@ -36,7 +36,7 @@ export class ContratoCadastroComponent implements OnInit {
     constructor(private empresaService: EmpresaService,
                 private operadoraService: OperadoraService,
                 private contratoService: ContratoService,
-                private notificacao: NotificacaoService,
+                private alerta: AlertaService,
                 private activatedRoute: ActivatedRoute,
                 private taxaService: TaxaService,
                 public segurancaService: SegurancaService,
@@ -139,13 +139,13 @@ export class ContratoCadastroComponent implements OnInit {
 
     private editar() {
         this.contratoService.editar(this.contrato).then(() => {
-            this.notificacao.sucesso("Contrato atualizado com sucesso.");
+            this.alerta.sucesso("Contrato atualizado com sucesso.");
         });
     }
 
     private salvar(form: NgForm) {
         this.contratoService.salvar(this.contrato).then(contrato => {
-            this.notificacao.sucesso("Contrato cadastrado com sucesso.");
+            this.alerta.sucesso("Contrato cadastrado com sucesso.");
             this.contrato = new Contrato();
             form.resetForm();
         });
@@ -155,7 +155,7 @@ export class ContratoCadastroComponent implements OnInit {
         const taxaEncontrada = this.contrato.taxas.filter(tx => tx.descricao === taxa.descricao);
         if (taxaEncontrada.length > 0) {
             const mensagem = `Taxa ${taxa.descricao}, está duplicada na lista.`;
-            this.notificacao.error(mensagem);
+            this.alerta.error(mensagem);
             throw new Error(mensagem);
         }
     }
