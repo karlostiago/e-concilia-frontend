@@ -272,7 +272,6 @@ a {
 .p-multiselect {
     height: 50px !important;
 }
-
 /**
  * FIM CUSTOM PRIMENG
  */
@@ -295,4 +294,24 @@ a {
 
 .backdrop {
     border-radius: 0 !important;
+}
+
+/**
+ * RESPONSIVIDADE
+ */
+@media screen and (max-width: 760px) {
+    * {
+        font-size: 0.875rem!important;
+    }
+
+    .text-limited {
+        max-width: 150px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .container-user {
+        top: 24px!important;
+    }
 }

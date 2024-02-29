@@ -41,9 +41,10 @@
         </div>
 
         <div class="card-body">
-            <p-table [value]="empresas" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="10"
-                     styleClass="p-datatable-striped p-datatable p-datatable-gridlines" #tabela>
-                <ng-template pTemplate="header">
+            <p-table [value]="empresas" [paginator]="true" [rows]="10"
+                     responsiveLayout="stack" [breakpoint]="'960px'"
+                     styleClass="p-datatable-striped p-datatable p-datatable-gridlines p-custom-datatable-responsive" #tabela>
+                <ng-template pTemplate="header" let-columns>
                     <tr>
                         <th style="min-width: 180px;">Cnpj</th>
                         <th class="text-center" style="min-width: 320px">Razão Social</th>
@@ -55,12 +56,22 @@
                     </tr>
                 </ng-template>
 
-                <ng-template pTemplate="body" let-empresa>
+                <ng-template pTemplate="body" let-empresa let-columns="columns">
                     <tr>
-                        <td> {{ empresa["cnpj"] | cnpj }}</td>
-                        <td class="text-center"> {{ empresa["razaoSocial"] }}</td>
-                        <td class="text-center"> {{ empresa["nomeFantasia"] }}</td>
+                        <td>
+                            <span class="p-column-title">Cnpj</span>
+                            {{ empresa["cnpj"] | cnpj }}
+                        </td>
+                        <td class="text-center">
+                            <span class="p-column-title">Razão Social</span>
+                            <div class="text-limited">{{ empresa["razaoSocial"] }}</div>
+                        </td>
+                        <td class="text-center">
+                            <span class="p-column-title">Nome Fantasia</span>
+                            {{ empresa["nomeFantasia"] }}
+                        </td>
                         <td *ngIf="segurancaService.temPermissao('ROLE_ATIVAR_EMPRESA')" class="text-center">
+                            <span class="p-column-title">Ativo</span>
                             <a (click)="ativarOuDesativar(empresa)">
                                 <span
                                     class=" {{ empresa['ativo'] == true ? 'badge text-bg-success' : 'badge text-bg-danger' }} "
@@ -70,10 +81,12 @@
                             </a>
                         </td>
                         <td class="text-center">
+                            <span class="p-column-title">Ações</span>
                             <div class="action">
                                 <button type="button" pButton icon="pi pi-trash" class="p-button-danger p-button-sm"
                                         [disabled]="!segurancaService.temPermissao('ROLE_DELETAR_EMPRESA')"
                                         (click)="confirmarExclusao(empresa)"></button>
+
                                 <button pButton icon="pi pi-pencil" class="p-button-danger p-button-sm"
                                         [disabled]="!segurancaService.temPermissao('ROLE_EDITAR_EMPRESA')"
                                         [routerLink]="['/editar/empresas', empresa.id]"></button>

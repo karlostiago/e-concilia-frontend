@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, Renderer2, ViewChild} from '@angular/core';
 import {NavbarService} from "../../shared/navbar/navbar.service";
 import {SegurancaService} from "../../features/seguranca/seguranca.service";
 import {DataHelpers} from "../../../helpers/DataHelpers";
@@ -25,15 +25,19 @@ export class NavbarComponent implements OnInit {
 
     quantidadeNotificacoes: number;
 
+    travarResolucao: boolean;
+
     @ViewChild(ConsultaNotificacaoComponent) notificacaoComponent: ConsultaNotificacaoComponent;
 
     constructor(private navbarService: NavbarService,
                 private alerta: AlertaService,
+                private render: Renderer2,
                 public segurancaService: SegurancaService) {
         this.fecharMenu();
     }
 
     ngOnInit(): void {
+        this.analisaResolucaoTela();
         this.carregarNomeUsuario();
         this.atualizarRelogio();
 
@@ -108,5 +112,28 @@ export class NavbarComponent implements OnInit {
 
     private adicionarZero(numero: number): string {
         return numero < 10 ? `0${numero}` : `${numero}`;
+    }
+
+    private analisaResolucaoTela() {
+        this.travarResolucao = false;
+        this.atualizaTamanhoTela();
+
+        this.render.listen('window', 'resize', (e) => {
+            this.atualizaTamanhoTela();
+        });
+    }
+
+    private getResolucaoTela(): {largura: number, altura: number} {
+        const largura = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+        const altura = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+        return { largura, altura };
+    }
+
+    private atualizaTamanhoTela(): void {
+        const resolucaoTela = this.getResolucaoTela();
+        if (resolucaoTela.largura < 500 && !this.travarResolucao) {
+            this.fecharMenu();
+            this.travarResolucao = true;
+        }
     }
 }

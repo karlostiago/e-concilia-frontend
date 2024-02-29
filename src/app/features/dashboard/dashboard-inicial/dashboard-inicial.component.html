@@ -36,9 +36,6 @@
                                 label="Aplicar filtros"
                                 [disabled]="!segurancaService.temPermissao('ROLE_PESQUISAR_DASHBOARD')"></button>
 
-                        <button pButton class="p-button-danger p-button-sm" icon="pi pi-refresh" label="Atualizar"
-                            (click)="atualizar()"></button>
-
                         <button pButton class="p-button-danger p-button-sm float-end" icon="pi pi-eraser"
                                 (click)="limpar()" label="Limpar"></button>
                     </div>

@@ -21,19 +21,19 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        // this.email = 'econcilia'
-        // this.senha = 'admin';
+        this.email = 'econcilia'
+        this.senha = 'admin';
     }
 
     login() {
         this.segurancaService.login(this.email, this.senha).then(() => {
             this.router.navigate(['/dashboard/inicial']).then(() => {
-                this.alerta.sucesso("Login realizado com sucesso.");
+                //
             });
         })
-            .catch(() => {
-                this.alerta.error("Usuário/Senha inválidos.")
-            });
+        .catch(() => {
+            this.alerta.error("Usuário/Senha inválidos.")
+        });
     }
 
     getVersao() {
