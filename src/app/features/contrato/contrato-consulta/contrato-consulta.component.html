@@ -28,7 +28,7 @@
                         (click)="pesquisar()"
                         [disabled]="!segurancaService.temPermissao('ROLE_PESQUISAR_CONTRATO')"></button>
                 <button pButton class="p-button-danger p-button-sm float-end" icon="pi pi-plus-circle"
-                        routerLink="/cadastro/contratos/novo" label="Novo contrato"
+                        routerLink="/cadastro/contratos/novo" label="Cadastrar"
                         [disabled]="!segurancaService.temPermissao('ROLE_CADASTRAR_CONTRATO')"></button>
             </div>
         </div>
@@ -42,14 +42,15 @@
         </div>
 
         <div class="card-body">
-            <p-table [value]="contratos" [tableStyle]="{ 'min-width': '50rem' }" sortField="empresa.razaoSocial"
+            <p-table [value]="contratos" sortField="empresa.razaoSocial"
                      sortMode="single" rowGroupMode="subheader" groupRowsBy="empresa.razaoSocial" [paginator]="true"
+                     responsiveLayout="stack" [breakpoint]="'960px'"
                      [rows]="10" styleClass="p-datatable-striped p-datatable p-datatable-gridlines">
                 <ng-template pTemplate="header">
                     <tr>
                         <th class="text-center" style="min-width: 180px;">Nª Contrato</th>
                         <th class="text-center" style="min-width: 320px">Operadora</th>
-                        <th class="text-center" style="min-width: 50px">Taxas</th>
+                        <th class="text-center" style="min-width: 50px">Ver Taxas</th>
                         <th *ngIf="segurancaService.temPermissao('ROLE_ATIVAR_CONTRATO')" class="text-center"
                             style="min-width: 120px;">Ativo
                         </th>
@@ -69,14 +70,22 @@
 
                 <ng-template pTemplate="body" let-contrato let-rowIndex="rowIndex">
                     <tr>
-                        <td class="text-center"> {{ completarComZeroEsquerda(contrato['numero']) }}</td>
-                        <td class="text-center"> {{ contrato['operadora']['descricao'] }}</td>
                         <td class="text-center">
+                            <span class="p-column-title">Nª Contrato</span>
+                            {{ completarComZeroEsquerda(contrato['numero']) }}
+                        </td>
+                        <td class="text-center">
+                            <span class="p-column-title">Operadora</span>
+                            {{ contrato['operadora']['descricao'] }}
+                        </td>
+                        <td class="text-center">
+                            <span class="p-column-title">Ver taxa</span>
                             <button type="button" pButton icon="pi pi-eye-slash" class="p-button-danger p-button-sm"
                                     (click)="detalharTaxas(contrato)"
                                     [disabled]="!segurancaService.temPermissao('ROLE_PESQUISAR_TAXA')"></button>
                         </td>
                         <td *ngIf="segurancaService.temPermissao('ROLE_ATIVAR_CONTRATO')" class="text-center">
+                            <span class="p-column-title">Ativo</span>
                             <a (click)="ativarOuDesativar(contrato)">
                                 <span
                                     class=" {{ contrato['ativo'] == true ? 'badge text-bg-success' : 'badge text-bg-danger' }} ">
@@ -85,6 +94,7 @@
                             </a>
                         </td>
                         <td class="text-center">
+                            <span class="p-column-title">Ações</span>
                             <div class="action">
                                 <button type="button" pButton icon="pi pi-trash" class="p-button-danger p-button-sm"
                                         (click)="confirmarExclusao(contrato)"

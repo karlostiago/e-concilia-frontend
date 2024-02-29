@@ -34,7 +34,7 @@
                         (click)="pesquisar()"
                         [disabled]="!segurancaService.temPermissao('ROLE_PESQUISAR_INTEGRACAO')"></button>
                 <button pButton class="p-button-danger p-button-sm float-end" icon="pi pi-plus-circle"
-                        routerLink="/configuracao/cadastro/integracoes/novo" label="Nova integração"
+                        routerLink="/configuracao/cadastro/integracoes/novo" label="Cadastrar"
                         [disabled]="!segurancaService.temPermissao('ROLE_CADASTRAR_INTEGRACAO')"></button>
             </div>
         </div>
@@ -48,11 +48,12 @@
         </div>
 
         <div class="card-body">
-            <p-table [value]="integracoes" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="10"
+            <p-table [value]="integracoes" [paginator]="true" [rows]="10"
+                     responsiveLayout="stack" [breakpoint]="'960px'"
                      styleClass="p-datatable-striped p-datatable p-datatable-gridlines" #tabela>
                 <ng-template pTemplate="header">
                     <tr>
-                        <th style="min-width: 180px;">Código Integração</th>
+                        <th style="min-width: 180px;">Código integração</th>
                         <th class="text-center" style="min-width: 180px">CNPJ</th>
                         <th class="text-center" style="min-width: 320px">Empresa</th>
                         <th class="text-center" style="min-width: 120px;">Operadora</th>
@@ -62,11 +63,28 @@
 
                 <ng-template pTemplate="body" let-integracao>
                     <tr>
-                        <td> {{ integracao["codigoIntegracao"] }}</td>
-                        <td class="text-center"> {{ integracao["empresa"]["cnpj"] | cnpj }}</td>
-                        <td class="text-center"> {{ integracao["empresa"]["razaoSocial"] }}</td>
-                        <td class="text-center"> {{ integracao["operadora"]["descricao"] }}</td>
+                        <td>
+                            <span class="p-column-title">Código integração</span>
+                            <div class="text-overflow">
+                                {{ integracao["codigoIntegracao"] }}
+                            </div>
+                        </td>
                         <td class="text-center">
+                            <span class="p-column-title">CNPJ</span>
+                            {{ integracao["empresa"]["cnpj"] | cnpj }}
+                        </td>
+                        <td class="text-center">
+                            <span class="p-column-title">Empersa</span>
+                            <div class="text-overflow">
+                                {{ integracao["empresa"]["razaoSocial"] }}
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <span class="p-column-title">Operadora</span>
+                            {{ integracao["operadora"]["descricao"] }}
+                        </td>
+                        <td class="text-center">
+                            <span class="p-column-title">Ações</span>
                             <div class="action">
                                 <button type="button" pButton icon="pi pi-trash" class="p-button-danger p-button-sm"
                                         (click)="confirmarExclusao(integracao)"

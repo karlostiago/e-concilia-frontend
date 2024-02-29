@@ -25,10 +25,11 @@
                 <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-search" label="Pesquisar"
                         (click)="pesquisar()"
                         [disabled]="!segurancaService.temPermissao('ROLE_PESQUISAR_EMPRESA')"></button>
+
                 <button pButton class="p-button-danger p-button-sm float-end" icon="pi pi-plus-circle"
                         routerLink="/cadastro/empresas/novo"
                         [disabled]="!segurancaService.temPermissao('ROLE_CADASTRAR_EMPRESA')"
-                        label="Nova empresa"></button>
+                        label="Cadastrar"></button>
             </div>
         </div>
     </div>
@@ -64,11 +65,11 @@
                         </td>
                         <td class="text-center">
                             <span class="p-column-title">Razão Social</span>
-                            <div class="text-limited">{{ empresa["razaoSocial"] }}</div>
+                            <div class="text-overflow">{{ empresa["razaoSocial"] }}</div>
                         </td>
                         <td class="text-center">
                             <span class="p-column-title">Nome Fantasia</span>
-                            {{ empresa["nomeFantasia"] }}
+                            <div class="text-overflow"> {{ empresa["nomeFantasia"] }} </div>
                         </td>
                         <td *ngIf="segurancaService.temPermissao('ROLE_ATIVAR_EMPRESA')" class="text-center">
                             <span class="p-column-title">Ativo</span>

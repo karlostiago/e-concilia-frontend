@@ -9,7 +9,7 @@ import {NavbarService} from "../../shared/navbar/navbar.service";
 })
 export class FooterComponent implements OnInit {
 
-    ambiente = "Desenvolvimento";
+    ambiente = "Desenv";
     exibirMenu = false;
 
     constructor(private navbarService: NavbarService) {
@@ -20,7 +20,7 @@ export class FooterComponent implements OnInit {
 
     ngOnInit(): void {
         if (environment.production) {
-            this.ambiente = "Produção";
+            this.ambiente = "Prod";
         }
     }
 

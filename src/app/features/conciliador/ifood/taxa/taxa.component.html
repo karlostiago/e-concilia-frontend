@@ -3,7 +3,8 @@
         <h4 class="color-wine"> Taxas </h4>
     </ng-template>
 
-    <p-table [value]="taxas" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="10"
+    <p-table [value]="taxas" [paginator]="true" [rows]="10"
+             responsiveLayout="stack" [breakpoint]="'960px'"
              styleClass="p-datatable-striped p-datatable p-datatable-gridlines">
         <ng-template pTemplate="header">
             <tr>
@@ -17,11 +18,26 @@
 
         <ng-template pTemplate="body" let-taxa>
             <tr>
-                <td class="text-end text-danger"> {{ formatarValor(taxa["comissao"]) }}</td>
-                <td class="text-end text-danger"> {{ formatarValor(taxa["pagamento"]) }}</td>
-                <td class="text-end text-danger"> {{ formatarValor(taxa["servico"] * -1) }}</td>
-                <td class="text-end text-danger"> {{ formatarValor(taxa["incentivoPromocional"]) }}</td>
-                <td class="text-end text-success"> {{ formatarValor(taxa["taxaEntrega"]) }}</td>
+                <td class="text-end text-danger">
+                    <span class="p-column-title">Vr. de comissão</span>
+                    {{ formatarValor(taxa["comissao"]) }}
+                </td>
+                <td class="text-end text-danger">
+                    <span class="p-column-title">Vr. taxa pagamento</span>
+                    {{ formatarValor(taxa["pagamento"]) }}
+                </td>
+                <td class="text-end text-danger">
+                    <span class="p-column-title">Vr. taxa pedido minímo</span>
+                    {{ formatarValor(taxa["servico"] * -1) }}
+                </td>
+                <td class="text-end text-danger">
+                    <span class="p-column-title">Vr. incentivo promocional</span>
+                    {{ formatarValor(taxa["incentivoPromocional"]) }}
+                </td>
+                <td class="text-end text-success">
+                    <span class="p-column-title">Vr. taxa entrega</span>
+                    {{ formatarValor(taxa["taxaEntrega"]) }}
+                </td>
             </tr>
         </ng-template>
     </p-table>

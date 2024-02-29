@@ -25,11 +25,12 @@
                 <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-search" label="Pesquisar"
                         (click)="pesquisar()"
                         [disabled]="!segurancaService.temPermissao('ROLE_PESQUISAR_PERMISSAO')"></button>
+
                 <button type="reset" pButton class="p-button-danger p-button-sm" icon="pi pi-eraser"
                         label="Limpar"></button>
 
                 <button pButton class="p-button-danger p-button-sm float-end" icon="pi pi-plus-circle"
-                        routerLink="/configuracao/cadastro/permissoes/novo" label="Nova permissão"
+                        routerLink="/configuracao/cadastro/permissoes/novo" label="Cadastrar"
                         [disabled]="!segurancaService.temPermissao('ROLE_CADASTRAR_PERMISSAO')"></button>
             </div>
         </div>
@@ -43,18 +44,22 @@
         </div>
 
         <div class="card-body">
-            <p-table [value]="permissoes" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="10"
+            <p-table [value]="permissoes" [paginator]="true" [rows]="10"
+                     responsiveLayout="stack" [breakpoint]="'960px'"
                      styleClass="p-datatable-striped p-datatable p-datatable-gridlines" #tabelaUsuarios>
                 <ng-template pTemplate="header">
                     <tr>
-                        <th style="min-width: 480px;">Nome Completo</th>
+                        <th style="min-width: 480px;">Nome completo</th>
                         <th class="text-center" style="max-width: 80px;">Ações</th>
                     </tr>
                 </ng-template>
 
                 <ng-template pTemplate="body" let-permissao>
                     <tr>
-                        <td> {{ permissao['usuario']['nomeCompleto'] }}</td>
+                        <td>
+                            <span class="p-column-title">Nome completo</span>
+                            <div class="text-overflow">{{ permissao['usuario']['nomeCompleto'] }}</div>
+                        </td>
                         <td class="text-center">
                             <div class="action">
                                 <button type="button" pButton icon="pi pi-trash" class="p-button-danger p-button-sm"

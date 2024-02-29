@@ -6,10 +6,12 @@
 
 :root {
     --font-family: 'Ubuntu', sans-serif !important;
+    --font-size: 0.875rem;
 }
 
 body, table {
     font-family: var(--font-family);
+    font-size: var(--font-size)!important;
     background-color: #f1f4f6;
 }
 
@@ -178,6 +180,11 @@ a {
 /**
  * Classes de customização primeng css
  */
+
+.p-inputtext {
+    font-family: var(--font-family)!important;
+}
+
 .p-checkbox .p-checkbox-box.p-highlight {
     border-color: #701717 !important;
     background: #701717 !important;
@@ -272,6 +279,13 @@ a {
 .p-multiselect {
     height: 50px !important;
 }
+
+.p-dialog .p-dialog-header .p-dialog-title,
+.p-dialog.p-confirm-dialog .p-confirm-dialog-message,
+.p-button .p-button-label {
+    font-size: var(--font-size)!important;
+    font-family: var(--font-family)!important;
+}
 /**
  * FIM CUSTOM PRIMENG
  */
@@ -300,18 +314,39 @@ a {
  * RESPONSIVIDADE
  */
 @media screen and (max-width: 760px) {
-    * {
-        font-size: 0.875rem!important;
-    }
-
-    .text-limited {
-        max-width: 150px;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-    }
-
-    .container-user {
-        top: 24px!important;
+    .text-overflow {
+        max-width: 200px;
     }
 }
+
+@media screen and (max-width: 1450px) {
+    .col-md-3 {
+        width: 33%!important;
+    }
+}
+
+@media screen and (max-width: 1150px) {
+    .col-md-3 {
+        width: 50%!important;
+    }
+}
+
+@media screen and (max-width: 840px) {
+    .col-md-3 {
+        width: 100%!important;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    /*.card-action .btn-block {*/
+    /*    width: 100%;*/
+    /*    top: 10px;*/
+    /*}*/
+    /**/
+    /*.card-action .btn-block-6 {*/
+    /*    width: 48.8% !important;*/
+    /*}*/
+}
+
+
+

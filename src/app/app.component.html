@@ -3,7 +3,7 @@
     <app-loader></app-loader>
 
     <div
-        class="main-wrap {{ exibirMenu && exibirNavBar() ? 'block' : 'hidden' }} {{ exibirMenu && exibirNavBar() ? 'moving ml-240' : 'moving' }}">
+        class="main-wrap {{ exibirMenu && exibirNavBar() ? 'block' : 'hidden' }} {{ exibirMenu && exibirNavBar() ? 'moving ml-240 ml-50' : 'moving' }}">
         <div class="container-fluid">
             <router-outlet></router-outlet>
         </div>
@@ -15,9 +15,9 @@
         </div>
     </footer>
 
-    <p-toast></p-toast>
+    <p-toast [breakpoints]="{'920px': {width: '100%', right: '0', left: '0'}}"></p-toast>
 
-    <p-confirmDialog [style]="{ width: '55vw' }" header="Confirmação" icon="pi pi-exclamation-triangle" #confirmDialog>
+    <p-confirmDialog header="Confirmação" icon="pi pi-exclamation-triangle" #confirmDialog>
         <p-footer>
             <button type="button" pButton icon="pi pi-check" label="Sim" class="p-button-danger p-button-sm"
                     (click)="confirmDialog.accept()"></button>

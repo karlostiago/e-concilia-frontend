@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark bg-dark wine fixed-top {{ exibirMenu ? 'moving ml-240' : 'moving' }} ">
+<nav class="navbar navbar-dark bg-dark wine fixed-top {{ exibirMenu ? 'moving ml-240 ml-50' : 'moving' }} ">
     <div class="container-fluid">
         <button class="navbar-toggler" type="button" (click)="fecharMenu()">
             <span class="navbar-toggler-icon"></span>
@@ -24,65 +24,95 @@
         <div class="navbar-menu {{ exibirMenu ? 'block' : 'hidden' }} ">
 
             <div class="navbar-menu-title">
-                <span>E-CONCILIA</span>
+                <span class="logo-title"></span>
             </div>
 
             <div class="navbar-divisor"></div>
 
             <ul class="navbar-menu-item" *ngIf="menuPrincipal">
-                <li>
-                    <a routerLink="/dashboard/inicial"> <i class="pi pi-home"></i> Inicial </a>
+                <li class="custom-navbar-title">
+                    <a routerLink="/dashboard/inicial"> <i class="pi pi-home"></i>
+                        <span> Inicial </span>
+                    </a>
                 </li>
-                <li *ngIf="segurancaService.temPermissao('ROLE_MENU_EMPRESA')">
-                    <a routerLink="/consulta/empresas"> <i class="pi pi-building"></i> Empresas </a>
+                <li class="custom-navbar-title" *ngIf="segurancaService.temPermissao('ROLE_MENU_EMPRESA')">
+                    <a routerLink="/consulta/empresas"> <i class="pi pi-building"></i>
+                        <span> Empresas </span>
+                    </a>
                 </li>
-                <li *ngIf="segurancaService.temPermissao('ROLE_MENU_CONTRATO')">
-                    <a routerLink="/consulta/contratos"> <i class="pi pi-book"></i> Contratos </a>
+                <li class="custom-navbar-title" *ngIf="segurancaService.temPermissao('ROLE_MENU_CONTRATO')">
+                    <a routerLink="/consulta/contratos"> <i class="pi pi-book"></i>
+                        <span> Contratos </span>
+                    </a>
                 </li>
-                <li *ngIf="segurancaService.temPermissao('ROLE_MENU_OPERADORA')">
-                    <a routerLink="/consulta/operadoras"> <i class="pi pi-credit-card"></i> Operadoras </a>
+                <li class="custom-navbar-title" *ngIf="segurancaService.temPermissao('ROLE_MENU_OPERADORA')">
+                    <a routerLink="/consulta/operadoras"> <i class="pi pi-credit-card"></i>
+                        <span> Operadoras </span>
+                    </a>
                 </li>
-                <li *ngIf="segurancaService.temPermissao('ROLE_MENU_TAXA')">
-                    <a routerLink="/consulta/taxas"> <i class="pi pi-dollar"></i> Taxas </a>
+                <li class="custom-navbar-title" *ngIf="segurancaService.temPermissao('ROLE_MENU_TAXA')">
+                    <a routerLink="/consulta/taxas"> <i class="pi pi-dollar"></i>
+                        <span> Taxas </span>
+                    </a>
                 </li>
-                <li *ngIf="segurancaService.temPermissao('ROLE_MENU_CONCILIADOR')">
-                    <a href="#" (click)="menuConciliadores($event)"> <i class="pi pi-sync"></i> Conciliadores </a>
+                <li class="custom-navbar-title" *ngIf="segurancaService.temPermissao('ROLE_MENU_CONCILIADOR')">
+                    <a href="#" (click)="menuConciliadores($event)"> <i class="pi pi-sync"></i>
+                        <span> Conciliadores </span>
+                    </a>
                 </li>
-                <li *ngIf="temAcessoMenuConfiguracao()">
-                    <a href="#" (click)="menuConfiguracoes($event)"> <i class="pi pi-cog"></i> Configurações </a>
+                <li class="custom-navbar-title" *ngIf="temAcessoMenuConfiguracao()">
+                    <a href="#" (click)="menuConfiguracoes($event)"> <i class="pi pi-cog"></i>
+                        <span> Configurações </span>
+                    </a>
                 </li>
-                <li>
-                    <a (click)="segurancaService.logout()"> <i class="pi pi-sign-out"></i> Sair </a>
+                <li class="custom-navbar-title">
+                    <a (click)="segurancaService.logout()"> <i class="pi pi-sign-out"></i>
+                        <span> Sair </span>
+                    </a>
                 </li>
             </ul>
 
             <ul class="navbar-menu-item navbar-submenu" *ngIf="exibirMenuConciliadores">
-                <li>
+                <li class="custom-navbar-title">
                     <a href="#" (click)="menuConciliadores($event)"> <i class="pi pi-angle-double-left"></i>
-                        Conciliadores </a>
+                        <span> Conciliadores </span>
+                    </a>
                     <ul class="p-left-50">
-                        <li *ngIf="segurancaService.temPermissao('ROLE_PESQUISAR_CONCILIADOR_IFOOD')"><a
-                            routerLink="/consulta/conciliador/ifood"> <i class="pi pi-calculator"></i> Ifood </a></li>
+                        <li class="custom-navbar-title" *ngIf="segurancaService.temPermissao('ROLE_PESQUISAR_CONCILIADOR_IFOOD')">
+                            <a routerLink="/consulta/conciliador/ifood"> <i class="pi pi-calculator"></i>
+                                <span> Ifood </span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
             </ul>
 
             <ul class="navbar-menu-item navbar-submenu" *ngIf="exibirMenuConfiguracoes">
-                <li>
+                <li class="custom-navbar-title">
                     <a href="#" (click)="menuConfiguracoes($event)"> <i class="pi pi-angle-double-left"></i>
-                        Configurações </a>
+                        <span> Configurações </span>
+                    </a>
                     <ul class="p-left-50">
-                        <li *ngIf="segurancaService.temPermissao('ROLE_PESQUISAR_INTEGRACAO')"><a
-                            routerLink="configuracao/consulta/integracoes"> <i class="pi pi-share-alt"></i> Integrações
-                        </a></li>
-                        <li *ngIf="segurancaService.temPermissao('ROLE_PESQUISAR_USUARIO')"><a
-                            routerLink="configuracao/consulta/usuarios"> <i class="pi pi-user"></i> Usuários </a></li>
-                        <li *ngIf="segurancaService.temPermissao('ROLE_PESQUISAR_PERMISSAO')"><a
-                            routerLink="configuracao/consulta/permissoes"> <i class="pi pi-shield"></i> Permissões </a>
+                        <li class="custom-navbar-title" *ngIf="segurancaService.temPermissao('ROLE_PESQUISAR_INTEGRACAO')">
+                            <a routerLink="configuracao/consulta/integracoes"> <i class="pi pi-share-alt"></i>
+                                <span> Integrações </span>
+                            </a>
                         </li>
-                        <li *ngIf="segurancaService.temPermissao('ROLE_PESQUISAR_IMPORTACAO')"><a
-                            routerLink="configuracao/cadastro/importacoes/agendar"> <i class="pi pi-download"></i>
-                            Importações </a></li>
+                        <li class="custom-navbar-title" *ngIf="segurancaService.temPermissao('ROLE_PESQUISAR_USUARIO')">
+                            <a routerLink="configuracao/consulta/usuarios"> <i class="pi pi-user"></i>
+                                <span> Usuários </span>
+                            </a>
+                        </li>
+                        <li class="custom-navbar-title" *ngIf="segurancaService.temPermissao('ROLE_PESQUISAR_PERMISSAO')">
+                            <a routerLink="configuracao/consulta/permissoes"> <i class="pi pi-shield"></i>
+                                <span> Permissões </span>
+                            </a>
+                        </li>
+                        <li class="custom-navbar-title" *ngIf="segurancaService.temPermissao('ROLE_PESQUISAR_IMPORTACAO')">
+                            <a routerLink="configuracao/cadastro/importacoes/agendar"> <i class="pi pi-download"></i>
+                                <span> Importações </span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
             </ul>
@@ -93,7 +123,7 @@
 <br/>
 <br/>
 
-<div class="navbar-navegator {{ exibirMenu ? 'moving ml-240' : 'moving' }}">
+<div class="navbar-navegator {{ exibirMenu ? 'moving ml-240 ml-50' : 'moving' }}">
     <app-breadcrumb></app-breadcrumb>
 </div>
 

@@ -49,7 +49,8 @@
         </div>
 
         <div class="card-body">
-            <p-table [value]="contrato.taxas" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="10"
+            <p-table [value]="contrato.taxas" [paginator]="true" [rows]="10"
+                     responsiveLayout="stack" [breakpoint]="'960px'"
                      styleClass="p-datatable-striped p-datatable p-datatable-gridlines">
                 <ng-template pTemplate="header">
                     <tr>
@@ -62,15 +63,23 @@
 
                 <ng-template pTemplate="body" let-taxa>
                     <tr>
-                        <td> {{ taxa["descricao"] }}</td>
-                        <td class="text-end"> {{ formatarTaxa(taxa["valor"], taxa["tipo"]) }}</td>
+                        <td>
+                            <span class="p-column-title">Descrição</span>
+                            {{ taxa["descricao"] }}
+                        </td>
+                        <td class="text-end">
+                            <span class="p-column-title">Valor da taxa</span>
+                            {{ formatarTaxa(taxa["valor"], taxa["tipo"]) }}
+                        </td>
                         <td class="text-center">
+                            <span class="p-column-title">Ativo</span>
                             <span
                                 class=" {{ taxa['ativo'] == true ? 'badge text-bg-success' : 'badge text-bg-danger' }} ">
                                 {{ taxa["ativo"] === true ? 'Sim' : 'Não' }}
                             </span>
                         </td>
                         <td class="text-center">
+                            <span class="p-column-title">Ações</span>
                             <div class="action">
                                 <button type="button" pButton icon="pi pi-trash" class="p-button-danger p-button-sm"
                                         (click)="confirmarExclusao(taxa)"></button>

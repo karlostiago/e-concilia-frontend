@@ -37,7 +37,7 @@ export class NavbarComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.analisaResolucaoTela();
+        // this.analisaResolucaoTela();
         this.carregarNomeUsuario();
         this.atualizarRelogio();
 

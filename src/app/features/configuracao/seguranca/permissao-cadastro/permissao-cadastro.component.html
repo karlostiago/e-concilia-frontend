@@ -44,7 +44,7 @@
         </div>
 
         <div class="card-body">
-            <p-table [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="15" dataKey="code"
+            <p-table responsiveLayout="stack" [breakpoint]="'960px'" [paginator]="true" [rows]="15" dataKey="code"
                      styleClass="p-datatable-striped p-datatable p-datatable-gridlines" [value]="regras">
                 <ng-template pTemplate="header">
                     <tr>
@@ -61,43 +61,53 @@
 
                 <ng-template pTemplate="body" let-regra>
                     <tr>
-                        <td>{{ regra['nome'] }}</td>
+                        <td>
+                            <span class="p-column-title">Funcionalidade</span>
+                            {{ regra['nome'] }}
+                        </td>
                         <td class="text-center">
+                            <span class="p-column-title">Menu</span>
                             <input type="checkbox" name="menu" class="p-checkbox"
                                    [disabled]="naoBloquear(regra, TipoPermissao.MENU)"
                                    [checked]="!!regra['menu']" (change)="adicionar(regra, TipoPermissao.MENU, $event)"/>
                         </td>
                         <td class="text-center">
+                            <span class="p-column-title">Agendar</span>
                             <input type="checkbox" name="agendar" class="p-checkbox"
                                    [disabled]="naoBloquear(regra, TipoPermissao.AGENDAR)"
                                    [checked]="!!regra['agendar']"
                                    (change)="adicionar(regra, TipoPermissao.AGENDAR, $event)"/>
                         </td>
                         <td class="text-center">
+                            <span class="p-column-title">Cadastrar</span>
                             <input type="checkbox" name="cadastrar" class="p-checkbox"
                                    [disabled]="naoBloquear(regra, TipoPermissao.CADASTRAR)"
                                    [checked]="!!regra['cadastrar']"
                                    (change)="adicionar(regra, TipoPermissao.CADASTRAR, $event)"/>
                         </td>
                         <td class="text-center">
+                            <span class="p-column-title">Atualizar</span>
                             <input type="checkbox" name="atualizar" class="p-checkbox"
                                    [disabled]="naoBloquear(regra, TipoPermissao.ATUALIZAR)"
                                    [checked]="!!regra['atualizar']"
                                    (change)="adicionar(regra, TipoPermissao.ATUALIZAR, $event)"/>
                         </td>
                         <td class="text-center">
+                            <span class="p-column-title">Pesquisar</span>
                             <input type="checkbox" name="pesquisar" class="p-checkbox"
                                    [disabled]="naoBloquear(regra, TipoPermissao.PESQUISAR)"
                                    [checked]="!!regra['pesquisar']"
                                    (change)="adicionar(regra, TipoPermissao.PESQUISAR, $event)"/>
                         </td>
                         <td class="text-center">
+                            <span class="p-column-title">Deletar</span>
                             <input type="checkbox" name="deletar" class="p-checkbox"
                                    [disabled]="naoBloquear(regra, TipoPermissao.DELETAR)"
                                    [checked]="!!regra['deletar']"
                                    (change)="adicionar(regra, TipoPermissao.DELETAR, $event)"/>
                         </td>
                         <td class="text-center">
+                            <span class="p-column-title">Ativar</span>
                             <input type="checkbox" name="ativar" class="p-checkbox"
                                    [disabled]="naoBloquear(regra, TipoPermissao.ATIVAR)"
                                    [checked]="!!regra['ativar']"

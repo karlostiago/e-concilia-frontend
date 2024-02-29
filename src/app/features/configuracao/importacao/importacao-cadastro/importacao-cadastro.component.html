@@ -61,7 +61,8 @@
         </div>
 
         <div class="card-body">
-            <p-table [value]="importacoes" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="10"
+            <p-table [value]="importacoes" [paginator]="true" [rows]="10"
+                     responsiveLayout="stack" [breakpoint]="'960px'"
                      styleClass="p-datatable-striped p-datatable p-datatable-gridlines">
                 <ng-template pTemplate="header">
                     <tr>
@@ -75,11 +76,26 @@
 
                 <ng-template pTemplate="body" let-importacao>
                     <tr>
-                        <td class="text-center"> {{ importacao["dataInicial"] | date:'dd/MM/yyyy' }}</td>
-                        <td class="text-center"> {{ importacao["dataFinal"] | date:'dd/MM/yyyy' }}</td>
-                        <td class="text-center"> {{ importacao["empresa"]["razaoSocial"] }}</td>
-                        <td class="text-center"> {{ importacao["operadora"]["descricao"] }}</td>
-                        <td class="text-center"> {{ importacao["situacao"] }}</td>
+                        <td class="text-center">
+                            <span class="p-column-title">Data inicial</span>
+                            {{ importacao["dataInicial"] | date:'dd/MM/yyyy' }}
+                        </td>
+                        <td class="text-center">
+                            <span class="p-column-title">Data final</span>
+                            {{ importacao["dataFinal"] | date:'dd/MM/yyyy' }}
+                        </td>
+                        <td class="text-center">
+                            <span class="p-column-title">Empresa</span>
+                            <div class="text-overflow">{{ importacao["empresa"]["razaoSocial"] }}</div>
+                        </td>
+                        <td class="text-center">
+                            <span class="p-column-title">Operadora</span>
+                            {{ importacao["operadora"]["descricao"] }}
+                        </td>
+                        <td class="text-center">
+                            <span class="p-column-title">Situação</span>
+                            {{ importacao["situacao"] }}
+                        </td>
                     </tr>
                 </ng-template>
             </p-table>

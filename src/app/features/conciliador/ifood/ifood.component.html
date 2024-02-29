@@ -68,43 +68,68 @@
 
             <div class="row">
                 <div class="col-md-12 mb-10">
-                    <p-table [value]="conciliador.vendas" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true"
+                    <p-table [value]="conciliador.vendas" [paginator]="true"
+                             responsiveLayout="stack" [breakpoint]="'960px'"
                              [rows]="10" styleClass="p-datatable-striped p-datatable p-datatable-gridlines" #tabela>
                         <ng-template pTemplate="header">
                             <tr>
                                 <th class="text-center">Data</th>
                                 <th class="text-center">Bandeira</th>
-                                <th class="text-center">Meio Pagto</th>
-                                <th class="text-center">Valor Bruto</th>
-                                <th class="text-center">Valor Pedido</th>
-                                <th class="text-center">Valor Cancelado</th>
-                                <th class="text-center">Valor Liquído</th>
+                                <th class="text-center">Meio pagto</th>
+                                <th class="text-center">Valor bruto</th>
+                                <th class="text-center">Valor pedido</th>
+                                <th class="text-center">Valor cancelado</th>
+                                <th class="text-center">Valor liquído</th>
                                 <th class="text-center">Reprocess.</th>
                                 <th class="text-center">Conciliado</th>
-                                <th class="text-center">Ver. Taxas</th>
+                                <th class="text-center">Ver. taxas</th>
                             </tr>
                         </ng-template>
 
                         <ng-template pTemplate="body" let-venda>
                             <tr>
-                                <td class="text-center"> {{ venda["dataPedido"] | date:'dd/MM/yyyy' }}</td>
-                                <td class="text-center"> {{ venda["pagamento"]["bandeira"] }}</td>
-                                <td class="text-center"> {{ venda["pagamento"]["metodo"] }}</td>
-                                <td class="text-end"> {{ formatarValor(venda["valorBruto"]) }}</td>
-                                <td class="text-end"> {{ formatarValor(venda["valorTotalPedido"]) }}</td>
-                                <td class="text-end"> {{ formatarValor(venda["valorCancelado"]) }}</td>
-                                <td class="text-end"> {{ formatarValor(venda["valorLiquido"]) }}</td>
                                 <td class="text-center">
+                                    <span class="p-column-title">Data</span>
+                                    {{ venda["dataPedido"] | date:'dd/MM/yyyy' }}
+                                </td>
+                                <td class="text-center">
+                                    <span class="p-column-title">Bandeira</span>
+                                    {{ venda["pagamento"]["bandeira"] }}
+                                </td>
+                                <td class="text-center">
+                                    <span class="p-column-title">Meio pagto</span>
+                                    {{ venda["pagamento"]["metodo"] }}
+                                </td>
+                                <td class="text-end">
+                                    <span class="p-column-title">Valor bruto</span>
+                                    {{ formatarValor(venda["valorBruto"]) }}
+                                </td>
+                                <td class="text-end">
+                                    <span class="p-column-title">Valor pedido</span>
+                                    {{ formatarValor(venda["valorTotalPedido"]) }}
+                                </td>
+                                <td class="text-end">
+                                    <span class="p-column-title">Valor cancelado</span>
+                                    {{ formatarValor(venda["valorCancelado"]) }}
+                                </td>
+                                <td class="text-end">
+                                    <span class="p-column-title">Valor liquído</span>
+                                    {{ formatarValor(venda["valorLiquido"]) }}
+                                </td>
+                                <td class="text-center">
+                                    <span class="p-column-title">Reprocess.</span>
                                     <span class=" {{ venda['reprocessada'] === true ? 'badge text-bg-danger' : 'badge text-bg-success' }} ">
                                         {{ venda["reprocessada"] === true ? 'Sim' : 'Não' }}
                                     </span>
                                 </td>
                                 <td class="text-center">
+                                    <span class="p-column-title">Conciliado</span>
                                     <span class=" {{ venda['conciliado'] === true ? 'badge text-bg-success' : 'badge text-bg-danger' }} ">
                                         {{ venda["conciliado"] === true ? 'Sim' : 'Não' }}
                                     </span>
                                 </td>
                                 <td class="text-center">
+                                    <span class="p-column-title">Ver. taxas</span>
                                     <button type="button" pButton icon="pi pi-eye-slash"
                                             class="p-button-danger p-button-sm"
                                             (click)="dialogTaxaContratual(venda)"></button>

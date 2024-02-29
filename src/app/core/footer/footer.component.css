@@ -5,3 +5,9 @@
     color: #701717;
     font-size: 12px;
 }
+
+@media screen and (max-width: 560px) {
+    .ml-50 {
+        margin-left: 50px!important;
+    }
+}

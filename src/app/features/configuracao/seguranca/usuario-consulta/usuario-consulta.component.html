@@ -26,7 +26,7 @@
                         (click)="pesquisar()"
                         [disabled]="!segurancaService.temPermissao('ROLE_PESQUISAR_USUARIO')"></button>
                 <button pButton class="p-button-danger p-button-sm float-end" icon="pi pi-plus-circle"
-                        routerLink="/configuracao/cadastro/usuarios/novo" label="Novo usuário"
+                        routerLink="/configuracao/cadastro/usuarios/novo" label="Cadastrar"
                         [disabled]="!segurancaService.temPermissao('ROLE_CADASTRAR_USUARIO')"></button>
             </div>
         </div>
@@ -40,11 +40,12 @@
         </div>
 
         <div class="card-body">
-            <p-table [value]="usuarios" [tableStyle]="{ 'min-width': '50rem' }" [paginator]="true" [rows]="10"
+            <p-table [value]="usuarios" [paginator]="true" [rows]="10"
+                     responsiveLayout="stack" [breakpoint]="'960px'"
                      styleClass="p-datatable-striped p-datatable p-datatable-gridlines" #tabela>
                 <ng-template pTemplate="header">
                     <tr>
-                        <th class="text-center" style="min-width: 320px">Nome Completo</th>
+                        <th class="text-center" style="min-width: 320px">Nome completo</th>
                         <th class="text-center" style="min-width: 320px;">Email</th>
                         <th class="text-center">Ações</th>
                     </tr>
@@ -52,9 +53,16 @@
 
                 <ng-template pTemplate="body" let-usuario>
                     <tr>
-                        <td class="text-center"> {{ usuario["nomeCompleto"] }}</td>
-                        <td class="text-center"> {{ usuario["email"] }}</td>
                         <td class="text-center">
+                            <span class="p-column-title">Nome completo</span>
+                            <div class="text-overflow">{{ usuario["nomeCompleto"] }}</div>
+                        </td>
+                        <td class="text-center">
+                            <span class="p-column-title">Email</span>
+                            <div class="text-overflow">{{ usuario["email"] }}</div>
+                        </td>
+                        <td class="text-center">
+                            <span class="p-column-title">Ações</span>
                             <div class="action">
                                 <button type="button" pButton icon="pi pi-trash" class="p-button-danger p-button-sm"
                                         (click)="confirmarExclusao(usuario)"

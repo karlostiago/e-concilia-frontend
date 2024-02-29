@@ -81,3 +81,47 @@ ul.p-left-50 {
     top: 35px;
     font-size: 12px;
 }
+
+.logo-title:before {
+    content: 'E-CONCILIA';
+}
+
+@media screen and (max-width: 560px) {
+    .navbar-menu-item {
+        margin-left: -10px;
+    }
+
+    .navbar-menu {
+        width: 50px!important;
+    }
+
+    .ml-50 {
+        margin-left: 50px!important;
+    }
+
+    .custom-navbar-title span {
+        display: none!important;
+    }
+
+    .custom-navbar-title {
+        text-align: center!important;
+    }
+
+    .logo-title {
+        font-family: var(--font-family)!important;
+        padding: 5px 10px;
+        border-radius: 5px;
+        background-color: #64a583;
+        color: #fff;
+        display: inline-block;
+        margin-left: -5px;
+    }
+
+    .logo-title:before {
+        content: 'E';
+    }
+
+    ul.p-left-50 {
+        padding-left: 34px!important;
+    }
+}
