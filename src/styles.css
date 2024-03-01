@@ -6,7 +6,7 @@
 
 :root {
     --font-family: 'Ubuntu', sans-serif !important;
-    --font-size: 0.875rem;
+    --font-size: 0.875rem!important;
 }
 
 body, table {
@@ -315,7 +315,7 @@ a {
  */
 @media screen and (max-width: 760px) {
     .text-overflow {
-        max-width: 200px;
+        max-width: 140px;
     }
 }
 
@@ -337,15 +337,30 @@ a {
     }
 }
 
-@media screen and (max-width: 650px) {
-    /*.card-action .btn-block {*/
-    /*    width: 100%;*/
-    /*    top: 10px;*/
-    /*}*/
-    /**/
-    /*.card-action .btn-block-6 {*/
-    /*    width: 48.8% !important;*/
-    /*}*/
+@media screen and (max-width: 360px) {
+    body, table, span, input, button, select, option, label, a {
+        font-size: 0.825rem!important;
+    }
+
+    .text-overflow {
+        max-width: 90px !important;
+    }
+
+    .p-button.p-button-sm .p-button-icon {
+        font-size: 0.770rem !important;
+    }
+
+    .card-action button > span {
+        padding: 2px 0 2px 10px;
+    }
+
+    .card-action span ~ span {
+        display: none!important;
+    }
+
+    .container-user {
+        bottom: 8px!important;
+    }
 }
 
 

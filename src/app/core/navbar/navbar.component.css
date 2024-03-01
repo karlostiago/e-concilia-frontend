@@ -125,3 +125,9 @@ ul.p-left-50 {
         padding-left: 34px!important;
     }
 }
+
+@media screen and (max-width: 360px) {
+    .container-user {
+        top: 30px!important;
+    }
+}
