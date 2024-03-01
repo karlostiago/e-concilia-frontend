@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormatacaoMoedaPtBR} from "../../../../helpers/FormatacaoMoedaPtBR";
 import {DashboardService} from "../dashboard.service";
-import {GraficoVendaUltimo7DiaPercentual} from "../../../model/GraficoVendaUltimo7DiaDPercentual";
+import {GraficoVendaPercentualFormaPagamento} from "../../../model/GraficoVendaPercentualFormaPagamento";
 
 @Component({
     selector: 'app-dashboard-grafico-venda-ultimo-sete-dias-percentual',
@@ -12,7 +12,7 @@ export class DashboardGraficoVendaUltimoSeteDiasPercentualComponent implements O
 
     data: any;
     options: any;
-    grafico = new GraficoVendaUltimo7DiaPercentual();
+    grafico = new GraficoVendaPercentualFormaPagamento();
 
     @Input() empresas = new Array<string>();
 
@@ -24,7 +24,7 @@ export class DashboardGraficoVendaUltimoSeteDiasPercentualComponent implements O
     }
 
     atualizar() {
-        this.dashboardService.buscarPercentualVendasUltimos7Dias(this.empresas.join(',')).then(data => {
+        this.dashboardService.buscarPercentualVendasFormaPagamento(this.empresas.join(',')).then(data => {
             this.grafico = data;
             this.getData();
             this.getOptions();
@@ -70,7 +70,7 @@ export class DashboardGraficoVendaUltimoSeteDiasPercentualComponent implements O
                 },
                 title: {
                     display: true,
-                    text: 'Percentual de vendas dos últimos 7 dias por forma de pagamento',
+                    text: 'Percentual de vendas por forma de pagamento',
                     fontSize: 10
                 }
             }
