@@ -7,20 +7,23 @@ import {FiltroEmpresa} from "../../../filter/FiltroEmpresa";
 import {FiltroDashboard} from "../../../filter/FiltroDashboard";
 import {
     DashboardGraficoVendaUltimoSeteDiasComponent
-} from "../dashboard-grafico-venda-ultimo-sete-dias/dashboard-grafico-venda-ultimo-sete-dias.component";
+} from "../dashboard-grafico-venda-semanal/dashboard-grafico-venda-ultimo-sete-dias.component";
 import {
     DashboardGraficoVendaUltimoSeteDiasCreditoDebitoComponent
-} from "../dashboard-grafico-venda-ultimo-sete-dias-credito-debito/dashboard-grafico-venda-ultimo-sete-dias-credito-debito.component";
+} from "../dashboard-grafico-venda-semanal-credito-debito/dashboard-grafico-venda-ultimo-sete-dias-credito-debito.component";
 import {
     DashboardGraficoVendaUltimoSeteDiasDinheiroPixComponent
-} from "../dashboard-grafico-venda-ultimo-sete-dias-dinheiro-pix/dashboard-grafico-venda-ultimo-sete-dias-dinheiro-pix.component";
+} from "../dashboard-grafico-venda-semanal-dinheiro-pix/dashboard-grafico-venda-ultimo-sete-dias-dinheiro-pix.component";
 import {SegurancaService} from "../../seguranca/seguranca.service";
 import {
     DashboardGraficoVendaUltimoSeteDiasPercentualComponent
-} from "../dashboard-grafico-venda-ultimo-sete-dias-percentual/dashboard-grafico-venda-ultimo-sete-dias-percentual.component";
+} from "../dashboard-grafico-venda-percentual/dashboard-grafico-venda-ultimo-sete-dias-percentual.component";
 import {
     DashboardGraficoVendaMensalComponent
 } from "../dashboard-grafico-venda-mensal/dashboard-grafico-venda-mensal.component";
+import {
+    DashboardGraficoVendaAnualComponent
+} from "../dashboard-grafico-venda-anual/dashboard-grafico-venda-anual.component";
 
 @Component({
     selector: 'app-dashboard-inicial',
@@ -41,6 +44,7 @@ export class DashboardInicialComponent implements OnInit {
     @ViewChild(DashboardGraficoVendaUltimoSeteDiasDinheiroPixComponent) graficoVendaUltimoSeteDiasDinheiroPix: DashboardGraficoVendaUltimoSeteDiasDinheiroPixComponent;
     @ViewChild(DashboardGraficoVendaUltimoSeteDiasPercentualComponent) graficoVendaUltimoSeteDiasPercentual: DashboardGraficoVendaUltimoSeteDiasPercentualComponent;
     @ViewChild(DashboardGraficoVendaMensalComponent) graficoVendaMensal: DashboardGraficoVendaMensalComponent;
+    @ViewChild(DashboardGraficoVendaAnualComponent) graficoVendaAnual: DashboardGraficoVendaAnualComponent;
 
     constructor(private dashboardService: DashboardService,
                 public segurancaService: SegurancaService,
@@ -62,6 +66,7 @@ export class DashboardInicialComponent implements OnInit {
             this.graficoVendaUltimoSeteDiasDinheiroPix.atualizar();
             this.graficoVendaUltimoSeteDiasPercentual.atualizar();
             this.graficoVendaMensal.atualizar();
+            this.graficoVendaAnual.atualizar();
         });
     }
 

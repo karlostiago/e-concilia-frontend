@@ -1,19 +1,19 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {GraficoVendaUltimo7DiaCreditoDebito} from "../../../model/GraficoVendaUltimo7DiaCreditoDebito";
 import {DashboardService} from "../dashboard.service";
 import {FormatacaoMoedaPtBR} from "../../../../helpers/FormatacaoMoedaPtBR";
-import {GraficoVendaUltimo7DiaDinheiroPix} from "../../../model/GraficoVendaUltimo7DiaDinheiroPix";
 import {NumberHelper} from "../../../../helpers/NumberHelper";
 
 @Component({
-    selector: 'app-dashboard-grafico-venda-ultimo-sete-dias-dinheiro-pix',
-    templateUrl: './dashboard-grafico-venda-ultimo-sete-dias-dinheiro-pix.component.html',
-    styleUrls: ['./dashboard-grafico-venda-ultimo-sete-dias-dinheiro-pix.component.css']
+    selector: 'app-dashboard-grafico-venda-ultimo-sete-dias-credito-debito',
+    templateUrl: './dashboard-grafico-venda-ultimo-sete-dias-credito-debito.component.html',
+    styleUrls: ['./dashboard-grafico-venda-ultimo-sete-dias-credito-debito.component.css']
 })
-export class DashboardGraficoVendaUltimoSeteDiasDinheiroPixComponent implements OnInit {
+export class DashboardGraficoVendaUltimoSeteDiasCreditoDebitoComponent implements OnInit {
 
     data: any;
     options: any;
-    graficoVendaUltimo7DiaDinheiroPix = new GraficoVendaUltimo7DiaDinheiroPix();
+    graficoVendaUltimo7DiasCreditoDebito = new GraficoVendaUltimo7DiaCreditoDebito();
 
     @Input() empresas = new Array<string>();
 
@@ -21,13 +21,13 @@ export class DashboardGraficoVendaUltimoSeteDiasDinheiroPixComponent implements 
     }
 
     ngOnInit(): void {
-
+        // this.atualizar();
     }
 
     atualizar() {
-        this.dashboardService.buscarVendasUltimos7DiasDinheiroPix(this.empresas.join(',')).then(data => {
-            this.graficoVendaUltimo7DiaDinheiroPix = data;
-            const max = NumberHelper.max(50, 50, ...data.dataCash, ...data.dataPix);
+        this.dashboardService.buscarVendasUltimos7DiasCreditoDebito(this.empresas.join(',')).then(data => {
+            this.graficoVendaUltimo7DiasCreditoDebito = data;
+            const max = NumberHelper.max(50, 50, ...data.dataCredit, ...data.dataDebit);
 
             this.getData();
             this.getOptions(max);
@@ -37,21 +37,21 @@ export class DashboardGraficoVendaUltimoSeteDiasDinheiroPixComponent implements 
     private getData() {
         const documentStyle = getComputedStyle(document.documentElement);
         this.data = {
-            labels: this.graficoVendaUltimo7DiaDinheiroPix.labels,
+            labels: this.graficoVendaUltimo7DiasCreditoDebito.labels,
             datasets: [
                 {
-                    label: 'Dinheiro',
+                    label: 'Cartão crédito',
                     backgroundColor: documentStyle.getPropertyValue('--blue-500'),
                     hoverBackgroundColor: documentStyle.getPropertyValue('--blue-400'),
                     borderWidth: 0,
-                    data: this.graficoVendaUltimo7DiaDinheiroPix.dataCash
+                    data: this.graficoVendaUltimo7DiasCreditoDebito.dataCredit
                 },
                 {
-                    label: 'Pix',
+                    label: 'Cartão dédito',
                     backgroundColor: documentStyle.getPropertyValue('--teal-500'),
                     hoverBackgroundColor: documentStyle.getPropertyValue('--teal-400'),
                     borderWidth: 0,
-                    data: this.graficoVendaUltimo7DiaDinheiroPix.dataPix
+                    data: this.graficoVendaUltimo7DiasCreditoDebito.dataDebit
                 }
             ]
         };
@@ -80,14 +80,14 @@ export class DashboardGraficoVendaUltimoSeteDiasDinheiroPixComponent implements 
                     }
                 },
                 tooltip: {
-                    enabled: false,
+                    enabled: false
                 },
                 legend: {
                     display: true,
                 },
                 title: {
                     display: true,
-                    text: 'Vendas dos últimos 7 dias em dinheiro e pix',
+                    text: 'Venda semanal em crédito e débito',
                     fontSize: 10,
                     color: textColor
                 }

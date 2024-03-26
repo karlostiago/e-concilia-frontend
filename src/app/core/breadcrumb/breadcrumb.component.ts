@@ -12,10 +12,7 @@ export class BreadcrumbComponent implements OnInit {
     items: MenuItem[];
     home: MenuItem;
 
-    constructor(private router: Router) {
-    }
-
-    url: string;
+    constructor(private router: Router) { }
 
     ngOnInit(): void {
         this.items = [{label: 'Dashboard'}, {label: 'Inicial'}];

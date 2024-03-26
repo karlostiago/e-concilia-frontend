@@ -62,6 +62,12 @@ export class DashboardGraficoVendaMensalComponent implements OnInit {
                     labels: {
                         color: textColor
                     }
+                },
+                title: {
+                    display: true,
+                    text: 'Venda mensal',
+                    fontSize: 10,
+                    color: textColor
                 }
             },
             scales: {

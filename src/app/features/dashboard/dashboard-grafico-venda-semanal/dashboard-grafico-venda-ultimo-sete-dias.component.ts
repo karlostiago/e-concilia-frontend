@@ -39,7 +39,7 @@ export class DashboardGraficoVendaUltimoSeteDiasComponent implements OnInit {
             labels: this.graficoVendaUltimo7Dia.labels,
             datasets: [
                 {
-                    label: 'Vendas dos últimos 7 dias',
+                    label: 'Vendas semanal',
                     data: this.graficoVendaUltimo7Dia.data,
                     backgroundColor: [documentStyle.getPropertyValue('--blue-500'), documentStyle.getPropertyValue('--green-500'), documentStyle.getPropertyValue('--indigo-500'), documentStyle.getPropertyValue('--orange-500'), documentStyle.getPropertyValue('--red-500'), documentStyle.getPropertyValue('--gray-500'), documentStyle.getPropertyValue('--teal-500')],
                     hoverBackgroundColor: [documentStyle.getPropertyValue('--blue-400'), documentStyle.getPropertyValue('--green-400'), documentStyle.getPropertyValue('--indigo-400'), documentStyle.getPropertyValue('--orange-400'), documentStyle.getPropertyValue('--red-400'), documentStyle.getPropertyValue('--gray-400'), documentStyle.getPropertyValue('--teal-400')],
@@ -76,7 +76,7 @@ export class DashboardGraficoVendaUltimoSeteDiasComponent implements OnInit {
                 },
                 title: {
                     display: true,
-                    text: 'Vendas dos últimos 7 dias',
+                    text: 'Vendas semanal',
                     fontSize: 10,
                     color: textColor
                 }
