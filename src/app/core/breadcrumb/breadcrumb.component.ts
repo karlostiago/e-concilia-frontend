@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Event, NavigationStart, Router} from "@angular/router";
+import {MenuItem} from "primeng/api";
 
 @Component({
     selector: 'app-breadcrumb',
@@ -8,12 +9,15 @@ import {Event, NavigationStart, Router} from "@angular/router";
 })
 export class BreadcrumbComponent implements OnInit {
 
-    constructor(private router: Router) {
-    }
+    items: MenuItem[];
+    home: MenuItem;
 
-    url: string;
+    constructor(private router: Router) { }
 
     ngOnInit(): void {
+        this.items = [{label: 'Dashboard'}, {label: 'Inicial'}];
+        this.home = { icon: 'pi pi-home', routerLink: '/' };
+
         this.router.events.subscribe((e: Event) => {
             if (e instanceof NavigationStart) {
                 this.montarURL(e.url);
@@ -22,19 +26,27 @@ export class BreadcrumbComponent implements OnInit {
     }
 
     montarURL(url: string) {
-        this.url = "/ inicial";
-
-        const palavras = url.split("/");
-        let contador = 1;
-
-        if (palavras.length == 2) {
-            return;
+        if (url === '/') {
+            url = 'Dashboard/Inicial';
         }
 
-        for (const palavra of palavras) {
-            this.url += palavra;
-            if (contador < palavras.length) this.url += " / ";
-            contador++;
+        const arr = url.split('/')
+            .filter(pt => pt !== '');
+
+        const newArr = [];
+
+        for (const p of arr) {
+            const regex = /\d/;
+
+            if (regex.test(p)) {
+                continue;
+            }
+
+            newArr.push({
+                label: p.charAt(0).toUpperCase() + p.slice(1)
+            });
         }
+
+        this.items = newArr;
     }
 }

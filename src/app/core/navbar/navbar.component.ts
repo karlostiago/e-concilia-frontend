@@ -6,6 +6,7 @@ import {
     ConsultaNotificacaoComponent
 } from "../../features/notificacao/notificacao-consulta/consulta-notificacao.component";
 import {AlertaService} from "../../shared/alerta/alerta.service";
+import {MenuItem} from "primeng/api";
 
 @Component({
     selector: 'app-navbar',

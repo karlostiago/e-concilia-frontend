@@ -8,6 +8,7 @@ import {GraficoVendaUltimo7Dia} from "../../model/GraficoVendaUltimo7Dia";
 import {GraficoVendaUltimo7DiaCreditoDebito} from "../../model/GraficoVendaUltimo7DiaCreditoDebito";
 import {GraficoVendaUltimo7DiaDinheiroPix} from "../../model/GraficoVendaUltimo7DiaDinheiroPix";
 import {GraficoVendaMensal} from "../../model/GraficoVendaMensal";
+import {GraficoVendaAnual} from "../../model/GraficoVendaAnual";
 
 @Injectable({
     providedIn: 'root'
@@ -50,6 +51,11 @@ export class DashboardService extends AbstractService<Dashboard> {
 
     async buscarVendaMensal(empresaId: string, dtInicial: Date, dtFinal: Date): Promise<GraficoVendaMensal> {
         const request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}/buscar-venda-mensal?lojaId=${empresaId}&dtInicial=${DataHelpers.formatUs(dtInicial)}&dtFinal=${DataHelpers.formatUs(dtFinal)}`, this.options());
+        return this.toPromise(request);
+    }
+
+    async buscarVendaAnual(): Promise<GraficoVendaAnual> {
+        const request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}/buscar-venda-anual`, this.options());
         return this.toPromise(request);
     }
 }

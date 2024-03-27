@@ -19,6 +19,7 @@ import {SegurancaService} from "../features/seguranca/seguranca.service";
 import {DialogModule} from "primeng/dialog";
 import {TableModule} from "primeng/table";
 import {NotificacaoModule} from "../features/notificacao/notificacao.module";
+import {BreadcrumbModule} from "primeng/breadcrumb";
 
 @NgModule({
     declarations: [
@@ -48,7 +49,8 @@ import {NotificacaoModule} from "../features/notificacao/notificacao.module";
         ConfirmDialogModule,
         DialogModule,
         TableModule,
-        NotificacaoModule
+        NotificacaoModule,
+        BreadcrumbModule
     ],
     providers: [
         ConfirmationService,
