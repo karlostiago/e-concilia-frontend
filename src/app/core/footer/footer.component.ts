@@ -27,4 +27,8 @@ export class FooterComponent implements OnInit {
     getVersao() {
         return environment.version;
     }
+
+    getData() {
+        return environment.dataAtualizacao;
+    }
 }
