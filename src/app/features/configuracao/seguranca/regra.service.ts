@@ -163,6 +163,17 @@ export class RegraService extends AbstractService<Regra> {
                 ativar: false,
                 menu: false
             },
+            {
+                code: 11,
+                nome: 'Relatórios',
+                agendar: false,
+                cadastrar: false,
+                atualizar: false,
+                pesquisar: false,
+                deletar: false,
+                ativar: false,
+                menu: false
+            }
         ]
     }
 }

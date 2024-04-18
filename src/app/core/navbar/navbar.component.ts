@@ -20,6 +20,7 @@ export class NavbarComponent implements OnInit {
     exibirMenu = false;
     exibirMenuConciliadores = false;
     exibirMenuConfiguracoes = false;
+    exibirMenuRelatorios = false;
     menuPrincipal = true;
 
     visivel: boolean;
@@ -73,11 +74,22 @@ export class NavbarComponent implements OnInit {
         this.exibirMenuConfiguracoes = !this.exibirMenuConfiguracoes;
     }
 
+    menuRelatorios(e: Event) {
+        e.preventDefault();
+        this.menuPrincipal = !this.menuPrincipal;
+        this.exibirMenuRelatorios = !this.exibirMenuRelatorios;
+    }
+
     temAcessoMenuConfiguracao() {
         return this.segurancaService.temPermissao('ROLE_MENU_INTEGRACAO')
             || this.segurancaService.temPermissao('ROLE_MENU_USUARIO')
             || this.segurancaService.temPermissao('ROLE_MENU_PERMISSAO')
             || this.segurancaService.temPermissao('ROLE_PESQUISAR_IMPORTACAO');
+    }
+
+    temAcessoMenuRelatorio() {
+        return this.segurancaService.temPermissao('ROLE_PESQUISAR_RELATORIO')
+                && this.segurancaService.temPermissao('ROLE_MENU_RELATORIO');
     }
 
     notificacoesDialog() {

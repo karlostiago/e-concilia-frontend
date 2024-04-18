@@ -6,7 +6,7 @@ import {Integracao} from "../../../../model/Integracao";
 import {AlertaService} from "../../../../shared/alerta/alerta.service";
 import {EmpresaService} from "../../../empresa/empresa.service";
 import {OperadoraService} from "../../../operadora/operadora.service";
-import {FiltroEmpresa} from "../../../../model/FiltroEmpresa";
+import {FiltroEmpresa} from "../../../../filter/FiltroEmpresa";
 import {FiltroOperadora} from "../../../../filter/FiltroOperadora";
 import {ConfirmationService} from "primeng/api";
 import {IntegracaoService} from "../integracao.service";

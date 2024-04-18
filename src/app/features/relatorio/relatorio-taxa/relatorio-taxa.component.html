@@ -1,0 +1,16 @@
+<form autocomplete="off" class="fade-in">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="color-wine"> Relatório de taxas </h4>
+        </div>
+
+        <app-relatorio-filtro [filtroRelatorio]="filtroRelatorio"></app-relatorio-filtro>
+
+        <div class="card-footer">
+            <div class="card-action">
+                <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-download" label="Gerar" (click)="gerar()"></button>
+                <button pButton type="reset" class="p-button-danger p-button-sm float-end" icon="pi pi-eraser" label="Limpar"></button>
+            </div>
+        </div>
+    </div>
+</form>

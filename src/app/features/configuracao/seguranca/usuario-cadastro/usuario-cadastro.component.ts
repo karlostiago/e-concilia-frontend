@@ -4,7 +4,7 @@ import {NgForm} from "@angular/forms";
 import {AlertaService} from "../../../../shared/alerta/alerta.service";
 import {ActivatedRoute} from "@angular/router";
 import {UsuarioService} from "../usuario.service";
-import {FiltroEmpresa} from "../../../../model/FiltroEmpresa";
+import {FiltroEmpresa} from "../../../../filter/FiltroEmpresa";
 import {EmpresaService} from "../../../empresa/empresa.service";
 import {Empresa} from "../../../../model/Empresa";
 import {SegurancaService} from "../../../seguranca/seguranca.service";

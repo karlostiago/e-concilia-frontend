@@ -18,6 +18,7 @@ import {TableModule} from "primeng/table";
 import {LoginComponent} from './features/seguranca/login/login.component';
 import {AuthInterceptor} from "./auth.interceptor";
 
+
 @NgModule({
     declarations: [
         AppComponent,

@@ -1,0 +1,40 @@
+<div class="card-body">
+    <div class="row">
+        <div class="col-md-12 mb-10">
+            <small class="float-end color-wine">Os campos com ( * ) são obrigatórios.</small>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2">
+            <label class="form-label">Data inicial*:</label>
+            <p-calendar appendTo="body" id="dataInicial" [style]="{ 'width': '100%' }" name="dataInicial"
+                        [readonlyInput]="true" dateFormat="dd/mm/yy" [(ngModel)]="filtroRelatorio.dataInicial"></p-calendar>
+        </div>
+        <div class="col-md-2">
+            <label class="form-label">Data final*:</label>
+            <p-calendar appendTo="body" id="dataFinal" [style]="{ 'width': '100%' }" name="dataFinal"
+                        [readonlyInput]="true" dateFormat="dd/mm/yy" [(ngModel)]="filtroRelatorio.dataFinal"></p-calendar>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Empresa*:</label>
+            <p-dropdown styleClass="w-100" name="empresa" id="empresa" optionLabel="razaoSocial"
+                        optionValue="id" [options]="empresas" placeholder="Selecione uma empresa"
+                        [(ngModel)]="filtroRelatorio.empresaId" [required]="true"></p-dropdown>
+        </div>
+        <div class="col-md-4">
+            <label class="form-label">Operadora*:</label>
+            <p-dropdown styleClass="w-100" name="operadora" id="operadora" optionLabel="descricao"
+                        optionValue="id" [options]="operadoras" placeholder="Selecione uma operadora"
+                        [(ngModel)]="filtroRelatorio.operadoraId" [required]="true"></p-dropdown>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <label class="form-label">Tipo de relatório*:</label>
+            <p-dropdown styleClass="w-100" name="tipoRelatorio" id="tipoRelatorio" [options]="tiposRelatorio"
+                        placeholder="Selecione um tipo de relatório" [(ngModel)]="filtroRelatorio.tipoRelatorio"></p-dropdown>
+        </div>
+    </div>
+</div>

@@ -16,7 +16,7 @@ import {Conciliador} from "../../../model/Conciliador";
 import {TipoRecebimento} from "../../../model/TipoRecebimento";
 import {SegurancaService} from "../../seguranca/seguranca.service";
 import {EmpresaService} from "../../empresa/empresa.service";
-import {FiltroEmpresa} from "../../../model/FiltroEmpresa";
+import {FiltroEmpresa} from "../../../filter/FiltroEmpresa";
 
 @Component({
     selector: 'app-ifood',

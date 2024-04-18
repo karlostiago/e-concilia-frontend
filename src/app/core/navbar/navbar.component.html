@@ -65,6 +65,11 @@
                         <span> Configurações </span>
                     </a>
                 </li>
+                <li class="custom-navbar-title" *ngIf="temAcessoMenuRelatorio()">
+                    <a href="#" (click)="menuRelatorios($event)"> <i class="pi pi-chart-bar"></i>
+                        <span> Relatórios </span>
+                    </a>
+                </li>
                 <li class="custom-navbar-title">
                     <a (click)="segurancaService.logout()"> <i class="pi pi-sign-out"></i>
                         <span> Sair </span>
@@ -111,6 +116,31 @@
                         <li class="custom-navbar-title" *ngIf="segurancaService.temPermissao('ROLE_PESQUISAR_IMPORTACAO')">
                             <a routerLink="configuracao/cadastro/importacoes/agendar"> <i class="pi pi-download"></i>
                                 <span> Importações </span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <ul class="navbar-menu-item navbar-submenu" *ngIf="exibirMenuRelatorios">
+                <li class="custom-navbar-title">
+                    <a href="#" (click)="menuRelatorios($event)"> <i class="pi pi-angle-double-left"></i>
+                        <span> Relatórios </span>
+                    </a>
+                    <ul class="p-left-50">
+                        <li class="custom-navbar-title" *ngIf="segurancaService.temPermissao('ROLE_PESQUISAR_RELATORIO')">
+                            <a routerLink="relatorio/vendas"> <i class="pi pi-cart-plus"></i>
+                                <span> Vendas </span>
+                            </a>
+                        </li>
+                        <li class="custom-navbar-title" *ngIf="segurancaService.temPermissao('ROLE_PESQUISAR_RELATORIO')">
+                            <a routerLink="relatorio/taxas"> <i class="pi pi-dollar"></i>
+                                <span> Taxas </span>
+                            </a>
+                        </li>
+                        <li class="custom-navbar-title" *ngIf="segurancaService.temPermissao('ROLE_PESQUISAR_RELATORIO')">
+                            <a routerLink="relatorio/conciliacao"> <i class="pi pi-chart-line"></i>
+                                <span> Conciliação </span>
                             </a>
                         </li>
                     </ul>

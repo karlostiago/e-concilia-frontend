@@ -20,6 +20,7 @@ import {DialogModule} from "primeng/dialog";
 import {TableModule} from "primeng/table";
 import {NotificacaoModule} from "../features/notificacao/notificacao.module";
 import {BreadcrumbModule} from "primeng/breadcrumb";
+import {RelatorioModule} from "../features/relatorio/relatorio.module";
 
 @NgModule({
     declarations: [
@@ -40,7 +41,8 @@ import {BreadcrumbModule} from "primeng/breadcrumb";
         ConciliadorModule,
         ConfiguracaoModule,
         DashboardModule,
-        SegurancaModule
+        SegurancaModule,
+        RelatorioModule
     ],
     imports: [
         CommonModule,

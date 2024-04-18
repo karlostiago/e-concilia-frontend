@@ -3,7 +3,7 @@ import {Importacao} from "../../../../model/Importacao";
 import {Operadora} from "../../../../model/Operadora";
 import {OperadoraService} from "../../../operadora/operadora.service";
 import {FiltroOperadora} from "../../../../filter/FiltroOperadora";
-import {FiltroEmpresa} from "../../../../model/FiltroEmpresa";
+import {FiltroEmpresa} from "../../../../filter/FiltroEmpresa";
 import {EmpresaService} from "../../../empresa/empresa.service";
 import {Empresa} from "../../../../model/Empresa";
 import {ImportacaoService} from "../importacao.service";
