@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FiltroRelatorio} from "../../../filter/FiltroRelatorio";
+import {AlertaService} from "../../../shared/alerta/alerta.service";
 
 @Component({
   selector: 'app-relatorio-conciliacao',
@@ -8,7 +9,10 @@ import {FiltroRelatorio} from "../../../filter/FiltroRelatorio";
 })
 export class RelatorioConciliacaoComponent implements OnInit {
 
-    filtroRelatorio = new FiltroRelatorio();
+    filtroRelatorio = new FiltroRelatorio(this.alertaService);
+
+    constructor(private alertaService: AlertaService) {
+    }
 
     ngOnInit(): void {
 

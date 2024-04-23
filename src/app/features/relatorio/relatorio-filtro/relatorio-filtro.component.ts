@@ -8,6 +8,7 @@ import {SegurancaService} from "../../seguranca/seguranca.service";
 import {Empresa} from "../../../model/Empresa";
 import {FiltroOperadora} from "../../../filter/FiltroOperadora";
 import {Operadora} from "../../../model/Operadora";
+import {AlertaService} from "../../../shared/alerta/alerta.service";
 
 @Component({
   selector: 'app-relatorio-filtro',
@@ -16,7 +17,7 @@ import {Operadora} from "../../../model/Operadora";
 })
 export class RelatorioFiltroComponent implements OnInit {
 
-    @Input() filtroRelatorio = new FiltroRelatorio();
+    @Input() filtroRelatorio = new FiltroRelatorio(this.alertaService);
 
     tiposRelatorio = new Array<String>();
     empresas = new Array<Empresa>();
@@ -24,7 +25,8 @@ export class RelatorioFiltroComponent implements OnInit {
 
     constructor(private empresaService: EmpresaService,
                 private operadoraService: OperadoraService,
-                private segurancaService: SegurancaService) {
+                private segurancaService: SegurancaService,
+                private alertaService: AlertaService) {
     }
 
     ngOnInit(): void {

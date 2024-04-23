@@ -20,13 +20,13 @@
             <label class="form-label">Empresa*:</label>
             <p-dropdown styleClass="w-100" name="empresa" id="empresa" optionLabel="razaoSocial"
                         optionValue="id" [options]="empresas" placeholder="Selecione uma empresa"
-                        [(ngModel)]="filtroRelatorio.empresaId" [required]="true"></p-dropdown>
+                        [(ngModel)]="filtroRelatorio.empresaId"></p-dropdown>
         </div>
         <div class="col-md-4">
             <label class="form-label">Operadora*:</label>
             <p-dropdown styleClass="w-100" name="operadora" id="operadora" optionLabel="descricao"
                         optionValue="id" [options]="operadoras" placeholder="Selecione uma operadora"
-                        [(ngModel)]="filtroRelatorio.operadoraId" [required]="true"></p-dropdown>
+                        [(ngModel)]="filtroRelatorio.operadoraId"></p-dropdown>
         </div>
     </div>
 
