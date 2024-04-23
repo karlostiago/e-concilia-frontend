@@ -22,16 +22,7 @@ export class RelatorioTaxaComponent implements OnInit {
 
         if (validado) {
             this.relatorioService.buscarTaxas(this.filtroRelatorio.dataInicial, this.filtroRelatorio.dataFinal, this.filtroRelatorio.empresaId, this.filtroRelatorio.operadoraId, this.filtroRelatorio.tipoRelatorio).then(response => {
-                const blob = response as Blob;
-
-                if (blob.size > 0) {
-                    const baixar = document.createElement("a");
-                    baixar.href = window.URL.createObjectURL(blob);
-                    baixar.download = "Relatorio_Taxas.csv";
-                    baixar.click();
-                } else {
-                    this.alertaService.atencao("Nenhum registro encontrado, com os filtros informados.");
-                }
+                this.relatorioService.gerarCSV("Relatorio_Taxas", response as Blob, this.alertaService);
             });
         }
     }
