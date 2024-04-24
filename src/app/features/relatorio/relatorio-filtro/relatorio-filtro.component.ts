@@ -52,9 +52,10 @@ export class RelatorioFiltroComponent implements OnInit {
     }
 
     private carregarTiposRelatorio() {
-        for (const tipoRelatorioKey in TipoRelatorio) {
-            // @ts-ignore
-            this.tiposRelatorio.push(TipoRelatorio[`${tipoRelatorioKey}`].toUpperCase());
-        }
+        this.tiposRelatorio.push(TipoRelatorio.CSV.toUpperCase());
+        // for (const tipoRelatorioKey in TipoRelatorio) {
+        //     // @ts-ignore
+        //     this.tiposRelatorio.push(TipoRelatorio[`${tipoRelatorioKey}`].toUpperCase());
+        // }
     }
 }

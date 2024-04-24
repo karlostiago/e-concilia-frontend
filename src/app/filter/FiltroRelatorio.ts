@@ -41,6 +41,7 @@ export class FiltroRelatorio {
             this.alertaService.error("Campo data final não foi informado.");
             valido = false;
         }
+
         return valido;
     }
 
