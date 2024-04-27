@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {TipoRelatorio} from "../../../model/TipoRelatorio";
 import {FiltroRelatorio} from "../../../filter/FiltroRelatorio";
 import {EmpresaService} from "../../empresa/empresa.service";
@@ -52,10 +52,9 @@ export class RelatorioFiltroComponent implements OnInit {
     }
 
     private carregarTiposRelatorio() {
-        this.tiposRelatorio.push(TipoRelatorio.CSV.toUpperCase());
-        // for (const tipoRelatorioKey in TipoRelatorio) {
-        //     // @ts-ignore
-        //     this.tiposRelatorio.push(TipoRelatorio[`${tipoRelatorioKey}`].toUpperCase());
-        // }
+        for (const tipoRelatorioKey in TipoRelatorio) {
+            // @ts-ignore
+            this.tiposRelatorio.push(TipoRelatorio[`${tipoRelatorioKey}`].toUpperCase());
+        }
     }
 }
