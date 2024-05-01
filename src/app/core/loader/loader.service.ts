@@ -6,6 +6,7 @@ import {Subject} from "rxjs";
 })
 export class LoaderService {
 
+    automatic: boolean = true;
     isLoading = new Subject<boolean>();
 
     constructor() {

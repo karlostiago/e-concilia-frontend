@@ -18,7 +18,7 @@ export class ImportacaoService extends AbstractService<Importacao> {
         return 'importacoes';
     }
 
-    async agendar(importacao: Importacao): Promise<Importacao> {
+    agendar(importacao: Importacao): Promise<Importacao> {
         const request = this.httpClient.post(`${this.baseURL}/${this.pathURL()}`, JSON.stringify(importacao), this.options());
         return this.toPromise(request);
     }

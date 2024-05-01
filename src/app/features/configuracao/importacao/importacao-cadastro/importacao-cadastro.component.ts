@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Importacao} from "../../../../model/Importacao";
 import {Operadora} from "../../../../model/Operadora";
 import {OperadoraService} from "../../../operadora/operadora.service";
@@ -10,13 +10,14 @@ import {ImportacaoService} from "../importacao.service";
 import {AlertaService} from "../../../../shared/alerta/alerta.service";
 import {NgForm} from "@angular/forms";
 import {SegurancaService} from "../../../seguranca/seguranca.service";
+import {LoaderService} from "../../../../core/loader/loader.service";
 
 @Component({
     selector: 'app-cadastro-importacao',
     templateUrl: './importacao-cadastro.component.html',
     styleUrls: ['./importacao-cadastro.component.css']
 })
-export class ImportacaoCadastroComponent implements OnInit {
+export class ImportacaoCadastroComponent implements OnInit, OnDestroy {
 
     importacoes = new Array<Importacao>();
     importacao = new Importacao();
@@ -26,28 +27,40 @@ export class ImportacaoCadastroComponent implements OnInit {
     empresaId: number;
     operadoraId: number;
 
+    private atualizacaoAutomatica: any;
+
     constructor(private operadoraService: OperadoraService,
                 private empresaService: EmpresaService,
                 private importacaoService: ImportacaoService,
                 public segurancaService: SegurancaService,
-                private alerta: AlertaService) {
+                private alerta: AlertaService,
+                private loaderService: LoaderService) {
     }
 
     ngOnInit(): void {
         this.carregarEmpresas();
         this.carregarOperadoras();
-        this.carregarImportacoesAgendadas();
+        this.executarAtualizacaoAutomatica();
     }
 
-    async agendar(form: NgForm) {
+    ngOnDestroy(): void {
+        this.loaderService.automatic = true;
+        clearInterval(this.atualizacaoAutomatica);
+    }
+
+    agendar(form: NgForm) {
+        this.loaderService.automatic = true;
+
         this.selecionarEmpresa();
         this.selecionarOperadora();
 
-        this.importacaoService.agendar(this.importacao).then(importacao => {
+        this.importacaoService.agendar(this.importacao).then(() => {
             this.alerta.sucesso("Importação agendada com sucesso.");
-            this.importacoes.push(importacao);
             this.limpar(form);
         });
+
+        clearInterval(this.atualizacaoAutomatica);
+        this.executarAtualizacaoAutomatica();
     }
 
     limpar(form: NgForm) {
@@ -61,6 +74,11 @@ export class ImportacaoCadastroComponent implements OnInit {
         this.importacaoService.buscarPorAgendados().then(importacoes => {
             this.importacoes = importacoes;
         });
+    }
+
+    private executarAtualizacaoAutomatica() {
+        this.loaderService.automatic = false;
+        this.atualizacaoAutomatica = setInterval(() => this.carregarImportacoesAgendadas(), 1000);
     }
 
     private selecionarOperadora() {

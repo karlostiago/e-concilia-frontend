@@ -120,7 +120,7 @@ export class RelatorioConciliacaoComponent implements OnInit {
                 }
             },
             {
-                title: "Tr. pagmento",
+                title: "Tr. pagamento",
                 style: {
                     width: 25,
                     fontSize: 14
