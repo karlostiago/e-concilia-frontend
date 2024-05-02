@@ -11,14 +11,20 @@ export class ErroHandlerService {
 
     capturar(errorResponse: any) {
         if (errorResponse.status === 401) {
-            // this.notificacao.error('Não autorizado.');
+            console.log('::: Acesso não autorizado :::')
         }
         else if (errorResponse.status === 403) {
             this.notificacao.error('Acesso não permitido.');
         }
         else {
             for (const erro of errorResponse.error) {
-                this.notificacao.error(erro['mensagem']);
+                if (erro['severidade'] === 'ATENCAO') {
+                    this.notificacao.atencao(erro['mensagem']);
+                } else if (erro['severidade'] === 'INFO') {
+                    this.notificacao.sucesso(erro['mensagem']);
+                } else {
+                    this.notificacao.error(erro['mensagem']);
+                }
             }
         }
     }
