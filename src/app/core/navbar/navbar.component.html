@@ -118,6 +118,11 @@
                                 <span> Importações </span>
                             </a>
                         </li>
+                        <li class="custom-navbar-title" *ngIf="segurancaService.temPermissao('ROLE_PESQUISAR_PARAMETRO')">
+                            <a routerLink="configuracao/consulta/parametros"> <i class="pi pi-wrench"></i>
+                                <span> Parâmetros </span>
+                            </a>
+                        </li>
                     </ul>
                 </li>
             </ul>

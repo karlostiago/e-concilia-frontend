@@ -8,6 +8,7 @@ import {ImportacaoCadastroComponent} from "./importacao/importacao-cadastro/impo
 import {PermissaoCadastroComponent} from './seguranca/permissao-cadastro/permissao-cadastro.component';
 import {PermissaoConsultaComponent} from './seguranca/permissao-consulta/permissao-consulta.component';
 import {CanActivate} from "../../auth.guard";
+import {ParametroConsultaComponent} from "./parametro/parametro-consulta/parametro-consulta.component";
 
 
 const rotas: Routes = [
@@ -75,7 +76,12 @@ const rotas: Routes = [
         path: 'configuracao/consulta/permissoes',
         component: PermissaoConsultaComponent,
         canActivate: [CanActivate]
-    }
+    },
+    {
+        path: 'configuracao/consulta/parametros',
+        component: ParametroConsultaComponent,
+        canActivate: [CanActivate]
+    },
 ]
 
 @NgModule({

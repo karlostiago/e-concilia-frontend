@@ -10,13 +10,13 @@
 }
 
 body, table {
-    font-family: var(--font-family);
+    font-family: var(--font-family), serif;
     font-size: var(--font-size)!important;
     background-color: #f1f4f6;
 }
 
 .badge {
-    font-family: var(--font-family)!important;
+    font-family: var(--font-family), serif !important;
 }
 
 td,
@@ -362,6 +362,3 @@ a {
         bottom: 8px!important;
     }
 }
-
-
-

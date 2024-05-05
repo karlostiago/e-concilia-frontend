@@ -1,3 +1,5 @@
+import {Grafico} from "./Grafico";
+
 export class Dashboard {
     valorBrutoVendas = 0;
     quantidadeVendas = 0;
@@ -9,4 +11,5 @@ export class Dashboard {
     valorRecebidoLoja = 0;
     valorTaxaEntrega = 0;
     valorEmRepasse = 0;
+    graficoDTO = new Grafico();
 }

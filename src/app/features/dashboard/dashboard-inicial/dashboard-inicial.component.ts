@@ -8,12 +8,6 @@ import {FiltroDashboard} from "../../../filter/FiltroDashboard";
 import {
     DashboardGraficoVendaUltimoSeteDiasComponent
 } from "../dashboard-grafico-venda-semanal/dashboard-grafico-venda-ultimo-sete-dias.component";
-import {
-    DashboardGraficoVendaUltimoSeteDiasCreditoDebitoComponent
-} from "../dashboard-grafico-venda-semanal-credito-debito/dashboard-grafico-venda-ultimo-sete-dias-credito-debito.component";
-import {
-    DashboardGraficoVendaUltimoSeteDiasDinheiroPixComponent
-} from "../dashboard-grafico-venda-semanal-dinheiro-pix/dashboard-grafico-venda-ultimo-sete-dias-dinheiro-pix.component";
 import {SegurancaService} from "../../seguranca/seguranca.service";
 import {
     DashboardGraficoVendaUltimoSeteDiasPercentualComponent
@@ -40,8 +34,6 @@ export class DashboardInicialComponent implements OnInit {
     dashboard = new Dashboard();
 
     @ViewChild(DashboardGraficoVendaUltimoSeteDiasComponent) graficoVendaUltimoSeteDiasComponent: DashboardGraficoVendaUltimoSeteDiasComponent;
-    @ViewChild(DashboardGraficoVendaUltimoSeteDiasCreditoDebitoComponent) graficoVendaUltimoSeteDiasCreditoDebito: DashboardGraficoVendaUltimoSeteDiasCreditoDebitoComponent;
-    @ViewChild(DashboardGraficoVendaUltimoSeteDiasDinheiroPixComponent) graficoVendaUltimoSeteDiasDinheiroPix: DashboardGraficoVendaUltimoSeteDiasDinheiroPixComponent;
     @ViewChild(DashboardGraficoVendaUltimoSeteDiasPercentualComponent) graficoVendaUltimoSeteDiasPercentual: DashboardGraficoVendaUltimoSeteDiasPercentualComponent;
     @ViewChild(DashboardGraficoVendaMensalComponent) graficoVendaMensal: DashboardGraficoVendaMensalComponent;
     @ViewChild(DashboardGraficoVendaAnualComponent) graficoVendaAnual: DashboardGraficoVendaAnualComponent;
@@ -61,12 +53,10 @@ export class DashboardInicialComponent implements OnInit {
 
         this.dashboardService.buscarInformacoes(this.empresasSelecionadas.join(','), this.filtro.dtInicial, this.filtro.dtFinal).then(dashabord => {
             this.dashboard = dashabord;
-            this.graficoVendaUltimoSeteDiasComponent.atualizar();
-            this.graficoVendaUltimoSeteDiasCreditoDebito.atualizar();
-            this.graficoVendaUltimoSeteDiasDinheiroPix.atualizar();
-            this.graficoVendaUltimoSeteDiasPercentual.atualizar();
-            this.graficoVendaMensal.atualizar();
-            this.graficoVendaAnual.atualizar();
+            this.graficoVendaUltimoSeteDiasComponent.atualizar(dashabord.graficoDTO.graficoVendaUltimo7DiaDTO);
+            this.graficoVendaUltimoSeteDiasPercentual.atualizar(dashabord.graficoDTO.graficoPercentualVendaFormaPagamentoDTO);
+            this.graficoVendaMensal.atualizar(dashabord.graficoDTO.graficoVendaMensalDTO);
+            this.graficoVendaAnual.atualizar(dashabord.graficoDTO.graficoVendaAnualDTO);
         });
     }
 

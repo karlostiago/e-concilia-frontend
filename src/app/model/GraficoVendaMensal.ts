@@ -1,6 +1,6 @@
-import {Grafico} from "./Grafico";
+import {AbstractGrafico} from "./AbstractGrafico";
 import {DataSet} from "./DataSet";
 
-export class GraficoVendaMensal extends Grafico {
+export class GraficoVendaMensal extends AbstractGrafico {
     dataSets: Array<DataSet>;
 }

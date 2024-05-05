@@ -16,6 +16,7 @@ import {CalendarModule} from "primeng/calendar";
 import {PermissaoCadastroComponent} from './seguranca/permissao-cadastro/permissao-cadastro.component';
 import {PermissaoConsultaComponent} from './seguranca/permissao-consulta/permissao-consulta.component';
 import {CheckboxModule} from "primeng/checkbox";
+import { ParametroConsultaComponent } from './parametro/parametro-consulta/parametro-consulta.component';
 
 @NgModule({
     declarations: [
@@ -24,7 +25,8 @@ import {CheckboxModule} from "primeng/checkbox";
         UsuarioCadastroComponent,
         ImportacaoCadastroComponent,
         PermissaoCadastroComponent,
-        PermissaoConsultaComponent
+        PermissaoConsultaComponent,
+        ParametroConsultaComponent
     ],
     imports: [
         CommonModule,

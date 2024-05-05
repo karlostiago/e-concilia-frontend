@@ -84,6 +84,7 @@ export class NavbarComponent implements OnInit {
         return this.segurancaService.temPermissao('ROLE_MENU_INTEGRACAO')
             || this.segurancaService.temPermissao('ROLE_MENU_USUARIO')
             || this.segurancaService.temPermissao('ROLE_MENU_PERMISSAO')
+            || this.segurancaService.temPermissao('ROLE_PESQUISAR_PARAMETRO')
             || this.segurancaService.temPermissao('ROLE_PESQUISAR_IMPORTACAO');
     }
 

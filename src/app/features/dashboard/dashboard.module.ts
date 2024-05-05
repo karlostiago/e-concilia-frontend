@@ -7,25 +7,19 @@ import {
     DashboardGraficoVendaUltimoSeteDiasComponent
 } from './dashboard-grafico-venda-semanal/dashboard-grafico-venda-ultimo-sete-dias.component';
 import {
-    DashboardGraficoVendaUltimoSeteDiasCreditoDebitoComponent
-} from './dashboard-grafico-venda-semanal-credito-debito/dashboard-grafico-venda-ultimo-sete-dias-credito-debito.component';
-import {
-    DashboardGraficoVendaUltimoSeteDiasDinheiroPixComponent
-} from "./dashboard-grafico-venda-semanal-dinheiro-pix/dashboard-grafico-venda-ultimo-sete-dias-dinheiro-pix.component";
-import {
     DashboardGraficoVendaUltimoSeteDiasPercentualComponent
 } from "./dashboard-grafico-venda-percentual/dashboard-grafico-venda-ultimo-sete-dias-percentual.component";
 import {
     DashboardGraficoVendaMensalComponent
 } from "./dashboard-grafico-venda-mensal/dashboard-grafico-venda-mensal.component";
-import { DashboardGraficoVendaAnualComponent } from './dashboard-grafico-venda-anual/dashboard-grafico-venda-anual.component';
+import {
+    DashboardGraficoVendaAnualComponent
+} from './dashboard-grafico-venda-anual/dashboard-grafico-venda-anual.component';
 
 @NgModule({
     declarations: [
         DashboardInfoComponent,
         DashboardGraficoVendaUltimoSeteDiasComponent,
-        DashboardGraficoVendaUltimoSeteDiasCreditoDebitoComponent,
-        DashboardGraficoVendaUltimoSeteDiasDinheiroPixComponent,
         DashboardGraficoVendaUltimoSeteDiasPercentualComponent,
         DashboardGraficoVendaMensalComponent,
         DashboardGraficoVendaAnualComponent
@@ -34,8 +28,6 @@ import { DashboardGraficoVendaAnualComponent } from './dashboard-grafico-venda-a
         DashboardInfoComponent,
         ChartModule,
         DashboardGraficoVendaUltimoSeteDiasComponent,
-        DashboardGraficoVendaUltimoSeteDiasCreditoDebitoComponent,
-        DashboardGraficoVendaUltimoSeteDiasDinheiroPixComponent,
         DashboardGraficoVendaUltimoSeteDiasPercentualComponent,
         DashboardGraficoVendaMensalComponent,
         DashboardGraficoVendaAnualComponent

@@ -77,7 +77,7 @@ export class PermissaoCadastroComponent implements OnInit {
             [TipoPermissao.AGENDAR]: ['Importações'],
             [TipoPermissao.CADASTRAR]: ['Empresas', 'Contratos', 'Operadoras', 'Usuários', 'Permissões', 'Integrações'],
             [TipoPermissao.ATUALIZAR]: ['Empresas', 'Contratos', 'Operadoras', 'Usuários', 'Permissões', 'Integrações'],
-            [TipoPermissao.PESQUISAR]: ['Empresas', 'Contratos', 'Operadoras', 'Usuários', 'Permissões', 'Conciliador', 'Integrações', 'Taxas', 'Dashboard', 'Relatórios'],
+            [TipoPermissao.PESQUISAR]: ['Empresas', 'Contratos', 'Operadoras', 'Usuários', 'Permissões', 'Conciliador', 'Integrações', 'Taxas', 'Dashboard', 'Relatórios', 'Parâmetros'],
             [TipoPermissao.DELETAR]: ['Empresas', 'Contratos', 'Operadoras', 'Usuários', 'Permissões', 'Integrações'],
             [TipoPermissao.ATIVAR]: ['Empresas', 'Contratos', 'Taxas'],
             [TipoPermissao.MENU]: ['Empresas', 'Contratos', 'Operadoras', 'Usuários', 'Permissões', 'Integrações', 'Taxas', 'Importações', 'Conciliador', 'Relatórios'],

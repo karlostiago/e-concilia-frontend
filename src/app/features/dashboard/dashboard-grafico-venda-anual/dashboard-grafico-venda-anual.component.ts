@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {DashboardService} from "../dashboard.service";
 import {GraficoVendaAnual} from "../../../model/GraficoVendaAnual";
 import {FormatacaoMoedaPtBR} from "../../../../helpers/FormatacaoMoedaPtBR";
 
@@ -14,18 +13,14 @@ export class DashboardGraficoVendaAnualComponent implements OnInit {
     options: any;
     graficoVendaAnual = new GraficoVendaAnual();
 
-    constructor(private dashboardService: DashboardService) { }
-
     ngOnInit() {
 
     }
 
-    atualizar() {
-        this.dashboardService.buscarVendaAnual().then(data => {
-            this.graficoVendaAnual = data;
-            this.getData();
-            this.getOptions();
-        });
+    atualizar(grafico: GraficoVendaAnual) {
+        this.graficoVendaAnual = grafico;
+        this.getData();
+        this.getOptions();
     }
 
     private getData() {
@@ -43,9 +38,10 @@ export class DashboardGraficoVendaAnualComponent implements OnInit {
         const dataSets = [];
 
         const colors = [
-            '--blue-500',
-            '--orange-500',
-            '--teal-500',
+            '--bs-orange',
+            '--bs-teal',
+            '--bs-success',
+            '--bs-info'
         ]
 
         let index = 0;

@@ -1,4 +1,4 @@
-import {Grafico} from "./Grafico";
+import {AbstractGrafico} from "./AbstractGrafico";
 
-export class GraficoVendaPercentualFormaPagamento extends Grafico {
+export class GraficoVendaPercentualFormaPagamento extends AbstractGrafico {
 }

@@ -1,6 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormatacaoMoedaPtBR} from "../../../../helpers/FormatacaoMoedaPtBR";
-import {DashboardService} from "../dashboard.service";
 import {GraficoVendaPercentualFormaPagamento} from "../../../model/GraficoVendaPercentualFormaPagamento";
 
 @Component({
@@ -14,21 +13,14 @@ export class DashboardGraficoVendaUltimoSeteDiasPercentualComponent implements O
     options: any;
     grafico = new GraficoVendaPercentualFormaPagamento();
 
-    @Input() empresas = new Array<string>();
-
-    constructor(private dashboardService: DashboardService) {
-    }
-
     ngOnInit(): void {
 
     }
 
-    atualizar() {
-        this.dashboardService.buscarPercentualVendasFormaPagamento(this.empresas.join(',')).then(data => {
-            this.grafico = data;
-            this.getData();
-            this.getOptions();
-        });
+    atualizar(grafico: GraficoVendaPercentualFormaPagamento) {
+        this.grafico = grafico;
+        this.getData();
+        this.getOptions();
     }
 
     private getData() {

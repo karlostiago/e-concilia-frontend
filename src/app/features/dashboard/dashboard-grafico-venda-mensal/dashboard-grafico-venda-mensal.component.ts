@@ -1,6 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormatacaoMoedaPtBR} from "../../../../helpers/FormatacaoMoedaPtBR";
-import {DashboardService} from "../dashboard.service";
 import {GraficoVendaMensal} from "../../../model/GraficoVendaMensal";
 
 @Component({
@@ -14,20 +13,12 @@ export class DashboardGraficoVendaMensalComponent implements OnInit {
     options: any;
     graficoVendaMensal = new GraficoVendaMensal();
 
-    @Input() empresas = new Array<string>();
-    @Input() dataInicial: Date;
-    @Input() dataFinal: Date;
-
-    constructor(private dashboardService: DashboardService) { }
-
     ngOnInit() { }
 
-    atualizar() {
-        this.dashboardService.buscarVendaMensal(this.empresas.join(','), this.dataInicial, this.dataFinal).then(data => {
-            this.graficoVendaMensal = data;
-            this.getData();
-            this.getOptions();
-        });
+    atualizar(grafico: GraficoVendaMensal) {
+        this.graficoVendaMensal = grafico;
+        this.getData();
+        this.getOptions();
     }
 
     private getData() {
