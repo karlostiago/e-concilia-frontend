@@ -1,1 +1,76 @@
-<p>parametros works!</p>
+<form autocomplete="off" class="fade-in">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="color-wine"> Consultar parâmetros </h4>
+        </div>
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <label class="form-label">Empresa:</label>
+                    <p-dropdown styleClass="w-100" name="empresa" id="empresa" optionLabel="razaoSocial"
+                                optionValue="id" [(ngModel)]="empresaId"
+                                placeholder="Selecione uma empresa" [options]="empresas" (onChange)="pesquisar()"></p-dropdown>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Operadora:</label>
+                    <p-dropdown styleClass="w-100" name="operadora" id="operadora" optionLabel="descricao"
+                                optionValue="id" [(ngModel)]="operadoraId"
+                                placeholder="Selecione uma operadora" [options]="operadoras" (onChange)="pesquisar()"></p-dropdown>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <div class="card-action">
+                <button type="button" pButton class="p-button-danger p-button-sm float-end" icon="pi pi-eraser" label="Limpar" (click)="limpar()"></button>
+            </div>
+        </div>
+    </div>
+
+    <br/>
+
+    <div class="card">
+        <div class="card-header">
+            <h4 class="color-wine"> Listagem de parâmetros </h4>
+        </div>
+
+        <div class="card-body">
+            <p-table [value]="parametros"
+                     [paginator]="true"
+                     responsiveLayout="stack" [breakpoint]="'960px'"
+                     [rows]="10" styleClass="p-datatable-striped p-datatable p-datatable-gridlines">
+
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th class="text-center" style="min-width: 180px;">Parâmetro</th>
+                        <th class="text-center" style="min-width: 320px">Descricao</th>
+                        <th class="text-center" style="min-width: 50px">Ativo</th>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-parametro let-rowIndex="rowIndex">
+                    <tr>
+                        <td class="text-left">
+                            <span class="p-column-title">Parâmetro</span>
+                            {{ parametro['preFixo'] }}
+                        </td>
+                        <td class="text-left">
+                            <span class="p-column-title">Descrição</span>
+                            {{ parametro['descricao'] }}
+                        </td>
+                        <td class="text-center">
+                            <span class="p-column-title">Ativo</span>
+                            <a (click)="ativarOuDesativar(parametro)">
+                                <span class=" {{ parametro['ativo'] == true ? 'badge text-bg-success' : 'badge text-bg-danger' }} ">
+                                    {{ parametro["ativo"] === true ? 'Sim' : 'Não' }}
+                                </span>
+                            </a>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+</form>

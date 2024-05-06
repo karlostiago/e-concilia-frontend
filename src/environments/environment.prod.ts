@@ -1,6 +1,6 @@
 export const environment = {
     production: true,
     apiUrl: 'https://e-concilia-api.herokuapp.com/api',
-    version: '0.3.4-Snapshot',
-    dataAtualizacao: '01/05/2024'
+    version: '1.0.0-Snapshot',
+    dataAtualizacao: '06/05/2024'
 }
