@@ -69,9 +69,9 @@ export class ImportacaoCadastroComponent implements OnInit, OnDestroy {
     executarManual() {
         this.loaderService.automatic = true;
 
-        this.importacaoService.executarManual().then(() => {
-            this.alerta.sucesso("Importação iniciada com sucesso. Caso ocorra erro de processamento basta executar novamente.");
-        });
+        this.importacaoService.executarManual().then(() => { });
+
+        this.alerta.sucesso("Importação iniciada com sucesso. Caso ocorra erro de processamento basta executar novamente.");
 
         clearInterval(this.atualizacaoAutomatica);
         this.executarAtualizacaoAutomatica();
