@@ -40,6 +40,7 @@ export class ImportacaoCadastroComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.carregarEmpresas();
         this.carregarOperadoras();
+        this.carregarImportacoesAgendadas();
         this.executarAtualizacaoAutomatica();
     }
 
@@ -55,30 +56,44 @@ export class ImportacaoCadastroComponent implements OnInit, OnDestroy {
         this.selecionarOperadora();
 
         this.importacaoService.agendar(this.importacao).then(() => {
+            this.importacao.situacao = 'AGENDADO';
+            this.importacoes.push(this.importacao);
             this.alerta.sucesso("Importação agendada com sucesso.");
-            this.limpar(form);
+            this.limpar();
         });
 
         clearInterval(this.atualizacaoAutomatica);
         this.executarAtualizacaoAutomatica();
     }
 
-    limpar(form: NgForm) {
-        form.resetForm();
+    executarManual() {
+        this.loaderService.automatic = true;
+
+        this.importacaoService.executarManual().then(() => {
+            this.alerta.sucesso("Importação iniciada com sucesso. Caso ocorra erro de processamento basta executar novamente.");
+        });
+
+        clearInterval(this.atualizacaoAutomatica);
+        this.executarAtualizacaoAutomatica();
+    }
+
+    limpar() {
         this.importacao = new Importacao();
-        this.importacao.dataInicial = new Date();
-        this.importacao.dataFinal = new Date();
+        this.empresaId = -1;
+        this.operadoraId = -1;
     }
 
     carregarImportacoesAgendadas() {
         this.importacaoService.buscarPorAgendados().then(importacoes => {
-            this.importacoes = importacoes;
+            if (importacoes !== null) {
+                this.importacoes = importacoes;
+            }
         });
     }
 
     private executarAtualizacaoAutomatica() {
         this.loaderService.automatic = false;
-        this.atualizacaoAutomatica = setInterval(() => this.carregarImportacoesAgendadas(), 1000);
+        this.atualizacaoAutomatica = setInterval(() => this.carregarImportacoesAgendadas(), 5000);
     }
 
     private selecionarOperadora() {

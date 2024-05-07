@@ -46,9 +46,8 @@
             <div class="card-action">
                 <button pButton type="submit" class="p-button-danger p-button-sm" icon="pi pi-clock" label="Agendar"
                         [disabled]="!formulario.valid && !segurancaService.temPermissao('ROLE_AGENDAR_IMPORTACAO')"></button>
-                <!--                <button pButton type="button" class="p-button-danger p-button-sm p-button-outlined" icon="pi pi-replay" label="Voltar" routerLink="/configuracao/consulta/integracoes"></button>-->
                 <button pButton type="button" class="p-button-danger p-button-sm float-end" icon="pi pi-eraser"
-                        label="Limpar" (click)="limpar(formulario)"></button>
+                        label="Limpar" (click)="limpar()"></button>
             </div>
         </div>
     </div>
@@ -57,7 +56,10 @@
 
     <div class="card">
         <div class="card-header">
-            <h3 class="color-wine"> Importações agendadas </h3>
+            <h3 class="color-wine float-start"> Importações agendadas </h3>
+
+            <button pButton type="button" class="p-button-danger p-button-sm float-end" style="margin-top: 5px" icon="pi pi-play"
+                    label="Exec. manual" (click)="executarManual()"></button>
         </div>
 
         <div class="card-body">
@@ -70,6 +72,7 @@
                         <th class="text-center w-10">Data final</th>
                         <th class="text-center w-15">Empresa</th>
                         <th class="text-center w-15">Operadora</th>
+                        <th class="text-center w-15">Executado ás</th>
                         <th class="text-center w-10">Situação</th>
                     </tr>
                 </ng-template>
@@ -91,6 +94,10 @@
                         <td class="text-center">
                             <span class="p-column-title">Operadora</span>
                             {{ importacao["operadora"]["descricao"] }}
+                        </td>
+                        <td class="text-center">
+                            <span class="p-column-title">Operadora</span>
+                            {{ importacao["executadoAs"] | date:'dd/MM/yyyy HH:mm:ss' }}
                         </td>
                         <td class="text-center">
                             <span class="p-column-title">Situação</span>

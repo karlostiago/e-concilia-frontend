@@ -23,6 +23,11 @@ export class ImportacaoService extends AbstractService<Importacao> {
         return this.toPromise(request);
     }
 
+    executarManual(): Promise<Importacao> {
+        const request = this.httpClient.post(`${this.baseURL}/${this.pathURL()}/executar-manual`, this.options());
+        return this.toPromise(request);
+    }
+
     async buscarPorAgendados(): Promise<Importacao[]> {
         const request = this.httpClient.get(`${this.baseURL}/${this.pathURL()}`, this.options());
         return this.toPromise(request);
