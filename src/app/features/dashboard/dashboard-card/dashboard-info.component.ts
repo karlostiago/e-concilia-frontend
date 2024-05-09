@@ -21,4 +21,8 @@ export class DashboardInfoComponent implements OnInit {
     formatarMoeda(valor: number) {
         return FormatacaoMoedaPtBR.monetario(valor);
     }
+
+    formatarPercentual(valor: number) {
+        return FormatacaoMoedaPtBR.percentual(valor);
+    }
 }

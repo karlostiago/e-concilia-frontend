@@ -88,5 +88,16 @@
             </div>
         </div>
     </div>
+
+    <div class="col-md-3 col-sm-12 mb-10">
+        <div class="card">
+            <div class="card-header">
+                <label>Perc. crescimento:</label><br>
+                <h5 class="color-text-green" *ngIf="dashboard.percentualCrescimento === 0"> {{ formatarPercentual(dashboard.percentualCrescimento) }}</h5>
+                <h5 class="color-text-green" *ngIf="dashboard.percentualCrescimento > 0"> <i class="pi pi-angle-up"></i> {{ formatarPercentual(dashboard.percentualCrescimento) }}</h5>
+                <h5 class="color-wine" *ngIf="dashboard.percentualCrescimento < 0"> <i class="pi pi-angle-down"></i> {{ formatarPercentual(dashboard.percentualCrescimento) }}</h5>
+            </div>
+        </div>
+    </div>
 </div>
 

@@ -11,5 +11,6 @@ export class Dashboard {
     valorRecebidoLoja = 0;
     valorTaxaEntrega = 0;
     valorEmRepasse = 0;
+    percentualCrescimento = 0;
     graficoDTO = new Grafico();
 }
