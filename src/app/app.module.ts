@@ -17,6 +17,7 @@ import {InputTextModule} from "primeng/inputtext";
 import {TableModule} from "primeng/table";
 import {LoginComponent} from './features/seguranca/login/login.component';
 import {AuthInterceptor} from "./auth.interceptor";
+import { PaginaNaoEncontradaComponent } from './core/pagina-nao-encontrada/pagina-nao-encontrada.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {AuthInterceptor} from "./auth.interceptor";
         AppComponent,
         DashboardInicialComponent,
         UsuarioConsultaComponent,
-        LoginComponent
+        LoginComponent,
+        PaginaNaoEncontradaComponent
     ],
     imports: [
         HttpClientModule,

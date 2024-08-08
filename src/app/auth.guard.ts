@@ -7,10 +7,9 @@ export const CanActivate = () => {
     const router = inject(Router);
 
     if (segurancaService.isLogado()) {
-
         return true;
     } else {
-        router.navigate(['/login']);
+        router.navigate(['login']);
         return false;
     }
 };

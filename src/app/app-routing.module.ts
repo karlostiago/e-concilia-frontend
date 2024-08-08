@@ -1,13 +1,20 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
-import {DashboardInicialComponent} from "./features/dashboard/dashboard-inicial/dashboard-inicial.component";
-import {CanActivate} from "./auth.guard";
+import {PaginaNaoEncontradaComponent} from "./core/pagina-nao-encontrada/pagina-nao-encontrada.component";
 
 const rotas: Routes = [
     {
         path: '',
-        component: DashboardInicialComponent,
-        canActivate: [CanActivate]
+        redirectTo: 'dashboard/inicial',
+        pathMatch: 'full'
+    },
+    {
+        path: 'pagina-nao-encontrada',
+        component: PaginaNaoEncontradaComponent
+    },
+    {
+        path: '**',
+        redirectTo: 'pagina-nao-encontrada'
     }
 ]
 

@@ -15,6 +15,7 @@ import {
 import {
     DashboardGraficoVendaAnualComponent
 } from './dashboard-grafico-venda-anual/dashboard-grafico-venda-anual.component';
+import {TooltipModule} from "primeng/tooltip";
 
 @NgModule({
     declarations: [
@@ -35,7 +36,8 @@ import {
     imports: [
         CommonModule,
         DashboardRoutingModule,
-        ChartModule
+        ChartModule,
+        TooltipModule
     ]
 })
 export class DashboardModule {
